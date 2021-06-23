@@ -121,7 +121,6 @@
                     <h4 class="card-title">{{ __('messages.user_information') }}</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form">
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
@@ -209,7 +208,6 @@
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
