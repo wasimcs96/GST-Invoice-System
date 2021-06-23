@@ -14,10 +14,10 @@
             </nav>
             <h1 class="m-0 h3">{{ __('messages.edit_user') }}</h1>
         </div>
-        <a href="{{ route('super_admin.users.delete', $user->id) }}" class="btn btn-danger ml-3 delete-confirm">
+        {{-- <a href="{{ route('super_admin.users.delete', $user->id) }}" class="btn btn-danger ml-3 delete-confirm">
             <i class="material-icons">delete</i> 
             {{ __('messages.delete_user') }}
-        </a>
+        </a> --}}
     </div>
 @endsection
  

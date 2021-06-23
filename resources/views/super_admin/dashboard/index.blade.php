@@ -1,7 +1,7 @@
 @extends('layouts.app', ['page' => 'super_admin.dashboard'])
 
 @section('title', __('messages.dashboard'))
-    
+
 @section('page_header')
     <div class="page__heading d-flex align-items-center">
         <div class="flex">
@@ -78,7 +78,7 @@
     <script src="{{ asset('assets/js/charts.js') }}"></script>
 
     <script>
-        (function () {
+        (function() {
             'use strict';
             Charts.init();
 
@@ -91,7 +91,10 @@
                         yAxes: [{
                             ticks: {
                                 callback: function callback(a) {
-                                    return a.toLocaleString("en-US", {style:"currency", currency: "{{ get_system_setting('application_currency') }}"});
+                                    return a.toLocaleString("en-US", {
+                                        style: "currency",
+                                        currency: "{{ get_system_setting('application_currency') }}"
+                                    });
                                 }
                             }
                         }]
@@ -102,8 +105,13 @@
                                 var t = e.datasets[a.datasetIndex].label || "",
                                     o = a.yLabel,
                                     r = "",
-                                    val = o.toLocaleString("en-US", {style:"currency", currency: "{{ get_system_setting('application_currency') }}"});
-                                return 1 < e.datasets.length && (r += '<span class="popover-body-label mr-auto">' + t + "</span>"), r += '<span class="popover-body-value">' + val + "</span>";
+                                    val = o.toLocaleString("en-US", {
+                                        style: "currency",
+                                        currency: "{{ get_system_setting('application_currency') }}"
+                                    });
+                                return 1 < e.datasets.length && (r +=
+                                        '<span class="popover-body-label mr-auto">' + t + "</span>"),
+                                    r += '<span class="popover-body-value">' + val + "</span>";
                             }
                         }
                     }
