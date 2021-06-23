@@ -136,105 +136,146 @@
                     <h4 class="card-title">{{ __('messages.plan_information') }}</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form">
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <div class="form-group required">
-                                    <label for="name">{{ __('messages.name') }}</label>
-                                    <input name="name" type="text" class="form-control" placeholder="{{ __('messages.name') }}" value="{{ $plan->name }}" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group">
-                                    <label for="description">{{ __('messages.description') }}</label>
-                                    <input name="description" type="text" class="form-control" placeholder="{{ __('messages.description') }}" value="{{ $plan->description }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group required">
-                                    <label for="price">{{ __('messages.price') }}</label>
-                                    <input name="price" type="text" class="form-control price_input" placeholder="{{ __('messages.price') }}" autocomplete="off" value="{{ $plan->price ?? 0 }}" required>
-                                    <small class="form-text text-muted">{{ __('messages.plan_price_helper') }}</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group required">
-                                    <label for="invoice_interval">{{ __('messages.invoice_interval') }}</label>
-                                    <select name="invoice_interval"  class="form-control" required>
-                                        <option value="month" {{ $plan->invoice_interval === 'month' ? 'selected=""' : ''}}>{{ __('messages.month') }}</option>
-                                        <option value="year" {{ $plan->invoice_interval === 'year' ? 'selected=""' : ''}}>{{ __('messages.year') }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group required">
-                                    <label for="trial_period">{{ __('messages.trial_period') }}</label>
-                                    <input name="trial_period" type="number" class="form-control" placeholder="{{ __('messages.trial_period') }}" value="{{ $plan->trial_period }}" required>
-                                    <small class="form-text text-muted">{{ __('messages.plan_trial_period_helper') }}</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group required">
-                                    <label for="order">{{ __('messages.order') }}</label>
-                                    <input name="order" type="number" class="form-control" placeholder="{{ __('messages.order') }}" value="{{ $plan->order }}">
-                                </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="name">{{ __('messages.name') }}</label>
+                                <input name="name" type="text" class="form-control"
+                                    placeholder="{{ __('messages.name') }}" value="{{ $plan->name }}" required>
                             </div>
                         </div>
-                    </form>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="description">{{ __('messages.description') }}</label>
+                                <input name="description" type="text" class="form-control"
+                                    placeholder="{{ __('messages.description') }}" value="{{ $plan->description }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="price">{{ __('messages.price') }}</label>
+                                <input name="price" type="text" class="form-control price_input"
+                                    placeholder="{{ __('messages.price') }}" autocomplete="off"
+                                    value="{{ $plan->price ?? 0 }}" required>
+                                <small class="form-text text-muted">{{ __('messages.plan_price_helper') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="invoice_interval">{{ __('messages.invoice_interval') }}</label>
+                                <select name="invoice_interval" class="form-control" required>
+                                    <option value="month"
+                                        {{ $plan->invoice_interval === 'month' ? 'selected=""' : '' }}>
+                                        {{ __('messages.month') }}</option>
+                                    <option value="year"
+                                        {{ $plan->invoice_interval === 'year' ? 'selected=""' : '' }}>
+                                        {{ __('messages.year') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="trial_period">{{ __('messages.trial_period') }}</label>
+                                <input name="trial_period" type="number" class="form-control"
+                                    placeholder="{{ __('messages.trial_period') }}"
+                                    value="{{ $plan->trial_period }}" required>
+                                <small
+                                    class="form-text text-muted">{{ __('messages.plan_trial_period_helper') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="order">{{ __('messages.order') }}</label>
+                                <input name="order" type="number" class="form-control"
+                                    placeholder="{{ __('messages.order') }}" value="{{ $plan->order }}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('messages.plan_feature_information') }}</h4>
                 </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group required">
-                        <label for="features[customers]">{{ __('messages.feature_customers') }}</label>
-                        <input name="features[customers]" type="text" class="form-control" placeholder="{{ __('messages.feature_customers') }}" value="{{ isset($plan->getFeatureBySlug('customers')->value) ? $plan->getFeatureBySlug('customers')->value : '' }}" required>
-                        <small class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group required">
-                        <label for="features[products]">{{ __('messages.feature_products') }}</label>
-                        <input name="features[products]" type="text" class="form-control" placeholder="{{ __('messages.feature_products') }}" value="{{ isset($plan->getFeatureBySlug('products')->value) ? $plan->getFeatureBySlug('products')->value : '' }}" required>
-                        <small class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group required">
-                        <label for="features[estimates_per_month]">{{ __('messages.feature_estimates_per_month') }}</label>
-                        <input name="features[estimates_per_month]" type="text" class="form-control" placeholder="{{ __('messages.feature_estimates_per_month') }}" value="{{ isset($plan->getFeatureBySlug('estimates_per_month')->value) ? $plan->getFeatureBySlug('estimates_per_month')->value : '' }}" required>
-                        <small class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group required">
-                        <label for="features[invoices_per_month]">{{ __('messages.feature_invoices_per_month') }}</label>
-                        <input name="features[invoices_per_month]" type="text" class="form-control" placeholder="{{ __('messages.feature_invoices_per_month') }}" value="{{ isset($plan->getFeatureBySlug('invoices_per_month')->value) ? $plan->getFeatureBySlug('invoices_per_month')->value : '' }}" required>
-                        <small class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group required">
-                        <label for="features[view_reports]">{{ __('messages.feature_can_view_reports') }}</label>
-                        <select name="features[view_reports]"  class="form-control" required>
-                            <option value="1" {{ $plan->id !== null ? $plan->getFeatureBySlug('view_reports')->value === '1' ? 'selected=""' : '' : ''}}>{{ __('messages.yes') }}</option>
-                            <option value="0" {{ $plan->id !== null ? $plan->getFeatureBySlug('view_reports')->value === '0' ? 'selected=""' : '' : ''}}>{{ __('messages.no') }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="form-group required">
-                        <label for="features[advertisement_on_mails]">{{ __('messages.feature_advertisement_on_mails') }}</label>
-                        <select name="features[advertisement_on_mails]"  class="form-control" required>
-                            <option value="1" {{ $plan->id !== null ? $plan->getFeatureBySlug('advertisement_on_mails')->value === '1' ? 'selected=""' : '' : ''}}>{{ __('messages.yes') }}</option>
-                            <option value="0" {{ $plan->id !== null ? $plan->getFeatureBySlug('advertisement_on_mails')->value === '0' ? 'selected=""' : '' : ''}}>{{ __('messages.no') }}</option>
-                        </select>
-                    </div>
-                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="features[customers]">{{ __('messages.feature_customers') }}</label>
+                                <input name="features[customers]" type="text" class="form-control"
+                                    placeholder="{{ __('messages.feature_customers') }}"
+                                    value="{{ isset($plan->getFeatureBySlug('customers')->value) ? $plan->getFeatureBySlug('customers')->value : '' }}"
+                                    required>
+                                <small
+                                    class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
+                            </div>
                         </div>
-                    </form>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="features[products]">{{ __('messages.feature_products') }}</label>
+                                <input name="features[products]" type="text" class="form-control"
+                                    placeholder="{{ __('messages.feature_products') }}"
+                                    value="{{ isset($plan->getFeatureBySlug('products')->value) ? $plan->getFeatureBySlug('products')->value : '' }}"
+                                    required>
+                                <small
+                                    class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label
+                                    for="features[estimates_per_month]">{{ __('messages.feature_estimates_per_month') }}</label>
+                                <input name="features[estimates_per_month]" type="text" class="form-control"
+                                    placeholder="{{ __('messages.feature_estimates_per_month') }}"
+                                    value="{{ isset($plan->getFeatureBySlug('estimates_per_month')->value) ? $plan->getFeatureBySlug('estimates_per_month')->value : '' }}"
+                                    required>
+                                <small
+                                    class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label
+                                    for="features[invoices_per_month]">{{ __('messages.feature_invoices_per_month') }}</label>
+                                <input name="features[invoices_per_month]" type="text" class="form-control"
+                                    placeholder="{{ __('messages.feature_invoices_per_month') }}"
+                                    value="{{ isset($plan->getFeatureBySlug('invoices_per_month')->value) ? $plan->getFeatureBySlug('invoices_per_month')->value : '' }}"
+                                    required>
+                                <small
+                                    class="form-text text-muted">{{ __('messages.plan_feature_unlimited_helper') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label
+                                    for="features[view_reports]">{{ __('messages.feature_can_view_reports') }}</label>
+                                <select name="features[view_reports]" class="form-control" required>
+                                    <option value="1"
+                                        {{ $plan->id !== null ? ($plan->getFeatureBySlug('view_reports')->value === '1' ? 'selected=""' : '') : '' }}>
+                                        {{ __('messages.yes') }}</option>
+                                    <option value="0"
+                                        {{ $plan->id !== null ? ($plan->getFeatureBySlug('view_reports')->value === '0' ? 'selected=""' : '') : '' }}>
+                                        {{ __('messages.no') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label
+                                    for="features[advertisement_on_mails]">{{ __('messages.feature_advertisement_on_mails') }}</label>
+                                <select name="features[advertisement_on_mails]" class="form-control" required>
+                                    <option value="1"
+                                        {{ $plan->id !== null ? ($plan->getFeatureBySlug('advertisement_on_mails')->value === '1' ? 'selected=""' : '') : '' }}>
+                                        {{ __('messages.yes') }}</option>
+                                    <option value="0"
+                                        {{ $plan->id !== null ? ($plan->getFeatureBySlug('advertisement_on_mails')->value === '0' ? 'selected=""' : '') : '' }}>
+                                        {{ __('messages.no') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12">
@@ -246,5 +287,6 @@
 </section>
 
 @section('page_head_scripts')
-<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
 @endsection
