@@ -13,7 +13,7 @@
             </nav>
             <h1 class="m-0">{{ __('messages.users') }}</h1>
         </div>
-        <a href="{{ route('super_admin.users.create') }}" class="btn btn-success ml-3"><i class="material-icons">add</i> {{ __('messages.add_user') }}</a>
+        {{-- <a href="{{ route('super_admin.users.create') }}" class="btn btn-success ml-3"><i class="material-icons">add</i> {{ __('messages.add_user') }}</a> --}}
     </div>
 @endsection
 
