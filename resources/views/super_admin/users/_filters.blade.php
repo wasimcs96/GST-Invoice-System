@@ -28,16 +28,16 @@
                 </div>
             </div>
             <div class="row col-md-6 col-12">
-                <div class="col-12">
+                <div class="col-12 mb-2">
                     <a href="{{ route('super_admin.users') }}">{{ __('messages.clear_filters') }}</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12 mt-3 float-right">
-        <button type="submit" class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0">
+        {{-- <div class="col-md- col-12 mt-3 float-right"> --}}
+        <button type="submit" class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0" style="margin-left: auto;">
             <i class="material-icons text-primary icon-20pt">refresh</i>
             {{ __('messages.filter') }}
         </button>
-        </div>
+        {{-- </div> --}}
     </div>
 </form>

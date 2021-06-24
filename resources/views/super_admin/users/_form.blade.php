@@ -113,7 +113,7 @@
     </div>
 </div> --}}
 
-<section id="multiple-column-form">
+<section>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -204,7 +204,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="reset" class="btn btn-primary mr-1">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
                             </div>
                         </div>
@@ -217,9 +217,6 @@
 
 
 @section('page_head_scripts')
-<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-@endsection
-
-@section('page_body_scripts')
-
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
 @endsection
