@@ -33,6 +33,7 @@
     });
 
     $("#add_product_row").click(function() {
+        console.log('hiiiii');
         addProductRow();
     });
 
@@ -253,6 +254,7 @@
     }
 
     function addProductRow() {
+        
         var productItems = $('#items');
         var template = $('#product_row_template')
                 .clone()
