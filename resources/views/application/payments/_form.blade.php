@@ -132,7 +132,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="first_name">{{ __('messages.payment_date') }}</label>
-                                <input name="first_name" type="text" class="form-control"
+                                <input name="first_name" type="date" class="form-control"
                                     placeholder="{{ __('messages.payment_date') }}" value="" required>
                             </div>
 

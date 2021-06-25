@@ -177,10 +177,10 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="expense_date">{{ __('messages.expense_date') }}</label>
-                                <input name="expense_date" type="text" class="form-control input"
+                                <input name="expense_date" type="date" class="form-control input"
                                     data-toggle="flatpickr"
                                     data-flatpickr-default-date="{{ $expense->expense_date ?? now() }}"
-                                    placeholder="{{ __('messages.expense_date') }}" readonly="readonly" required>
+                                    placeholder="{{ __('messages.expense_date') }}"  required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">

@@ -375,14 +375,15 @@
                                     <!-- </div> -->
                                 </div>
                             </div>
+
+
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="estimate_date">{{ __('messages.estimate_date') }}</label>
                                 <input name="estimate_date" type="date" class="form-control input"
                                     data-toggle="flatpickr"
-                                    data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}"
-                                    required>
+                                    data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}" required>
                             </div>
                             <div class="form-group required">
                                 <label for="estimate_number">{{ __('messages.estimate_number') }}</label>
@@ -402,7 +403,7 @@
                         </div>
 
 
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-12 col-12">
                             <div class="table-responsive" data-toggle="lists">
 
 
@@ -496,7 +497,7 @@
                                             <td class="text-right">
                                                 <p class="mb-1">
                                                     <input type="text" name="total[]"
-                                                        class="price_input price-text amount_price" value="0" readonly>
+                                                        class="price_input price-text amount_price" value="0" style="border:none;" readonly>
                                                 </p>
                                                 <div class="tax_list"></div>
                                             </td>
@@ -585,8 +586,7 @@
                                         @endif
                                     </tbody>
                                 </table>
-                                <div class="row card-body pagination-light justify-content-center text-center"
-                                    style="float: left;">
+                                <div class="row card-body pagination-light justify-content-center text-center">
                                     <button id="add_product_row" type="button" class="btn btn-light">
                                         <i class="material-icons icon-16pt"></i> {{ __('messages.add_product') }}
                                     </button>
@@ -598,13 +598,6 @@
                                 </button>
                             </div> -->
                         </div>
-
-                        <div class="col-md-6 col-12">
-
-                          
-                        </div>
-
-
 
                         <div class="col-md-6 col-12">
                             <div class="form-group">
@@ -619,7 +612,10 @@
                             </div>
                         </div>
 
+
+
                         <div class="col-md-6 col-12">
+
                             <div class="card card-body shadow-none border">
 
                                 <div class="row mb-3">
@@ -628,8 +624,8 @@
                                     </div>
                                     <div class="ml-auto col-md-4 h6 mb-0">
                                         <!-- <input id="sub_total" name="sub_total" type="text"
-                                            class="price_input price-text w-100 fs-inherit"
-                                            value="{{ $estimate->sub_total ?? 0 }}" readonly> -->
+            class="price_input price-text w-100 fs-inherit"
+            value="{{ $estimate->sub_total ?? 0 }}" readonly> -->
                                         <h4>${{ $estimate->sub_total ?? 0 }}</h4>
                                     </div>
                                 </div>
@@ -693,15 +689,17 @@
                                     </div>
                                     <div class="ml-auto col-md-4 h6 mb-0">
                                         <!-- <input id="sub_total" name="sub_total" type="text"
-                                            class="price_input price-text w-100 fs-inherit"
-                                            value="{{ $estimate->sub_total ?? 0 }}" readonly> -->
+            class="price_input price-text w-100 fs-inherit"
+            value="{{ $estimate->sub_total ?? 0 }}" readonly> -->
                                         <h4>${{ $estimate->total ?? 0 }}</h4>
                                     </div>
                                 </div>
                                 <!-- </div> -->
                             </div>
 
+                        </div>
 
+                        <div class="col-md-6 col-12">
 
                             <div class="col-md-6 col-12">
                                 @if($estimate->getCustomFields()->count() > 0)
