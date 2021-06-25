@@ -182,5 +182,5 @@
 @endsection
 
 @section('page_body_scripts')
-
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js')}}"></script>
 @endsection
