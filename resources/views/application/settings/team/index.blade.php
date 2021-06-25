@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.team') }}</li>
             </ol>
         </nav> 
-        <h1 class="m-0">{{ __('messages.team') }}</h1>
+        <h1 class="m-1">{{ __('messages.team') }}</h1>
     </div>
  
     <div class="row">
@@ -19,7 +19,7 @@
             @include('application.settings._aside', ['tab' => 'team'])
         </div>
         <div class="col-lg-9">
-            <div class="card card-form">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
                         

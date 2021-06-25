@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.tax_types') }}</li>
             </ol>
         </nav>
-        <h1 class="m-0">{{ __('messages.tax_types') }}</h1>
+        <h1 class="m-1">{{ __('messages.tax_types') }}</h1>
     </div>
 
     <div class="row">
@@ -19,7 +19,7 @@
             @include('application.settings._aside', ['tab' => 'tax_types'])
         </div>
         <div class="col-lg-9">
-            <div class="card card-form">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
 
@@ -61,11 +61,11 @@
                                                 </td>
                                                 <td class="h6">
                                                     <a href="{{ route('settings.tax_types.edit', ['tax_type' => $tax_type->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
-                                                        <i class="material-icons icon-16pt">edit</i>
+                                                        <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.edit') }}
                                                     </a>
                                                     <a href="{{ route('settings.tax_types.delete', ['tax_type' => $tax_type->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-danger delete-confirm">
-                                                        <i class="material-icons icon-16pt">delete</i>
+                                                        <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.delete') }}
                                                     </a>
                                                 </td>

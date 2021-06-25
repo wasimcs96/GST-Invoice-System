@@ -19,11 +19,11 @@
                         </td>
                         <td class="h6">
                             <a href="{{ route('settings.product.unit.edit', ['product_unit' => $product_unit->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
-                                <i class="material-icons icon-16pt">edit</i>
+                                <i class="material-icons icon-16pt"></i>
                                 {{ __('messages.edit') }}
                             </a>
                             <a href="{{ route('settings.product.unit.delete', ['product_unit' => $product_unit->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-danger delete-confirm">
-                                <i class="material-icons icon-16pt">delete</i>
+                                <i class="material-icons icon-16pt"></i>
                                 {{ __('messages.delete') }}
                             </a>
                         </td>

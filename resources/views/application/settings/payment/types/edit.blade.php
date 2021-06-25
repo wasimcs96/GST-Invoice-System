@@ -20,7 +20,7 @@
             @include('application.settings._aside', ['tab' => 'payment'])
         </div>
         <div class="col-lg-9">
-            <div class="card card-form">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
                         <div class="form-row align-items-center mb-4">
@@ -40,7 +40,7 @@
                             <div class="form-group text-right mt-4">
                                 <button type="submit" class="btn btn-primary">{{ __('messages.update_payment_type') }}</button>
                                 <a href="{{ route('settings.payment.type.delete', ['type' => $payment_type->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-light text-danger delete-confirm">
-                                    <i class="material-icons icon-16pt">delete</i>
+                                    <i class="material-icons icon-16pt"></i>
                                     {{ __('messages.delete') }}
                                 </a>
                             </div>

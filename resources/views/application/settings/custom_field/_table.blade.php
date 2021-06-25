@@ -35,11 +35,11 @@
                         </td>
                         <td class="h6">
                             <a href="{{ route('settings.custom_fields.edit', ['custom_field' => $custom_field->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
-                                <i class="material-icons icon-16pt">edit</i>
+                                <i class="material-icons icon-16pt"></i>
                                 {{ __('messages.edit') }}
                             </a>
                             <a href="{{ route('settings.custom_fields.delete', ['custom_field' => $custom_field->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-danger delete-confirm">
-                                <i class="material-icons icon-16pt">delete</i>
+                                <i class="material-icons icon-16pt"></i>
                                 {{ __('messages.delete') }}
                             </a>
                         </td>
