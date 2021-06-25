@@ -126,17 +126,16 @@
                     <h4 class="card-title">{{ __('messages.payment_information') }}</h4>
                     <p class="text-muted">{{ __('messages.basic_payment_information') }}</p>
                 </div>
-                <div class="card-body">         
+                <div class="card-body">
                     <div class="row">
 
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="first_name">{{ __('messages.payment_date') }}</label>
                                 <input name="first_name" type="text" class="form-control"
-                                    placeholder="{{ __('messages.payment_date') }}" value=""
-                                    required>
+                                    placeholder="{{ __('messages.payment_date') }}" value="" required>
                             </div>
-                            
+
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
@@ -144,12 +143,12 @@
                                 <div class="input-group">
                                     <input name="payment_prefix" type="hidden" value="{{ $payment->payment_prefix }}">
                                     <input name="payment_number" type="text" maxlength="6"
-                                        class=" " value="{{ $payment->payment_num }}"
+                                        class="form-control form-control-prepended" value="{{ $payment->payment_num }}"
                                         autocomplete="off" required>
                                     <!-- <div class="input-group-prepend"> -->
-                                        <div class="input-group-text">
-                                            {{ $payment->payment_prefix }}
-                                        </div>
+                                    <div class="input-group-text">
+                                        {{ $payment->payment_prefix }}
+                                    </div>
                                     <!-- </div> -->
                                 </div>
                             </div>

@@ -25,7 +25,7 @@
 
     <div class="card">
         <div class="card-header bg-white p-0">
-            <div class="row no-gutters flex nav">
+            <div class="row container-fluid">
                 <a href="{{ route('invoices', ['tab' => '', 'company_uid' => $currentCompany->uid]) }}" class="col-2 border-right dashboard-area-tabs__tab card-body text-center {{ $tab == 'drafts' ? 'active' : '' }}">
                     <span class="card-header__title m-0">
                         {{ __('messages.drafts') }}

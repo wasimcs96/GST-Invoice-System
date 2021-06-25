@@ -333,7 +333,7 @@
                                     data-select2-id="customer">
                                     <option disabled selected>{{ __('messages.select_customer') }}</option>
                                     @if($estimate->customer_id)
-                                    <option value="{{ $estimate->customer_id }}" selected="" `
+                                    <option value="{{ $estimate->customer_id }}" selected=""
                                         data-currency="{{ $estimate->customer->currency }}"
                                         data-billing_address="{{$estimate->customer->displayLongAddress('billing')}}"
                                         data-shipping_address="{{$estimate->customer->displayLongAddress('shipping')}}">
@@ -341,13 +341,13 @@
                                     </option>
                                     @endif
                                 </select>
-                                <div class="d-none select-footer" style="display: none;">
+                                <div class="d-none select-footer">
                                     <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}"
                                         target="_blank" class="font-weight-300">+
                                         {{ __('messages.add_new_customer') }}</a>
                                 </div>
                             </div>
-                            <div id="address_component" class="form-row d-none" style="display: none;">
+                            <div id="address_component" class="form-row d-none">
                                 <div class="col-6">
                                     <strong>{{ __('messages.bill_to') }}:</strong>
                                     <p id="billing_address"></p>
@@ -357,15 +357,32 @@
                                     <p id="shipping_address"></p>
                                 </div>
                             </div>
-
+                            <div class="form-group required">
+                                <label for="expiry_date">{{ __('messages.expiry_date') }}</label>
+                                <input name="expiry_date" type="date" class="form-control input" data-toggle="flatpickr"
+                                    data-flatpickr-default-date="{{ $estimate->expiry_date ?? now() }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference_number">{{ __('messages.reference_number') }}</label>
+                                <div class="input-group input-group-merge">
+                                    <input name="reference_number" type="text" maxlength="6"
+                                        class="form-control form-control-prepended"
+                                        value="{{ $estimate->reference_number }}" autocomplete="off">
+                                    <!-- <div class="input-group-prepend"> -->
+                                    <div class="input-group-text">
+                                        #
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="estimate_date">{{ __('messages.estimate_date') }}</label>
-                                <input name="estimate_date" type="text" class="form-control input"
+                                <input name="estimate_date" type="date" class="form-control input"
                                     data-toggle="flatpickr"
                                     data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}"
-                                    readonly="readonly" required>
+                                    required>
                             </div>
                             <div class="form-group required">
                                 <label for="estimate_number">{{ __('messages.estimate_number') }}</label>
@@ -387,12 +404,9 @@
 
                         <div class="col-md-6 col-12">
                             <div class="table-responsive" data-toggle="lists">
-                                <div class="row card-body pagination-light justify-content-center text-center"
-                                    style="float: left;">
-                                    <button id="add_product_row" type="button" class="btn btn-light">
-                                        <i class="material-icons icon-16pt"></i> {{ __('messages.add_product') }}
-                                    </button>
-                                </div>
+
+
+
                                 <table class="table table-xl mb-0 thead-border-top-0 table-striped">
                                     <thead>
                                         <tr>
@@ -550,13 +564,16 @@
                                                 </div>
                                             </td>
                                             @endif
-                                            <td class="text-right">
-                                                <p class="mb-1">
-                                                    <input type="text" name="total[]"
+
+                                            <td>
+                                                <!-- <p class="mb-1">
+                                                
+                                                     <input type="text" name="total[]"
                                                         class="price_input price-text amount_price"
                                                         value="{{ $item->total }}" readonly>
-                                                </p>
-                                                <div class="tax_list"></div>
+                                                </p> -->
+                                                <!-- <div class="tax_list"></div> -->
+                                                <h4>${{ $item->total }}</h4>
                                             </td>
                                             <td>
                                                 <a onclick="removeRow(this)">
@@ -568,6 +585,12 @@
                                         @endif
                                     </tbody>
                                 </table>
+                                <div class="row card-body pagination-light justify-content-center text-center"
+                                    style="float: left;">
+                                    <button id="add_product_row" type="button" class="btn btn-light">
+                                        <i class="material-icons icon-16pt"></i> {{ __('messages.add_product') }}
+                                    </button>
+                                </div>
                             </div>
                             <!-- <div class="row card-body pagination-light justify-content-center text-center">
                                 <button id="add_product_row" type="button" class="btn btn-light">
@@ -575,26 +598,10 @@
                                 </button>
                             </div> -->
                         </div>
+
                         <div class="col-md-6 col-12">
-                            <div class="form-group required">
-                                <label for="expiry_date">{{ __('messages.expiry_date') }}</label>
-                                <input name="expiry_date" type="text" class="form-control input" data-toggle="flatpickr"
-                                    data-flatpickr-default-date="{{ $estimate->expiry_date ?? now() }}"
-                                    readonly="readonly" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="reference_number">{{ __('messages.reference_number') }}</label>
-                                <div class="input-group input-group-merge">
-                                    <input name="reference_number" type="text" maxlength="6"
-                                        class="form-control form-control-prepended"
-                                        value="{{ $estimate->reference_number }}" autocomplete="off">
-                                    <!-- <div class="input-group-prepend"> -->
-                                    <div class="input-group-text">
-                                        #
-                                    </div>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
+
+                          
                         </div>
 
 
@@ -680,17 +687,17 @@
 
                                 <hr>
                                 <!-- <div class="d-flex align-items-center mb-3"> -->
-                                    <div class="row mb-3">
-                                        <div class="h6 col-md-4 mb-0 w-50">
-                                            <strong class="text-muted">{{ __('messages.total') }}</strong>
-                                        </div>
-                                        <div class="ml-auto col-md-4 h6 mb-0">
-                                            <!-- <input id="sub_total" name="sub_total" type="text"
+                                <div class="row mb-3">
+                                    <div class="h6 col-md-4 mb-0 w-50">
+                                        <strong class="text-muted">{{ __('messages.total') }}</strong>
+                                    </div>
+                                    <div class="ml-auto col-md-4 h6 mb-0">
+                                        <!-- <input id="sub_total" name="sub_total" type="text"
                                             class="price_input price-text w-100 fs-inherit"
                                             value="{{ $estimate->sub_total ?? 0 }}" readonly> -->
-                                            <h4>${{ $estimate->total ?? 0 }}</h4>
-                                        </div>
+                                        <h4>${{ $estimate->total ?? 0 }}</h4>
                                     </div>
+                                </div>
                                 <!-- </div> -->
                             </div>
 
