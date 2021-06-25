@@ -13,7 +13,7 @@
             </nav>
             <h1 class="m-0">{{ __('messages.customers') }}</h1>
         </div>
-        <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-success ml-3"><i class="material-icons">add</i> {{ __('messages.create_customer') }}</a>
+        <!-- <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-success ml-3"><i class="material-icons">add</i> {{ __('messages.create_customer') }}</a> -->
     </div>
 @endsection
 

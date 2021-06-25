@@ -18,7 +18,7 @@
 @endsection
  
 @section('content')
-    <div class="card">
+    <!-- <div class="card">
         <div class="row pl-4 pr-4">
             <div class="col-12 col-md-3 mt-4 mb-4">
                 <h5>{{ __('messages.details') }}</h5>
@@ -54,7 +54,65 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <!-- new -->
+    <section id="multiple-column-form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">{{ __('messages.details') }}</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="card-body">
+                            <div class="table-responsive" >
+                                <table class="table table-hover table-striped">
+                
+                                  <tbody>
+                                  <tr>
+                                      <th scope="row">{{ __('messages.name') }}</th>
+                                      <td>{{ $customer->display_name }} </td>
+                                  </tr>
+                  
+                                  <tr>
+                                      <th scope="row">{{ __('messages.contact') }}</th>
+                                      <td>{{ $customer->contact_name }}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">{{ __('messages.email') }}</th>
+                                      <td>{{ $customer->email }} </td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">{{ __('messages.billing') }}</th>
+                                      <td> {{ $customer->displayLongAddress('billing') }}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">{{ __('messages.standing') }}</th>
+                                      <td> {{ __('messages.due_amount') }} :<p>{!! money($customer->invoice_due_amount, $customer->currency_code) !!}</p></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Action</th>
+                                      <td class="float-right"> <a href="{{ route('customers.edit', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-primary">
+                    <i class="material-icons"></i> 
+                    {{ __('messages.edit') }}
+                </a>
+                <a href="{{ route('customers.delete', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-danger delete-confirm">
+                    <i class="material-icons"></i> 
+                    {{ __('messages.delete') }}
+                </a></td>
+                                  </tr>
+                                  </tbody>
+                
+                              </table>
+                            </div>  
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- new end -->
 
     <nav class="nav nav-pills nav-justified w-100" role="tablist">
         <a href="#invoices" class="h6 nav-item nav-link bg-secondary text-white active show" data-toggle="tab" role="tab" aria-selected="true">{{ __('messages.invoices') }}</a>
