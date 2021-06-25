@@ -173,6 +173,44 @@
         </div>
     </div>
 </div>
+<div class="card">
+        <div class="card-header bg-white d-flex align-items-center">
+            <h3 class="card-header__title mb-0 fs-1-3rem">{{ __('messages.expenses') }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="chart">
+                <canvas id="expensesChart" class="chart-canvas chartjs-render-monitor" width="1998" height="600"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col">
+            <div class="card">
+                <div class="card-header card-header-large bg-white">
+                    <h4 class="card-header__title">{{ __('messages.due_invoices') }}</h4>
+                </div>
+
+                @include('application.dashboard._due_invoices')
+                
+                <div class="card-footer text-center border-0">
+                    <a class="text-muted" href="{{ route('invoices', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.view_all') }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header card-header-large bg-white">
+                    <h4 class="card-header__title">{{ __('messages.due_estimates') }}</h4>
+                </div>
+
+                @include('application.dashboard._due_estimates')
+
+                <div class="card-footer text-center border-0">
+                    <a class="text-muted" href="{{ route('estimates', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.view_all') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('page_head_scripts')

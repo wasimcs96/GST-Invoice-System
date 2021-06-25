@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    <div class="row card-group-row">
+    <!-- <div class="row card-group-row">
         <div class="col-lg-4 col-md-6 card-group-row__col">
             <div class="card card-group-row__card card-body card-body-x-lg flex-row align-items-center">
                 <div class="flex">
@@ -45,7 +45,51 @@
                 <div><i class="material-icons icon-muted icon-40pt ml-3">monetization_on</i></div>
             </div>
         </div>
+    </div> -->
+    <div class="row card-group-row">
+    <div class="col-lg-4 col-sm-6 col-12">
+        <div class="card">
+            <div class="card-header flex-column align-items-start pb-0">
+                <div class="avatar bg-light-primary p-50 m-0">
+                    <div class="avatar-content">
+                        <i data-feather="users" class="font-medium-5"></i>
+                    </div>
+                </div>
+                <h2 class="font-weight-bolder mt-1">{{ __('messages.users') }}</h2>
+                <p class="card-text">{{ isset($users) ? $users : '0'}}</p>
+            </div>
+            <!-- <div id="gained-chart"></div> -->
+        </div>
     </div>
+    <div class="col-lg-4 col-sm-6 col-12">
+        <div class="card">
+            <div class="card-header flex-column align-items-start pb-0">
+                <div class="avatar bg-light-secondary p-50 m-0">
+                    <div class="avatar-content">
+                        <i data-feather="file" class="font-medium-5"></i>
+                    </div>
+                </div>
+                <h2 class="font-weight-bolder mt-1">{{ __('messages.active_subscriptions') }}</h2>
+                <p class="card-text">{{ isset($active_subscriptions) ? $active_subscriptions : '0'}}</p>
+            </div>
+            <!-- <div id="gained-chart"></div> -->
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 col-12">
+        <div class="card">
+            <div class="card-header flex-column align-items-start pb-0">
+                <div class="avatar bg-light-info p-50 m-0">
+                    <div class="avatar-content">
+                        <i data-feather="package" class="font-medium-5"></i>
+                    </div>
+                </div>
+                <h2 class="font-weight-bolder mt-1">{{ __('messages.total_earnings') }}</h2>
+                <p class="card-text">{!! money($total_earnings, get_system_setting('application_currency')) !!}</p>
+            </div>
+            <!-- <div id="gained-chart"></div> -->
+        </div>
+    </div>
+</div>
 
     <div class="card">
         <div class="card-header bg-white d-flex align-items-center">
@@ -71,12 +115,23 @@
     </div>
 @endsection
 
-@section('page_body_scripts')
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/vendor/Chart.min.js') }}"></script>
-    <script src="{{ asset('assets/js/chartjs-rounded-bar.js') }}"></script>
-    <script src="{{ asset('assets/js/charts.js') }}"></script>
+@section('page_head_scripts')
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/plugins/charts/chart-apex.css')}}">
+<link rel="stylesheet" type="text/css"
+    href="{{asset('theme/app-assets/css/plugins/extensions/ext-component-toastr.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/pages/app-invoice-list.css')}}">
+@endsection
 
+@section('page_body_scripts')
+<script src="{{ asset('assets/js/settings.js') }}"></script>
+<script src="{{ asset('assets/vendor/Chart.min.js') }}"></script>
+<script src="{{ asset('assets/js/chartjs-rounded-bar.js') }}"></script>
+<script src="{{ asset('assets/js/charts.js') }}"></script>
+<!-- BEGIN: Page JS-->
+<script src="{{asset('theme/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/pages/app-invoice-list.js')}}"></script>
+<!-- END: Page JS-->
     <script>
         (function() {
             'use strict';
