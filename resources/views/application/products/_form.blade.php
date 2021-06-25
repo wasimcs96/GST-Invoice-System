@@ -1,4 +1,4 @@
-<div class="card card-form">
+<!-- <div class="card card-form">
     <div class="row no-gutters">
         <div class="col-lg-4 card-body">
             <p><strong class="headings-color">{{ __('messages.product_information') }}</strong></p>
@@ -77,4 +77,110 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<section id="multiple-column-form">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                    <p class="text-muted">{{ __('messages.basic_product_information') }}</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-md-6 col-12">
+                    <div class="form-group required">
+                        <label for="name">{{ __('messages.name') }}</label>
+                        <input name="name" type="text" class="form-control" placeholder="{{ __('messages.name') }}" value="{{ $product->name }}" required>
+                    </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group select-container required">
+                                <label for="unit">{{ __('messages.unit') }}</label>
+                                <select id="unit_id" name="unit_id" data-toggle="select"
+                                    class="form-control select2-hidden-accessible select-with-footer"
+                                    data-select2-id="unit_id" data-minimum-results-for-search="-1">
+                                    <option disabled selected>{{ __('messages.select_unit') }}</option>
+                                    @foreach(get_product_units_select2_array($currentCompany->id) as $option)
+                                    <option value="{{ $option['id'] }}"
+                                        {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>
+                                        {{ $option['text'] }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="d-none select-footer">
+                                    <a href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
+                                        target="_blank" class="font-weight-300">+
+                                        {{ __('messages.add_new_product_unit') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="price">{{ __('messages.price') }}</label>
+                                <input name="price" type="text" class="form-control price_input"
+                                    placeholder="{{ __('messages.price') }}" autocomplete="off"
+                                    value="{{ $product->price ?? 0 }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group select-container">
+                                <label for="taxes">{{ __('messages.taxes') }}</label>
+                                <select id="taxes" name="taxes[]" data-toggle="select" multiple="multiple"
+                                    class="form-control select2-hidden-accessible select-with-footer"
+                                    data-select2-id="taxes">
+                                    @foreach(get_tax_types_select2_array($currentCompany->id) as $option)
+                                    <option value="{{ $option['id'] }}"
+                                        {{ $product->hasTax($option['id']) ? 'selected=""' : '' }}>{{ $option['text'] }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                <div class="d-none select-footer">
+                                    <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
+                                        target="_blank" class="font-weight-300">+ {{ __('messages.add_new_tax') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="description">{{ __('messages.description') }}</label>
+                                <textarea name="description" class="form-control" cols="30"
+                                    rows="3">{{ $product->description }}</textarea>
+                            </div>
+                        </div>
+                        @if($product->getCustomFields()->count() > 0)
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                @foreach ($product->getCustomFields() as $custom_field)
+                                <div class="col">
+                                    @include('layouts._custom_field', ['model' => $product, 'custom_field' =>
+                                    $custom_field])
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif  
+
+
+
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section('page_head_scripts')
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+@endsection
+
+@section('page_body_scripts')
+
+@endsection
