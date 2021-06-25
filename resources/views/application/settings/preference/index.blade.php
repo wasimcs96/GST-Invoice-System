@@ -11,15 +11,15 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.preferences') }}</li>
             </ol>
         </nav>
-        <h1 class="m-0">{{ __('messages.preferences') }}</h1>
+        <h1 class="m-1">{{ __('messages.preferences') }}</h1>
     </div>
 
     <div class="row">
         <div class="col-lg-3">
             @include('application.settings._aside', ['tab' => 'preferences'])
         </div>
-        <div class="col-lg-9">
-            <div class="card card-form">
+        <div class="col-lg-9 container">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
                         <form action="{{ route('settings.preferences.update', ['company_uid' => $currentCompany->uid]) }}" method="POST">

@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.product_settings') }}</li>
             </ol>
         </nav>
-        <h1 class="m-0">{{ __('messages.product_settings') }}</h1>
+        <h1 class="m-1">{{ __('messages.product_settings') }}</h1>
     </div>
 
     <div class="row">
@@ -20,7 +20,7 @@
         </div>
         <div class="col-lg-9">
             
-            <div class="card card-form">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
                         <form action="{{ route('settings.product.update', ['company_uid' => $currentCompany->uid]) }}" method="POST">
@@ -70,7 +70,7 @@
                 </div>
             </div>
             
-            <div class="card card-form">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
 

@@ -20,7 +20,7 @@
             @include('application.settings._aside', ['tab' => 'product'])
         </div>
         <div class="col-lg-9">
-            <div class="card card-form">
+            <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
                         <div class="form-row align-items-center mb-4">
