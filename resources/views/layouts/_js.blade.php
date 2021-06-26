@@ -1,6 +1,6 @@
 <!-- Application Scripts -->
 <!-- BEGIN: Vendor JS-->
-<script src="{{asset('theme/app-assets/vendors/js/vendors.min.js')}}"></script>
+    <script src="{{asset('theme/app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->

@@ -33,53 +33,110 @@
                                 </p>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input type="checkbox" name="notification_invoice_sent" id="notification_invoice_sent" {{ $authUser->getSetting('notification_invoice_sent') ? 'checked' : '' }} class="custom-control-input">
                                     <label class="custom-control-label" for="notification_invoice_sent">{{ __('messages.yes') }}</label>
                                 </div>
                                 <label for="notification_invoice_sent" class="mb-0">{{ __('messages.email_when_invoice_sent') }}</label>
+                            </div> --}}
+                            <div class="col-12 mb-2 row">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="notification_invoice_sent" id="notification_invoice_sent" class="custom-control-input" {{ $authUser->getSetting('notification_invoice_sent') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                    <label class="custom-control-label" for="accountSwitch1">
+                                        {{ __('messages.yes') }}
+                                    </label>
+                                </div>
+                                <label for="notification_invoice_sent" class="mx-2">{{ __('messages.email_when_invoice_sent') }}</label>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input type="checkbox" name="notification_invoice_viewed" id="notification_invoice_viewed" {{ $authUser->getSetting('notification_invoice_viewed') ? 'checked' : '' }} class="custom-control-input">
                                     <label class="custom-control-label" for="notification_invoice_viewed">{{ __('messages.yes') }}</label>
                                 </div>
                                 <label for="notification_invoice_viewed" class="mb-0">{{ __('messages.email_when_invoice_viewed') }}</label>
+                            </div> --}}
+                            <div class="col-12 mb-2 row">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="notification_invoice_viewed" id="notification_invoice_viewed" class="custom-control-input" {{ $authUser->getSetting('notification_invoice_viewed') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                    <label class="custom-control-label" for="accountSwitch1">
+                                        {{ __('messages.yes') }}
+                                    </label>
+                                </div>
+                                <label for="notification_invoice_sent" class="mx-2">{{ __('messages.email_when_invoice_viewed') }}</label>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input type="checkbox" name="notification_invoice_paid" id="notification_invoice_paid" {{ $authUser->getSetting('notification_invoice_paid') ? 'checked' : '' }} class="custom-control-input">
                                     <label class="custom-control-label" for="notification_invoice_paid">{{ __('messages.yes') }}</label>
                                 </div>
                                 <label for="notification_invoice_paid" class="mb-0">{{ __('messages.email_when_invoice_paid') }}</label>
+                            </div> --}}
+
+                            <div class="col-12 mb-2 row">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="notification_invoice_paid" id="notification_invoice_paid" class="custom-control-input" {{ $authUser->getSetting('notification_invoice_paid') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                    <label class="custom-control-label" for="accountSwitch1">
+                                        {{ __('messages.yes') }}
+                                    </label>
+                                </div>
+                                <label for="notification_invoice_sent" class="mx-2">{{ __('messages.email_when_invoice_paid') }}</label>
                             </div>
 
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input type="checkbox" name="notification_estimate_sent" id="notification_estimate_sent" {{ $authUser->getSetting('notification_estimate_sent') ? 'checked' : '' }} class="custom-control-input">
                                     <label class="custom-control-label" for="notification_estimate_sent">{{ __('messages.yes') }}</label>
                                 </div>
                                 <label for="notification_estimate_sent" class="mb-0">{{ __('messages.email_when_estimate_sent') }}</label>
+                            </div> --}}
+
+                            <div class="col-12 mb-2 row">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="notification_estimate_sent" id="notification_estimate_sent" class="custom-control-input" {{ $authUser->getSetting('notification_estimate_sent') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                    <label class="custom-control-label" for="accountSwitch1">
+                                        {{ __('messages.yes') }}
+                                    </label>
+                                </div>
+                                <label for="notification_invoice_sent" class="mx-2">{{ __('messages.email_when_estimate_sent') }}</label>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input type="checkbox" name="notification_estimate_viewed" id="notification_estimate_viewed" {{ $authUser->getSetting('notification_estimate_viewed') ? 'checked' : '' }} class="custom-control-input">
                                     <label class="custom-control-label" for="notification_estimate_viewed">{{ __('messages.yes') }}</label>
                                 </div>
                                 <label for="notification_estimate_viewed" class="mb-0">{{ __('messages.email_when_estimate_viewed') }}</label>
+                            </div> --}}
+
+                            <div class="col-12 mb-2 row">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="notification_estimate_viewed" id="notification_estimate_viewed" class="custom-control-input" {{ $authUser->getSetting('notification_estimate_viewed') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                    <label class="custom-control-label" for="accountSwitch1">
+                                        {{ __('messages.yes') }}
+                                    </label>
+                                </div>
+                                <label for="notification_invoice_sent" class="mx-2">{{ __('messages.email_when_estimate_viewed') }}</label>
                             </div>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input type="checkbox" name="notification_estimate_approved_or_rejected" id="notification_estimate_approved_or_rejected" {{ $authUser->getSetting('notification_estimate_approved_or_rejected') ? 'checked' : '' }} class="custom-control-input">
                                     <label class="custom-control-label" for="notification_estimate_approved_or_rejected">{{ __('messages.yes') }}</label>
                                 </div>
                                 <label for="notification_estimate_approved_or_rejected" class="mb-0">{{ __('messages.email_when_estimate_accepted_or_rejected') }}</label>
+                            </div> --}}
+                            <div class="col-12 mb-2 row">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="notification_estimate_approved_or_rejected" id="notification_estimate_approved_or_rejected" class="custom-control-input" {{ $authUser->getSetting('notification_estimate_approved_or_rejected') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                    <label class="custom-control-label" for="accountSwitch1">
+                                        {{ __('messages.yes') }}
+                                    </label>
+                                </div>
+                                <label for="notification_invoice_sent" class="mx-2">{{ __('messages.email_when_estimate_accepted_or_rejected') }}</label>
                             </div>
             
                             <div class="form-group text-right mt-4">

@@ -18,7 +18,7 @@
 @endsection 
  
 @section('content') 
-    <div class="row">
+    <div class="row container-fluid">
         <div class="col-12 col-md-8">
             <form method="GET">
                 <div class="row">
@@ -66,6 +66,10 @@
             'company_uid' => $currentCompany->uid,
             'from' => isset(Request::get("filter")['from']) ? Request::get("filter")['from'] : \Carbon\Carbon::now()->format('Y-m-d'),
             'to' => isset(Request::get("filter")['to']) ? Request::get("filter")['to'] : \Carbon\Carbon::now()->addMonth()->format('Y-m-d')
-        ]) }}" frameborder="0"></iframe>
+        ]) }}" style="
+    height: 500px;
+    width: 990px;
+    box-sizing: border-box;
+" frameborder="0"></iframe>
     </div>
 @endsection

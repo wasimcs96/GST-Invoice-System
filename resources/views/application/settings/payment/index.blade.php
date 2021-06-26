@@ -44,11 +44,11 @@
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="payment_auto_archive">{{ __('messages.auto_archive') }}</label><br>
-                                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
-                                            <input type="checkbox" name="payment_auto_archive" id="payment_auto_archive" {{ $currentCompany->getSetting('payment_auto_archive') ? 'checked' : '' }} class="custom-control-input">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" name="payment_auto_archive" id="payment_auto_archive" {{ $currentCompany->getSetting('payment_auto_archive') ? 'checked' : '' }} class="custom-control-input" checked id="accountSwitch1">
                                             <label class="custom-control-label" for="payment_auto_archive">{{ __('messages.yes') }}</label>
                                         </div>
-                                        <label for="payment_auto_archive" class="mb-0">{{ __('messages.yes') }}</label>
+                                        {{-- <label for="payment_auto_archive" class="mb-0">{{ __('messages.yes') }}</label> --}}
                                         <small class="form-text text-muted">
                                             {{ __('messages.auto_archive_description') }}
                                         </small>

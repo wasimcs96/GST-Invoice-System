@@ -45,16 +45,17 @@
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="estimate_auto_archive">{{ __('messages.auto_archive') }}</label><br>
-                                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
-                                            <input type="checkbox" name="estimate_auto_archive" id="estimate_auto_archive" {{ $currentCompany->getSetting('estimate_auto_archive') ? 'checked' : '' }} class="custom-control-input">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" name="estimate_auto_archive" id="estimate_auto_archive" {{ $currentCompany->getSetting('estimate_auto_archive') ? 'checked' : '' }} class="custom-control-input" checked id="accountSwitch1">
                                             <label class="custom-control-label" for="estimate_auto_archive">{{ __('messages.yes') }}</label>
                                         </div>
-                                        <label for="estimate_auto_archive" class="mb-0">{{ __('messages.yes') }}</label>
+                                        {{-- <label for="estimate_auto_archive" class="mb-0">{{ __('messages.yes') }}</label> --}}
                                         <small class="form-text text-muted">
                                             {{ __('messages.auto_archive_description') }}
                                         </small>
                                     </div>
                                 </div>
+                                
                             </div>
 
                             <div class="row">
@@ -68,11 +69,11 @@
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="estimate_auto_convert">{{ __('messages.auto_convert') }}</label><br>
-                                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
-                                            <input type="checkbox" name="estimate_auto_convert" id="estimate_auto_convert" {{ $currentCompany->getSetting('estimate_auto_convert') ? 'checked' : '' }} class="custom-control-input">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" name="estimate_auto_convert" id="estimate_auto_convert" {{ $currentCompany->getSetting('estimate_auto_convert') ? 'checked' : '' }} class="custom-control-input" checked id="accountSwitch1">
                                             <label class="custom-control-label" for="estimate_auto_convert">{{ __('messages.yes') }}</label>
                                         </div>
-                                        <label for="estimate_auto_convert" class="mb-0">{{ __('messages.yes') }}</label>
+                                        {{-- <label for="estimate_auto_convert" class="mb-0">{{ __('messages.yes') }}</label> --}}
                                         <small class="form-text text-muted">
                                             {{ __('messages.auto_convert_description') }}
                                         </small>
