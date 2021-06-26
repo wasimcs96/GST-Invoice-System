@@ -103,14 +103,14 @@
 <div class="col-md-3 mb-2 mb-md-0 my-1">
     <ul class="nav nav-pills flex-column nav-left">
         <li class="nav-item">
-            <a href="{{ route('settings.account', ['company_uid' => $currentCompany->uid]) }}" class="sidebar-menu-button {{ $tab == 'account' ? 'text-primary' : 'text-secondary' }}" aria-expanded="false">
-                <i data-feather="user" class="font-medium-3"></i>
+            <a href="{{ route('settings.account', ['company_uid' => $currentCompany->uid]) }}" class="sidebar-menu-button {{ $tab == 'account' ? 'text-primary' : 'text-secondary' }}" aria-expanded="true">
+                <i data-feather="home" class="font-medium-3"></i>
                 <span class="sidebar-menu-text">{{ __('messages.account_settings') }}</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('settings.membership', ['company_uid' => $currentCompany->uid]) }}" class="sidebar-menu-button {{ $tab == 'membership' ? 'text-primary' : 'text-secondary' }}" aria-expanded="false">
-                <i data-feather="lock" class="font-medium-3"></i>
+                <i data-feather="user" class="font-medium-3"></i>
                 <span class="sidebar-menu-text">{{ __('messages.membership') }}</span>
             </a>
         </li>
