@@ -137,7 +137,7 @@ class PlanController extends Controller
         $plan->updatePlanFeatures($request->features);
 
         session()->flash('alert-success', __('messages.plan_updated'));
-        return redirect()->route('super_admin.plans.edit', $plan->id);
+        return redirect()->route('super_admin.users', $plan->id);
     }
 
     /**
