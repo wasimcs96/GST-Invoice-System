@@ -497,7 +497,7 @@
                                             <td class="text-right">
                                                 <p class="mb-1">
                                                     <input type="text" name="total[]"
-                                                        class="price_input price-text amount_price" value="0" style="border:none;" readonly>
+                                                        class="price_input price-text amount_price" value="$0" style="border:none;" readonly>
                                                 </p>
                                                 <div class="tax_list"></div>
                                             </td>

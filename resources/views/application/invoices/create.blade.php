@@ -30,7 +30,10 @@
     @include('application.invoices._js')
     <script>
         $(document).ready(function() {
-            addProductRow();
-        });
+            $("#add_product_row").click(function() {
+               console.log('hiiiii');
+                addProductRow();
+              });
+            });
     </script>
 @endsection
