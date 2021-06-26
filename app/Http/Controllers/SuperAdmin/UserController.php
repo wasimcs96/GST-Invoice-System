@@ -197,7 +197,7 @@ class UserController extends Controller
         }
 
         session()->flash('alert-success', __('messages.user_updated'));
-        return redirect()->route('super_admin.users.edit', $user->id);
+        return redirect()->route('super_admin.users');
     }
 
     /**
