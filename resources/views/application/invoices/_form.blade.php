@@ -376,12 +376,11 @@
                                     </option>
                                     @endif
                                 </select>
-                                <div class="d-none select-footer">
-                                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}"
-                                        target="_blank" class="font-weight-300">+
-                                        {{ __('messages.add_new_customer') }}</a>
+                                <div class="select2-results__option border-top mt-1 sel-footer">
+                                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
                                 </div>
                             </div>
+
                             <div id="address_component" class="form-row d-none">
                                 <div class="col-6">
                                     <strong>{{ __('messages.bill_to') }}:</strong>
@@ -759,8 +758,3 @@
         </div>
 </section>
 
-
-
-@section('page_head_scripts')
-<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-@endsection
