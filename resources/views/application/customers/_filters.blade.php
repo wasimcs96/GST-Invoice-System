@@ -40,8 +40,8 @@
 <form action="" method="GET">
     <div class="card card-form d-flex flex-column flex-sm-row">
         <div class="card-form__body card-body-form-group flex">
-            <div class="row container-fluid my-2">
-                <div class="col-md-4 col-12">
+            <div class="row my-1 mx-0">
+                <div class="col-md-3 col-12">
                     <div class="form-group">
                         <label for="filter[display_name]">{{ __('messages.display_name') }}</label>
                         <input name="filter[display_name]" type="text" class="form-control"
@@ -49,7 +49,7 @@
                             placeholder="{{ __('messages.search') }}">
                     </div>
                 </div>
-                <div class="col-md-4 col-12">
+                <div class="col-md-3 col-12">
                     <div class="form-group">
                         <label for="filter[contact_name]">{{ __('messages.contact_name') }}</label>
                         <input name="filter[contact_name]" type="text" class="form-control"
@@ -57,7 +57,7 @@
                             placeholder="{{ __('messages.search') }}">
                     </div>
                 </div>
-                <div class="col-md-4 col-12">
+                <div class="col-md-3 col-12">
                     <div class="form-group">
                         <label for="filter[has_unpaid]">{{ __('messages.has_unpaid_invoice') }}</label>
                         <div class="custom-control custom-checkbox mt-sm-2">
@@ -69,7 +69,13 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-md-auto" style="margin-top: 22px;">
+                  
+                    <button type="submit" class="btn btn-success">
+            
+                        Refresh / {{ __('messages.filter') }}
+                    </button>
+                </div>
                 <div class="row mb-2">
                     <div class="col-12 mx-1">
                         <a
@@ -77,12 +83,12 @@
                     </div>
                 </div>
                 <!-- <div class="col-md-6 col-12 mt-3 float-right"> -->
-                    <button type="submit"
+                    {{-- <button type="submit"
                         class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0"
                         style="margin-left:auto;">
                         <i class="material-icons text-primary icon-20pt">refresh</i>
                         {{ __('messages.filter') }}
-                    </button>
+                    </button> --}}
                 <!-- </div> -->
             </div>
         </div>

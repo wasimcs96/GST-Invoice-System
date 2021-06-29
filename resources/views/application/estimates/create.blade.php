@@ -26,7 +26,21 @@
     </form>
 @endsection
 
+@section('page_head_scripts')
+
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+
+<style>
+    .select2-selection__arrow {
+        display: none;
+    }
+</style>
+
+@endsection
+s
 @section('page_body_scripts')
+    <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+    <script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
     @include('application.estimates._js')
     <script>
         $(document).ready(function() {
@@ -36,4 +50,8 @@
               });
             });
     </script>
+  
+
 @endsection
+
+

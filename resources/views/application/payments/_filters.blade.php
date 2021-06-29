@@ -1,14 +1,14 @@
 <form action="" method="GET">
     <div class="card card-form d-flex flex-column flex-sm-row">
         <div class="card-form__body card-body-form-group flex">
-            <div class="row container-fluid my-2">
-                <div class="col-md-3 col-12">
+            <div class="row my-1 mx-0">
+                <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[payment_number]">{{ __('messages.payment_number') }}</label>
                         <input name="filter[payment_number]" type="text" class="form-control" value="{{ isset(Request::get("filter")['payment_number']) ? Request::get("filter")['payment_number'] : '' }}" placeholder="{{ __('messages.search') }}">
                     </div>
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[payment_method_id]">{{ __('messages.payment_method') }}</label>
                         <select id="filter[payment_method_id]" name="filter[payment_method_id]" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="filter[payment_method_id]">
@@ -19,17 +19,24 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[from]">{{ __('messages.from') }}</label>
                         <input name="filter[from]" type="date" class="form-control" data-toggle="flatpickr" data-flatpickr-default-date="{{ isset(Request::get("filter")['from']) ? Request::get("filter")['from'] : '' }}"  placeholder="{{ __('messages.from') }}">
                     </div>
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[to]">{{ __('messages.to') }}</label>
                         <input name="filter[to]" type="date" class="form-control" data-toggle="flatpickr" data-flatpickr-default-date="{{ isset(Request::get("filter")['to']) ? Request::get("filter")['to'] : '' }}"  placeholder="{{ __('messages.to') }}">
                     </div>
+                </div>
+                <div class="col-md-auto" style="margin-top: 22px;">
+                  
+                    <button type="submit" class="btn btn-success">
+            
+                        Refresh / {{ __('messages.filter') }}
+                    </button>
                 </div>
             </div>
             <div class="row mb-2">
@@ -38,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0"  style="margin-left:auto;">
+        {{-- <button type="submit" class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0"  style="margin-left:auto;">
             <i class="material-icons text-primary icon-20pt">refresh</i>
             {{ __('messages.filter') }}
-        </button>
+        </button> --}}
     </div>
 </form>
