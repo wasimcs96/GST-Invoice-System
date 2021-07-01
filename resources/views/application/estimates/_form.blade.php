@@ -188,7 +188,7 @@
                                     </thead>
                                     <tbody class="list" id="items">
                                         <tr id="product_row_template" class="d-none">
-                                            <td class="select-container">
+                                            <td class="select-container col-md-5">
                                                 <select name="product[]"
                                                     class="form-control priceListener select-with-footer" required>
                                                     <option disabled selected>{{ __('messages.select_product') }}
@@ -244,7 +244,7 @@
                                             <td class="text-right">
                                                 <p class="mb-1">
                                                     <input type="text" name="total[]"
-                                                        class="price_input price-text amount_price" value="$0" style="border:none;" readonly>
+                                                        class="price_input price-text amount_price" value="$0" style="border:none;margin:-144px;" readonly>
                                                 </p>
                                                 <div class="tax_list"></div>
                                             </td>
