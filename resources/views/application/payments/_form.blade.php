@@ -153,22 +153,29 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-6 col-12">
-                            <div class="form-group select-container required">
+                            <div class="form-group required select-container">
                                 <label for="customer">{{ __('messages.customer') }}</label>
                                 <select id="customer" name="customer_id" data-toggle="select"
                                     class="form-control select2-hidden-accessible select-with-footer"
                                     data-select2-id="customer">
-                                    <option disabled selected>{{ __('messages.select_customer') }}</option>
-                                    @if($payment->customer_id)
-                                    <option value="{{ $payment->customer_id }}" selected>
-                                        {{ $payment->customer->display_name }}</option>
-                                    @endif
+                                     <option disabled selected>{{ __('messages.select_customer') }}</option>
+                                   @if($payment->customer_id)
+                                    <option value="{{ $payment->customer_id }}" selected=""
+                                        data-currency="{{ $payment->customer->currency }}"
+                                        data-billing_address="{{$payment->customer->displayLongAddress('billing')}}"
+                                        data-shipping_address="{{$payment->customer->displayLongAddress('shipping')}}">
+                                        {{ $payment->customer->display_name }}
+                                    </option>
+                                    @endif 
+                                   
                                 </select>
-                                <div class="d-none select-footer">
-                                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}"
-                                        target="_blank" class="font-weight-300">+
-                                        {{ __('messages.add_new_customer') }}</a>
+                                {{-- <div class="d-none select-footer">
+                                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                                </div> --}}
+                                <div class="select2-results__option border-top mt-1 sel-footer">
+                                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
                                 </div>
                             </div>
                         </div>
@@ -256,6 +263,6 @@
 
 
 
-@section('page_head_scripts')
+{{-- @section('page_head_scripts')
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-@endsection
+@endsection --}}

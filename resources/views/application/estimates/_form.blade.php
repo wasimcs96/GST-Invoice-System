@@ -73,7 +73,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required select-container">
                                 <label for="customer">{{ __('messages.customer') }}</label>
-                                <select id="customer" name="customer_id" data-toggle="select"
+                                <select id="customer" onchange="customerselect()" id="customerselect" name="customer_id" data-toggle="select"
                                     class="form-control select2-hidden-accessible select-with-footer"
                                     data-select2-id="customer">
                                     <option disabled selected>{{ __('messages.select_customer') }}</option>
@@ -470,3 +470,12 @@
         </div>
 </section>
 
+{{-- @section('page_head_scripts')
+<script>
+function customerselect() {
+    var x = document.getElementById("customerselect").value;
+    console.log(x);
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+  }
+  </script>
+@endsection --}}
