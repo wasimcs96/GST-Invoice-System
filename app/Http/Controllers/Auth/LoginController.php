@@ -26,12 +26,18 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
