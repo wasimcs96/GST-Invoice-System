@@ -25,24 +25,24 @@
                     <div class="col-12 col-md-4 pl-0 ml-3">
                         <div class="form-group form-inline">
                             <label for="filter[from]">{{ __('messages.from') }}</label>
-                            <input name="filter[from]" type="text" class="form-control ml-1" data-toggle="flatpickr"
+                            <input name="filter[from]" type="date" class="form-control ml-1" data-toggle="flatpickr"
                                 data-flatpickr-default-date="{{ isset(Request::get("filter")['from']) ? Request::get("filter")['from'] : \Carbon\Carbon::now() }}"
-                                readonly="readonly" placeholder="{{ __('messages.from') }}">
+                                placeholder="{{ __('messages.from') }}">
                         </div>
                     </div>
                     <div class="col-12 col-md-4 pl-0">
                         <div class="form-group form-inline">
                             <label for="filter[to]">{{ __('messages.to') }}</label>
-                            <input name="filter[to]" type="text" class="form-control ml-1" data-toggle="flatpickr"
+                            <input name="filter[to]" type="date" class="form-control ml-1" data-toggle="flatpickr"
                                 data-flatpickr-default-date="{{ isset(Request::get("filter")['to']) ? Request::get("filter")['to'] : \Carbon\Carbon::now()->addMonth() }}"
-                                readonly="readonly" placeholder="{{ __('messages.to') }}">
+                                placeholder="{{ __('messages.to') }}">
                         </div>
                     </div>
-                    <div class="col-12 col-md-2 pl-0">
-                        <button type="submit" class="btn btn-light">
-                            <i class="material-icons icon-20pt">refresh</i>
-                            {{ __('messages.update') }}
-                        </button>
+                    <div class="col-md-3 col-12" >
+                  
+                        <button type="submit" class="btn btn-success">
+                Update
+                      </button>
                     </div>
                 </div>
             </form>
@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="pdf-iframe">
+    <div class="pdf-iframe my-2">
         <iframe src="{{ route('reports.expenses.pdf', [
             'company_uid' => $currentCompany->uid,
             'from' => isset(Request::get("filter")['from']) ? Request::get("filter")['from'] : \Carbon\Carbon::now()->format('Y-m-d'),

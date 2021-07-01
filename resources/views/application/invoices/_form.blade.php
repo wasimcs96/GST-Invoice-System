@@ -475,7 +475,7 @@
                                     </thead>
                                     <tbody class="list" id="items">
                                         <tr id="product_row_template" class="d-none">
-                                            <td class="select-container">
+                                            <td class="select-container col-md-5">
                                                 <select name="product[]"
                                                     class="form-control priceListener select-with-footer" required>
                                                     <option disabled selected>{{ __('messages.select_product') }}

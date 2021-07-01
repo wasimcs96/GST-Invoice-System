@@ -444,4 +444,5 @@
 @section('page_head_scripts')
 <link rel="stylesheet" type="text/css"
     href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+
 @endsection
