@@ -96,24 +96,43 @@
                     </div>
                         </div>
                         <div class="col-md-6 col-12">
-                            <div class="form-group select-container required">
+                            {{-- <div class="form-group select-container required">
                                 <label for="unit">{{ __('messages.unit') }}</label>
-                                <select id="unit_id" name="unit_id" data-toggle="select"
-                                    class="form-control select2-hidden-accessible select-with-footer"
-                                    data-select2-id="unit_id" data-minimum-results-for-search="-1">
+                                <select id="unit_id" customUid="{{$currentCompany->uid}}" name="unit_id" data-toggle="select" class="form-control select2-hidden-accessible select-with-footer" data-select2-id="unit_id" data-minimum-results-for-search="-1">
                                     <option disabled selected>{{ __('messages.select_unit') }}</option>
                                     @foreach(get_product_units_select2_array($currentCompany->id) as $option)
-                                    <option value="{{ $option['id'] }}"
-                                        {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>
-                                        {{ $option['text'] }}</option>
+                                        <option value="{{ $option['id'] }}" {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                                     @endforeach
+                                    <option value="tyyy" style="color: blue;">
+                                 
+                                        <a id="naya" href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
+                                            target="_blank" class="font-weight-300">+
+                                            {{ __('messages.add_new_product_unit') }}</a>
+                                
+                                </option>
                                 </select>
-                                <div class="d-none select-footer">
-                                    <a href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
-                                        target="_blank" class="font-weight-300">+
-                                        {{ __('messages.add_new_product_unit') }}</a>
-                                </div>
+                                
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="unit">{{ __('messages.unit') }}</label>
+
+                                <select id="unit_id"class="select2 form-control" name="unit_id"  id="default-select-multi">
+                                    <option disabled selected>{{ __('messages.select_unit') }}</option>
+                                    @foreach(get_product_units_select2_array($currentCompany->id) as $option)
+                                        <option value="{{ $option['id'] }}" {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
+                                    @endforeach
+                                <option value="tyyy"  style="color: blue;">   <a id="naya" href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    target="_blank" class="font-weight-300">+
+                                    {{ __('messages.add_new_product_unit') }}</a></option>
+                                </select>
                             </div>
+
+                            {{-- <div class="d-none select-footer">
+                                <a href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    target="_blank" class="font-weight-300">+
+                                    {{ __('messages.add_new_product_unit') }}</a>
+                            </div> --}}
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
@@ -124,21 +143,20 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
-                            <div class="form-group select-container">
-                                <label for="taxes">{{ __('messages.taxes') }}</label>
-                                <select id="taxes" name="taxes[]" data-toggle="select" multiple="multiple"
-                                    class="form-control select2-hidden-accessible select-with-footer"
-                                    data-select2-id="taxes">
+                            <div class="form-group">
+                                <label for="price">{{ __('Taxes') }}</label>
+
+                                <select id="taxess"class="select2 form-control" multiple="multiple" id="default-select-multi">
                                     @foreach(get_tax_types_select2_array($currentCompany->id) as $option)
-                                    <option value="{{ $option['id'] }}"
-                                        {{ $product->hasTax($option['id']) ? 'selected=""' : '' }}>{{ $option['text'] }}
-                                    </option>
-                                    @endforeach
+                                <option value="{{ $option['id'] }}"
+                                    data-percent="{{ $option['percent'] }}"
+                                    {{ $product->hasTax($option['id']) ? 'selected=""' : '' }}>
+                                    {{ $option['text'] }}</option>
+                                @endforeach
+                                <option value="hel"  style="color: blue;"> <a  id="pro" href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    target="_blank" class="font-weight-300">+
+                                    {{ __('messages.add_new_tax') }}</a></option>
                                 </select>
-                                <div class="d-none select-footer">
-                                    <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
-                                        target="_blank" class="font-weight-300">+ {{ __('messages.add_new_tax') }}</a>
-                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -176,11 +194,36 @@
 </section>
 
 
-
+{{-- 
 @section('page_head_scripts')
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-@endsection
+@endsection --}}
+
+{{-- @section('page_body_scripts')
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+@endsection --}}
 
 @section('page_body_scripts')
-<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+
+
+<script>
+$('#unit_id').on('change', function() {
+    if (this.value == "tyyy") {
+        window.location='{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}';
+        $("#naya").trigger('click');
+    }
+    
+  });
+</script>
+<script>
+    $('#taxess').on('change', function() {
+        if (this.value == "hel") {
+            window.location='{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#pro").trigger('click');
+        }
+        
+      });
+    </script>
 @endsection

@@ -157,13 +157,13 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="phone">{{ __('messages.phone') }}</label>
-                            <input name="phone" type="text" class="form-control" placeholder="{{ __('messages.phone') }}" value="{{ $vendor->phone }}">
+                            <input name="phone" type="number" class="form-control" placeholder="{{ __('messages.phone') }}" value="{{ $vendor->phone }}">
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="website">{{ __('messages.website') }}</label>
-                            <input name="website" type="text" class="form-control" placeholder="{{ __('messages.website') }}" value="{{ $vendor->website }}">
+                            <input name="website" type="url" class="form-control" placeholder="{{ __('messages.website') }}" value="{{ $vendor->website }}">
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="billing[phone]">{{ __('messages.phone') }}</label>
-                            <input name="billing[phone]" type="text" class="form-control" value="{{ $vendor->billing->phone }}" placeholder="{{ __('messages.phone') }}">
+                            <input name="billing[phone]" type="number" class="form-control" value="{{ $vendor->billing->phone }}" placeholder="{{ __('messages.phone') }}">
                         </div>
                     </div>
                     <div class="col-md-6 col-12">

@@ -38,8 +38,8 @@
 @endsection
 
 @section('page_body_scripts')
-    <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
     @include('application.estimates._js')
     <script>
         $(document).ready(function() {
@@ -110,6 +110,14 @@
         });
     });
 </script>
+<script> 
+$('#payment_method_id').on('change', function() {
+    if (this.value == "pay") {
+        window.location='{{ route('settings.payment.type.create', ['company_uid' => $currentCompany->uid]) }}';
+        $("#payment").trigger('click');
+    }
+    
+  });</script>
 
 @endsection
 

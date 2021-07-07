@@ -53,8 +53,27 @@
         });
             });
     </script>
+    <script>
+        $('#total_taxes').on('change', function() {
+            if (this.value == "hyy") {
+                window.location='{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
+                $("#tax").trigger('click');
+            }
+            
+          });
+          $('#customer').on('change', function() {
+            if (this.value == "hii") {
+                window.location='{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}';
+                $("#cust").trigger('click');
+            }
+            
+          });
+    </script>
+    
   
 
 @endsection
+
+
 
 

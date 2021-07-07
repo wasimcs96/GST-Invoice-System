@@ -355,8 +355,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Invoice Information</h4>
-                    <p class="text-muted">{{ __('messages.basic_invoice_information') }}</p>
+                    <h4 class="card-title"><b>Create_Invoice </b></h4>
+                    {{-- <p class="text-muted">{{ __('messages.basic_invoice_information') }}</p> --}}
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -380,6 +380,26 @@
                                     <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
                                 </div>
                             </div>
+
+                             {{-- <div class="form-group">
+                                <label for="customer">{{ __('messages.customer') }}</label>
+                                <option disabled selected>{{ __('messages.select_customer') }}</option>
+
+                                <select id="invoice" name="customer_id" class="select2 form-control" id="default-select-multi">
+                                    <option disabled selected>{{ __('messages.select_customer') }}</option>
+
+                                    @if($invoice->customer_id)
+                                    <option value="{{ $invoice->customer_id }}" selected=""
+                                        data-currency="{{ $invoice->customer->currency }}"
+                                        data-billing_address="{{$invoice->customer->displayLongAddress('billing')}}"
+                                        data-shipping_address="{{$invoice->customer->displayLongAddress('shipping')}}">
+                                        {{ $invoice->customer->display_name }}
+                                    </option>
+                                    @endif
+                                <option value="hiiii"  style="color: blue;"><a id="invo" href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
+                                </option>
+                                </select>
+                            </div>  --}}
 
                             <div id="address_component" class="form-row d-none">
                                 <div class="col-6">
@@ -648,7 +668,8 @@
 
 
 
-                        <div class="col-md-6 col-12 my-2">
+                        <div class="col-md-6 col-12 my-2" style="
+                        padding-left: 147px;">
 
                             <div class="card card-body shadow-none border">
 
@@ -670,25 +691,25 @@
                                     <div class="col-12 h6 mb-1">
                                         <strong class="text-muted">{{ __('messages.taxes') }}</strong>
                                     </div>
-                                    <div class="col-12 h6 mb-0">
-                                        <div class="form-group select-container">
-                                            <select id="total_taxes" name="total_taxes[]" data-toggle="select" multiple
-                                                class="form-control priceListener select-with-footer"
-                                                data-select2-id="total_taxes">
-                                                @foreach(get_tax_types_select2_array($currentCompany->id) as $option)
+                                    <div class="col-12 h6 mb-0" style="margin-left: 1px;">
+                                        <div class="col-12 h6 mb-1">
+                                            {{-- <label>{{ __('messages.taxes') }}</label> --}}
+                                            <div class="form-group">
+                                                <select id="total_tax"class="select2 form-control" multiple="multiple" id="default-select-multi">
+                                                    @foreach(get_tax_types_select2_array($currentCompany->id) as $option)
                                                 <option value="{{ $option['id'] }}"
                                                     data-percent="{{ $option['percent'] }}"
                                                     {{ $invoice->hasTax($option['id']) ? 'selected=""' : '' }}>
-                                                    {{ $option['text'] }}
-                                                </option>
+                                                    {{ $option['text'] }}</option>
                                                 @endforeach
-                                            </select>
-                                            <div class="d-none select-footer">
-                                                <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
+                                                <option value="hell"  style="color: blue;"> <a  id="taxes" href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
                                                     target="_blank" class="font-weight-300">+
-                                                    {{ __('messages.add_new_tax') }}</a>
+                                                    {{ __('messages.add_new_tax') }}</a></option>
+                                                </select>
                                             </div>
                                         </div>
+                                        
+                                        
                                     </div>
                                 </div>
                                 @endif
@@ -700,16 +721,16 @@
                                     <div class="col-12 h6 mb-1">
                                         <strong class="text-muted">{{ __('messages.discount') }}</strong>
                                     </div>
-                                    <div class="col-12 h6 mb-0">
+                                    <div class="col-12 h6 mb-0" style="margin-left: 14px; padding-right: 39px;">
                                         <div class="form-group">
                                             <div class="input-group input-group-merge">
                                                 <input id="total_discount" name="total_discount" type="number"
                                                     class="form-control form-control-prepended priceListener"
                                                     value="{{ $invoice->discount_val ?? 0 }}">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        %
-                                                    </div>
+                                                <!-- <div class="input-group-prepend"> -->
+                                                <div class="input-group-text">
+                                                    %
+                                                    <!-- </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -721,7 +742,7 @@
                                 <!-- <div class="d-flex align-items-center mb-3"> -->
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="h6 mb-0 w-50">
-                                        <strong class="text-muted">{{ __('messages.sub_total') }}</strong>
+                                        <strong class="text-muted">{{ __('messages.total') }}</strong>
                                     </div>
                                     <h4>
                                         <!-- <input id="sub_total" name="sub_total" type="text"
@@ -757,4 +778,29 @@
             </div>
         </div>
 </section>
+{{-- 
+@section('page_body_scripts')
 
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+
+<script>
+    $('#total_tax').on('change', function() {
+        if (this.value == "hell") {
+            window.location='{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#taxes").trigger('click');
+        }
+        
+      });
+      $('#invoice').on('change', function() {
+        if (this.value == "hiiii") {
+            window.location='{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#invo").trigger('click');
+        }
+        
+      });
+</script>
+
+    
+
+@endsection --}}

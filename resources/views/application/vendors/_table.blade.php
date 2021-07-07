@@ -135,7 +135,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('super_admin.users.edit', $user->id) }}">
+                                                    href="{{ route('super_admin.users.edit', $vendor->id) }}">
                                                     <i data-feather="edit-2" class="mr-50"></i>
                                                     <span>Edit</span>
                                                 </a>
