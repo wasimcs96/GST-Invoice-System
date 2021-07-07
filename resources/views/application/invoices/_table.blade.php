@@ -93,7 +93,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">{{ __('messages.invoice') }}</h4>
+        <h4 class="card-title">{{ __('messages.invoices') }}</h4>
         <a href="{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}"
             class="btn btn-success ml-3 float-right"><i class="material-icons"></i>
             {{ __('messages.create_invoice') }}</a>
@@ -184,7 +184,7 @@
     </div>
     @else
     <div class="row justify-content-center card-body pb-0 pt-5">
-        <i class="material-icons fs-64px">description</i>
+        <i class="material-icons fs-64px">Description</i>
     </div>
     <div class="row justify-content-center card-body pb-5">
         <p class="h4">{{ __('messages.no_invoices_yet') }}</p>

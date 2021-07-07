@@ -155,48 +155,60 @@
                         </div>
                         
                         <div class="col-md-6 col-12">
+                          
+
                             <div class="form-group required select-container">
                                 <label for="customer">{{ __('messages.customer') }}</label>
-                                <select id="customer" name="customer_id" data-toggle="select"
+                                <select id="customer" onchange="customerselect()" id="customerselect" name="customer_id" data-toggle="select"
                                     class="form-control select2-hidden-accessible select-with-footer"
                                     data-select2-id="customer">
-                                     <option disabled selected>{{ __('messages.select_customer') }}</option>
-                                   @if($payment->customer_id)
+                                    <option disabled selected>{{ __('messages.select_customer') }}</option>
+                                    
+                                    @if($payment->customer_id)
                                     <option value="{{ $payment->customer_id }}" selected=""
                                         data-currency="{{ $payment->customer->currency }}"
                                         data-billing_address="{{$payment->customer->displayLongAddress('billing')}}"
                                         data-shipping_address="{{$payment->customer->displayLongAddress('shipping')}}">
                                         {{ $payment->customer->display_name }}
                                     </option>
-                                    @endif 
-                                   
+                                    @endif
+                                   {{-- <option value="hii"><a id="cust" href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
+                                   </option> --}}
                                 </select>
+                                <span value="hii"><a id="cust" href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
+                                </span>
                                 {{-- <div class="d-none select-footer">
                                     <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
                                 </div> --}}
-                                <div class="select2-results__option border-top mt-1 sel-footer">
+                                {{-- <div class="select2-results__option border-top mt-1 sel-footer">
                                     <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
-                                </div>
+                                </div> --}}
                             </div>
+
+
                         </div>
                         <div class="col-md-6 col-12">
-                            <div class="form-group select-container required">
+                           
+                            <div class="form-group">
                                 <label for="invoice_select">{{ __('messages.invoice') }}</label>
-                                <select id="invoice_select" name="invoice_id" data-toggle="select"
-                                    class="form-control select2-hidden-accessible select-with-footer"
-                                    data-minimum-results-for-search="-1" data-select2-id="invoice_select">
+                                {{-- <option disabled selected>{{ __('messages.select_customer') }}</option> --}}
+
+                                <select id="invoice_select" name="invoice_id" class="select2 form-control" id="default-select-multi">
                                     <option disabled selected>{{ __('messages.select_invoice') }}</option>
+
                                     @if($payment->invoice_id)
                                     <option value="{{ $payment->invoice_id }}" selected>
                                         {{ $payment->invoice->invoice_number }}</option>
                                     @endif
+                                    
+                                <option value="hi"  style="color: blue;"><a id="inv" href="{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    target="_blank" class="font-weight-300">+
+                                    {{ __('messages.add_new_invoice') }}</a>
+                                </option>
                                 </select>
-                                <div class="d-none select-footer">
-                                    <a href="{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}"
-                                        target="_blank" class="font-weight-300">+
-                                        {{ __('messages.add_new_invoice') }}</a>
-                                </div>
                             </div>
+
+
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
@@ -207,7 +219,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
-                            <div class="form-group select-container required">
+                            {{-- <div class="form-group select-container required">
                                 <label for="payment_method_id">{{ __('messages.payment_type') }}</label>
                                 <select id="payment_method_id" name="payment_method_id" data-toggle="select"
                                     class="form-control select2-hidden-accessible select-with-footer"
@@ -225,6 +237,30 @@
                                         {{ __('messages.add_new_payment_method') }}</a>
                                 </div>
                             </div>
+ --}}
+
+                            <div class="form-group">
+                                <label for="payment_method_id">{{ __('messages.payment_type') }}</label>
+                                {{-- <option disabled selected>{{ __('messages.select_customer') }}</option> --}}
+
+                                <select id="payment_method_id" name="payment_method_id" class="select2 form-control" id="default-select-multi">
+                                    <option disabled selected>{{ __('messages.select_payment_type') }}</option>
+
+                                    @foreach(get_payment_methods_select2_array($currentCompany->id) as $option)
+                                    <option value="{{ $option['id'] }}"
+                                        {{ $payment->payment_method_id == $option['id'] ? 'selected=""' : '' }}>
+                                        {{ $option['text'] }}</option>
+                                    @endforeach
+                                    
+                                <option value="pay"  style="color: blue;"> <a id="payment" href="{{ route('settings.payment.type.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    target="_blank" class="font-weight-300">+
+                                    {{ __('messages.add_new_payment_method') }}</a>
+                                </option>
+                                </select>
+                            </div>
+
+
+
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
@@ -265,4 +301,37 @@
 
 {{-- @section('page_head_scripts')
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+@endsection --}}
+
+{{-- @section('page_body_scripts')
+
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+
+<script>
+    $('#payment').on('change', function() {
+        if (this.value == "hay") {
+            window.location='{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#pay").trigger('click');
+        }
+        
+      });
+      $('#invoice_select').on('change', function() {
+        if (this.value == "hi") {
+            window.location='{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#inv").trigger('click');
+        }
+        
+      });
+      $('#payment_method_id').on('change', function() {
+        if (this.value == "pay") {
+            window.location='{{ route('settings.payment.type.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#payment").trigger('click');
+        }
+        
+      });
+</script>
+
+    
+
 @endsection --}}

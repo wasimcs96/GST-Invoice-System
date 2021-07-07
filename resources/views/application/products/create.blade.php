@@ -25,3 +25,38 @@
         @include('application.products._form')
     </form>
 @endsection
+
+@section('page_head_scripts')
+
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+
+<style>
+    .select2-selection__arrow {
+        display: none;
+    }
+</style>
+
+@endsection
+
+@section('page_body_scripts')
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+    @include('application.invoices._js')
+   
+@endsection
+
+{{-- @section('page_body_scripts')
+<script>
+    $("select").click(function() {
+        console.log('hiiiii')
+  var open = $(this).data("isopen");
+  console.log(this.value)
+  if(this.value == 'url') {
+    window.location.href = $(this).val()
+  }
+  //set isopen to opposite so next time when use clicked select box
+  //it wont trigger this event
+  $(this).data("isopen", !open);
+});
+</script>
+@endsection --}}

@@ -38,7 +38,7 @@
 
 @endsection
 
-@section('page_body_scripts')
+{{-- @section('page_body_scripts')
 <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
 <script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
     @include('application.invoices._js')
@@ -50,4 +50,40 @@
               });
             });
     </script>
+@endsection --}}
+
+@section('page_body_scripts')
+    <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+    <script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+    @include('application.estimates._js')
+    {{-- <script>
+        $(document).ready(function() {
+            $("#add_product_row").click(function() {
+               console.log('hiiiii');
+                addProductRow();
+              });
+              $(".priceListener").change(function() {
+            calculateRowPrice()    
+        });
+            });
+    </script> --}}
+    <script>
+        $('#total_tax').on('change', function() {
+        if (this.value == "hell") {
+            window.location='{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#taxes").trigger('click');
+        }
+        
+      });
+        //   $('#customer').on('change', function() {
+        //     if (this.value == "hii") {
+        //         window.location='{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}';
+        //         $("#cust").trigger('click');
+        //     }
+            
+        //   });
+    </script>
+    
+  
+
 @endsection

@@ -38,7 +38,7 @@
                                 placeholder="{{ __('messages.to') }}">
                         </div>
                     </div>
-                    <div class="col-md-3 col-12" >
+                    <div class="col-md-3 col-12" style="margin-top: 16px;" >
                   
                         <button type="submit" class="btn btn-success">
                 Update
@@ -48,7 +48,7 @@
             </form>
         </div>
         <div class="col-12 col-md-4 text-right">
-            <div class="btn-group mb-2">
+            <div class="btn-group mb-2"  style="margin-top: 16px;">
                 <a href="{{ route('reports.expenses.pdf', [
                     'company_uid' => $currentCompany->uid,
                     'from' => isset(Request::get("filter")['from']) ? Request::get("filter")['from'] : \Carbon\Carbon::now()->format('Y-m-d'),

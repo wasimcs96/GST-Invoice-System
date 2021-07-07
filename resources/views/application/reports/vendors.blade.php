@@ -38,7 +38,7 @@
                                 placeholder="{{ __('messages.to') }}">
                         </div>
                     </div>
-                    <div class="col-md-3 col-12" >
+                    <div class="col-md-3 col-12" style="margin-top: 16px;">
                   
                         <button type="submit" class="btn btn-success">
                 Update
@@ -47,7 +47,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-12 col-md-4 text-right">
+        <div class="col-12 col-md-4 text-right" style="margin-top: 16px;">
             <div class="btn-group">
                 <a href="{{ route('reports.vendors.pdf', [
                     'company_uid' => $currentCompany->uid,
