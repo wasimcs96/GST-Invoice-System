@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Method\RoleMethod;
+use App\Models\Method\UserMethod;
 use App\Traits\CompanyUserTrait;
 use App\Traits\HasAddresses;
 use App\Traits\UUIDTrait;
@@ -16,6 +18,7 @@ class User extends Authenticatable
     use HasRoles;
     use HasAddresses;
     use CompanyUserTrait;
+    use UserMethod;
 
     /**
      * The attributes that are mass assignable.
@@ -49,6 +52,11 @@ class User extends Authenticatable
     public function settings()
     {
         return $this->hasMany(UserSetting::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class,'id','owner_id');
     }
 
     /**

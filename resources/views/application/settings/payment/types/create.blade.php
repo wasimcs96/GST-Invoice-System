@@ -9,17 +9,17 @@
                 <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">business</i></a></li>
                 <li class="breadcrumb-item">{{ __('messages.settings') }}</li>
                 <li class="breadcrumb-item"><a href="{{ route('settings.payment', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.create_payment_type') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ __('messages.create_payment_type') }}</li>
+                {{-- <li class="breadcrumb-item active" aria-current="page">{{ __('messages.create_payment_type') }}</li> --}}
             </ol>
         </nav>
-        <h1 class="m-0">{{ __('messages.create_payment_type') }}</h1>
+        <h1 class="m-1">{{ __('messages.create_payment_type') }}</h1>
     </div>
  
     <div class="row">
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
             @include('application.settings._aside', ['tab' => 'payment'])
-        </div>
-        <div class="col-lg-9">
+        </div> --}}
+        <div class="col-lg-12">
             <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">

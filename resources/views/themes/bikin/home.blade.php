@@ -35,7 +35,9 @@
  
       @if(get_system_setting('application_logo'))
         <!-- Image logo -->
-        <a href="/" class="logo mr-auto"><img src="{{ get_system_setting('application_logo') }}" alt="logo" class="img-fluid"></a>
+        {{-- <a href="/" class="logo mr-auto"><img src="{{ get_system_setting('application_logo') }}" alt="logo" class="img-fluid"></a> --}}
+        <a href="#" class="logo mr-auto">Calcigo</a>
+
       @else
         <!-- Text logo -->
         <h1 class="logo mr-auto"><a href="/">{{ get_system_setting('application_name') }}</a></h1>
@@ -59,7 +61,7 @@
 
   <section id="hero" class="d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
-      <h1>{{ get_theme_setting('bikin', 'hero_title') }}</h1>
+      <h1>Calcigo</h1>
       <h2>{{ get_theme_setting('bikin', 'hero_description') }}</h2>
       <a href="{{ route('register') }}" class="btn-get-started scrollto">{{ __('bikin.get_started') }}</a>
       <img src="{{ asset('themes/bikin/img/hero-img.png') }}" class="img-fluid hero-img" alt="" data-aos="zoom-in" data-aos-delay="150">

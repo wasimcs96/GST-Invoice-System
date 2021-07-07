@@ -200,7 +200,7 @@
 <section id="multiple-column-form">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('messages.paypal_settings') }}</h4>
                 </div>
@@ -264,7 +264,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('messages.stripe_settings') }}</h4>
@@ -323,7 +323,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('messages.razorpay_settings') }}</h4>
                 </div>
@@ -379,9 +379,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('messages.mollie_settings') }}</h4>
                 </div>
@@ -429,7 +429,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     </div>

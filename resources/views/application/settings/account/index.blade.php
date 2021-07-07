@@ -11,14 +11,15 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.account_settings') }}</li>
             </ol>
         </nav>
+        <a href="{{ URL(''.auth()->user()->uid.'/settings/index') }}" class="btn btn-info float-right">Back</a>
         <h1 class="m-1">{{ __('messages.account_settings') }}</h1>
     </div>
 
     <div class="row">
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
             @include('application.settings._aside', ['tab' => 'account'])
-        </div>
-        <div class="col-lg-9">
+        </div> --}}
+        <div class="col-lg-12">
             <div role="tabpanel" class="tab-pane active" id="{{ route('settings.account', ['company_uid' => $currentCompany->uid]) }}" aria-expanded="true" aria-labelledby="account-pill-setting" aria-expanded="true">
             <div class="card card-form container-fluid">
                 <div class="row no-gutters">

@@ -101,14 +101,15 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.invoice_settings') }}</li>
             </ol>
         </nav>
+        <a href="{{ URL(''.auth()->user()->uid.'/settings/index') }}" class="btn btn-info float-right">Back</a>
         <h1 class="m-1">{{ __('messages.invoice_settings') }}</h1>
     </div>
 
     <div class="row">
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
             @include('application.settings._aside', ['tab' => 'invoice'])
-        </div>
-        <div class="col-lg-9">
+        </div> --}}
+        <div class="col-lg-12">
             
             <div class="card card-form container-fluid">
                 <div class="row no-gutters">
@@ -135,14 +136,21 @@
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="invoice_auto_archive">{{ __('messages.auto_archive') }}</label><br>
-                                        <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
+                                        {{-- <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                             <input type="checkbox" name="invoice_auto_archive" id="invoice_auto_archive" {{ $currentCompany->getSetting('invoice_auto_archive') ? 'checked' : '' }} class="custom-control-input">
                                             <label class="custom-control-label" for="invoice_auto_archive">{{ __('messages.yes') }}</label>
+                                        </div> --}}
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" name="invoice_auto_archive" id="invoice_auto_archive" class="custom-control-input" {{ $currentCompany->getSetting('invoice_auto_archive') ? 'checked' : '' }} checked id="accountSwitch1" />
+                                            <label class="custom-control-label" for="accountSwitch1">
+                                                {{ __('messages.yes') }}
+                                            </label>
                                         </div>
-                                        <label for="invoice_auto_archive" class="mb-0">{{ __('messages.yes') }}</label>
+                                        {{-- <label for="invoice_auto_archive" class="mb-0">{{ __('messages.yes') }}</label> --}}
                                         <small class="form-text text-muted">
                                             {{ __('messages.auto_archive_description') }}
                                         </small>
+
                                     </div>
                                 </div>
                             </div>

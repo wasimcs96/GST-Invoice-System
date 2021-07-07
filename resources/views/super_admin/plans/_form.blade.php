@@ -154,7 +154,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="price">{{ __('messages.price') }}</label>
-                                <input name="price" type="text" class="form-control price_input"
+                                <input name="price" type="number" class="form-control price_input"
                                     placeholder="{{ __('messages.price') }}" autocomplete="off"
                                     value="{{ $plan->price ?? 0 }}" required>
                                 <small class="form-text text-muted">{{ __('messages.plan_price_helper') }}</small>

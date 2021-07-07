@@ -11,14 +11,15 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ __('messages.tax_types') }}</li>
             </ol>
         </nav>
+        <a href="{{ URL(''.auth()->user()->uid.'/settings/index') }}" class="btn btn-info float-right">Back</a>
         <h1 class="m-1">{{ __('messages.tax_types') }}</h1>
     </div>
 
     <div class="row">
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
             @include('application.settings._aside', ['tab' => 'tax_types'])
-        </div>
-        <div class="col-lg-9">
+        </div> --}}
+        <div class="col-lg-12">
             <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">

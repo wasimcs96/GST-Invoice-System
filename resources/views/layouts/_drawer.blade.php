@@ -228,13 +228,13 @@
                 </li> --}}
                 <li class="{{ Request::segment(2) == 'settings' ? ' nav-item active' :  'nav-item' }}"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Menu Levels">{{ __('messages.settings') }}</span></a>
                     <ul class="menu-content">
-                        <li class="{{ Request::segment(3) == 'application' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.application') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Payment">{{ __('messages.application_settings') }}</span></a>
+                        {{-- <li class="{{ Request::segment(3) == 'application' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.application') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Payment">{{ __('messages.application_settings') }}</span></a> --}}
                         </li>
                         <li class="{{ Request::segment(3) == 'mail' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.mail') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Email">{{ __('messages.mail_settings') }}</span></a>
                         </li>
                         <li class="{{ Request::segment(3) == 'payment' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.payment') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="SMS">{{ __('messages.payment_settings') }}</span></a>
                         </li>
-                        <li class="{{ Request::segment(3) == 'theme' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.theme', get_system_setting('theme')) }}"><i data-feather="circle"></i><span class="menu-item text-truncate"data-i18n="Third Party">{{ __('messages.theme_settings') }}</span></a>
+                        <li class="{{ Request::segment(3) == 'theme' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.theme', get_system_setting('theme')) }}"><i data-feather="circle"></i><span class="menu-item text-truncate"data-i18n="Third Party">Website Settings</span></a>
                         </li>
                     </ul>
                 </li>
@@ -321,7 +321,9 @@
                 @endif
                 
                 <li class=" nav-item {{ $page == 'settings' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('settings.account', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="type">settings</i><span class="menu-title text-truncate" data-i18n="Typography">{{ __('messages.settings') }}</span></a>
+                    {{-- <a class="d-flex align-items-center" href="{{ route('settings.account', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="type">settings</i><span class="menu-title text-truncate" data-i18n="Typography">{{ __('messages.settings') }}</span></a> --}}
+                    <a class="d-flex align-items-center" href="{{ route('settings.index', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="type">settings</i><span class="menu-title text-truncate" data-i18n="Typography">{{ __('messages.settings') }}</span></a>
+
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i data-feather="power"></i><span class="menu-title text-truncate" data-i18n="Colors">{{ __('messages.logout') }}</span></a>
                 </li>

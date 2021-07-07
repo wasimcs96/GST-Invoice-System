@@ -18,6 +18,10 @@ class AccountController extends Controller
     {
         return view('application.settings.account.index');
     }
+    public function settingindex()
+    {
+        return view('application.settings._aside');
+    }
 
     /**
      * Update the Account of Current Authenticated User

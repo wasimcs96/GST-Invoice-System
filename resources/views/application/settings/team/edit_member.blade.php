@@ -9,17 +9,17 @@
                 <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">business</i></a></li>
                 <li class="breadcrumb-item">{{ __('messages.settings') }}</li>
                 <li class="breadcrumb-item"><a href="{{ route('settings.team', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.team') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ __('messages.edit_member') }}</li>
+                {{-- <li class="breadcrumb-item active" aria-current="page">{{ __('messages.edit_member') }}</li> --}}
             </ol>
         </nav>
-        <h1 class="m-0">{{ __('messages.edit_member') }}</h1>
+        <h1 class="m-1">{{ __('messages.edit_member') }}</h1>
     </div>
  
     <div class="row">
-        <div class="col-lg-3">
+        {{-- <div class="col-lg-3">
             @include('application.settings._aside', ['tab' => 'team'])
-        </div>
-        <div class="col-lg-9">
+        </div> --}}
+        <div class="col-lg-12">
             <div class="card card-form container-fluid">
                 <div class="row no-gutters">
                     <div class="col card-form__body card-body bg-white">
