@@ -29,9 +29,11 @@
 
                         <a href="/" class="navbar-brand ">
                             @if(get_system_setting('application_logo'))
-                                <img class="navbar-brand-icon" src="{{ get_system_setting('application_logo') }}" width="125" alt="{{ get_system_setting('application_name') }}">
+                                {{-- <img class="navbar-brand-icon" src="{{ get_system_setting('application_logo') }}" width="125" alt="{{ get_system_setting('application_name') }}"> --}}
                             @else
-                                <span>{{ get_system_setting('application_name') }}</span>
+                                {{-- <span>{{ get_system_setting('application_name') }}</span> --}}
+                                <span>Calcigo</span>
+
                             @endif
                         </a>
                     </div>

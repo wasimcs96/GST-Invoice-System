@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Landing
-Route::get('/', 'HomeController@index')->middleware('installed')->name('home');
-// Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+// Route::get('/', 'HomeController@index')->middleware('installed')->name('home');
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 
 
 // Auth routes
@@ -188,6 +188,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     // Setting Routes
     Route::group(['namespace' => 'Settings', 'prefix' => 'settings'], function () {
         // Settings>Account Settings
+        Route::get('/index', 'AccountController@settingindex')->name('settings.index');
         Route::get('/account', 'AccountController@index')->name('settings.account');
         Route::post('/account', 'AccountController@update')->name('settings.account.update');
 

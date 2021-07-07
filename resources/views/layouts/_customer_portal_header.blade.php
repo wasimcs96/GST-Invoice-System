@@ -10,7 +10,7 @@
                     @if(get_system_setting('application_logo'))
                         <img class="navbar-brand-icon" src="{{ get_system_setting('application_logo') }}" width="125" alt="{{ get_system_setting('application_name') }}">
                     @else
-                        <span>{{ get_system_setting('application_name') }}</span>
+                        <span>Calcigo</span>
                     @endif
                 </a>
 

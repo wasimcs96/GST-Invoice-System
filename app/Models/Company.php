@@ -44,6 +44,10 @@ class Company extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'owner_id','id');
+    }
 
     /**
      * Helper function to determine if a user is part

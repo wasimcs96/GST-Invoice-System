@@ -161,7 +161,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
                                     <label for="phone">{{ __('messages.phone') }}</label>
-                                    <input name="phone" type="text" class="form-control" placeholder="{{ __('messages.phone') }}" value="{{ $user->phone }}">
+                                    <input name="phone" type="number" class="form-control" placeholder="{{ __('messages.phone') }}" value="{{ $user->phone }}">
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
