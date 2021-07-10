@@ -95,7 +95,7 @@
     <div class="card-header">
         <h4 class="card-title">{{ __('messages.invoices') }}</h4>
         <a href="{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}"
-            class="btn btn-success ml-3 float-right"><i class="material-icons"></i>
+            class="btn btn-primary  ml-3 float-right"><i class="material-icons"></i>
             {{ __('messages.create_invoice') }}</a>
 
     </div>

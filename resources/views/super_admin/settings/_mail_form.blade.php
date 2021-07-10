@@ -119,7 +119,7 @@
                                     <input name="mail_from_name" type="text" class="form-control" placeholder="{{ __('messages.mail_from_name') }}" value="{{ env('MAIL_FROM_NAME') }}">
                                 </div>
                             </div>
-                            <div class="form-group text-center my-2">
+                            <div class="form-group text-center my-2" style="margin-left: 14px;">
                                 <button class="btn btn-primary save_form_button">{{ __('messages.save_settings') }}</button>
                             </div>
                         </div>

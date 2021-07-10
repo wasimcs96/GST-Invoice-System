@@ -56,7 +56,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">{{ __('messages.plans') }}</h4>
-                <a href="{{ route('super_admin.plans.create') }}" class="btn btn-success ml-3 float-right"><i class="material-icons"></i> {{ __('messages.create_plan') }}</a>
+                <a href="{{ route('super_admin.plans.create') }}" class="btn btn-primary ml-3 float-right"><i class="material-icons"></i> {{ __('messages.create_plan') }}</a>
             </div>
             @if($plans->count() > 0)
                 <div class="table-responsive">

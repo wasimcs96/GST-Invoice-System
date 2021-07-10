@@ -78,7 +78,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">{{ __('messages.customers') }}</h4>
-                <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-success ml-3 float-right"><i class="material-icons"></i> {{ __('messages.create_customer') }}</a>
+                <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-primary  ml-3 float-right"><i class="material-icons"></i> {{ __('messages.create_customer') }}</a>
             </div>
             @if ($customers->count() > 0)
                 <div class="table-responsive">
