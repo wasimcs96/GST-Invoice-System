@@ -203,11 +203,11 @@
                 </li>
                 <li class=" nav-item {{ $page == 'super_admin.users' ? 'active' : ''}}"><a class="d-flex align-items-center" href="{{ route('super_admin.users') }}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Email">{{ __('messages.users') }}</span></a>
                 </li>
-                <li class=" nav-item {{ $page == 'super_admin.plans' ? 'active' : ''}}"><a class="d-flex align-items-center" href="{{ route('super_admin.plans') }}"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">{{ __('messages.plans') }}</span></a>
+                <li class=" nav-item {{ $page == 'super_admin.plans' ? 'active' : ''}}"><a class="d-flex align-items-center" href="{{ route('super_admin.plans') }}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="Chat">{{ __('messages.plans') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'super_admin.subscriptions' ? 'active' : ''}}"><a class="d-flex align-items-center" href="{{ route('super_admin.subscriptions') }}"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">{{ __('messages.subscriptions') }}</span></a>
                 </li>
-                <li class=" nav-item {{ $page == 'super_admin.orders' ? 'active' : ''}}"><a class="d-flex align-items-center" href="{{ route('super_admin.orders') }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.orders') }}</span></a>
+                <li class=" nav-item {{ $page == 'super_admin.orders' ? 'active' : ''}}"><a class="d-flex align-items-center" href="{{ route('super_admin.orders') }}"><i data-feather="shopping-cart"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.orders') }}</span></a>
                 </li>
                 {{-- <li class=" nav-item {{ str_contains($page, 'super_admin.settings.') ? 'active open' : ''}}">
                     <a class="d-flex align-items-center {{ str_contains($page, 'super_admin.settings.') ? '' : 'collapsed'}}" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">{{ __('messages.settings') }}</span></a>
@@ -226,7 +226,7 @@
                         </li>
                     </ul>
                 </li> --}}
-                <li class="{{ Request::segment(2) == 'settings' ? ' nav-item active' :  'nav-item' }}"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Menu Levels">{{ __('messages.settings') }}</span></a>
+                <li class="{{ Request::segment(2) == 'settings' ? ' nav-item active' :  'nav-item' }}"><a class="d-flex align-items-center" href="#"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Menu Levels">{{ __('messages.settings') }}</span></a>
                     <ul class="menu-content">
                         {{-- <li class="{{ Request::segment(3) == 'application' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('super_admin.settings.application') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Payment">{{ __('messages.application_settings') }}</span></a> --}}
                         </li>
@@ -259,28 +259,28 @@
             <div class="sidebar-heading sidebar-m-t mx-3 my-2">Menu</div>
             <ul class="navigation navigation-main" data-menu="menu-navigation">
                 <li class=" nav-item {{ $page == 'dashboard' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('dashboard', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="home">dashboard</i><span class="menu-title text-truncate" data-i18n="Dashboards">{{ __('messages.dashboard') }}</span><span class="badge badge-light-warning badge-pill ml-auto mr-1"></span></a>
+                    <a class="d-flex align-items-center" href="{{ route('dashboard', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">{{ __('messages.dashboard') }}</span><span class="badge badge-light-warning badge-pill ml-auto mr-1"></span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'customers' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('customers', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="user">account_box</i><span class="menu-title text-truncate" data-i18n="Email">{{ __('messages.customers') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('customers', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Email">{{ __('messages.customers') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'products' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('products', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="message-square">store</i><span class="menu-title text-truncate" data-i18n="Chat">{{ __('messages.products') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('products', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="shopping-bag"></i><span class="menu-title text-truncate" data-i18n="Chat">{{ __('messages.products') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'invoices' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('invoices', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="check-square">receipt</i><span class="menu-title text-truncate" data-i18n="Todo">{{ __('messages.invoices') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('invoices', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">{{ __('messages.invoices') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'estimates' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('estimates', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar">description</i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.estimates') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('estimates', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.estimates') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'payments' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('payments', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar">payment</i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.payments') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('payments', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.payments') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'expenses' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('expenses', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar">monetization_on</i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.expenses') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('expenses', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="layers"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.expenses') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'vendors' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('vendors', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar">local_shipping</i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.vendors') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('vendors', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="package"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.vendors') }}</span></a>
                 </li>
 
                 @if($currentCompany->subscription('main')->getFeatureValue('view_reports') === '1')
@@ -322,7 +322,7 @@
                 
                 <li class=" nav-item {{ $page == 'settings' ? 'active' : ''}}">
                     {{-- <a class="d-flex align-items-center" href="{{ route('settings.account', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="type">settings</i><span class="menu-title text-truncate" data-i18n="Typography">{{ __('messages.settings') }}</span></a> --}}
-                    <a class="d-flex align-items-center" href="{{ route('settings.index', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="type">settings</i><span class="menu-title text-truncate" data-i18n="Typography">{{ __('messages.settings') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('settings.index', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Typography">{{ __('messages.settings') }}</span></a>
 
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i data-feather="power"></i><span class="menu-title text-truncate" data-i18n="Colors">{{ __('messages.logout') }}</span></a>
