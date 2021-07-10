@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-3 col-12" style="margin-top: 16px;" >
                   
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary ">
                 Update
                       </button>
                     </div>
@@ -55,7 +55,7 @@
                     'to' => isset(Request::get("filter")['to']) ? Request::get("filter")['to'] : \Carbon\Carbon::now()->addMonth()->format('Y-m-d'),
                     'download' => true
                 ]) }}" target="_blank" class="btn btn-primary">
-                    <i class="material-icons">cloud_download</i>
+                    <i class="material-icons"></i>
                     {{ __('messages.download') }}
                 </a>
             </div>

@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-3 col-12" style="margin-top: 22px;">
                   
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-primary ">
                     
                                 Refresh / {{ __('messages.filter') }}
                             </button>

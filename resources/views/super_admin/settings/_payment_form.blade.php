@@ -316,7 +316,7 @@
                         <div class="container float-right">
                             <div class="form-group text-center">
                                 <button
-                                    class="btn btn-primary save_form_button float-right">{{ __('messages.save_settings') }}</button>
+                                    class="btn btn-primary save_form_button" style="float: left;">{{ __('messages.save_settings') }}</button>
                             </div>
                         </div>
                     </div>

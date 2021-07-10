@@ -69,7 +69,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Users</h4>
-                <a href="{{ route('super_admin.users.create') }}" class="btn btn-success ml-3 float-right"><i class="material-icons"></i> {{ __('messages.add_user') }}</a>
+                <a href="{{ route('super_admin.users.create') }}" class="btn btn-primary ml-3 float-right"><i class="material-icons"></i> {{ __('messages.add_user') }}</a>
             </div>
             @if ($users->count() > 0)
                 <div class="table-responsive">
