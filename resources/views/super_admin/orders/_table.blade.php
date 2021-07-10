@@ -147,6 +147,12 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('theme/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
     <!-- END: Vendor CSS-->
+    <link rel="stylesheet" type="text/css"
+    href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/plugins/charts/chart-apex.css') }}">
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('theme/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/app-invoice-list.css') }}">
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
@@ -173,4 +179,13 @@
     <script src="{{ asset('theme/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js') }}"></script>
     <script src="{{ asset('theme/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/vendor/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/chartjs-rounded-bar.js') }}"></script>
+    <script src="{{ asset('assets/js/charts.js') }}"></script>
+    <!-- BEGIN: Page JS-->
+    <script src="{{ asset('theme/app-assets/js/scripts/pages/dashboard-analytics.js') }}"></script>
+    <script src="{{ asset('theme/app-assets/js/scripts/pages/app-invoice-list.js') }}"></script>
+    <script src="{{ asset('theme/app-assets/js/scripts/cards/card-analytics.js') }}"></script>
+    <script src="{{ asset('theme/app-assets/js/scripts/cards/card-statistics.js') }}"></script>
 @endsection

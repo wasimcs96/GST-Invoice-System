@@ -214,7 +214,7 @@
     </div>
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
-            <div class="card-body">
+            <div class="card-body" style="height: 144px;">
                 <div class="avatar bg-light-warning p-50 mb-1">
                     <div class="avatar-content">
                         <i data-feather="award" class="font-medium-5"></i>
@@ -259,7 +259,7 @@
     </div>
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
-            <div class="card-body">
+            <div class="card-body" style="height: 144px;">
                 <div class="avatar bg-light-success p-50 mb-1">
                     <div class="avatar-content">
                         <i data-feather="credit-card" class="font-medium-5"></i>
@@ -333,7 +333,7 @@
     </div>
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
-            <div class="card-body">
+            <div class="card-body" style="height: 144px;">
                 <div class="avatar bg-light-primary p-50 mb-1">
                     <div class="avatar-content">
                         <i data-feather="package" class="font-medium-5"></i>
@@ -348,7 +348,7 @@
     </div>
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
-            <div class="card-body">
+            <div class="card-body" style="height: 144px;">
                 <div class="avatar bg-light-success p-50 mb-1">
                     <div class="avatar-content">
                         <i data-feather="activity" class="font-medium-5"></i>
@@ -393,7 +393,7 @@
     </div>
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
-            <div class="card-body">
+            <div class="card-body" style="height: 144px;">
                 <div class="avatar bg-light-danger p-50 mb-1">
                     <div class="avatar-content">
                         <i data-feather="users" class="font-medium-5"></i>
