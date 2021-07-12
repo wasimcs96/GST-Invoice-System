@@ -124,7 +124,7 @@
             @endif
         @else
             <div class="row justify-content-center card-body pb-0 pt-5">
-                <i class="material-icons fs-64px">account_box</i>
+                <i class="material-icons fs-64px"></i>
             </div>
             <div class="row justify-content-center card-body pb-5">
                 <p class="h4">{{ __('messages.no_orders_yet') }}</p>

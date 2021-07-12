@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Landing
-// Route::get('/', 'HomeController@index')->middleware('installed')->name('home');
-Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('/', 'HomeController@index')->middleware('installed')->name('home');
+// Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 
 
 // Auth routes

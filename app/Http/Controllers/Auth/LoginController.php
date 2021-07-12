@@ -14,26 +14,26 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = '/';
-    protected function redirectTo()
-    {
+    protected $redirectTo = '/';
+//     protected function redirectTo()
+//     {
         
-        if (auth()->user()->hasRole('super_admin'))
-        {
-            return '/admin/dashboard';
-        }
-        if (auth()->user()->hasRole('admin'))
-        {
-            return ''.auth()->user()->uid.'/dashboard';
-        }
-        if (auth()->user()->hasRole('staff'))
-        {
+//         if (auth()->user()->hasRole('super_admin'))
+//         {
+//             return '/admin/dashboard';
+//         }
+//         if (auth()->user()->hasRole('admin'))
+//         {
+//             return ''.auth()->user()->uid.'/dashboard';
+//         }
+//         if (auth()->user()->hasRole('staff'))
+//         {
           
-            return '/'.auth()->user()->uid.'/dashboard';
-        }   
-        // return '/';
+//             return '/'.auth()->user()->uid.'/dashboard';
+//         }   
+//         // return '/';
 
-   }
+//    }
     
 
     /**
@@ -41,11 +41,11 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function showLoginForm()
-    {
-        return view('auth.login');
+    // public function showLoginForm()
+    // {
+    //     return view('auth.login');
 
-    }
+    // }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
