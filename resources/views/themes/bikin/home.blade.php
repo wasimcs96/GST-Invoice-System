@@ -35,8 +35,8 @@
  
       @if(get_system_setting('application_logo'))
         <!-- Image logo -->
-        {{-- <a href="/" class="logo mr-auto"><img src="{{ get_system_setting('application_logo') }}" alt="logo" class="img-fluid"></a> --}}
-        <a href="#" class="logo mr-auto">Calcigo</a>
+        <a href="/" class="logo mr-auto"><img src="{{ get_system_setting('application_logo') }}" alt="{{ get_system_setting('application_name') }}" class="img-fluid"></a>
+        {{-- <a href="#" class="logo mr-auto">Calcigo</a> --}}
 
       @else
         <!-- Text logo -->

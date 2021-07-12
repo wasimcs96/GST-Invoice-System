@@ -5,7 +5,7 @@
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('theme/app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
-    <script src="{{asset('theme/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
+    {{-- <script src="{{asset('theme/app-assets/vendors/js/extensions/toastr.min.js')}}"></script> --}}
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
