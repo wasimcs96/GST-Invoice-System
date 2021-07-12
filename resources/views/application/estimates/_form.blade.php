@@ -112,36 +112,36 @@
                                     <thead>
                                         <tr>
                                             @if($tax_per_item and $discount_per_item)
-                                            <th class="w-30">{{ __('messages.product') }}</th>
-                                            <th class="w-20">{{ __('messages.taxes') }}</th>
-                                            <th class="w-10">{{ __('messages.quantity') }}</th>
-                                            <th class="w-15">{{ __('messages.price') }}</th>
-                                            <th class="w-15">{{ __('messages.discount') }}</th>
-                                            <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="w-30">{{ __('messages.product') }}</th>
+                                                <th class="w-20">{{ __('messages.taxes') }}</th>
+                                                <th class="w-10">{{ __('messages.quantity') }}</th>
+                                                <th class="w-15">{{ __('messages.price') }}</th>
+                                                <th class="w-15">{{ __('messages.discount') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @elseif($tax_per_item and !$discount_per_item)
-                                            <th class="w-40">{{ __('messages.product') }}</th>
-                                            <th class="w-25">{{ __('messages.taxes') }}</th>
-                                            <th class="w-10">{{ __('messages.quantity') }}</th>
-                                            <th class="w-15">{{ __('messages.price') }}</th>
-                                            <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="w-40">{{ __('messages.product') }}</th>
+                                                <th class="w-25">{{ __('messages.taxes') }}</th>
+                                                <th class="w-10">{{ __('messages.quantity') }}</th>
+                                                <th class="w-15">{{ __('messages.price') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @elseif(!$tax_per_item and $discount_per_item)
-                                            <th class="w-40">{{ __('messages.product') }}</th>
-                                            <th class="w-10">{{ __('messages.quantity') }}</th>
-                                            <th class="w-20">{{ __('messages.price') }}</th>
-                                            <th class="w-20">{{ __('messages.discount') }}</th>
-                                            <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="w-40">{{ __('messages.product') }}</th>
+                                                <th class="w-10">{{ __('messages.quantity') }}</th>
+                                                <th class="w-20">{{ __('messages.price') }}</th>
+                                                <th class="w-20">{{ __('messages.discount') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @elseif(!$tax_per_item and !$discount_per_item)
-                                            <th class="w-60">{{ __('messages.product') }}</th>
-                                            <th class="w-10">{{ __('messages.quantity') }}</th>
-                                            <th class="w-20">{{ __('messages.price') }}</th>
-                                            <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="w-60">{{ __('messages.product') }}</th>
+                                                <th class="w-10">{{ __('messages.quantity') }}</th>
+                                                <th class="w-20">{{ __('messages.price') }}</th>
+                                                <th class="text-right w-10"  style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @endif
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody class="list" id="items">
                                         <tr id="product_row_template" class="d-none">
-                                            <td class="select-container col-md-5">
+                                            <td class="select-container col md-4">
                                                 <select name="product[]"
                                                     class="form-control priceListener select-with-footer" required>
                                                     <option disabled selected>{{ __('messages.select_product') }}
@@ -153,6 +153,16 @@
                                                         {{ __('messages.add_new_product') }}</a>
                                                 </div>
                                             </td>
+
+                                            {{-- <td class="select-container">
+                                                <select name="product[]" class="form-control priceListener select-with-footer"  required>
+                                                    <option disabled selected>{{ __('messages.select_product') }}</option>
+                                                </select>
+                                                <div class="d-none select-footer">
+                                                    <a href="{{ route('products.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_product') }}</a>
+                                                </div>
+                                            </td> --}}
+
                                             @if($tax_per_item)
                                             <td class="select-container">
                                                 <select name="taxes[]" multiple
@@ -197,7 +207,7 @@
                                             <td class="text-right">
                                                 <p class="mb-1">
                                                     <input type="text" name="total[]"
-                                                        class="price_input price-text amount_price" value="$0" style="border:none;margin:-144px;" readonly>
+                                                        class="price_input price-text amount_price" value="$0" readonly>
                                                 </p>
                                                 <div class="tax_list"></div>
                                             </td>
@@ -289,7 +299,7 @@
                                 </table>
                                 <div class="row card-body pagination-light justify-content-center text-center">
                                     <button id="add_product_row" type="button" class="btn btn-light">
-                                        <i class="material-icons icon-16pt"></i> {{ __('messages.add_product') }}
+                                        <i data-feather="plus"></i> {{ __('messages.add_product') }}
                                     </button>
                                 </div>
                             </div>
