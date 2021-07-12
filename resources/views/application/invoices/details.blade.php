@@ -27,23 +27,23 @@
         <div class="col-12 col-md-8 text-right">
             <div class="btn-group mb-2">
                 <a href="{{ route('pdf.invoice', ['invoice' => $invoice->uid, 'download' => true]) }}" target="_blank" class="btn btn-light">
-                    <i class="material-icons">cloud_download</i> 
+                    <i data-feather="download-cloud"></i>
                     {{ __('messages.download') }}
                 </a>
                 <a href="{{ route('invoices.send', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-light alert-confirm" data-alert-title="Are you sure?" data-alert-text="This action will send an email to customer.">
-                    <i class="material-icons">send</i>
+                    <i data-feather="mail"></i>
                     {{ __('messages.send_email') }}
                 </a>
                 <a href="{{ route('payments.create', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}" target="_blank" class="btn btn-light">
-                    <i class="material-icons">payment</i> 
+                    <i data-feather="dollar-sign"></i>
                     {{ __('messages.enter_payment') }}
                 </a>
                 <a href="{{ route('invoices.edit', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-light">
-                    <i class="material-icons">edit</i> 
+                    <i data-feather="edit-2"></i> 
                     {{ __('messages.edit') }}
                 </a>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i data-feather="chevrons-down"></i>
                         {{ __('messages.more') }} <span class="caret"></span> 
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -85,6 +85,10 @@
         </div>
     </div>
     <div class="pdf-iframe">
-        <iframe src="{{ route('pdf.invoice', $invoice->uid) }}" frameborder="0"></iframe>
+        <iframe src="{{ route('pdf.invoice', $invoice->uid) }}" style="
+            height: 500px;
+            width: 990px;
+            box-sizing: border-box;
+        " frameborder="0"></iframe>
     </div>
 @endsection

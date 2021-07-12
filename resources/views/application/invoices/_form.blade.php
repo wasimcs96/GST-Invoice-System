@@ -379,38 +379,41 @@
                                 <div class="select2-results__option border-top mt-1 sel-footer">
                                     <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
                                 </div>
-                            </div>
-
-                             {{-- <div class="form-group">
-                                <label for="customer">{{ __('messages.customer') }}</label>
-                                <option disabled selected>{{ __('messages.select_customer') }}</option>
-
-                                <select id="invoice" name="customer_id" class="select2 form-control" id="default-select-multi">
-                                    <option disabled selected>{{ __('messages.select_customer') }}</option>
-
-                                    @if($invoice->customer_id)
-                                    <option value="{{ $invoice->customer_id }}" selected=""
-                                        data-currency="{{ $invoice->customer->currency }}"
-                                        data-billing_address="{{$invoice->customer->displayLongAddress('billing')}}"
-                                        data-shipping_address="{{$invoice->customer->displayLongAddress('shipping')}}">
-                                        {{ $invoice->customer->display_name }}
-                                    </option>
-                                    @endif
-                                <option value="hiiii"  style="color: blue;"><a id="invo" href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ Add new customer</a>
-                                </option>
-                                </select>
-                            </div>  --}}
-
-                            <div id="address_component" class="form-row d-none">
-                                <div class="col-6">
-                                    <strong>{{ __('messages.bill_to') }}:</strong>
-                                    <p id="billing_address"></p>
-                                </div>
-                                <div class="col-6">
-                                    <strong>{{ __('messages.ship_to') }}:</strong>
-                                    <p id="shipping_address"></p>
+                                <div id="address_component" class="form-row d-none">
+                                    <div class="col-6">
+                                        <strong>{{ __('messages.bill_to') }}:</strong>
+                                        <p id="billing_address"></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>{{ __('messages.ship_to') }}:</strong>
+                                        <p id="shipping_address"></p>
+                                    </div>
                                 </div>
                             </div>
+
+                            {{-- <div class="card-body invoice-padding pt-0">
+                                <div class="row row-bill-to invoice-spacing">
+                                    <div class="col-xl-8 mb-lg-1 col-bill-to pl-0">
+                                        <h6 class="invoice-to-title">Invoice To:</h6>
+                                        <div class="invoice-customer">
+                                            <select class="invoiceto form-control">
+                                                @if($invoice->customer_id)
+                                                <option value="{{ $invoice->customer_id }}" selected=""
+                                                    data-currency="{{ $invoice->customer->currency }}"
+                                                    data-billing_address="{{$invoice->customer->displayLongAddress('billing')}}"
+                                                    data-shipping_address="{{$invoice->customer->displayLongAddress('shipping')}}">
+                                                    {{ $invoice->customer->display_name }}
+                                                </option>
+                                                @endif
+                                               
+                                                <option></option>
+                                                <option value="shelby">Shelby Company Limited</option>
+                                                <option value="hunters">Hunters Corp</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
                             <div class="form-group required">
                                 <label for="invoice_date">{{ __('messages.invoice_date') }}</label>
                                 <input name="invoice_date" type="date" class="form-control input"
@@ -468,32 +471,32 @@
                                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                                 <th class="w-15">{{ __('messages.price') }}</th>
                                                 <th class="w-15">{{ __('messages.discount') }}</th>
-                                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @elseif($tax_per_item and !$discount_per_item)
                                                 <th class="w-40">{{ __('messages.product') }}</th>
                                                 <th class="w-25">{{ __('messages.taxes') }}</th>
                                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                                 <th class="w-15">{{ __('messages.price') }}</th>
-                                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @elseif(!$tax_per_item and $discount_per_item)
                                                 <th class="w-40">{{ __('messages.product') }}</th>
                                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                                 <th class="w-20">{{ __('messages.price') }}</th>
                                                 <th class="w-20">{{ __('messages.discount') }}</th>
-                                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @elseif(!$tax_per_item and !$discount_per_item)
                                                 <th class="w-60">{{ __('messages.product') }}</th>
                                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                                 <th class="w-20">{{ __('messages.price') }}</th>
-                                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                                <th class="text-right w-10" style="padding-right: 140px;">{{ __('messages.amount') }}</th>
                                             @endif
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody class="list" id="items">
                                         <tr id="product_row_template" class="d-none">
-                                            <td class="select-container">
-                                                <select name="product[]" class="form-control priceListener select-with-footer" required>
+                                            <td class="select-container col-md-4">
+                                                <select name="product[]" class="form-control priceListener select-with-footer"  required>
                                                     <option disabled selected>{{ __('messages.select_product') }}</option>
                                                 </select>
                                                 <div class="d-none select-footer">
@@ -566,7 +569,8 @@
                                                         </td>
                                                     @endif
                                                     <td>
-                                                        <input name="quantity[]" type="number" class="form-control priceListener" value="{{ $item->quantity }}" required>
+                                                        <input name="quantity[]" type="number" class="form-control priceListener" value="1" required>
+                                                        
                                                     </td>
                                                     <td>
                                                         <input name="price[]" type="text" class="form-control price_input priceListener" autocomplete="off" value="{{ $item->price }}" required>
@@ -601,7 +605,7 @@
                                 </table>
                                 <div class="row card-body pagination-light justify-content-center text-center">
                                     <button id="add_product_row" type="button" class="btn btn-light">
-                                        <i class="material-icons icon-16pt">add</i> {{ __('messages.add_product') }}
+                                        <i data-feather="plus"></i> {{ __('messages.add_product') }}
                                     </button>
                                 </div>
                             </div>

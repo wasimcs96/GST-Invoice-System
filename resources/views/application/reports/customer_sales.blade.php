@@ -55,7 +55,7 @@
                     'to' => isset(Request::get("filter")['to']) ? Request::get("filter")['to'] : \Carbon\Carbon::now()->addMonth()->format('Y-m-d'),
                     'download' => true
                 ]) }}" target="_blank" class="btn btn-primary">
-                   <i class="fas fa-cloud-download-alt"></i>
+                 <i data-feather="download-cloud"></i>
                     {{ __('messages.download') }}
                 </a>
             </div>
