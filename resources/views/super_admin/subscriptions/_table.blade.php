@@ -96,7 +96,7 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
                                                 href="{{ route('super_admin.subscriptions.cancel', $subscription->id) }}">
-                                                    <i data-feather="cancel" class="mr-50"></i>
+                                                <i data-feather="cancel"></i>
                                                     <span>Cancel</span>
                                                 </a>
                                             </div>

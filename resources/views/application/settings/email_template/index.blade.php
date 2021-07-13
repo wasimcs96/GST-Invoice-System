@@ -6,6 +6,10 @@
     <!-- Quill Theme -->
     <link type="text/css" href="{{ asset('assets/css/vendor-quill.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/css/vendor-quill.rtl.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+    {{-- <link href="{{ asset('theme/app-assets/css/summernote.min.css')}}" rel="stylesheet">  --}}
+
+    
 @endsection
 
 @section('content')
@@ -48,10 +52,10 @@
 
                             <div class="form-group required">
                                 <label>{{ __('messages.content') }}</label>
-                                <div class="quill h-250px" data-toggle="quill" data-quill-placeholder="{{ __('messages.invoice_mail_content') }}" data-quill-modules-toolbar='[["bold", "italic", "underline"], ["link", "blockquote"], [{"list": "ordered"}, {"list": "bullet"}]]'>
+                                {{-- <div class="quill h-250px" data-toggle="quill" data-quill-placeholder="{{ __('messages.invoice_mail_content') }}" data-quill-modules-toolbar='[["bold", "italic", "underline"], ["link", "blockquote"], [{"list": "ordered"}, {"list": "bullet"}]]'>
                                     {!! $currentCompany->getSetting('invoice_mail_content') !!}
-                                </div>
-                                <textarea name="invoice_mail_content" class="d-none" required>{!! $currentCompany->getSetting('invoice_mail_content') !!}</textarea>
+                                </div> --}}
+                                <textarea name="invoice_mail_content" class="d-none textarea" required>{!! $currentCompany->getSetting('invoice_mail_content') !!}</textarea>
                             </div>
 
                             <hr class="mt-5 mb-5">
@@ -70,10 +74,10 @@
 
                             <div class="form-group required">
                                 <label>{{ __('messages.content') }}</label>
-                                <div class="quill h-250px" data-toggle="quill" data-quill-placeholder="{{ __('messages.estimate_mail_content') }}" data-quill-modules-toolbar='[["bold", "italic", "underline"], ["link", "blockquote"], [{"list": "ordered"}, {"list": "bullet"}]]'>
+                                {{-- <div class="quill h-250px" data-toggle="quill" data-quill-placeholder="{{ __('messages.estimate_mail_content') }}" data-quill-modules-toolbar='[["bold", "italic", "underline"], ["link", "blockquote"], [{"list": "ordered"}, {"list": "bullet"}]]'>
                                     {!! $currentCompany->getSetting('estimate_mail_content') !!}
-                                </div>
-                                <textarea name="estimate_mail_content" class="d-none" required>{!! $currentCompany->getSetting('estimate_mail_content') !!}</textarea>
+                                </div> --}}
+                                <textarea name="estimate_mail_content" class="d-none textarea" required>{!! $currentCompany->getSetting('estimate_mail_content') !!}</textarea>
                             </div>
 
                             <hr class="mt-5 mb-5">
@@ -92,10 +96,10 @@
 
                             <div class="form-group required">
                                 <label>{{ __('messages.content') }}</label>
-                                <div class="quill h-250px" data-toggle="quill" data-quill-placeholder="{{ __('messages.payment_receipt_mail_content') }}" data-quill-modules-toolbar='[["bold", "italic", "underline"], ["link", "blockquote"], [{"list": "ordered"}, {"list": "bullet"}]]'>
+                                {{-- <div class="quill h-250px" data-toggle="quill" data-quill-placeholder="{{ __('messages.payment_receipt_mail_content') }}" data-quill-modules-toolbar='[["bold", "italic", "underline"], ["link", "blockquote"], [{"list": "ordered"}, {"list": "bullet"}]]'>
                                     {!! $currentCompany->getSetting('payment_mail_content') !!}
-                                </div>
-                                <textarea name="payment_mail_content" class="d-none" required>{!! $currentCompany->getSetting('payment_mail_content') !!}</textarea>
+                                </div> --}}
+                                <textarea name="payment_mail_content" class="d-none textarea" required>{!! $currentCompany->getSetting('payment_mail_content') !!}</textarea>
                             </div>
             
                             <div class="form-group text-right mt-4">
@@ -111,6 +115,17 @@
 @endsection
 
 @section('page_body_scripts')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+{{-- <script src="{{ asset('theme/app-assets/js/summernote.min.js')}}"></script> --}}
+
+
+{{-- <script src="{{asset('plugins/summernote/summernote-bs4.min.js') }}"></script>--}}
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script> 
     <div id="modal-invoice-tags" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-large-title" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -232,5 +247,6 @@
             form.submit();
         });
     </script>
+
 @endsection
 

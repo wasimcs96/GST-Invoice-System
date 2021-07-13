@@ -216,6 +216,39 @@
     @include('layouts._flash')
 
 
+    @section('page_head_scripts')
+    <link type="text/css" href="{{ asset('assets/vendor/simplebar.min.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/app.css?v=1.0.1') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/vendor-material-icons.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/vendor-fontawesome-free.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/vendor-select2.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/vendor-flatpickr.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/vendor-flatpickr-airbnb.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/css/vendor-bootstrap-image-checkbox.css') }}" rel="stylesheet">
+    @endsection
+
+    @section('page_head_scripts')
+    <script src="{{ asset('assets/vendor/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/popper.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/simplebar.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/dom-factory.js') }}"></script>
+<script src="{{ asset('assets/vendor/material-design-kit.js') }}"></script>
+<script src="{{ asset('assets/js/toggle-check-all.js') }}"></script>
+<script src="{{ asset('assets/js/check-selected-row.js') }}"></script>
+<script src="{{ asset('assets/js/dropdown.js') }}"></script>
+<script src="{{ asset('assets/js/sidebar-mini.js') }}"></script>
+<script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.priceformat.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/flatpickr/flatpickr.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script src="{{ asset('assets/js/app.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js?v=1.0.2') }}"></script>
+    @endsection
+
 </body>
 <!-- END: Body-->
 

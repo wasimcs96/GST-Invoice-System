@@ -132,7 +132,7 @@
                                             <div class="dropdown-menu"> 
                                             <a class="dropdown-item"
                                             href="{{ route('customers.details', ['customer' => $customer->id,'company_uid' => $currentCompany->uid]) }}">
-                                                    <i data-feather="detail" class="mr-50"></i>
+                                            <i data-feather="eye"></i>
                                                     <span>Detail</span>
                                                 </a>
 

@@ -4,7 +4,7 @@
             <tr>
                 <th>{{ __('messages.name') }}</th> 
                 <th>{{ __('messages.status') }}</th> 
-                <th class="text-right">{{ __('messages.actions') }}</th>
+                <th>{{ __('messages.actions') }}</th>
             </tr>
         </thead>
         <tbody class="list" id="gateways">
@@ -27,11 +27,25 @@
                         </div>
                     @endif
                 </td>
-                <td class="h6 text-right">
+                {{-- <td class="h6 text-right">
                     <a href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'paypal']) }}" class="btn text-primary">
                         <i class="material-icons icon-16pt"></i>
                         {{ __('messages.edit') }}
                     </a>
+                </td> --}}
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                            <i data-feather="more-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu"> 
+                        <a class="dropdown-item"
+                        href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'paypal']) }}">
+                        <i data-feather="edit-2"></i>
+                        {{ __('messages.edit') }}
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -53,11 +67,25 @@
                         </div>
                     @endif
                 </td>
-                <td class="h6 text-right">
+                {{-- <td class="h6 text-right">
                     <a href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'stripe']) }}" class="btn text-primary">
                         <i class="material-icons icon-16pt"></i>
                         {{ __('messages.edit') }}
                     </a>
+                </td> --}}
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                            <i data-feather="more-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu"> 
+                        <a class="dropdown-item"
+                        href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'stripe']) }}">
+                        <i data-feather="edit-2"></i>
+                        {{ __('messages.edit') }}
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -79,11 +107,25 @@
                         </div>
                     @endif
                 </td>
-                <td class="h6 text-right">
+                {{-- <td class="h6 text-right">
                     <a href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'razorpay']) }}" class="btn text-primary">
                         <i class="material-icons icon-16pt"></i>
                         {{ __('messages.edit') }}
                     </a>
+                </td> --}}
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                            <i data-feather="more-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu"> 
+                        <a class="dropdown-item"
+                        href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'razorpay']) }}">
+                        <i data-feather="edit-2"></i>
+                        {{ __('messages.edit') }}
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -105,11 +147,25 @@
                         </div>
                     @endif
                 </td>
-                <td class="h6 text-right">
+                {{-- <td class="h6 text-right">
                     <a href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'mollie']) }}" class="btn text-primary">
                         <i class="material-icons icon-16pt"></i>
                         {{ __('messages.edit') }}
                     </a>
+                </td> --}}
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                            <i data-feather="more-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu"> 
+                        <a class="dropdown-item"
+                        href="{{ route('settings.payment.gateway.edit', ['company_uid' => $currentCompany->uid, 'gateway' => 'mollie']) }}">
+                        <i data-feather="edit-2"></i>
+                        {{ __('messages.edit') }}
+                            </a>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>

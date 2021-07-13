@@ -107,7 +107,7 @@
                             </div>
                             <div class="col-auto">
                                 <a href="{{ route('settings.payment.type.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-light">
-                                    <i class="material-icons icon-16pt">add</i>
+                                    <i data-feather="plus"></i>
                                     {{ __('messages.add_payment_type') }}
                                 </a>
                             </div>

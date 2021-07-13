@@ -44,7 +44,7 @@
                                         <tr>
                                             <th>{{ __('messages.name') }}</th> 
                                             <th>{{ __('messages.percent') }}</th> 
-                                            <th class="w-30">{{ __('messages.actions') }}</th>
+                                            <th>{{ __('messages.actions') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list" id="tax_types">
@@ -60,7 +60,7 @@
                                                 <td class="h6">
                                                     {{ $tax_type->percent }}
                                                 </td>
-                                                <td class="h6">
+                                                {{-- <td class="h6">
                                                     <a href="{{ route('settings.tax_types.edit', ['tax_type' => $tax_type->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
                                                         <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.edit') }}
@@ -69,6 +69,25 @@
                                                         <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.delete') }}
                                                     </a>
+                                                </td> --}}
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                                                            <i data-feather="more-vertical"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu"> 
+                                                        <a class="dropdown-item"
+                                                        href="{{ route('settings.tax_types.edit', ['tax_type' => $tax_type->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                        <i data-feather="edit-2"></i>
+                                                        {{ __('messages.edit') }}
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                            href="{{ route('settings.tax_types.delete', ['tax_type' => $tax_type->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                            <i data-feather="trash"></i>
+                                                            {{ __('messages.delete') }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

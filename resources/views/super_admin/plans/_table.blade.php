@@ -101,12 +101,12 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
                                                 href="{{ route('super_admin.plans.edit', $plan->id) }}">
-                                                    <i data-feather="edit-2" class="mr-50"></i>
+                                                <i data-feather="edit-2"></i>
                                                     <span>Edit</span>
                                                 </a>
                                                 <a class="dropdown-item"
                                                 href="{{ route('super_admin.plans.delete', $plan->id) }}">
-                                                    <i data-feather="trash" class="mr-50"></i>
+                                                <i data-feather="trash"></i>
                                                     <span>{{ __('messages.delete_plan') }}</span>
                                                 </a>
                                             </div>

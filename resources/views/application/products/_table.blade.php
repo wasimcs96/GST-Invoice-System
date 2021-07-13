@@ -117,7 +117,7 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item"
                                             href="{{ route('products.edit', ['product' => $product->id, 'company_uid' => $currentCompany->uid]) }}">
-                                            <i data-feather="edit-2" class="mr-50"></i>
+                                            <i data-feather="edit-2"></i>
                                             <span>Edit</span>
                                         </a>
                                     </div>

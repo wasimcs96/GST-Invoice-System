@@ -83,7 +83,7 @@
                             </div>
                             <div class="col-auto">
                                 <a href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-light">
-                                    <i class="material-icons icon-16pt">add</i>
+                                    <i data-feather="plus"></i>
                                     {{ __('messages.add_product_unit') }}
                                 </a>
                             </div>
