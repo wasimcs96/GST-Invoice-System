@@ -60,7 +60,7 @@
     <div class="col-12">
         <div class="form-group">
             <label for="default_value">{{ __('messages.default_value') }}</label>
-            <input id="defaultValueInput" name="default_value" type="text" class="form-control" placeholder="{{ __('messages.default_value') }}" value="{{ $custom_field->default_value }}">
+            <input id="defaultValueInput" name="default_value" type="number" class="form-control" placeholder="{{ __('messages.default_value') }}" value="{{ $custom_field->default_value }}">
         </div>
     </div>
 </div>

@@ -126,12 +126,12 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
                                                     href="{{ route('super_admin.users.edit', $user->id) }}">
-                                                    <i data-feather="edit-2" class="mr-50"></i>
+                                                    <i data-feather="edit-2"></i>
                                                     <span>Edit</span>
                                                 </a>
                                                 <a class="dropdown-item"
                                                 href="{{ route('super_admin.users.delete', $user->id) }}">
-                                                    <i data-feather="trash" class="mr-50"></i>
+                                                <i data-feather="trash"></i>
                                                     <span>{{ __('messages.delete_user') }}</span>
                                                 </a>
                                             </div>

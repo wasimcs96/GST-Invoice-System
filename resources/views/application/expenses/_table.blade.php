@@ -108,10 +108,18 @@
                             {!! money($expense->amount, $expense->currency_code) !!}
                         </td>
                         <td>
-                            <a href="{{ route('expenses.edit', ['expense' => $expense->id, 'company_uid' => $currentCompany->uid]) }}"
-                                class="btn btn-sm btn-link">
-                                <i class="material-icons icon-16pt">arrow_forward</i>
-                            </a>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                                    <i data-feather="more-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu"> 
+                                <a class="dropdown-item"
+                                href="{{ route('expenses.edit', ['expense' => $expense->id, 'company_uid' => $currentCompany->uid]) }}">
+                                <i data-feather="edit-2"></i>
+                                        <span>Edit</span>
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

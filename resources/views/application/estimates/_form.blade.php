@@ -445,7 +445,7 @@
                                 @endif
                             </div>
                             <div class="col-12">
-                                <button type="reset" class="btn btn-primary mr-1">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
                             </div>
                         </div>

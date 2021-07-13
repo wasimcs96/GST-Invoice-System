@@ -170,9 +170,18 @@
                     {!! money($invoice->due_amount, $invoice->currency_code) !!}
                     </td>
                     <td>
-                    <a href="{{ route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-sm btn-link">
-                                <i class="material-icons icon-16pt">arrow_forward</i>
-                            </a>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                                <i data-feather="more-vertical"></i>
+                            </button>
+                            <div class="dropdown-menu"> 
+                            <a class="dropdown-item"
+                            href="{{ route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}">
+                            <i data-feather="eye"></i>
+                                    <span>Detail</span>
+                                </a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

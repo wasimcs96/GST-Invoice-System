@@ -8,7 +8,7 @@
                     <th>{{ __('messages.model') }}</th>
                     <th>{{ __('messages.type') }}</th>
                     <th>{{ __('messages.required') }}</th>
-                    <th class="w-30">{{ __('messages.actions') }}</th>
+                    <th>{{ __('messages.actions') }}</th>
                 </tr>
             </thead>
             <tbody class="list" id="custom_fields">
@@ -33,7 +33,7 @@
                         <td class="h6">
                             {{ $custom_field->is_required ? __('messages.yes') : __('messages.no') }}
                         </td>
-                        <td class="h6">
+                        {{-- <td class="h6">
                             <a href="{{ route('settings.custom_fields.edit', ['custom_field' => $custom_field->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
                                 <i class="material-icons icon-16pt"></i>
                                 {{ __('messages.edit') }}
@@ -42,6 +42,25 @@
                                 <i class="material-icons icon-16pt"></i>
                                 {{ __('messages.delete') }}
                             </a>
+                        </td> --}}
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                                    <i data-feather="more-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu"> 
+                                <a class="dropdown-item"
+                                href="{{ route('settings.custom_fields.edit', ['custom_field' => $custom_field->id, 'company_uid' => $currentCompany->uid]) }}">
+                                <i data-feather="edit-2"></i>
+                                        <span>Edit</span>
+                                    </a>
+                                    <a class="dropdown-item"
+                                    href="{{ route('settings.custom_fields.delete', ['custom_field' => $custom_field->id, 'company_uid' => $currentCompany->uid]) }}">
+                                    <i data-feather="trash"></i>
+                                        <span>Delete</span>
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
