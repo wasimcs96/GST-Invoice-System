@@ -651,7 +651,7 @@
         </div>
     </section>
 
-    <section id="pricing" class="bg-pricing py-1">
+    {{-- <section id="pricing" class="bg-pricing py-1">
         <div class="container">
             <h2 class="m-heading text-center">{{ __('bikin.pricing') }}</h2>
             <hr size="6" width="100px" color="white" style="
@@ -706,7 +706,52 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
+    <section id="pricing" class="bg-pricing py-1">
+      <div class="container">
+          <h2 class="m-heading text-center">Pricing</h2>
+          <hr size="6" width="100px" color="white" style="
+              margin: auto;
+          ">
+          <div class="itemsp">
+              <div class="itemp mt">
+                  <div>
+                      <h1 class="plan">Startup</h1>
+                      <p><span class="pricing"><b>$799</b></span>/month</p>
+                      <p><span class="pricing"><b>$489</b></span>/year</p>
+                      <p>50 Invoices</p>
+                      <p>Chat and Email</p>
+                      <p>Accountant access</p>
+                      <a href="#" class="btn-2"><b>Get Started</b></a>
+                  </div>
+              </div>
+              <div class="itemp mb">
+                  <div>
+                      <h1 class="plan">Enterprise</h1>
+                      <p><span class="pricing"><b>$990</b></span>/month</p>
+                      <p><span class="pricing"><b>$790</b></span>/year</p>
+
+                      <p>500 Invoices</p>
+                      <p>Chat, Email, Voice</p>
+                      <p>Accountant access</p>
+                      <a href="#" class="btn-2"><b>Get Started</b></a>
+                  </div>
+              </div>
+              <div class="itemp mt">
+                  <div>
+                      <h1 class="plan">Ecommerce</h1>
+                      <p><span class="pricing"><b>$1899</b></span>/month</p>
+                      <p><span class="pricing"><b>$1499</b></span>/year</p>
+
+                      <p>2000 Invoices</p>
+                      <p>Chat, Email, Voice</p>
+                      <p>Accountant access</p>
+                      <a href="#" class="btn-2"><b>Get Started</b></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
 
     <section id="contact">
         <div class="contact-form bg-primary p-2">
