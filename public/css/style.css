@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.4rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin: 0.75rem 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#pricingm {
+    margin-top: 200px;
+}
+
+.text-primary {
+    color: #4747f0;
+}
+
+.bg-blue {
+    background: #4747f0;
+    color: #fff;
+}
+
+.plan {
+    font-size: 25px;
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.1;
+}
+
+.l-heading {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+
+.m-heading {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+    margin-top: 2rem;
+}
+
+.bg-light {
+    background: #FF0080;
+    color: #fff;
+}
+
+.bg-services {
+    background: rgb(30, 47, 97);
+    color: #fff;
+}
+
+.bg-pricing {
+    background: rgb(15, 100, 51);
+    color: #fff;
+}
+
+.bg-dark {
+    background: #000000;
+    color: #fff;
+}
+
+.bg-primary {
+    background: #000;
+    color: #fff;
+}
+
+.lead {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.py-1 {
+    padding: 1.5rem 0;
+}
+
+.py-2 {
+    padding: 2rem 0;
+}
+
+.py-3 {
+    padding: 3rem 0;
+}
+
+.p-1 {
+    padding: 1.5rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+.btn {
+    display: inline-block;
+    color: #fff;
+    background: #4747f0;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-1 {
+    display: inline-block;
+    color: #000;
+    background: #A8D1DF;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-2 {
+    display: inline-block;
+    color: #4747f0;
+    background: #A8D1DF;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.pricing {
+    color: #4747f0;
+    font-size: 30px;
+    margin: 20px 0;
+}
+
+.cp {
+    position: relative;
+    top: 75px;
+}
+
+.btn:hover {
+    background-color: #4747f0;
+}
+
+.btn-dark {
+    color: #fff;
+    background: #000000;
+}
+
+.list {
+    margin-bottom: 0.5rem;
+    list-style: none;
+}
+
+.list li {
+    padding: 0.5rem;
+    border-bottom: #444 dotted 1px;
+}
+
+#navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    background: #000;
+    color: #fff;
+    padding: 15px 30px;
+    display: block;
+}
+
+#navbar .logo {
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    float: left;
+    font-weight: bold;
+}
+
+#navbar nav {
+    float: right;
+}
+
+#navbar nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#navbar nav ul li {
+    list-style: none;
+}
+
+#navbar nav ul li a {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+#navbar nav ul li a:hover,
+#navbar nav ul li a.active {
+    color: #4747f0;
+}
+
+.menu-toggle {
+    color: #fff;
+    float: right;
+    line-height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+}
+
+#showcase {
+    background: #000000 url('') no-repeat center center/cover;
+    color: #fff;
+    height: 100vh;
+}
+
+#showcase .showcase-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+    position: absolute;
+    top: 54px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#what .items {
+    display: flex;
+    padding: 1rem;
+}
+
+#what .items .item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+}
+
+#what .items .item i {
+    background: #FF0080;
+    padding: 1rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+#about .items {
+    display: flex;
+    padding: 1rem;
+}
+
+#about .items .item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+}
+
+#about .items .item i {
+    background: #FF0080;
+    padding: 1rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+#services .itemss {
+    display: flex;
+    padding: 1rem;
+}
+
+#services .itemss .items {
+    flex: 1;
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #fff;
+    color: #000;
+    margin: 10px;
+    border-radius: 30px;
+    box-shadow: 1px 5px 0px #00000052;
+}
+
+#services .itemss .items i {
+    background: lavender;
+    padding: 1rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    color: #1E2F61;
+}
+
+#pricing .itemsp {
+    display: flex;
+    padding: 1rem;
+}
+
+#pricing .itemsp .itemp {
+    flex: 1;
+    text-align: right;
+    padding: 1rem;
+    background: #fff;
+    color: rgb(77, 72, 72);
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 5px 0px #00000052;
+    padding: 30px;
+}
+
+.float-layout {
+    padding: 5px 5px;
+    float: left;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.card-container {
+    overflow: hidden;
+}
+
+.card {
+    color: white;
+    min-height: 100%;
+    width: 50%;
+    float: right;
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.card-desc {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.card-image {
+    display: flex;
+}
+
+.po {
+    flex-direction: row-reverse;
+}
+
+div.card-image img {
+    width: 55%;
+    height: auto;
+    border-radius: 100px;
+}
+
+.accordion {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-size: 18px;
+}
+
+.active,
+.accordion:hover {
+    background-color: #000;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: black;
+    display: none;
+    overflow: hidden;
+}
+
+.bot {
+    margin: auto;
+    background-color: gray;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.fl {
+    display: flex;
+    margin-top: 20px;
+}
+
+.bots {
+    background-color: gray;
+    border-radius: 30px;
+    padding: 30px;
+    margin: auto;
+    width: 48%;
+}
+
+@media only screen and (max-width: 37.5em) {
+    div.card-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 50px;
+    }
+    .card-image {
+        flex-direction: column;
+    }
+    .card {
+        width: 100%;
+        margin-top: -4px;
+    }
+    .fl {
+        display: block;
+        margin-top: 0px;
+    }
+    .bots {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    #navbar {
+        padding: 0 20px;
+        position: relative;
+    }
+    .menu-toggle {
+        display: block;
+    }
+    #navbar nav {
+        position: absolute;
+        width: 100%;
+        height: cacl(100vh - 50px);
+        background: #000;
+        top: 50px;
+        left: -100%;
+        transition: 0.5s;
+    }
+    #navbar nav ul {
+        display: block;
+        text-align: center;
+    }
+    #navbar nav ul li {
+        border-bottom: 1px solid #4747f0;
+    }
+    #navbar nav.active {
+        left: 0;
+    }
+}
