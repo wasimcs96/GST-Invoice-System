@@ -1,0 +1,74 @@
+#what .items {
+    display: block;
+    padding: 1rem;
+}
+
+#about .items {
+    display: block;
+    padding: 1rem;
+}
+
+#pricing .itemsp {
+    display: block;
+    padding: 1rem;
+}
+
+#services .itemss {
+    display: block;
+    padding: 1rem;
+}
+
+#what .items .item {
+    display: flex;
+    text-align: left;
+}
+
+#about .items .item {
+    display: flex;
+    text-align: left;
+}
+
+#what .items .item i {
+    margin-right: 1.3rem;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+#about .items .item i {
+    margin-right: 1.3rem;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+@media(max-width:500px) {
+    #navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    #navbar .logo {
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    #navbar ul {
+        padding: 0.5rem;
+    }
+    #showcase .showcase-content {
+        top: 70px;
+        margin-top: 2rem;
+    }
+    #contact {
+        flex-direction: column;
+    }
+    #faq {
+        flex-direction: column;
+    }
+}
+
+@media(max-height:568px) {
+    .l-heading {
+        font-size: 3rem;
+    }
+    .lead {
+        font-size: 1rem;
+    }
+}

@@ -432,9 +432,9 @@
 
                         </div>
 
-                        <div class="col-md-6 col-12">
+                        <div class="col-12">
 
-                            <div class="col-md-6 col-12">
+                            {{-- <div class="col-12">
                                 @if($estimate->getCustomFields()->count() > 0)
                                 <div class="col-12">
                                     @foreach ($estimate->getCustomFields() as $custom_field)
@@ -443,7 +443,7 @@
                                     @endforeach
                                 </div>
                                 @endif
-                            </div>
+                            </div> --}}
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>

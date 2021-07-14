@@ -1,0 +1,32 @@
+#what .items .item {
+    text-align: center;
+}
+
+#what .items .item i {
+    margin-right: 1.3rem;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+#about .items .item {
+    text-align: center;
+}
+
+#about .items .item i {
+    margin-right: 1.3rem;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mt {
+    margin-top: 150px !important;
+}
+
+.mb {
+    margin-bottom: 150px !important;
+}
