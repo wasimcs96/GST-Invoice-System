@@ -131,8 +131,8 @@
 
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
-                                <label for="first_name">{{ __('messages.payment_date') }}</label>
-                                <input name="first_name" type="date" class="form-control"
+                                <label for="payment_date">{{ __('messages.payment_date') }}</label>
+                                <input name="payment_date" type="date" class="form-control"
                                     placeholder="{{ __('messages.payment_date') }}" value="" required>
                             </div>
 
@@ -142,7 +142,7 @@
                                 <label for="payment_number">{{ __('messages.payment_number') }}</label>
                                 <div class="input-group">
                                     <input name="payment_prefix" type="hidden" value="{{ $payment->payment_prefix }}">
-                                    <input name="payment_number" type="text" maxlength="6"
+                                    <input name="payment_number" type="number" maxlength="6"
                                         class="form-control form-control-prepended" value="{{ $payment->payment_num }}"
                                         autocomplete="off" required>
                                     <!-- <div class="input-group-prepend"> -->
