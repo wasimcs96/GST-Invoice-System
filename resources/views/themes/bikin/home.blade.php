@@ -476,11 +476,14 @@
         <nav>
             <ul>
                 <li class="active"><a href="#">{{ __('bikin.home') }}</a></li>
-                <li><a href="#about">{{ __('bikin.about') }}</a></li>
-                <li><a href="#what">{{ __('bikin.features') }}</a></li>
-                <li><a href="#services">{{ __('bikin.services') }}</a></li>
+                {{-- <li><a href="#about">{{ __('bikin.about') }}</a></li> --}}
+                <li><a href="#">Product</a></li>
+                {{-- <li><a href="#what">{{ __('bikin.features') }}</a></li>
+                <li><a href="#services">{{ __('bikin.services') }}</a></li> --}}
                 <li><a href="#pricing">{{ __('bikin.pricing') }}</a></li>
-                <li><a href="#contact">{{ __('bikin.contact') }}</a></li>
+                {{-- <li><a href="#contact">{{ __('bikin.contact') }}</a></li> --}}
+                <li><a href="#">Resources</a></li>
+                <li><a href="{{ route('register') }}">Signup</a></li>
                 <li><a href="{{ route('login') }}">{{ __('bikin.login') }}</a></li>
             </ul>
         </nav>
@@ -490,7 +493,7 @@
     <header id="showcase">
         <div class="showcase-content">
             <h1 class="l-heading">
-                Best Invoice Management System
+              {{ get_theme_setting('bikin', 'hero_description') }}
             </h1>
             <p class="lead">
                 We are team of talanted engineers making applications at Varus Creative</p>
@@ -651,7 +654,7 @@
         </div>
     </section>
 
-    {{-- <section id="pricing" class="bg-pricing py-1">
+    <section id="pricing" class="bg-pricing py-1">
         <div class="container">
             <h2 class="m-heading text-center">{{ __('bikin.pricing') }}</h2>
             <hr size="6" width="100px" color="white" style="
@@ -706,8 +709,8 @@
                 @endforeach
             </div>
         </div>
-    </section> --}}
-    <section id="pricing" class="bg-pricing py-1">
+    </section>
+    {{-- <section id="pricing" class="bg-pricing py-1">
       <div class="container">
           <h2 class="m-heading text-center">Pricing</h2>
           <hr size="6" width="100px" color="white" style="
@@ -751,7 +754,7 @@
               </div>
           </div>
       </div>
-  </section>
+  </section> --}}
 
     <section id="contact">
         <div class="contact-form bg-primary p-2">

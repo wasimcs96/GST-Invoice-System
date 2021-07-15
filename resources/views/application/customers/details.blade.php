@@ -93,14 +93,35 @@
                                   </tr>
                                   <tr>
                                       <th scope="row">Action</th>
-                                      <td class="float-right"> <a href="{{ route('customers.edit', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-primary">
+                                      {{-- <td class="float-right"> <a href="{{ route('customers.edit', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-primary">
                     <i class="material-icons"></i> 
                     {{ __('messages.edit') }}
                 </a>
                 <a href="{{ route('customers.delete', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-danger delete-confirm">
                     <i class="material-icons"></i> 
                     {{ __('messages.delete') }}
-                </a></td>
+                </a></td> --}}
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                            <i data-feather="more-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu"> 
+                        <a class="dropdown-item"
+                        href="{{ route('customers.edit', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}">
+                        <i data-feather="edit-2"></i>
+                                <span>{{ __('messages.edit') }}</span>
+                            </a>
+                            <a class="dropdown-item"
+                            href="{{ route('customers.delete', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]) }}">
+                        <i data-feather="trash"></i>
+                                <span>{{ __('messages.delete') }}</span>
+                            </a>
+
+                        <!-- <a href="{{ route('customers.details', ['customer' => $customer->id,'company_uid' => $currentCompany->uid]) }}" class="btn btn-sm btn-link"><i class="material-icons icon-16pt">arrow_forward</i></a> -->
+                        </div>
+                    </div>
+                </td>
                                   </tr>
                                   </tbody>
                 
@@ -140,7 +161,7 @@
         <div class="tab-pane" id="activities">
             <div class="container-fluid page__container">
                 <p class="text-dark-gray d-flex align-items-center mt-3">
-                    <i class="material-icons icon-muted mr-2">dvr</i>
+                    <i class="material-icons icon-muted mr-2"></i>
                     <strong>{{ __('messages.activities') }}</strong>
                 </p>
 

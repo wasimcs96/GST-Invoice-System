@@ -38,7 +38,7 @@
                     {{ $vendor->displayLongAddress('billing') }}
                 </p>
             </div>
-            <div class="col-12 col-md-3 offset-md-3 text-right mt-4 mb-4">
+            {{-- <div class="col-12 col-md-3 offset-md-3 text-right mt-4 mb-4">
                 <a href="{{ route('vendors.edit', ['vendor' => $vendor->id, 'company_uid' => $currentCompany->uid]) }}" class="btn btn-primary">
                     <i class="material-icons">edit</i> 
                     {{ __('messages.edit') }}
@@ -47,6 +47,24 @@
                     <i class="material-icons">delete</i> 
                     {{ __('messages.delete') }}
                 </a>
+            </div> --}}
+            <div class="dropdown col-12 col-md-3 offset-md-3 mt-4 mb-4">
+                <h5>Action</h5>
+                <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                    <i data-feather="more-vertical"></i>
+                </button>
+                <div class="dropdown-menu"> 
+                <a class="dropdown-item"
+                href="{{ route('vendors.edit', ['vendor' => $vendor->id, 'company_uid' => $currentCompany->uid]) }}">
+                <i data-feather="edit-2"></i>
+                {{ __('messages.edit') }}
+                    </a>
+                    <a class="dropdown-item"
+                    href="{{ route('vendors.delete', ['vendor' => $vendor->id, 'company_uid' => $currentCompany->uid]) }}">
+                    <i data-feather="trash"></i>
+                    {{ __('messages.delete') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
