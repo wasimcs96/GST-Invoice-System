@@ -145,7 +145,7 @@
 
         $('tbody tr').each(function(index, element) {
             var row = $(element);
-
+console.log(row);
             // If the row is template just continue
             if(row.attr('id') == 'product_row_template') return;
 
@@ -248,6 +248,7 @@
 
     function initializePriceListener() {
         $(".priceListener").change(function() {
+            console.log('sdfsdfsdf');
             calculateRowPrice()    
         });
     }
