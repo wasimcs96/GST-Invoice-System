@@ -709,8 +709,8 @@
                 @endforeach
             </div>
         </div>
-    </section> --}}
-    <section id="pricing" class="bg-pricing py-1">
+    </section> 
+    {{-- <section id="pricing" class="bg-pricing py-1">
         <div class="container">
             <h2 class="m-heading text-center">Pricing</h2>
             <hr size="6" width="100px" color="white" style="
@@ -754,7 +754,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section id="contact">
         <div class="contact-form bg-primary p-2">
