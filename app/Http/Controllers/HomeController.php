@@ -30,4 +30,14 @@ class HomeController extends Controller
 
         return view('themes.'.$theme.'.home');
     } 
+     public function privacy()
+     {
+     return view('themes.bikin.termscondition');
+     }
+
+     public function legal()
+
+     {
+         return view('themes.bikin.legal');
+     }
 }

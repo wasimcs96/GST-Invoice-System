@@ -271,6 +271,11 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/email-templates', 'EmailTemplateController@index')->name('settings.email_template');
         Route::post('/email-templates', 'EmailTemplateController@update')->name('settings.email_template.update');
 
+        // Terms&Condition
+        
+
+
+
     });
 
     // Ajax requests
@@ -302,4 +307,8 @@ Route::group(['namespace' => 'Application', 'middleware' => ['installed', 'auth'
     Route::post('/order/checkout/{plan}/stripe', 'OrderController@stripe')->name('order.payment.stripe');
     Route::get('/order/checkout/{plan}/stripe/completed', 'OrderController@stripe_completed')->name('order.payment.stripe.completed');
 });
+    // Privacy Policy
+    Route::get('/privacy-policy', 'HomeController@privacy')->name('privacypolicy');
+    Route::get('/legal', 'HomeController@legal')->name('legal');
+
 
