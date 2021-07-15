@@ -466,7 +466,7 @@
 
 <body id="home">
     <header id="navbar">
-      {{-- @if (get_system_setting('application_logo'))
+        {{-- @if (get_system_setting('application_logo'))
       <a href="/" class="logo mr-auto"><img src="{{ get_system_setting('application_logo') }}" alt="{{ get_system_setting('application_name') }}" class="img-fluid"></a>
 
     @else
@@ -551,11 +551,11 @@
             <div class="card-container">
                 <div class="float-layout">
                     <div class="card-image">
-                      <img src="{{ asset('themes/bikin/img/features-1.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('themes/bikin/img/features-1.png') }}" class="img-fluid" alt="">
                         <div class="card">
                             <div class="card-title">{{ get_theme_setting('bikin', 'features_1_title') }}</div>
                             <div class="card-desc">
-                              {{ get_theme_setting('bikin', 'features_1_description') }}
+                                {{ get_theme_setting('bikin', 'features_1_description') }}
                             </div>
                             <a href="#" class="btn-1">Learn More</a>
                         </div>
@@ -565,11 +565,11 @@
             <div class="card-container">
                 <div class="float-layout">
                     <div class="card-image po">
-                      <img src="{{ asset('themes/bikin/img/features-2.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('themes/bikin/img/features-2.png') }}" class="img-fluid" alt="">
                         <div class="card">
                             <div class="card-title">{{ get_theme_setting('bikin', 'features_2_title') }}</div>
                             <div class="card-desc">
-                              {{ get_theme_setting('bikin', 'features_2_description') }}
+                                {{ get_theme_setting('bikin', 'features_2_description') }}
                             </div>
                             <a href="#" class="btn-1">Learn More</a>
                         </div>
@@ -579,11 +579,11 @@
             <div class="card-container">
                 <div class="float-layout">
                     <div class="card-image">
-                      <img src="{{ asset('themes/bikin/img/features-3.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('themes/bikin/img/features-3.png') }}" class="img-fluid" alt="">
                         <div class="card">
                             <div class="card-title">{{ get_theme_setting('bikin', 'features_3_title') }}</div>
                             <div class="card-desc">
-                              {{ get_theme_setting('bikin', 'features_3_description') }}
+                                {{ get_theme_setting('bikin', 'features_3_description') }}
                             </div>
                             <a href="#" class="btn-1">Learn More</a>
                         </div>
@@ -593,11 +593,11 @@
             <div class="card-container">
                 <div class="float-layout">
                     <div class="card-image po">
-                      <img src="{{ asset('themes/bikin/img/features-4.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('themes/bikin/img/features-4.png') }}" class="img-fluid" alt="">
                         <div class="card">
                             <div class="card-title">{{ get_theme_setting('bikin', 'features_4_title') }}</div>
                             <div class="card-desc">
-                              {{ get_theme_setting('bikin', 'features_4_description') }}
+                                {{ get_theme_setting('bikin', 'features_4_description') }}
                             </div>
                             <a href="#" class="btn-1">Learn More</a>
                         </div>
@@ -614,41 +614,41 @@
         ">
             <p class="text-center">{{ get_theme_setting('bikin', 'services_description') }}</p>
             <div class="itemss">
-              @if (get_theme_setting('bikin', 'services_1_title'))
-                <div class="items mb">
-                    <i class="fas fa-basketball-ball fa-2x"></i>
-                    <div>
-                        <h3>{{ get_theme_setting('bikin', 'services_1_title') }}</h3>
-                        <p>{{ get_theme_setting('bikin', 'services_1_description') }}</p>
+                @if (get_theme_setting('bikin', 'services_1_title'))
+                    <div class="items mb">
+                        <i class="fas fa-basketball-ball fa-2x"></i>
+                        <div>
+                            <h3>{{ get_theme_setting('bikin', 'services_1_title') }}</h3>
+                            <p>{{ get_theme_setting('bikin', 'services_1_description') }}</p>
+                        </div>
                     </div>
-                </div>
                 @endif
                 @if (get_theme_setting('bikin', 'services_2_title'))
-                <div class="items mt">
-                    <i class="fas fa-file-alt fa-2x"></i>
-                    <div>
-                        <h3>{{ get_theme_setting('bikin', 'services_2_title') }}</h3>
-                        <p>{{ get_theme_setting('bikin', 'services_2_description') }}</p>
+                    <div class="items mt">
+                        <i class="fas fa-file-alt fa-2x"></i>
+                        <div>
+                            <h3>{{ get_theme_setting('bikin', 'services_2_title') }}</h3>
+                            <p>{{ get_theme_setting('bikin', 'services_2_description') }}</p>
+                        </div>
                     </div>
-                </div>
                 @endif
                 @if (get_theme_setting('bikin', 'services_3_title'))
-                <div class="items mb">
-                    <i class="fas fa-tachometer-alt fa-2x"></i>
-                    <div>
-                        <h3>{{ get_theme_setting('bikin', 'services_3_title') }}</h3>
-                        <p>{{ get_theme_setting('bikin', 'services_3_description') }}</p>
+                    <div class="items mb">
+                        <i class="fas fa-tachometer-alt fa-2x"></i>
+                        <div>
+                            <h3>{{ get_theme_setting('bikin', 'services_3_title') }}</h3>
+                            <p>{{ get_theme_setting('bikin', 'services_3_description') }}</p>
+                        </div>
                     </div>
-                </div>
                 @endif
                 @if (get_theme_setting('bikin', 'services_4_title'))
-                <div class="items mt">
-                    <i class="fas fa-layer-group fa-2x"></i>
-                    <div>
-                        <h3>{{ get_theme_setting('bikin', 'services_4_title') }}</h3>
-                        <p>{{ get_theme_setting('bikin', 'services_4_description') }}</p>
+                    <div class="items mt">
+                        <i class="fas fa-layer-group fa-2x"></i>
+                        <div>
+                            <h3>{{ get_theme_setting('bikin', 'services_4_title') }}</h3>
+                            <p>{{ get_theme_setting('bikin', 'services_4_description') }}</p>
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -709,52 +709,52 @@
                 @endforeach
             </div>
         </div>
-    </section>
-    {{-- <section id="pricing" class="bg-pricing py-1">
-      <div class="container">
-          <h2 class="m-heading text-center">Pricing</h2>
-          <hr size="6" width="100px" color="white" style="
+    </section> --}}
+    <section id="pricing" class="bg-pricing py-1">
+        <div class="container">
+            <h2 class="m-heading text-center">Pricing</h2>
+            <hr size="6" width="100px" color="white" style="
               margin: auto;
           ">
-          <div class="itemsp">
-              <div class="itemp mt">
-                  <div>
-                      <h1 class="plan">Startup</h1>
-                      <p><span class="pricing"><b>$799</b></span>/month</p>
-                      <p><span class="pricing"><b>$489</b></span>/year</p>
-                      <p>50 Invoices</p>
-                      <p>Chat and Email</p>
-                      <p>Accountant access</p>
-                      <a href="#" class="btn-2"><b>Get Started</b></a>
-                  </div>
-              </div>
-              <div class="itemp mb">
-                  <div>
-                      <h1 class="plan">Enterprise</h1>
-                      <p><span class="pricing"><b>$990</b></span>/month</p>
-                      <p><span class="pricing"><b>$790</b></span>/year</p>
+            <div class="itemsp">
+                <div class="itemp mt">
+                    <div>
+                        <h1 class="plan">Startup</h1>
+                        <p><span class="pricing"><b>$799</b></span>/month</p>
+                        <p><span class="pricing"><b>$489</b></span>/year</p>
+                        <p>50 Invoices</p>
+                        <p>Chat and Email</p>
+                        <p>Accountant access</p>
+                        <a href="#" class="btn-2"><b>Get Started</b></a>
+                    </div>
+                </div>
+                <div class="itemp mb">
+                    <div>
+                        <h1 class="plan">Enterprise</h1>
+                        <p><span class="pricing"><b>$990</b></span>/month</p>
+                        <p><span class="pricing"><b>$790</b></span>/year</p>
 
-                      <p>500 Invoices</p>
-                      <p>Chat, Email, Voice</p>
-                      <p>Accountant access</p>
-                      <a href="#" class="btn-2"><b>Get Started</b></a>
-                  </div>
-              </div>
-              <div class="itemp mt">
-                  <div>
-                      <h1 class="plan">Ecommerce</h1>
-                      <p><span class="pricing"><b>$1899</b></span>/month</p>
-                      <p><span class="pricing"><b>$1499</b></span>/year</p>
+                        <p>500 Invoices</p>
+                        <p>Chat, Email, Voice</p>
+                        <p>Accountant access</p>
+                        <a href="#" class="btn-2"><b>Get Started</b></a>
+                    </div>
+                </div>
+                <div class="itemp mt">
+                    <div>
+                        <h1 class="plan">Ecommerce</h1>
+                        <p><span class="pricing"><b>$1899</b></span>/month</p>
+                        <p><span class="pricing"><b>$1499</b></span>/year</p>
 
-                      <p>2000 Invoices</p>
-                      <p>Chat, Email, Voice</p>
-                      <p>Accountant access</p>
-                      <a href="#" class="btn-2"><b>Get Started</b></a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section> --}}
+                        <p>2000 Invoices</p>
+                        <p>Chat, Email, Voice</p>
+                        <p>Accountant access</p>
+                        <a href="#" class="btn-2"><b>Get Started</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="contact">
         <div class="contact-form bg-primary p-2">
@@ -763,102 +763,132 @@
                 margin: auto;
             ">
             <div class="container">
-              @if (get_theme_setting('bikin', 'faq_1_title'))
-                <button class="accordion"><i class="fas fa-chevron-down" style="
+                @if (get_theme_setting('bikin', 'faq_1_title'))
+                    <button class="accordion"><i class="fas fa-chevron-down" style="
                     margin-right: 10px;
                 "></i>{{ get_theme_setting('bikin', 'faq_1_title') }}</button>
-                <div class="panel">
-                  <p>{{ get_theme_setting('bikin', 'faq_1_description') }}</p>
-                </div>
+                    <div class="panel">
+                        <p>{{ get_theme_setting('bikin', 'faq_1_description') }}</p>
+                    </div>
                 @endif
                 @if (get_theme_setting('bikin', 'faq_2_title'))
-                <button class="accordion"><i class="fas fa-chevron-down" style="
+                    <button class="accordion"><i class="fas fa-chevron-down" style="
                     margin-right: 10px;
                 "></i>{{ get_theme_setting('bikin', 'faq_2_title') }}</button>
-                <div class="panel">
-                  <p>{{ get_theme_setting('bikin', 'faq_2_description') }}</p>
-                </div>
+                    <div class="panel">
+                        <p>{{ get_theme_setting('bikin', 'faq_2_description') }}</p>
+                    </div>
                 @endif
                 @if (get_theme_setting('bikin', 'faq_3_title'))
-                <button class="accordion"><i class="fas fa-chevron-down" style="
+                    <button class="accordion"><i class="fas fa-chevron-down" style="
                     margin-right: 10px;
                 "></i>{{ get_theme_setting('bikin', 'faq_3_title') }}</button>
-                <div class="panel">
-                  <p>{{ get_theme_setting('bikin', 'faq_3_description') }}</p>
-                </div>
+                    <div class="panel">
+                        <p>{{ get_theme_setting('bikin', 'faq_3_description') }}</p>
+                    </div>
                 @endif
                 @if (get_theme_setting('bikin', 'faq_4_title'))
-                <button class="accordion"><i class="fas fa-chevron-down" style="
+                    <button class="accordion"><i class="fas fa-chevron-down" style="
                     margin-right: 10px;
                 "></i>{{ get_theme_setting('bikin', 'faq_4_title') }}</button>
-                <div class="panel">
-                  <p>{{ get_theme_setting('bikin', 'faq_4_description') }}</p>
-                </div>
+                    <div class="panel">
+                        <p>{{ get_theme_setting('bikin', 'faq_4_description') }}</p>
+                    </div>
                 @endif
                 @if (get_theme_setting('bikin', 'faq_5_title'))
-                <button class="accordion"><i class="fas fa-chevron-down" style="
+                    <button class="accordion"><i class="fas fa-chevron-down" style="
                     margin-right: 10px;
                 "></i>{{ get_theme_setting('bikin', 'faq_5_title') }}</button>
-                <div class="panel">
-                  <p>{{ get_theme_setting('bikin', 'faq_5_description') }}</p>
-                </div>
+                    <div class="panel">
+                        <p>{{ get_theme_setting('bikin', 'faq_5_description') }}</p>
+                    </div>
                 @endif
                 @if (get_theme_setting('bikin', 'faq_6_title'))
-                <button class="accordion"><i class="fas fa-chevron-down" style="
+                    <button class="accordion"><i class="fas fa-chevron-down" style="
                     margin-right: 10px;
                 "></i>{{ get_theme_setting('bikin', 'faq_6_title') }}</button>
-                <div class="panel">
-                  <p>{{ get_theme_setting('bikin', 'faq_6_description') }}</p>
-                </div>
+                    <div class="panel">
+                        <p>{{ get_theme_setting('bikin', 'faq_6_description') }}</p>
+                    </div>
                 @endif
             </div>
             <h2 class="m-heading text-center" style="
             margin-top: 30px;
         ">{{ __('bikin.contact') }}</h2>
-         @if (get_theme_setting('bikin', 'contact_email'))
-            <div class="container">
-                <div class="items bot">
-                    <div class="item text-center">
-                        <i class="fas fa-map-marker-alt fa-2x"></i>
-                        <div>
-                            <h3>{{ __('bikin.our_address') }}</h3>
-                            <p style="
+            @if (get_theme_setting('bikin', 'contact_email'))
+                <div class="container">
+                    <div class="items bot">
+                        <div class="item text-center">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                            <div>
+                                <h3>{{ __('bikin.our_address') }}</h3>
+                                <p style="
                             margin: 0px;
                         ">{{ get_theme_setting('bikin', 'contact_address') }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endif
-            
+
             <div class="container fl">
-              @if (get_theme_setting('bikin', 'contact_email'))
-                <div class="items bots">
-                    <div class="item text-center">
-                        <i class="fas fa-envelope fa-2x"></i>
-                        <div>
-                          <h3>{{ __('bikin.email_us') }}</h3>
-                            <p style="
+                @if (get_theme_setting('bikin', 'contact_email'))
+                    <div class="items bots">
+                        <div class="item text-center">
+                            <i class="fas fa-envelope fa-2x"></i>
+                            <div>
+                                <h3>{{ __('bikin.email_us') }}</h3>
+                                <p style="
                             margin: 0px;
                         ">{{ get_theme_setting('bikin', 'contact_email') }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
                 @if (get_theme_setting('bikin', 'contact_phone'))
-                <div class="items bots">
-                    <div class="item text-center">
-                        <i class="fas fa-phone-alt fa-2x"></i>
-                        <div>
-                          <h3>{{ __('bikin.call_us') }}</h3>
-                            <p style="
+                    <div class="items bots">
+                        <div class="item text-center">
+                            <i class="fas fa-phone-alt fa-2x"></i>
+                            <div>
+                                <h3>{{ __('bikin.call_us') }}</h3>
+                                <p style="
                             margin: 0px;
                         ">{{ get_theme_setting('bikin', 'contact_phone') }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div>
+            <br>
+            <br>
+            <div class="container">
+                <h1 class="my-2" style="padding: 2px;
+           "><b>Usefull Links</b></h1>
+           <br>
+               <li><a href="{{ route('privacypolicy') }}"
+                style="color:white; text-decoration: underline; color: white;">Privacy&amp;Policy</a>
+            </li>
+                <br>
+               <li><a href="{{ route('legal') }}" style="color:white; text-decoration: underline; color: white;">Legal</a></li>
+              <br>
+              <li><a href="#about" style="color:white; text-decoration: underline; color: white;">{{ __('bikin.about') }}</a></li>
+              <br>
+              <li><a href="#what" style="color:white; text-decoration: underline; color: white;">{{ __('bikin.features') }}</a></li>
+              <br>
+              <li><a href="#services" style="color:white; text-decoration: underline; color: white;">{{ __('bikin.services') }}</a></li>
+              <br>
+              <li><a href="#pricing" style="color:white; text-decoration: underline; color: white;">{{ __('bikin.pricing') }}</a></li>
+              <br>
+              <li><a href="#contact" style="color:white; text-decoration: underline; color: white;">{{ __('bikin.contact') }}</a></li>
+                {{-- <a href="#about" style=" padding: left;  padding: 584px;  color: white; text-decoration: underline;">About Us</a>
+            <a href="" style=" padding: left;  padding: 584px;  color: white; text-decoration: underline;">Contact Us</a>
+            <a href="{{route('legal')}}" style=" padding: left;  padding: 584px;  color: white; text-decoration: underline;">Refund Policy</a>
+            <a href="{{route('legal')}}" style=" padding: left;  padding: 584px;  color: white; text-decoration: underline;">Careers</a>
+            <a href="{{route('legal')}}" style=" padding: left;  padding: 584px;  color: white; text-decoration: underline;">Need An Accountant</a> --}}
+
+            </div>
+
+
         </div>
     </section>
 

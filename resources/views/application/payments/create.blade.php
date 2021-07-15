@@ -117,7 +117,15 @@ $('#payment_method_id').on('change', function() {
         $("#payment").trigger('click');
     }
     
-  });</script>
+  });
+  $('#invoice_select').on('change', function() {
+        if (this.value == "hi") {
+            window.location='{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}';
+            $("#inv").trigger('click');
+        }
+        
+      });
+  </script>
 
 @endsection
 

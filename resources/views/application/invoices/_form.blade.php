@@ -729,7 +729,7 @@
                                 @endif
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                                <button type="reset" class="btn btn-primary mr-1">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary">Reset</button>
                             </div>
                         </div>
@@ -746,6 +746,8 @@
 
 <script>
     $('#total_tax').on('change', function() {
+         
+        
         if (this.value == "hell") {
             window.location='{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
             $("#taxes").trigger('click');
