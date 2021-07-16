@@ -26,6 +26,10 @@
         </div>
         <div class="col-12 col-md-8 text-right">
             <div class="btn-group mb-2">
+                <a href="{{url()->previous()}}" class="btn btn-light">
+                    <i data-feather="skip-back"></i>
+                    Back
+                </a>
                 <a href="{{ route('pdf.invoice', ['invoice' => $invoice->uid, 'download' => true]) }}" target="_blank" class="btn btn-light">
                     <i data-feather="download-cloud"></i>
                     {{ __('messages.download') }}

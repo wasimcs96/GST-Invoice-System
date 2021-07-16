@@ -95,6 +95,10 @@
         </div>
     </div>
     <div class="pdf-iframe">
-        <iframe src="{{ route('pdf.invoice', $invoice->uid) }}" frameborder="0"></iframe>
+        <iframe src="{{ route('pdf.invoice', $invoice->uid) }}" style="
+            height: 500px;
+            width: 990px;
+            box-sizing: border-box;
+        " frameborder="0"></iframe>
     </div>
 @endsection
