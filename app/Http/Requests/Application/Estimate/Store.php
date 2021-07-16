@@ -26,38 +26,38 @@ class Store extends FormRequest
         if (is_array($this->product)) {
             // Make sure the lenght of product array is the same with other attributes of arrays
             $max_lenght = count($this->product);
-            return [
-                'estimate_number' => 'required|unique:estimates,estimate_number',
-                'estimate_date' => 'required|date',
-                'expiry_date' => 'required|date',
-                'reference_number' => 'nullable|string',
-                'customer_id' => 'required|exists:customers,id',
-                'sub_total' => 'required',
-                'grand_total' => 'required',
-                'notes' => 'nullable|string',
-                'private_notes' => 'nullable|string',
+            // return [
+            //     'estimate_number' => 'required|unique:estimates,estimate_number',
+            //     'estimate_date' => 'required|date',
+            //     'expiry_date' => 'required|date',
+            //     'reference_number' => 'nullable|string',
+            //     'customer_id' => 'required|exists:customers,id',
+            //     'sub_total' => 'required',
+            //     'grand_total' => 'required',
+            //     'notes' => 'nullable|string',
+            //     'private_notes' => 'nullable|string',
 
-                'total_discount' => 'sometimes|integer|min:0',
-                'total_taxes' => 'sometimes|array|min:0',
+            //     'total_discount' => 'sometimes|integer|min:0',
+            //     'total_taxes' => 'sometimes|array|min:0',
 
-                'product' => 'required|array|max:'.$max_lenght,
-                'product.*' => 'required',
+            //     'product' => 'required|array|max:'.$max_lenght,
+            //     'product.*' => 'required',
 
-                'quantity' => 'required|array|max:'.$max_lenght,
-                'quantity.*' => 'required|integer|min:0',
+            //     'quantity' => 'required|array|max:'.$max_lenght,
+            //     'quantity.*' => 'required|integer|min:0',
 
-                'price' => 'required|array|max:'.$max_lenght,
-                'price.*' => 'required',
+            //     'price' => 'required|array|max:'.$max_lenght,
+            //     'price.*' => 'required',
 
-                'total' => 'required|array|max:'.$max_lenght,
-                'total.*' => 'required',
+            //     'total' => 'required|array|max:'.$max_lenght,
+            //     'total.*' => 'required',
 
-                'taxes' => 'sometimes|required|array|max:'.$max_lenght,
-                'taxes.*' => 'sometimes|required|array',
+            //     'taxes' => 'sometimes|required|array|max:'.$max_lenght,
+            //     'taxes.*' => 'sometimes|required|array',
 
-                'discount' => 'sometimes|required|array|max:'.$max_lenght,
-                'discount.*' => 'sometimes|required',
-            ];
+            //     'discount' => 'sometimes|required|array|max:'.$max_lenght,
+            //     'discount.*' => 'sometimes|required',
+            // ];
         }
 
         return [

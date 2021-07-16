@@ -95,11 +95,10 @@
                     <th>{{ __('messages.customer') }}</th>
                     <th>{{ __('messages.status') }}</th>
                     <th>{{ __('messages.total') }}</th>
-                    <!-- <th class="w-50px">{{ __('messages.view') }}</th> -->
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="list" id="estimates">
                 @foreach ($estimates as $estimate)
                 <tr>
                     <td>
@@ -143,6 +142,7 @@
                     </td>
                     <td>
                         {!! money($estimate->total, $estimate->currency_code) !!}
+                        {{-- {{ $estimate->total }} --}}
                     </td>
                     <td>
                         <div class="dropdown">
