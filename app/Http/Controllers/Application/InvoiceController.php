@@ -103,6 +103,7 @@ class InvoiceController extends Controller
      */
     public function store(Store $request)
     {
+        // dd($request->all());
         $user = $request->user();
         $currentCompany = $user->currentCompany();
 
