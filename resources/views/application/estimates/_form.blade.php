@@ -2,7 +2,7 @@
     <div class="row no-gutters card-form__body card-body bg-white">
 
         <div class="col-md-4 pr-2">
-            <div class="form-group required select-container">
+            {{-- <div class="form-group required select-container">
                 <label for="customer">{{ __('messages.customer') }}</label>
                 <select id="customer" name="customer_id" data-toggle="select" class="form-control select2-hidden-accessible select-with-footer" data-select2-id="customer">
                     <option disabled selected>{{ __('messages.select_customer') }}</option>
@@ -20,7 +20,29 @@
                 <div class="d-none select-footer">
                     <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
                 </div>
+            </div> --}}
+
+            <div class="form-group required select-container">
+                <label for="customer">{{ __('messages.customer') }}</label>
+                <select id="customer" name="customer_id" data-toggle="select" class="form-control select2-hidden-accessible select-with-footer" data-select2-id="customer">
+                    <option disabled selected>{{ __('messages.select_customer') }}</option>
+                    @if($estimate->customer_id)
+                        <option value="{{ $estimate->customer_id }}" 
+                            selected=""
+                            data-currency="{{ $estimate->customer->currency }}" 
+                            data-billing_address="{{$estimate->customer->displayLongAddress('billing')}}"
+                            data-shipping_address="{{$estimate->customer->displayLongAddress('shipping')}}"
+                            >
+                            {{ $estimate->customer->display_name }}
+                        </option>
+                    @endif
+                    <div class="d-none select-footer">
+                        <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                    </div>
+                </select> 
+               
             </div>
+
             <div id="address_component" class="form-row d-none">
                 <div class="col-6">
                     <strong>{{ __('messages.bill_to') }}:</strong>
@@ -36,36 +58,36 @@
         <div class="col-md-4 pr-4 pl-4">
             <div class="form-group required">
                 <label for="estimate_date">{{ __('messages.estimate_date') }}</label>
-                <input name="estimate_date" type="text" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}" readonly="readonly" required>
+                <input name="estimate_date" type="date  ``  1`123456789" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}"  required>
             </div>
             <div class="form-group required"> 
                 <label for="estimate_number">{{ __('messages.estimate_number') }}</label>
-                <div class="input-group input-group-merge">
+                <div class="input-group">
                     <input name="estimate_prefix" type="hidden" value="{{ $estimate->estimate_prefix }}">
                     <input name="estimate_number" type="text" maxlength="6" class="form-control form-control-prepended" value="{{ $estimate->estimate_num }}" autocomplete="off" required>
-                    <div class="input-group-prepend">
+                    {{-- <div class="input-group-prepend"> --}}
                         <div class="input-group-text">
                             {{ $estimate->estimate_prefix }}
                         </div>
-                    </div>
-                </div>
+                    {{-- </div> --}}
+                </div> 
             </div>
         </div>
 
         <div class="col-md-4 pl-4">
             <div class="form-group required">
                 <label for="expiry_date">{{ __('messages.expiry_date') }}</label>
-                <input name="expiry_date" type="text" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $estimate->expiry_date ?? now() }}" readonly="readonly" required>
+                <input name="expiry_date" type="date" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $estimate->expiry_date ?? now() }}" required>
             </div>
             <div class="form-group">
                 <label for="reference_number">{{ __('messages.reference_number') }}</label>
                 <div class="input-group input-group-merge">
                     <input name="reference_number" type="text" maxlength="6" class="form-control form-control-prepended" value="{{ $estimate->reference_number }}" autocomplete="off">
-                    <div class="input-group-prepend">
+                    {{-- <div class="input-group-prepend"> --}}
                         <div class="input-group-text">
                             #
                         </div>
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -81,32 +103,33 @@
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-15">{{ __('messages.price') }}</th>
                                 <th class="w-15">{{ __('messages.discount') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10" style="padding-right: 143px;">{{ __('messages.amount') }}</th>
                             @elseif($tax_per_item and !$discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
                                 <th class="w-25">{{ __('messages.taxes') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-15">{{ __('messages.price') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10" style="padding-right: 143px;">{{ __('messages.amount') }}</th>
                             @elseif(!$tax_per_item and $discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-20">{{ __('messages.price') }}</th>
                                 <th class="w-20">{{ __('messages.discount') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10" style="padding-right: 143px;">{{ __('messages.amount') }}</th>
                             @elseif(!$tax_per_item and !$discount_per_item)
                                 <th class="w-60">{{ __('messages.product') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-20">{{ __('messages.price') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10" style="padding-right: 143px;">{{ __('messages.amount') }}</th>
                             @endif
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="list" id="items">
                         <tr id="product_row_template" class="d-none">
-                            <td class="select-container">
-                                <select name="product[]" class="form-control priceListener select-with-footer" required>
+                            
+                            <td class="select-container"  style="padding-right: 103px;">
+                                <select name="product[]" class="form-control priceListener select-with-footer" style="padding-right: 103px;" required>
                                     <option disabled selected>{{ __('messages.select_product') }}</option>
                                 </select>
                                 <div class="d-none select-footer">
@@ -262,6 +285,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 @endif
 
                 <div class="total_tax_list"></div>

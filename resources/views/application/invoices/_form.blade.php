@@ -36,18 +36,18 @@
         <div class="col-md-4 pr-4 pl-4">
             <div class="form-group required">
                 <label for="invoice_date">{{ __('messages.invoice_date') }}</label>
-                <input name="invoice_date" type="text" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $invoice->invoice_date ?? now() }}" readonly="readonly" required>
+                <input name="invoice_date" type="date" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $invoice->invoice_date ?? now() }}" required>
             </div>
             <div class="form-group required"> 
                 <label for="invoice_number">{{ __('messages.invoice_number') }}</label>
-                <div class="input-group input-group-merge">
+                <div class="input-group">
                     <input name="invoice_prefix" type="hidden" value="{{ $invoice->invoice_prefix }}">
                     <input name="invoice_number" type="text" maxlength="6" class="form-control form-control-prepended" value="{{ $invoice->invoice_num }}" autocomplete="off" required>
-                    <div class="input-group-prepend">
+                    {{-- <div class="input-group-prepend"> --}}
                         <div class="input-group-text">
                             {{ $invoice->invoice_prefix }}
                         </div>
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -55,17 +55,17 @@
         <div class="col-md-4 pl-4">
             <div class="form-group required">
                 <label for="due_date">{{ __('messages.due_date') }}</label>
-                <input name="due_date" type="text" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $invoice->due_date ?? now() }}" readonly="readonly" required>
+                <input name="due_date" type="date" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $invoice->due_date ?? now() }}" required>
             </div>
             <div class="form-group">
                 <label for="reference_number">{{ __('messages.reference_number') }}</label>
                 <div class="input-group input-group-merge">
                     <input name="reference_number" type="text" maxlength="6" class="form-control form-control-prepended" value="{{ $invoice->reference_number }}" autocomplete="off">
-                    <div class="input-group-prepend">
+                    {{-- <div class="input-group-prepend"> --}}
                         <div class="input-group-text">
                             #
                         </div>
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -81,24 +81,24 @@
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-15">{{ __('messages.price') }}</th>
                                 <th class="w-15">{{ __('messages.discount') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10" style="padding-right: 142px;">{{ __('messages.amount') }}</th>
                             @elseif($tax_per_item and !$discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
                                 <th class="w-25">{{ __('messages.taxes') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-15">{{ __('messages.price') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10"  style="padding-right: 142px;">{{ __('messages.amount') }}</th>
                             @elseif(!$tax_per_item and $discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-20">{{ __('messages.price') }}</th>
                                 <th class="w-20">{{ __('messages.discount') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10"  style="padding-right: 142px;">{{ __('messages.amount') }}</th>
                             @elseif(!$tax_per_item and !$discount_per_item)
                                 <th class="w-60">{{ __('messages.product') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-20">{{ __('messages.price') }}</th>
-                                <th class="text-right w-10">{{ __('messages.amount') }}</th>
+                                <th class="text-right w-10"  style="padding-right: 142px;">{{ __('messages.amount') }}</th>
                             @endif
                             <th></th>
                         </tr>
