@@ -26,7 +26,7 @@
     </form>
 @endsection
 @section('page_head_scripts')
-
+<link rel='stylesheet' id='flatpickr-style-css'  href='https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css?ver=5.2.4' type='text/css' media='all' />
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
 
 <style>
@@ -38,18 +38,9 @@
 @endsection
 
 @section('page_body_scripts')
-<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
-    @include('application.estimates._js')
-    <script>
-        $(document).ready(function() {
-            $("#add_product_row").click(function() {
-               console.log('hiiiii');
-                addProductRow();
-              });
-            });
-    </script>
-  <script>
+
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/flatpickr?ver=5.2.4'></script>
+<script>
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     
     $(document).ready(function(){
@@ -110,22 +101,8 @@
         });
     });
 </script>
-<script> 
-$('#payment_method_id').on('change', function() {
-    if (this.value == "pay") {
-        window.location='{{ route('settings.payment.type.create', ['company_uid' => $currentCompany->uid]) }}';
-        $("#payment").trigger('click');
-    }
-    
-  });
-  $('#invoice_select').on('change', function() {
-        if (this.value == "hi") {
-            window.location='{{ route('invoices.create', ['company_uid' => $currentCompany->uid]) }}';
-            $("#inv").trigger('click');
-        }
-        
-      });
-  </script>
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
 
 @endsection
 
