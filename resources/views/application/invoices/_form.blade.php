@@ -275,11 +275,11 @@
                             <div class="form-group">
                                 <div class="input-group input-group-merge">
                                     <input id="total_discount" name="total_discount" type="number" class="form-control form-control-prepended priceListener" value="{{ $invoice->discount_val ?? 0 }}">
-                                    <div class="input-group-prepend">
+                                    {{-- <div class="input-group-prepend"> --}}
                                         <div class="input-group-text">
                                             %
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                         </div>
