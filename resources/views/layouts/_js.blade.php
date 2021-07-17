@@ -30,7 +30,7 @@
 {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> --}}
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('assets/js/custom.js?v=1.0.2') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 
 
     <!-- BEGIN: Page JS-->

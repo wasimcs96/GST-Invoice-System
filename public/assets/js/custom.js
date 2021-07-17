@@ -12,7 +12,7 @@ function changePreview(input) {
 
 function setupDatePickerInput() {
     // Flatpicker options
-    $('[data-toggle="flatpickr"]').each(function () {
+    $('[data-toggle="flatpickr"]').each(function() {
         var element = $(this);
         var options = {
             mode: void 0 !== element.data('flatpickr-mode') ? element.data('flatpickr-mode') : 'single',
@@ -37,9 +37,9 @@ function setupDatePickerInput() {
 }
 
 function setupPriceInput(currency) {
-    if (!currency) return false; 
+    if (!currency) return false;
     // Price format
-    if(currency.swap_currency_symbol) {
+    if (currency.swap_currency_symbol) {
         var settings = {
             prefix: '',
             centsSeparator: currency.thousand_separator,
@@ -59,7 +59,7 @@ function setupPriceInput(currency) {
 
 function setupSelect2FooterListener() {
     // Custom footer for select2
-    $(".select-with-footer").on("select2:open", function () {
+    $(".select-with-footer").on("select2:open", function() {
         var checkExisted = $('.select2-results').find('.sel-footer');
         if (checkExisted.length === 0) {
             var footer = $(this).closest('.select-container').find('.select-footer').html();
@@ -70,7 +70,7 @@ function setupSelect2FooterListener() {
     });
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
     // Setup date picker
     setupDatePickerInput();
 
@@ -85,7 +85,7 @@ $(document).ready(function(){
     });
 
     // Sweet alert delete confirmation
-    $('.delete-confirm').on('click', function (event) {
+    $('.delete-confirm').on('click', function(event) {
         event.preventDefault();
         var url = $(this).attr('href');
         Swal.fire({
@@ -94,7 +94,7 @@ $(document).ready(function(){
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#dc3545',
-            cancelButtonColor: '#6c757d', 
+            cancelButtonColor: '#6c757d',
             confirmButtonText: 'Delete!',
             focusConfirm: false,
             focusCancel: false,
@@ -106,7 +106,7 @@ $(document).ready(function(){
     });
 
     // Sweet alert delete confirmation
-    $('.alert-confirm').on('click', function (event) {
+    $('.alert-confirm').on('click', function(event) {
         event.preventDefault();
         var url = $(this).attr('href');
         Swal.fire({
@@ -115,7 +115,7 @@ $(document).ready(function(){
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#308AF3',
-            cancelButtonColor: '#6c757d', 
+            cancelButtonColor: '#6c757d',
             confirmButtonText: 'Okay!',
             focusConfirm: false,
             focusCancel: false,

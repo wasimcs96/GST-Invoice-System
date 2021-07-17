@@ -151,7 +151,7 @@
                             </td>
                             <td>
                                 <a onclick="removeRow(this)">
-                                    <i class="material-icons icon-16pt">clear</i>
+                                    <i data-feather="x"></i>
                                 </a>
                             </td>
                         </tr>
@@ -215,7 +215,7 @@
             </div>
             <div class="row card-body pagination-light justify-content-center text-center">
                 <button id="add_product_row" type="button" class="btn btn-light">
-                    <i class="material-icons icon-16pt">add</i> {{ __('messages.add_product') }}
+                    <i data-feather="plus"></i> {{ __('messages.add_product') }}
                 </button>
             </div>
         </div>
