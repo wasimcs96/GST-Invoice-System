@@ -274,7 +274,7 @@
                         </div>
                         <div class="col-12 h6 mb-0">
                             <div class="form-group select-container">
-                                <select id="total_taxes" name="total_taxes[]" data-toggle="select" multiple class="form-control priceListener select-with-footer" data-select2-id="total_taxes">
+                                <select id="total_taxes" name="total_taxes[]" data-toggle="select" multiple class="form-control priceListener select-with-footer select2" data-select2-id="total_taxes">
                                     @foreach(get_tax_types_select2_array($currentCompany->id) as $option)
                                         <option value="{{ $option['id'] }}" data-percent="{{ $option['percent'] }}" {{ $estimate->hasTax($option['id']) ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                                     @endforeach
