@@ -79,13 +79,14 @@ class ProductController extends Controller
             session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
             return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
         }
-
+        $price = preg_replace('~\D~', '', $request->price);
+        // dd($price);
         // Create Product and Store in Database
         $product = Product::create([
             'name' => $request->name,
             'company_id' => $currentCompany->id,
             'unit_id' => $request->unit_id,
-            'price'  => $request->price,
+            'price'  => $price,
             'description' => $request->description,
         ]);
 
@@ -100,12 +101,14 @@ class ProductController extends Controller
                 ]);
             }
         }
+        
 
         // Record product 
         $currentCompany->subscription('main')->recordFeatureUsage('products');
 
         session()->flash('alert-success', __('messages.product_added'));
         return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
+        
     }
 
     /**

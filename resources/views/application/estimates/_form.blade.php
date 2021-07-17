@@ -36,11 +36,10 @@
                             {{ $estimate->customer->display_name }}
                         </option>
                     @endif
-                    <div class="d-none select-footer">
-                        <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
-                    </div>
                 </select> 
-               
+                <div class="d-none select-footer">
+                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                </div>
             </div>
 
             <div id="address_component" class="form-row d-none">
@@ -58,7 +57,7 @@
         <div class="col-md-4 pr-4 pl-4">
             <div class="form-group required">
                 <label for="estimate_date">{{ __('messages.estimate_date') }}</label>
-                <input name="estimate_date" type="date  ``  1`123456789" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}"  required>
+                <input name="estimate_date" type="date" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $estimate->estimate_date ?? now() }}"  required>
             </div>
             <div class="form-group required"> 
                 <label for="estimate_number">{{ __('messages.estimate_number') }}</label>
@@ -158,11 +157,11 @@
                                 <td>
                                     <div class="input-group input-group-merge">
                                         <input name="discount[]" type="number" class="form-control form-control-prepended priceListener" value="0">
-                                        <div class="input-group-prepend">
+                                        {{-- <div class="input-group-prepend"> --}}
                                             <div class="input-group-text">
                                                 %
                                             </div>
-                                        </div>
+                                        {{-- </div> --}}
                                     </div>
                                 </td>
                             @endif
@@ -299,11 +298,11 @@
                             <div class="form-group">
                                 <div class="input-group input-group-merge">
                                     <input id="total_discount" name="total_discount" type="number" class="form-control form-control-prepended priceListener" value="{{ $estimate->discount_val ?? 0 }}">
-                                    <div class="input-group-prepend">
+                                    {{-- <div class="input-group-prepend"> --}}
                                         <div class="input-group-text">
                                             %
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                         </div>
