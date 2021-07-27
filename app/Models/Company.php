@@ -162,6 +162,11 @@ class Company extends Model
         return $this->hasMany(ExpenseCategory::class);
     }
 
+    public function ledger_categories()
+    {
+        return $this->hasMany(LedgerCategory::class);
+    }
+
     /**
      * Define Relation with Expense Model
      *
@@ -170,6 +175,11 @@ class Company extends Model
     public function expenses()
     {
         return $this->hasMany(Expense::class);
+    }
+
+    public function ledgers()
+    {
+        return $this->hasMany(Ledger::class);
     }
 
     /**

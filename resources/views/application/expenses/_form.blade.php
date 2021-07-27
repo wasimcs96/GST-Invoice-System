@@ -299,8 +299,8 @@ $('#unit_id').on('change', function() {
 
 @section('page_body_scripts')
 
-<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+{{-- <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script> --}}
 
 <script>
     $('#vendor_id').on('change', function() {
