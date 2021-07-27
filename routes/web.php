@@ -115,6 +115,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/customers/{customer}/edit', 'CustomerController@edit')->name('customers.edit');
     Route::post('/customers/{customer}/edit', 'CustomerController@update')->name('customers.update');
     Route::get('/customers/{customer}/delete', 'CustomerController@delete')->name('customers.delete');
+    
 
     // Products & Services
     Route::get('/products', 'ProductController@index')->name('products');
@@ -311,4 +312,8 @@ Route::group(['namespace' => 'Application', 'middleware' => ['installed', 'auth'
     Route::get('/privacy-policy', 'HomeController@privacy')->name('privacypolicy');
     Route::get('/legal', 'HomeController@legal')->name('legal');
 
+    // Route::get('/state-select-dropdown','StateController@fetchDistrict')->name('application.customer.state');
 
+    // Route::post('get-states','CountryStateCityController@getState')->name('get-state');
+    // Route::post('get-cities','CountryStateCityController@getCity');
+    Route::get('/get-city','Application\CustomerController@myformAjax')->name('application.customer.city');

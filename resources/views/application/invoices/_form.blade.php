@@ -1,7 +1,10 @@
-<div class="card card-form">
-    <div class="row no-gutters card-form__body card-body bg-white">
 
+<div class="card card-form">
+    
+    <div class="row no-gutters card-form__body card-body bg-white">
+        
         <div class="col-md-4 pr-2">
+          
             <div class="form-group required select-container">
                 <label for="customer">{{ __('messages.customer') }}</label>
                 <select id="customer" name="customer_id" data-toggle="select" class="form-control select2-hidden-accessible select-with-footer" data-select2-id="customer">
@@ -18,7 +21,7 @@
                     @endif
                 </select> 
                 <div class="d-none select-footer">
-                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
                 </div>
             </div>
             <div id="address_component" class="form-row d-none">
@@ -151,7 +154,7 @@
                             </td>
                             <td>
                                 <a onclick="removeRow(this)">
-                                    <i data-feather="x"></i>
+                                    <i class="material-icons icon-16pt">clear</i>
                                 </a>
                             </td>
                         </tr>
@@ -215,7 +218,7 @@
             </div>
             <div class="row card-body pagination-light justify-content-center text-center">
                 <button id="add_product_row" type="button" class="btn btn-light">
-                    <i data-feather="plus"></i> {{ __('messages.add_product') }}
+                    <i class="material-icons icon-16pt">add</i> {{ __('messages.add_product') }}
                 </button>
             </div>
         </div>
@@ -279,7 +282,7 @@
                                         <div class="input-group-text">
                                             %
                                         </div>
-                                    {{-- </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,14 +1,16 @@
 @extends('layouts.app', ['page' => 'customers'])
 
 @section('title', __('messages.create_customer'))
-    
+
 @section('page_header')
     <div class="page__heading d-flex align-items-center">
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('customers', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.customers') }}</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a
+                            href="{{ route('customers', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.customers') }}</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __('messages.create_customer') }}</li>
                 </ol>
             </nav>
@@ -16,9 +18,10 @@
         </div>
     </div>
 @endsection
- 
-@section('content') 
-    <form action="{{ route('customers.store', ['company_uid' => $currentCompany->uid]) }}" method="POST" enctype="multipart/form-data">
+
+@section('content')
+    <form action="{{ route('customers.store', ['company_uid' => $currentCompany->uid]) }}" method="POST"
+        enctype="multipart/form-data">
         @include('layouts._form_errors')
         @csrf
 
@@ -27,3 +30,38 @@
 @endsection
 
 
+@section('page_body_scripts')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.oi').on('change', function() {
+            
+            var stateID = $(this).val();
+            console.log(stateID);
+            console.log("s")
+            if(stateID) {
+            console.log("s")
+
+                $.ajax({
+                    url: "{{ route('application.customer.city') }}",
+                    type: "GET",
+                    data: { id:stateID },
+                    success:function(data) {
+                    //    console.log(data);
+                        
+                        $('select[name="billing[city]"]').empty();
+                        $.each(data, function(key, value) {
+                            // console.log(value.name);
+                            $('select[name="billing[city]"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                        });
+
+
+                    }
+                });
+            }else{
+                $('select[name="city"]').empty();
+            }
+        });
+    });
+</script>
+@endsection

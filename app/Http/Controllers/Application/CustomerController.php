@@ -7,6 +7,9 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\Application\Customer\Store;
 use App\Http\Requests\Application\Customer\Update;
+use App\Models\State;
+use App\Models\City;
+use DB;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -46,12 +49,20 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         $customer = new Customer();
- 
+        $states = State::all();
+        $citie = City::all();
+        // $cities = DB::table("cities")
+        // ->where("state_id",$id)
+        // ->pluck("name","id");
         return view('application.customers.create', [
             'customer' => $customer,
+            'states' => $states,
+            // 'cities' => $cities,
+            'citie' => $citie,
+            // 'activities'=>$activities
         ]);
     }
 
@@ -231,4 +242,25 @@ class CustomerController extends Controller
         session()->flash('alert-success', __('messages.customer_deleted'));
         return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
     }
+    //  public function getState(Request $request)
+    // {
+    //     $data['states'] = State::where("state_id",$request->state_id)
+    //                 ->get(["name","id"]);
+    //     return response()->json($data);
+    // }
+    // public function getCity(Request $request)
+    // {
+    //     $data['cities'] = City::where("state_id",$request->state_id)
+    //                 ->get(["name","id"]);
+    //     return response()->json($data);
+    // }
+
+    public function myformAjax(Request $request)
+    {
+           
+        $cities = City::where("state_id",$request->id)->get();
+        return response()->json($cities,200);
+    }
+
+
 }

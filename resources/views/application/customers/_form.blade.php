@@ -277,9 +277,9 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label for="vat_number">{{ __('messages.vat_number') }}</label>
+                                <label for="vat_number">GST Number</label>
                                 <input name="vat_number" type="number" class="form-control"
-                                    placeholder="{{ __('messages.vat_number') }}" value="{{ $customer->vat_number }}">
+                                    placeholder="GST Number" value="{{ $customer->vat_number }}">
                             </div>
                         </div>
                     </div>
@@ -287,7 +287,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">{{ __('messages.billing_address') }}</h4>
+                    <h4 class="card-title">Address</h4>
                     <p class="text-muted">{{ __('messages.customer_billing_address') }}</p>
                 </div>
                 <div class="card-body">
@@ -322,20 +322,50 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        {{-- <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[state]">{{ __('messages.state') }}</label>
                                 <input name="billing[state]" type="text" class="form-control"
                                     value="{{ $customer->billing->state }}" placeholder="{{ __('messages.state') }}">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-12">
+                        <div class="form-group required">
+                            <label for="billing[state]">{{ __('messages.state') }}</label>
+                            <select id="billing[state]" name="billing[state]" data-toggle="select"
+                                class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
+                                required>
+                                <option disabled selected>Select state</option>
+                                @foreach ($states as $state)
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                @endforeach
+                              
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <div class="form-group required">
+                            <label for="billing[city]">{{ __('messages.city') }}</label>
+                            <select name="billing[city]" id="city" data-toggle="select"
+                                class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
+                                required>
+                                <option disabled selected>Select city</option>
+                                {{-- @foreach ($citie as $city)
+                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach --}}
+                              
+                            </select>
+                        </div>
+                    </div>
+
+                        {{-- <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[city]">{{ __('messages.city') }}</label>
                                 <input name="billing[city]" type="text" class="form-control"
                                     value="{{ $customer->billing->city }}" placeholder="{{ __('messages.city') }}">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
@@ -393,17 +423,45 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
-                    <div class="form-group">
+
+                    {{-- <div class="form-group">
                         <label for="shipping[state]">{{ __('messages.state') }}</label>
-                        <input name="shipping[state]" type="text" class="form-control"
-                            value="{{ $customer->shipping->state }}" placeholder="{{ __('messages.state') }}">
+                        <select id="shipping[state]" name="shipping[state]" data-toggle="select"
+                            class="form-control select2-hidden-accessible" data-select2-id="shipping[state]">
+                            <option disabled selected>{{ __('messages.select_state') }}</option>
+                            @foreach(get_countries_select2_array() as $option)
+                            <option value="{{ $option['id'] }}"
+                                {{ $customer->shipping->country_id == $option['id'] ? 'selected=""' : '' }}>
+                                {{ $option['text'] }}</option>
+                            @endforeach
+                        </select>
+                    </div> --}}
+
+                    <div class="form-group required">
+                        <label for="billing[state]">{{ __('messages.state') }}</label>
+                        <select id="billing[state]" name="billing[state]" data-toggle="select"
+                            class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
+                            required>
+                            <option disabled selected>Select state</option>
+                            @foreach ($states as $state)
+                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                            @endforeach
+                          
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
-                    <div class="form-group">
-                        <label for="shipping[city]">{{ __('messages.city') }}</label>
-                        <input name="shipping[city]" type="text" class="form-control"
-                            value="{{ $customer->shipping->city }}" placeholder="{{ __('messages.city') }}">
+                    <div class="form-group required">
+                        <label for="billing[city]">{{ __('messages.city') }}</label>
+                        <select name="billing[city]" id="city" data-toggle="select"
+                            class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
+                            required>
+                            <option disabled selected>Select city</option>
+                            {{-- @foreach ($citie as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach --}}
+                          
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
