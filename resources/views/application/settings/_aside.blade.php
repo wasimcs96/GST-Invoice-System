@@ -379,6 +379,21 @@
     <div class="col-xl-2 col-md-4 col-sm-6">
         <div class="card text-center">
             <div class="card-body">
+                <div class="avatar bg-light-danger p-50 mb-1">
+                    <div class="avatar-content">
+                        <i data-feather="save" class="font-medium-5"></i>
+                    </div>
+                </div>
+                <a href="{{ route('settings.ledger_categories', ['company_uid' => $currentCompany->uid]) }}" class="card-text" aria-expanded="false">
+                    {{-- <span class="card-text">{{ __('messages.expense_categories') }}</span> --}}
+                    <p class="card-text">Ledger Category</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="card text-center">
+            <div class="card-body">
                 <div class="avatar bg-light-success p-50 mb-1">
                     <div class="avatar-content">
                         <i data-feather="mail" class="font-medium-5"></i>
@@ -401,7 +416,7 @@
                 </div>
                 <a href="{{ route('settings.team', ['company_uid' => $currentCompany->uid]) }}" class="card-text" aria-expanded="false">
                     {{-- <span class="card-text">{{ __('messages.team') }}</span> --}}
-                    <p class="card-text">{{ __('messages.team') }}</p>
+                    <p class="card-text">Add CA</p>
                 </a>
             </div>
         </div>

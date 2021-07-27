@@ -111,6 +111,8 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/customers', 'CustomerController@index')->name('customers');
     Route::get('/customers/create', 'CustomerController@create')->name('customers.create');
     Route::post('/customers/create', 'CustomerController@store')->name('customers.store');
+    Route::post('/customer/store', 'CustomerController@customerstore')->name('customers.customer.store');
+    Route::post('/customers/store', 'CustomerController@customerestimate')->name('customers.estimate.store');
     Route::get('/customers/{customer}/details', 'CustomerController@details')->name('customers.details');
     Route::get('/customers/{customer}/edit', 'CustomerController@edit')->name('customers.edit');
     Route::post('/customers/{customer}/edit', 'CustomerController@update')->name('customers.update');
@@ -120,6 +122,8 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/products', 'ProductController@index')->name('products');
     Route::get('/products/create', 'ProductController@create')->name('products.create');
     Route::post('/products/create', 'ProductController@store')->name('products.store');
+    Route::post('/products/store', 'ProductController@customerstore')->name('products.customer.store');
+    Route::post('/products/estimate/store', 'ProductController@estimatestore')->name('products.estimate.store');
     Route::get('/products/{product}/edit', 'ProductController@edit')->name('products.edit');
     Route::post('/products/{product}/edit', 'ProductController@update')->name('products.update');
     Route::get('/products/{product}/delete', 'ProductController@delete')->name('products.delete');
@@ -163,6 +167,15 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::post('/expenses/{expense}/edit', 'ExpenseController@update')->name('expenses.update');
     Route::get('/expenses/{expense}/receipt', 'ExpenseController@download_receipt')->name('expenses.download_receipt');
     Route::get('/expenses/{expense}/delete', 'ExpenseController@delete')->name('expenses.delete');
+
+    // ledgers 
+    Route::get('/ledgers', 'LedgerController@index')->name('ledgers');
+    Route::get('/ledgers/create', 'LedgerController@create')->name('ledgers.create');
+    Route::post('/ledgers/store', 'LedgerController@store')->name('ledgers.store');
+    Route::get('/ledgers/{ledger}/edit', 'LedgerController@edit')->name('ledgers.edit');
+    Route::post('/ledgers/{ledger}/update', 'LedgerController@update')->name('ledgers.update');
+    Route::get('/ledgers/{ledger}/receipt', 'LedgerController@download_receipt')->name('ledgers.download_receipt');
+    Route::get('/ledgers/{ledger}/delete', 'LedgerController@delete')->name('ledgers.delete');
 
     // Vendors
     Route::get('/vendors', 'VendorController@index')->name('vendors');
@@ -239,6 +252,8 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/tax-types', 'TaxTypeController@index')->name('settings.tax_types');
         Route::get('/tax-types/create', 'TaxTypeController@create')->name('settings.tax_types.create');
         Route::post('/tax-types/create', 'TaxTypeController@store')->name('settings.tax_types.store');
+        Route::post('/tax/create', 'TaxTypeController@taxstore')->name('settings.tax.store');
+        Route::post('/tax/est/create', 'TaxTypeController@taxeststore')->name('settings.tax.est.store');
         Route::get('/tax-types/{tax_type}/edit', 'TaxTypeController@edit')->name('settings.tax_types.edit');
         Route::post('/tax-types/{tax_type}/edit', 'TaxTypeController@update')->name('settings.tax_types.update');
         Route::get('/tax-types/{tax_type}/delete', 'TaxTypeController@delete')->name('settings.tax_types.delete');
@@ -258,6 +273,15 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/expense-categories/{expense_category}/edit', 'ExpenseCategoryController@edit')->name('settings.expense_categories.edit');
         Route::post('/expense-categories/{expense_category}/edit', 'ExpenseCategoryController@update')->name('settings.expense_categories.update');
         Route::get('/expense-categories/{expense_category}/delete', 'ExpenseCategoryController@delete')->name('settings.expense_categories.delete');
+
+
+        // Settings>Ledger Categories
+        Route::get('/ledger-categories', 'LedgerCategoryController@index')->name('settings.ledger_categories');
+        Route::get('/ledger-categories/create', 'LedgerCategoryController@create')->name('settings.ledger_categories.create');
+        Route::post('/ledger-categories/create', 'LedgerCategoryController@store')->name('settings.ledger_categories.store');
+        Route::get('/ledger-categories/{ledger_category}/edit', 'LedgerCategoryController@edit')->name('settings.ledger_categories.edit');
+        Route::post('/ledger-categories/{ledger_category}/edit', 'LedgerCategoryController@update')->name('settings.ledger_categories.update');
+        Route::get('/ledger-categories/{ledger_category}/delete', 'LedgerCategoryController@delete')->name('settings.ledger_categories.delete');
 
         // Settings>Team
         Route::get('/team', 'TeamController@index')->name('settings.team');

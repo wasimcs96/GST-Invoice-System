@@ -52,6 +52,11 @@ class Vendor extends Model
         return $this->hasMany(Expense::class);
     }
 
+    public function ledgers()
+    {
+        return $this->hasMany(Ledger::class);
+    }
+
     /**
      * Scope a query to only include Vendors of a given company.
      *

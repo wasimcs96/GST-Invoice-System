@@ -231,4 +231,79 @@ class CustomerController extends Controller
         session()->flash('alert-success', __('messages.customer_deleted'));
         return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
     }
+
+    public function customerstore(Store $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Redirect back
+        $canAdd = $currentCompany->subscription('main')->canUseFeature('customers');
+        if (!$canAdd) {
+            session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
+            return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
+        }
+        
+        // Create Customer and Store in Database
+        $customer = Customer::create([
+            'company_id' => $currentCompany->id,
+            'display_name' => $request->display_name,
+            'contact_name' => $request->contact_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'website' => $request->website,
+            'currency_id' => $request->currency_id,
+            'vat_number' => $request->vat_number,
+        ]);
+
+        // Set Customer's billing and shipping addresses
+        $customer->address('billing', $request->input('billing'));
+        $customer->address('shipping', $request->input('shipping'));
+
+        // Add custom field values
+        $customer->addCustomFields($request->custom_fields);
+
+        // Record product 
+        $currentCompany->subscription('main')->recordFeatureUsage('customers');
+
+        session()->flash('alert-success', __('messages.customer_added'));
+        return redirect()->route('invoices.create', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]);
+    }
+    public function customerestimate(Store $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Redirect back
+        $canAdd = $currentCompany->subscription('main')->canUseFeature('customers');
+        if (!$canAdd) {
+            session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
+            return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
+        }
+        
+        // Create Customer and Store in Database
+        $customer = Customer::create([
+            'company_id' => $currentCompany->id,
+            'display_name' => $request->display_name,
+            'contact_name' => $request->contact_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'website' => $request->website,
+            'currency_id' => $request->currency_id,
+            'vat_number' => $request->vat_number,
+        ]);
+
+        // Set Customer's billing and shipping addresses
+        $customer->address('billing', $request->input('billing'));
+        $customer->address('shipping', $request->input('shipping'));
+
+        // Add custom field values
+        $customer->addCustomFields($request->custom_fields);
+
+        // Record product 
+        $currentCompany->subscription('main')->recordFeatureUsage('customers');
+
+        session()->flash('alert-success', __('messages.customer_added'));
+        return redirect()->route('estimates.create', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]);
+    }
 }

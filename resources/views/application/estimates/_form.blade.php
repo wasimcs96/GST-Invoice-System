@@ -38,7 +38,7 @@
                     @endif
                 </select> 
                 <div class="d-none select-footer">
-                    <a href="{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                    <a data-toggle="modal" data-target="#exampleModal" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
                 </div>
             </div>
 
@@ -132,7 +132,7 @@
                                     <option disabled selected>{{ __('messages.select_product') }}</option>
                                 </select>
                                 <div class="d-none select-footer">
-                                    <a href="{{ route('products.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_product') }}</a>
+                                    <a data-toggle="modal" data-target="#productModal" class="font-weight-300">+ {{ __('messages.add_new_product') }}</a>
                                 </div>
                             </td>
                             @if($tax_per_item)
@@ -173,7 +173,7 @@
                             </td>
                             <td>
                                 <a onclick="removeRow(this)">
-                                    <i class="material-icons icon-16pt">clear</i>
+                                    <i data-feather="x"></i>
                                 </a>
                             </td>
                         </tr>
@@ -237,7 +237,7 @@
             </div>
             <div class="row card-body pagination-light justify-content-center text-center">
                 <button id="add_product_row" type="button" class="btn btn-light">
-                    <i class="material-icons icon-16pt">add</i> {{ __('messages.add_product') }}
+                    <i data-feather="plus"></i> {{ __('messages.add_product') }}
                 </button>
             </div>
         </div>
@@ -279,7 +279,7 @@
                                     @endforeach
                                 </select> 
                                 <div class="d-none select-footer">
-                                    <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_tax') }}</a>
+                                    <a data-toggle="modal" data-target="#taxModal" class="font-weight-300">+ {{ __('messages.add_new_tax') }}</a>
                                 </div>
                             </div>
                         </div>
