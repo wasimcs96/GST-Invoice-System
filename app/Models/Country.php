@@ -24,4 +24,9 @@ class Country extends Model
     public static function getSelect2Array() {
         return self::select('id', 'name AS text')->get();
     }
+
+    public function states()
+    {
+        return $this->HasMany('App\State');
+    }
 }

@@ -7,6 +7,9 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\Application\Customer\Store;
 use App\Http\Requests\Application\Customer\Update;
+use App\Models\State;
+use App\Models\City;
+use DB;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -46,12 +49,20 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         $customer = new Customer();
- 
+        $states = State::all();
+        $citie = City::all();
+        // $cities = DB::table("cities")
+        // ->where("state_id",$id)
+        // ->pluck("name","id");
         return view('application.customers.create', [
             'customer' => $customer,
+            'states' => $states,
+            // 'cities' => $cities,
+            'citie' => $citie,
+            // 'activities'=>$activities
         ]);
     }
 
@@ -231,79 +242,25 @@ class CustomerController extends Controller
         session()->flash('alert-success', __('messages.customer_deleted'));
         return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
     }
+    //  public function getState(Request $request)
+    // {
+    //     $data['states'] = State::where("state_id",$request->state_id)
+    //                 ->get(["name","id"]);
+    //     return response()->json($data);
+    // }
+    // public function getCity(Request $request)
+    // {
+    //     $data['cities'] = City::where("state_id",$request->state_id)
+    //                 ->get(["name","id"]);
+    //     return response()->json($data);
+    // }
 
-    public function customerstore(Store $request)
+    public function myformAjax(Request $request)
     {
-        $user = $request->user();
-        $currentCompany = $user->currentCompany();
-
-        // Redirect back
-        $canAdd = $currentCompany->subscription('main')->canUseFeature('customers');
-        if (!$canAdd) {
-            session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
-            return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
-        }
-        
-        // Create Customer and Store in Database
-        $customer = Customer::create([
-            'company_id' => $currentCompany->id,
-            'display_name' => $request->display_name,
-            'contact_name' => $request->contact_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'website' => $request->website,
-            'currency_id' => $request->currency_id,
-            'vat_number' => $request->vat_number,
-        ]);
-
-        // Set Customer's billing and shipping addresses
-        $customer->address('billing', $request->input('billing'));
-        $customer->address('shipping', $request->input('shipping'));
-
-        // Add custom field values
-        $customer->addCustomFields($request->custom_fields);
-
-        // Record product 
-        $currentCompany->subscription('main')->recordFeatureUsage('customers');
-
-        session()->flash('alert-success', __('messages.customer_added'));
-        return redirect()->route('invoices.create', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]);
+           
+        $cities = City::where("state_id",$request->id)->get();
+        return response()->json($cities,200);
     }
-    public function customerestimate(Store $request)
-    {
-        $user = $request->user();
-        $currentCompany = $user->currentCompany();
 
-        // Redirect back
-        $canAdd = $currentCompany->subscription('main')->canUseFeature('customers');
-        if (!$canAdd) {
-            session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
-            return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
-        }
-        
-        // Create Customer and Store in Database
-        $customer = Customer::create([
-            'company_id' => $currentCompany->id,
-            'display_name' => $request->display_name,
-            'contact_name' => $request->contact_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'website' => $request->website,
-            'currency_id' => $request->currency_id,
-            'vat_number' => $request->vat_number,
-        ]);
 
-        // Set Customer's billing and shipping addresses
-        $customer->address('billing', $request->input('billing'));
-        $customer->address('shipping', $request->input('shipping'));
-
-        // Add custom field values
-        $customer->addCustomFields($request->custom_fields);
-
-        // Record product 
-        $currentCompany->subscription('main')->recordFeatureUsage('customers');
-
-        session()->flash('alert-success', __('messages.customer_added'));
-        return redirect()->route('estimates.create', ['customer' => $customer->id, 'company_uid' => $currentCompany->uid]);
-    }
 }
