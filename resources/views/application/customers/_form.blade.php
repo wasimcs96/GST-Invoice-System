@@ -41,7 +41,7 @@
                         <label for="currency_id">{{ __('messages.currency') }}</label> 
                         <select name="currency_id" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="currency_id" required>
                             <option disabled selected>{{ __('messages.select_currency') }}</option>
-                            @foreach(get_currencies_select2_array() as $option)
+                            @foreach (get_currencies_select2_array() as $option)
                                 <option value="{{ $option['id'] }}" {{ $customer->currency_id == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                             @endforeach
                         </select>
@@ -94,7 +94,7 @@
                         <label for="billing[country_id]">{{ __('messages.country') }}</label>
                         <select id="billing[country_id]" name="billing[country_id]" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="billing[country_id]" required>
                             <option disabled selected>{{ __('messages.select_country') }}</option>
-                            @foreach(get_countries_select2_array() as $option)
+                            @foreach (get_countries_select2_array() as $option)
                                 <option value="{{ $option['id'] }}" {{ $customer->billing->country_id == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                             @endforeach
                         </select>
@@ -158,7 +158,7 @@
                         <label for="shipping[country_id]">{{ __('messages.country') }}</label>
                         <select id="shipping[country_id]" name="shipping[country_id]" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="shipping[country_id]">
                             <option disabled selected>{{ __('messages.select_country') }}</option>
-                            @foreach(get_countries_select2_array() as $option)
+                            @foreach (get_countries_select2_array() as $option)
                                 <option value="{{ $option['id'] }}" {{ $customer->shipping->country_id == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                             @endforeach
                         </select>
@@ -194,7 +194,7 @@
         </div>
     </div>
 
-    @if($customer->getCustomFields()->count() > 0)
+    @if ($customer->getCustomFields()->count() > 0)
         <div class="row no-gutters">
             <div class="col-lg-4 card-body">
                 <p><strong class="headings-color">{{ __('messages.custom_fields') }}</strong></p>
@@ -243,7 +243,8 @@
                             <div class="form-group required">
                                 <label for="email">{{ __('messages.email') }}</label>
                                 <input name="email" type="email" class="form-control"
-                                    placeholder="{{ __('messages.email') }}" value="{{ $customer->email }}" required>
+                                    placeholder="{{ __('messages.email') }}" value="{{ $customer->email }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -260,10 +261,10 @@
                                     class="form-control select2-hidden-accessible" data-select2-id="currency_id"
                                     required>
                                     <option disabled selected>{{ __('messages.select_currency') }}</option>
-                                    @foreach(get_currencies_select2_array() as $option)
-                                    <option value="{{ $option['id'] }}"
-                                        {{ $customer->currency_id == $option['id'] ? 'selected=""' : '' }}>
-                                        {{ $option['text'] }}</option>
+                                    @foreach (get_currencies_select2_array() as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            {{ $customer->currency_id == $option['id'] ? 'selected=""' : '' }}>
+                                            {{ $option['text'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -279,7 +280,8 @@
                             <div class="form-group">
                                 <label for="vat_number">{{ __('messages.vat_number') }}</label>
                                 <input name="vat_number" type="number" class="form-control"
-                                    placeholder="{{ __('messages.vat_number') }}" value="{{ $customer->vat_number }}">
+                                    placeholder="{{ __('messages.vat_number') }}"
+                                    value="{{ $customer->vat_number }}">
                             </div>
                         </div>
                     </div>
@@ -304,7 +306,8 @@
                             <div class="form-group">
                                 <label for="billing[phone]">{{ __('messages.phone') }}</label>
                                 <input name="billing[phone]" type="number" class="form-control"
-                                    value="{{ $customer->billing->phone }}" placeholder="{{ __('messages.phone') }}">
+                                    value="{{ $customer->billing->phone }}"
+                                    placeholder="{{ __('messages.phone') }}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -314,10 +317,10 @@
                                     class="form-control select2-hidden-accessible" data-select2-id="billing[country_id]"
                                     required>
                                     <option disabled selected>{{ __('messages.select_country') }}</option>
-                                    @foreach(get_countries_select2_array() as $option)
-                                    <option value="{{ $option['id'] }}"
-                                        {{ $customer->billing->country_id == $option['id'] ? 'selected=""' : '' }}>
-                                        {{ $option['text'] }}</option>
+                                    @foreach (get_countries_select2_array() as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            {{ $customer->billing->country_id == $option['id'] ? 'selected=""' : '' }}>
+                                            {{ $option['text'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -326,14 +329,16 @@
                             <div class="form-group">
                                 <label for="billing[state]">{{ __('messages.state') }}</label>
                                 <input name="billing[state]" type="text" class="form-control"
-                                    value="{{ $customer->billing->state }}" placeholder="{{ __('messages.state') }}">
+                                    value="{{ $customer->billing->state }}"
+                                    placeholder="{{ __('messages.state') }}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[city]">{{ __('messages.city') }}</label>
                                 <input name="billing[city]" type="text" class="form-control"
-                                    value="{{ $customer->billing->city }}" placeholder="{{ __('messages.city') }}">
+                                    value="{{ $customer->billing->city }}"
+                                    placeholder="{{ __('messages.city') }}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -351,7 +356,7 @@
                                     placeholder="{{ __('messages.address') }}"
                                     required>{{ $customer->billing->address_1 }}</textarea>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -362,13 +367,17 @@
             <h4 class="card-title">{{ __('messages.shipping_address') }}</h4>
             <p class="text-muted">{{ __('messages.customer_shipping_address') }}</p>
         </div>
+        <div class="form-check form-group">
+            <input class="btn" type="checkbox" value="Checkout" name="checkout" />
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[name]">{{ __('messages.name') }}</label>
                         <input name="shipping[name]" type="text" class="form-control"
-                            value="{{ $customer->shipping->name }}" placeholder="{{ __('messages.address_name') }}">
+                            value="{{ $customer->shipping->name }}"
+                            placeholder="{{ __('messages.address_name') }}">
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -384,10 +393,10 @@
                         <select id="shipping[country_id]" name="shipping[country_id]" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="shipping[country_id]">
                             <option disabled selected>{{ __('messages.select_country') }}</option>
-                            @foreach(get_countries_select2_array() as $option)
-                            <option value="{{ $option['id'] }}"
-                                {{ $customer->shipping->country_id == $option['id'] ? 'selected=""' : '' }}>
-                                {{ $option['text'] }}</option>
+                            @foreach (get_countries_select2_array() as $option)
+                                <option value="{{ $option['id'] }}"
+                                    {{ $customer->shipping->country_id == $option['id'] ? 'selected=""' : '' }}>
+                                    {{ $option['text'] }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -413,17 +422,18 @@
                             placeholder="{{ __('messages.address') }}">{{ $customer->shipping->address_1 }}</textarea>
                     </div>
                 </div>
-                @if($customer->getCustomFields()->count() > 0)
-                <div class="col-md-6 col-12">
-                    <div class="col-lg-4 card-body">
-                        <p><strong class="headings-color">{{ __('messages.custom_fields') }}</strong></p>
+                @if ($customer->getCustomFields()->count() > 0)
+                    <div class="col-md-6 col-12">
+                        <div class="col-lg-4 card-body">
+                            <p><strong class="headings-color">{{ __('messages.custom_fields') }}</strong></p>
+                        </div>
+                        <div class="form-group">
+                            @foreach ($customer->getCustomFields() as $custom_field)
+                                @include('layouts._custom_field', ['model' => $customer, 'custom_field' =>
+                                $custom_field])
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="form-group">
-                        @foreach ($customer->getCustomFields() as $custom_field)
-                        @include('layouts._custom_field', ['model' => $customer, 'custom_field' => $custom_field])
-                        @endforeach
-                    </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -435,14 +445,15 @@
         <button type="reset" class="btn btn-outline-secondary">Reset</button>
     </div> -->
     <div class="form-group text-center mt-5">
-    <button type="submit" class="btn btn-primary" style="margin-left: 240px;">{{ __('messages.save_customer') }}</button>
-</div>
+        <button type="submit" class="btn btn-primary"
+            style="margin-left: 240px;">{{ __('messages.save_customer') }}</button>
+    </div>
     </div>
     </div>
 </section>
 
 @section('page_head_scripts')
-<link rel="stylesheet" type="text/css"
-    href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
 
 @endsection
