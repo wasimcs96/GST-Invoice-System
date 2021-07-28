@@ -253,7 +253,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
@@ -341,7 +341,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Tax</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('settings.tax.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
