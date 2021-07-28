@@ -312,7 +312,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="billing[country_id]">{{ __('messages.country') }}</label>
-                                <select id="billing[country_id]" name="billing[country_id]" data-toggle="select"
+                                <select id="billing_country_id" name="billing[country_id]" data-toggle="select"
                                     class="form-control select2-hidden-accessible" data-select2-id="billing[country_id]"
                                     required>
                                     <option disabled selected>{{ __('messages.select_country') }}</option>
@@ -335,7 +335,7 @@
                         <div class="col-md-6 col-12">
                         <div class="form-group required">
                             <label for="billing[state]">{{ __('messages.state') }}</label>
-                            <select id="billing[state]" name="billing[state]" data-toggle="select"
+                            <select id="billing_state" name="billing[state]" data-toggle="select"
                                 class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
                                 required>
                                 <option disabled selected>Select state</option>
@@ -350,7 +350,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group required">
                             <label for="billing[city]">{{ __('messages.city') }}</label>
-                            <select name="billing[city]" data-toggle="select"
+                            <select name="billing[city]" id="billing_city" data-toggle="select"
                                 class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
                                 required>
                                 <option disabled selected>Select city</option>
@@ -419,7 +419,7 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[country_id]">{{ __('messages.country') }}</label>
-                        <select id="shipping[country_id]" name="shipping[country_id]" data-toggle="select"
+                        <select id="shipping_country_id" name="shipping[country_id]" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="shipping[country_id]">
                             <option disabled selected>{{ __('messages.select_country') }}</option>
                             @foreach (get_countries_select2_array() as $option)
@@ -447,9 +447,12 @@
 
                     <div class="form-group required">
                         <label for="billing[state]">{{ __('messages.state') }}</label>
-                        <select id="billing[state]" name="billing[state]" data-toggle="select"
+                        {{-- <select id="billing[state]" name="billing[state]" data-toggle="select"
                             class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
-                            required>
+                            required> --}}
+                            <select id="shipping_state" name="billing[state]" data-toggle="select"
+                                class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
+                                required>
                             <option disabled selected>Select state</option>
                             @foreach ($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -461,7 +464,7 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group required">
                         <label for="billing[city]">{{ __('messages.city') }}</label>
-                        <select name="billing[city]" data-toggle="select"
+                        <select name="billing[city]" id="shipping_city" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
                             required>
                             <option disabled selected>Select city</option>

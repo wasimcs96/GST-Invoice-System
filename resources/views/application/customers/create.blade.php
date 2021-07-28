@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-    <form action="javascript:void(0)" id="submitform" method="POST"
+    <form action="{{ route('customers.store', ['company_uid' => $currentCompany->uid]) }}" id="submitform" method="POST"
         enctype="multipart/form-data">
         @include('layouts._form_errors')
         @csrf
@@ -64,73 +64,53 @@
         });
     });
 </script>
-       {{-- launch page --}}
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#submitform').on('submit', function(e) {
-
-
-            e.preventDefault();
-            let display = $('#display_name').val();
-            let contact = $('#contact_name').val();
-            let email = $('#email').val();
-            let phone = $('#phone').val();
-            let currency = $('#currency_id').val();
-            let web = $('#website').val();
-            let vat = $('#vat_number').val();
-            let billingname = $('#billing_name').val();
-            let billingphone = $('#billing_phone').val();
-            let billingcountry = $('#billing[country_id]').val();
-            let billingstate = $('#billing[state]').val();
-            let city = $('#city').val();
-            let billingzip = $('#billing_zip').val();
-            let billingaddress = $('#billing_address ').val();
-            let shippingname = $('#shipping_name').val();
-            let shippingphone = $('#shipping_phone').val();
-            let shippingcountry = $('#shipping[country_id]').val();
-            let state = $('#billing[state]').val();
-            let cr = $('#city').val();
-            let shippingaddress = $('#shipping_address').val();
-            // console.log(cr);
-            // let calci_id = $('#calci_id').val();
-            // 
-            // $('#crlaunch').html(cr);
-
-
-            // let traffic = $('#sumlaunch').val();
-            // console.log(traffic);
-            // let convertedlaunch = (cr * traffic) / 100;
-            // console.log(convertedlaunch);
-            // console.log(converted);    
-            $('#shipping_name').html(billingname);
-            $('#shipping_phone').html(billingphone);
-            $('#shipping[country_id]').html(billingcountry);
-            $('#billing[state]').html(billingstate);
-            $('#city').html(city);
-            $('#shipping_address').html(billingaddress);
-            // console.log(name);
-
-            $.ajax({
-                url: "{{ route('customers.store', ['company_uid' => $currentCompany->uid]) }}",
-                type: "POST",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    name: name,
-                    calci_id: calci_id,
-                    converted: convertedlaunch,
-                    cr: cr,
-
-                },
-                success: function(response) {
-                    console.log(response);
-                    $('#alert').html(' <div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Changes Saved Successfully<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close" style="border:none;background:none; float:right">X</button></div>');
-                    location.reload();
-                },
-            });
-        });
+<script>
+    $(function () {
+    var $src = $('#billing_name'),
+        $dst = $('#shipping_name');
+    $src.on('input', function () {
+        $dst.val($src.val());
     });
-</script>
+}); 
 
-{{-- launh page end --}}
+$(function () {
+    var $src1 = $('#billing_phone'),
+        $dst1 = $('#shipping_phone');
+    $src1.on('input', function () {
+        $dst1.val($src1.val());
+    });
+}); 
+
+$(function () {
+    var $src2 = $('#billing_country_id'),
+        $dst2 = $('#shipping_country_id');
+    $src2.on('input', function () {
+        $dst2.val($src2.val());
+    });
+}); 
+
+$(function () {
+    var $src3 = $('#billing_state'),
+        $dst3 = $('#shipping_state');
+    $src3.on('input', function () {
+        $dst3.val($src3.val());
+    });
+}); 
+
+$(function () {
+    var $src4 = $('#billing_city'),
+        $dst4 = $('#shipping_city');
+    $src4.on('input', function () {
+        $dst4.val($src4.val());
+    });
+}); 
+
+$(function () {
+    var $src5 = $('#billing_address'),
+        $dst5 = $('#shipping_address');
+    $src5.on('input', function () {
+        $dst5.val($src5.val());
+    });
+}); 
+</script>
 @endsection
