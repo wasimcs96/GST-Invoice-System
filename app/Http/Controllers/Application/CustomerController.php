@@ -146,7 +146,8 @@ class CustomerController extends Controller
     public function edit(Request $request)
     {
         $customer = Customer::findOrFail($request->customer);
-        
+        $states = State::all();
+        $citie = City::all();
         // Fill model with old input
         if (!empty($request->old())) {
             $customer->fill($request->old());
@@ -154,6 +155,8 @@ class CustomerController extends Controller
 
         return view('application.customers.edit', [
             'customer' => $customer,
+            'states' => $states,
+            'citie' => $citie
         ]);
     }
 
