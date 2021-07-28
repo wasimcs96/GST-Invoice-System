@@ -350,7 +350,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group required">
                             <label for="billing[city]">{{ __('messages.city') }}</label>
-                            <select name="billing[city]" id="city" data-toggle="select"
+                            <select name="billing[city]" data-toggle="select"
                                 class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
                                 required>
                                 <option disabled selected>Select city</option>
@@ -461,7 +461,7 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group required">
                         <label for="billing[city]">{{ __('messages.city') }}</label>
-                        <select name="billing[city]" id="city" data-toggle="select"
+                        <select name="billing[city]" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
                             required>
                             <option disabled selected>Select city</option>
