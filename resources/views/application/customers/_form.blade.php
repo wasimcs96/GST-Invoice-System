@@ -436,7 +436,7 @@
                         <label for="shipping[state]">{{ __('messages.state') }}</label>
                         <select id="shipping[state]" name="shipping[state]" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="shipping[state]">
-                            <option disabled selected>{{ __('messages.select_state') }}</option>
+                            <option disabled selected>{{ __('messages.select_sta te') }}</option>
                             @foreach(get_countries_select2_array() as $option)
                             <option value="{{ $option['id'] }}"
                                 {{ $customer->shipping->country_id == $option['id'] ? 'selected=""' : '' }}>
