@@ -226,7 +226,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="display_name">{{ __('messages.display_name') }}</label>
-                                <input name="display_name" type="text" class="form-control"
+                                <input name="display_name" id="display_name" type="text" class="form-control"
                                     placeholder="{{ __('messages.display_name') }}"
                                     value="{{ $customer->display_name }}" required>
                             </div>
@@ -234,7 +234,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="contact_name">{{ __('messages.contact_name') }}</label>
-                                <input name="contact_name" type="text" class="form-control"
+                                <input name="contact_name" id="contact_name" type="text" class="form-control"
                                     placeholder="{{ __('messages.contact_name') }}"
                                     value="{{ $customer->contact_name }}" required>
                             </div>
@@ -242,7 +242,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="email">{{ __('messages.email') }}</label>
-                                <input name="email" type="email" class="form-control"
+                                <input name="email" id="email" type="email" class="form-control"
                                     placeholder="{{ __('messages.email') }}" value="{{ $customer->email }}"
                                     required>
                             </div>
@@ -250,14 +250,14 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="phone">{{ __('messages.phone') }}</label>
-                                <input name="phone" type="number" class="form-control"
+                                <input name="phone" id="phone" type="number" class="form-control"
                                     placeholder="{{ __('messages.phone') }}" value="{{ $customer->phone }}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="currency_id">{{ __('messages.currency') }}</label>
-                                <select name="currency_id" data-toggle="select"
+                                <select name="currency_id" id="currency_id" data-toggle="select"
                                     class="form-control select2-hidden-accessible" data-select2-id="currency_id"
                                     required>
                                     <option disabled selected>{{ __('messages.select_currency') }}</option>
@@ -272,14 +272,14 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="website">{{ __('messages.website') }}</label>
-                                <input name="website" type="url" class="form-control"
+                                <input name="website" id="website" type="url" class="form-control"
                                     placeholder="{{ __('messages.website') }}" value="{{ $customer->website }}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="vat_number">GST Number</label>
-                                <input name="vat_number" type="number" class="form-control"
+                                <input name="vat_number" id="vat_number" type="number" class="form-control"
                                     placeholder="GST Number" value="{{ $customer->vat_number }}">
                             </div>
                         </div>
@@ -296,7 +296,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="billing[name]">{{ __('messages.name') }}</label>
-                                <input name="billing[name]" type="text" class="form-control"
+                                <input name="billing[name]" id="billing_name" type="text" class="form-control"
                                     placeholder="{{ __('messages.address_name') }}"
                                     value="{{ $customer->billing->name }}" required>
                             </div>
@@ -304,7 +304,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[phone]">{{ __('messages.phone') }}</label>
-                                <input name="billing[phone]" type="number" class="form-control"
+                                <input name="billing[phone]" id="billing_phone" type="number" class="form-control"
                                     value="{{ $customer->billing->phone }}"
                                     placeholder="{{ __('messages.phone') }}">
                             </div>
@@ -373,7 +373,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
-                                <input name="billing[zip]" type="text" class="form-control"
+                                <input name="billing[zip]" id="billing_zip" type="text" class="form-control"
                                     value="{{ $customer->billing->zip }}"
                                     placeholder="{{ __('messages.postal_code') }}">
                             </div>
@@ -381,7 +381,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="billing[address_1]">{{ __('messages.address') }}</label>
-                                <textarea name="billing[address_1]" class="form-control" rows="2"
+                                <textarea name="billing[address_1]" id="billing_address" class="form-control" rows="2"
                                     placeholder="{{ __('messages.address') }}"
                                     required>{{ $customer->billing->address_1 }}</textarea>
                             </div>
@@ -396,15 +396,15 @@
             <h4 class="card-title">{{ __('messages.shipping_address') }}</h4>
             <p class="text-muted">{{ __('messages.customer_shipping_address') }}</p>
         </div>
-        <div class="form-check form-group">
+        {{-- <div class="form-check form-group">
             <input class="btn" type="checkbox" value="Checkout" name="checkout" />
-        </div>
+        </div> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[name]">{{ __('messages.name') }}</label>
-                        <input name="shipping[name]" type="text" class="form-control"
+                        <input name="shipping[name]" id="shipping_name" type="text" class="form-control"
                             value="{{ $customer->shipping->name }}"
                             placeholder="{{ __('messages.address_name') }}">
                     </div>
@@ -412,7 +412,7 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[phone]">{{ __('messages.phone') }}</label>
-                        <input name="shipping[phone]" type="number" class="form-control"
+                        <input name="shipping[phone]" id="shipping_phone" type="number" class="form-control"
                             value="{{ $customer->shipping->phone }}" placeholder="{{ __('messages.phone') }}">
                     </div>
                 </div>
@@ -475,7 +475,7 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[address_1]">{{ __('messages.address') }}</label>
-                        <textarea name="shipping[address_1]" class="form-control" rows="2"
+                        <textarea name="shipping[address_1]" id="shipping_address" class="form-control" rows="2"
                             placeholder="{{ __('messages.address') }}">{{ $customer->shipping->address_1 }}</textarea>
                     </div>
                 </div>
