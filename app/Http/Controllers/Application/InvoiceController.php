@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Application\Invoice\Store;
 use App\Http\Requests\Application\Invoice\Update;
 use App\Models\Product;
+use App\Models\State;
+use App\Models\City;
 use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -81,6 +83,8 @@ class InvoiceController extends Controller
 
         // Also for filling form data and the ui
         $customers = $currentCompany->customers;
+        $states = State::all();
+        $citie = City::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -91,6 +95,9 @@ class InvoiceController extends Controller
             'products' => $products,
             'tax_per_item' => $tax_per_item,
             'discount_per_item' => $discount_per_item,
+            'states' => $states,
+            // 'cities' => $cities,
+            'citie' => $citie,
         ]);
     }
 
@@ -190,7 +197,9 @@ class InvoiceController extends Controller
         $currentCompany->subscription('main')->recordFeatureUsage('invoices_per_month');
 
         session()->flash('alert-success', __('messages.invoice_added'));
-        return redirect()->route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]);
+        // return redirect()->route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]);
+        return redirect()->route('invoices', ['company_uid' => $currentCompany->uid]);
+
     }
 
     /**
@@ -251,7 +260,7 @@ class InvoiceController extends Controller
         InvoiceSentEvent::dispatch($invoice);
 
         session()->flash('alert-success', __('messages.an_email_sent_to_customer'));
-        return redirect()->route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]);
+        return redirect()->route('invoices.details',['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]);
     }
 
     /**

@@ -175,10 +175,15 @@
                                 <i data-feather="more-vertical"></i>
                             </button>
                             <div class="dropdown-menu"> 
-                            <a class="dropdown-item"
+                            {{-- <a class="dropdown-item"
                             href="{{ route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}">
                             <i data-feather="eye"></i>
                                     <span>Detail</span>
+                                </a> --}}
+                                <a class="dropdown-item"
+                                href="{{ route('pdf.invoice', ['invoice' => $invoice->uid, 'download' => true]) }}">
+                            <i data-feather="arrow-down"></i>
+                                    <span>Download</span>
                                 </a>
                             </div>
                         </div>
