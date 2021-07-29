@@ -30,14 +30,14 @@ class Dashboard
         $route = $request->route()->getName();
 
         // If there is no subscription at all
-        if (substr($route, 0, 6) !== 'order.' && !$subscription) {
-            return redirect()->route('order.plans');
-        }
+        // if (substr($route, 0, 6) !== 'order.' && !$subscription) {
+        //     return redirect()->route('order.plans');
+        // }
 
         // If there is a subscription but not an active subscription
-        if (substr($route, 0, 6) !== 'order.' && !$subscription->active()) {
-            return redirect()->route('order.plans');
-        }
+        // if (substr($route, 0, 6) !== 'order.' && !$subscription->active()) {
+        //     return redirect()->route('order.plans');
+        // }
 
         // Company based preferences
         share([
