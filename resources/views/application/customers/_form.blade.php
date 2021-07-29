@@ -450,7 +450,7 @@
                         {{-- <select id="billing[state]" name="billing[state]" data-toggle="select"
                             class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
                             required> --}}
-                            <select id="shipping_state" name="billing[state]" data-toggle="select"
+                            <select id="shipping_state" name="shipping[state]" data-toggle="select"
                                 class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
                                 required>
                             <option disabled selected>Select state</option>
@@ -464,7 +464,7 @@
                 <div class="col-md-6 col-12">
                     <div class="form-group required">
                         <label for="billing[city]">{{ __('messages.city') }}</label>
-                        <select name="billing[city]" id="shipping_city" data-toggle="select"
+                        <select name="shipping[city]" id="shipping_city" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
                             required>
                             <option disabled selected>Select city</option>

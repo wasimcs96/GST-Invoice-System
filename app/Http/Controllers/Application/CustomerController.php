@@ -96,6 +96,7 @@ class CustomerController extends Controller
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
         ]);
+        
 
         // Set Customer's billing and shipping addresses
         $customer->address('billing', $request->input('billing'));
@@ -263,6 +264,49 @@ class CustomerController extends Controller
            
         $cities = City::where("state_id",$request->id)->get();
         return response()->json($cities,200);
+    }
+
+    public function customerstore(Store $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Redirect back
+        $canAdd = $currentCompany->subscription('main')->canUseFeature('products');
+        if (!$canAdd) {
+            session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
+            return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
+        }
+        $price = preg_replace('~\D~', '', $request->price);
+        // dd($price);
+        // Create Product and Store in Database
+        $product = Product::create([
+            'name' => $request->name,
+            'company_id' => $currentCompany->id,
+            'unit_id' => $request->unit_id,
+            'price'  => $price,
+            'description' => $request->description,
+        ]);
+
+        // Add custom field values
+        $product->addCustomFields($request->custom_fields);
+
+        // Add Product Taxes
+        if ($request->has('taxes')) {
+            foreach ($request->taxes as $tax) {
+                $product->taxes()->create([
+                    'tax_type_id' => $tax
+                ]);
+            }
+        }
+        
+
+        // Record product 
+        $currentCompany->subscription('main')->recordFeatureUsage('products');
+
+        session()->flash('alert-success', __('messages.product_added'));
+        return redirect()->route('invoices.create', ['company_uid' => $currentCompany->uid]);
+        
     }
 
 

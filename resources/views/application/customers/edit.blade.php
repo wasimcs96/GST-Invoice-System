@@ -50,6 +50,12 @@
                             $('select[name="billing[city]"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
                         });
 
+                        $('select[name="shipping[city]"]').empty();
+                        $.each(data, function(key, value) {
+                            // console.log(value.name);
+                            $('select[name="shipping[city]"]').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                        });
+
 
                     }
                 });
