@@ -11,4 +11,9 @@ class City extends Model
         return $this->belongsTo('App\States');
 
     }
+
+    public function cityaddress()
+    {
+        return $this->hasMany('App\Address');
+    }
 }

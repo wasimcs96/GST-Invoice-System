@@ -57,4 +57,14 @@ class Address extends Model
     {
         return $this->update(compact('role'));
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
 }
