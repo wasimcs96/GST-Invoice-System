@@ -77,7 +77,7 @@ class PaymentController extends Controller
                 $payment->amount = $invoice->due_amount;
             }
         }
-
+          
         return view('application.payments.create', [
             'payment' => $payment
         ]);
