@@ -80,6 +80,7 @@ class ProductController extends Controller
             return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
         }
         $price = preg_replace('~\D~', '', $request->price);
+        
         // dd($price);
         // Create Product and Store in Database
         $product = Product::create([
@@ -137,19 +138,24 @@ class ProductController extends Controller
     public function update(Update $request)
     {
         $user = $request->user();
+        
         $currentCompany = $user->currentCompany();
 
         $product = Product::findOrFail($request->product);
-
+        $price = preg_replace('~\D~', '', $request->price);
+        
+        // dd($price);
         // Update the Expense
         $product->update([
             'name' => $request->name,
             'unit_id' => $request->unit_id,
-            'price'  => $request->price,
+            'price'  => $price ,
             'description' => $request->description,
         ]);
+        
 
         // Update custom field values
+        
         $product->updateCustomFields($request->custom_fields);
 
         // Remove old Product Taxes
