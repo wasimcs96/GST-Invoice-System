@@ -110,6 +110,13 @@ $(function () {
         $dst4.val($src4.val());
     });
 }); 
+$(function () {
+    var $src6 = $('#billing_zip'),
+        $dst6 = $('#shipping_zip');
+    $src6.on('input', function () {
+        $dst6.val($src6.val());
+    });
+}); 
 
 $(function () {
     var $src5 = $('#billing_address'),

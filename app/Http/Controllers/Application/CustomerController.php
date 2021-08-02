@@ -73,7 +73,7 @@ class CustomerController extends Controller
      * 
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function store(Store $request)
+    public function store(Request $request)
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();

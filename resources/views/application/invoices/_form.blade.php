@@ -47,7 +47,7 @@
                 <label for="invoice_number">{{ __('messages.invoice_number') }}</label>
                 <div class="input-group">
                     <input name="invoice_prefix" type="hidden" value="{{ $invoice->invoice_prefix }}">
-                    <input name="invoice_number" type="text" maxlength="6" class="form-control form-control-prepended"
+                    <input name="invoice_number" type="text" class="form-control form-control-prepended"
                         value="{{ $invoice->invoice_num }}" autocomplete="off" required>
                     {{-- <div class="input-group-prepend"> --}}
                     <div class="input-group-text">
