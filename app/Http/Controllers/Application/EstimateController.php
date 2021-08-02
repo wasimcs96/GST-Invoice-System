@@ -11,6 +11,8 @@ use App\Http\Requests\Application\Estimate\Store;
 use App\Http\Requests\Application\Estimate\Update;
 use App\Models\Invoice;
 use App\Models\Product;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -82,6 +84,8 @@ class EstimateController extends Controller
 
         // Also for filling form data and the ui
         $customers = $currentCompany->customers;
+        $states = State::all();
+        $citie = City::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -92,6 +96,9 @@ class EstimateController extends Controller
             'products' => $products,
             'tax_per_item' => $tax_per_item,
             'discount_per_item' => $discount_per_item,
+            'states' => $states,
+            // 'cities' => $cities,
+            'citie' => $citie,
         ]);
     }
 

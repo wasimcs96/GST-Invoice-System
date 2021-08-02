@@ -267,6 +267,13 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
+                                            <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
+                                            <input name="shipping[zip]" id="shipping_zip" type="text" class="form-control"
+                                                placeholder="{{ __('messages.postal_code') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
                                             <label for="shipping[address_1]">{{ __('messages.address') }}</label>
                                             <textarea name="shipping[address_1]" id="shipping_address" class="form-control"
                                                 rows="2"
@@ -570,6 +577,14 @@
             $dst5.val($src5.val());
         });
     });
+
+    $(function() {
+            var $src6 = $('#billing_zip'),
+                $dst6 = $('#shipping_zip');
+            $src6.on('input', function() {
+                $dst6.val($src6.val());
+            });
+        });    
 </script>
 
 

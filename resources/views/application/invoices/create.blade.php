@@ -123,19 +123,19 @@
                                                         placeholder="{{ __('messages.address_name') }}" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            {{-- <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="billing[phone]">{{ __('messages.phone') }}</label>
                                                     <input name="billing[phone]" id="billing_phone" type="number"
-                                                        class="form-control"
-                                                        placeholder="{{ __('messages.phone') }}">
+                                                        class="form-control" placeholder="{{ __('messages.phone') }}">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="billing[country_id]">{{ __('messages.country') }}</label>
                                                     <select id="billing_country_id" name="billing[country_id]"
-                                                        data-toggle="select" class="form-control select2 select2-hidden-accessible"
+                                                        data-toggle="select"
+                                                        class="form-control select2 select2-hidden-accessible"
                                                         data-select2-id="billing[country_id]" required>
                                                         <option disabled selected>{{ __('messages.select_country') }}
                                                         </option>
@@ -189,8 +189,7 @@
                                                     <label for="billing[address_1]">{{ __('messages.address') }}</label>
                                                     <textarea name="billing[address_1]" id="billing_address"
                                                         class="form-control" rows="2"
-                                                        placeholder="{{ __('messages.address') }}"
-                                                        required></textarea>
+                                                        placeholder="{{ __('messages.address') }}" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,14 +210,13 @@
                                                 placeholder="{{ __('messages.address_name') }}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                    {{-- <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping[phone]">{{ __('messages.phone') }}</label>
                                             <input name="shipping[phone]" id="shipping_phone" type="number"
-                                                class="form-control" 
-                                                placeholder="{{ __('messages.phone') }}">
+                                                class="form-control" placeholder="{{ __('messages.phone') }}">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping[country_id]">{{ __('messages.country') }}</label>
@@ -267,10 +265,16 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
+                                            <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
+                                            <input name="shipping[zip]" id="shipping_zip" type="text" class="form-control"
+                                                placeholder="{{ __('messages.postal_code') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
                                             <label for="shipping[address_1]">{{ __('messages.address') }}</label>
                                             <textarea name="shipping[address_1]" id="shipping_address" class="form-control"
-                                                rows="2"
-                                                placeholder="{{ __('messages.address') }}"></textarea>
+                                                rows="2" placeholder="{{ __('messages.address') }}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -601,6 +605,14 @@
                 $dst4 = $('#shipping_city');
             $src4.on('input', function() {
                 $dst4.val($src4.val());
+            });
+        });
+
+        $(function() {
+            var $src6 = $('#billing_zip'),
+                $dst6 = $('#shipping_zip');
+            $src6.on('input', function() {
+                $dst6.val($src6.val());
             });
         });
 

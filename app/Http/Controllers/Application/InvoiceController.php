@@ -15,6 +15,9 @@ use App\Models\City;
 use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Exports\InvoiceExport;
+use App\Imports\InvoiceImport;  
+use Maatwebsite\Excel\Facades\Excel;
 
 class InvoiceController extends Controller
 {
@@ -460,5 +463,41 @@ class InvoiceController extends Controller
 
         session()->flash('alert-success', __('messages.invoice_deleted'));
         return redirect()->route('invoices', ['company_uid' => $currentCompany->uid]);
+    }
+
+    public function importExportView()
+    {
+       return view('import');
+    }
+    /**
+
+    * @return \Illuminate\Support\Collection
+
+    */
+
+    public function export(Request $request) 
+    {
+        return Excel::download(new InvoiceExport, $request->file);
+    }
+    /**
+
+    * @return \Illuminate\Support\Collection
+
+    */
+    public function import(Request $request) 
+    {
+        // dd($request->all());
+        Excel::import(new InvoiceImport,request()->file('file'));
+        return back();
+    }
+
+    public function exportInvoice(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+       return view('application.invoices.import', [
+        'authUser'=> $user,
+        'currentCompany'=> $currentCompany,
+    ]);
     }
 }

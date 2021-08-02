@@ -279,7 +279,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="vat_number">GST Number</label>
-                                <input name="vat_number" id="vat_number" type="number" class="form-control"
+                                <input name="vat_number" id="vat_number" type="text" class="form-control"
                                     placeholder="GST Number" value="{{ $customer->vat_number }}">
                             </div>
                         </div>
@@ -301,14 +301,14 @@
                                     value="{{ $customer->billing->name }}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        {{-- <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="billing[phone]">{{ __('messages.phone') }}</label>
                                 <input name="billing[phone]" id="billing_phone" type="number" class="form-control"
                                     value="{{ $customer->billing->phone }}"
                                     placeholder="{{ __('messages.phone') }}">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
                                 <label for="billing[country_id]">{{ __('messages.country') }}</label>
@@ -409,13 +409,13 @@
                             placeholder="{{ __('messages.address_name') }}">
                     </div>
                 </div>
-                <div class="col-md-6 col-12">
+                {{-- <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[phone]">{{ __('messages.phone') }}</label>
                         <input name="shipping[phone]" id="shipping_phone" type="number" class="form-control"
                             value="{{ $customer->shipping->phone }}" placeholder="{{ __('messages.phone') }}">
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md-6 col-12">
                     <div class="form-group">
                         <label for="shipping[country_id]">{{ __('messages.country') }}</label>
@@ -473,6 +473,14 @@
                             @endforeach --}}
                           
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
+                        <input name="shipping[zip]" id="shipping_zip" type="text" class="form-control"
+                            value="{{ $customer->shipping->zip }}"
+                            placeholder="{{ __('messages.postal_code') }}">
                     </div>
                 </div>
                 <div class="col-md-6 col-12">

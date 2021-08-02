@@ -26,7 +26,7 @@ class Store extends FormRequest
     {
         return [
             'display_name' => 'required|string|max:190',
-            'contact_name' => 'required|string|max:190',
+            // 'contact_name' => 'required|string|max:190',
             'email' => [
                 'required',
                 'string',
@@ -38,19 +38,19 @@ class Store extends FormRequest
             ],
             'phone' => 'nullable|string|max:190',
             'website' => 'nullable|string|max:190',
-            'currency_id' => 'required|integer',
+            // 'currency_id' => 'required|integer',
             'vat_number' => 'nullable|string',
 
-            'billing.name' => 'required|string|max:190',
-            'billing.phone' => 'nullable|string|max:190',
+            // 'billing.name' => 'required|string|max:190',
+            // 'billing.phone' => 'nullable|string|max:190',
             'billing.country_id' => 'required|integer',
             'billing.state' => 'nullable|string|max:190',
             'billing.city' => 'nullable|string|max:190',
             'billing.zip' => 'nullable|string|max:190',
             'billing.address_1' => 'required|string|max:500',
 
-            'shipping.name' => 'nullable|string|max:190',
-            'shipping.phone' => 'nullable|string|max:190',
+            // 'shipping.name' => 'nullable|string|max:190',
+            // 'shipping.phone' => 'nullable|string|max:190',
             'shipping.country_id' => 'nullable|integer',
             'shipping.state' => 'nullable|string|max:190',
             'shipping.city' => 'nullable|string|max:190',

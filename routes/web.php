@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Application\csv\InvoiceController;
 
 // Landing
 Route::get('/', 'HomeController@index')->middleware('installed')->name('home');
@@ -130,6 +131,10 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/products/{product}/delete', 'ProductController@delete')->name('products.delete');
 
     // Invoices
+    Route::get('/importExportView','InvoiceController@importExportView')->name('csv.view');
+    Route::get('/export','InvoiceController@export')->name('export');
+    Route::post('/import', 'InvoiceController@import')->name('import');
+    Route::get('/export/invoice', 'InvoiceController@exportInvoice')->name('export.invoice');
     Route::get('/invoices/create', 'InvoiceController@create')->name('invoices.create');
     Route::post('/invoices/create', 'InvoiceController@store')->name('invoices.store');
     Route::get('/invoices/{invoice}/details', 'InvoiceController@show')->name('invoices.details');
