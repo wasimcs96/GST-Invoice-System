@@ -1146,8 +1146,6 @@ return array(
     'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
     'DeepCopy\\TypeFilter\\TypeFilter' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
     'DeepCopy\\TypeMatcher\\TypeMatcher' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
-<<<<<<< HEAD
-=======
     'Defuse\\Crypto\\Core' => $vendorDir . '/defuse/php-encryption/src/Core.php',
     'Defuse\\Crypto\\Crypto' => $vendorDir . '/defuse/php-encryption/src/Crypto.php',
     'Defuse\\Crypto\\DerivedKeys' => $vendorDir . '/defuse/php-encryption/src/DerivedKeys.php',
@@ -1162,10 +1160,6 @@ return array(
     'Defuse\\Crypto\\KeyOrPassword' => $vendorDir . '/defuse/php-encryption/src/KeyOrPassword.php',
     'Defuse\\Crypto\\KeyProtectedByPassword' => $vendorDir . '/defuse/php-encryption/src/KeyProtectedByPassword.php',
     'Defuse\\Crypto\\RuntimeTests' => $vendorDir . '/defuse/php-encryption/src/RuntimeTests.php',
-    'Doctrine\\Common\\Cache\\ApcCache' => $vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache/ApcCache.php',
-    'Doctrine\\Common\\Cache\\ApcuCache' => $vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache/ApcuCache.php',
-    'Doctrine\\Common\\Cache\\ArrayCache' => $vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache/ArrayCache.php',
->>>>>>> b0825223e7098addb5330572fccc8a2dca9a8490
     'Doctrine\\Common\\Cache\\Cache' => $vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache/Cache.php',
     'Doctrine\\Common\\Cache\\CacheProvider' => $vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache/CacheProvider.php',
     'Doctrine\\Common\\Cache\\ClearableCache' => $vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache/ClearableCache.php',
