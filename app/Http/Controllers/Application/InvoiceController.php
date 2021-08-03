@@ -487,7 +487,8 @@ class InvoiceController extends Controller
     public function import(Request $request) 
     {
         // dd($request->all());
-        Excel::import(new InvoiceImport,request()->file('file'));
+        $products = $request->product_id;
+        Excel::import(new InvoiceImport($products),request()->file('file'));
         return back();
     }
 
@@ -495,9 +496,11 @@ class InvoiceController extends Controller
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
+        $products = $currentCompany->products;
        return view('application.invoices.import', [
         'authUser'=> $user,
         'currentCompany'=> $currentCompany,
+        'products' => $products,
     ]);
     }
 }

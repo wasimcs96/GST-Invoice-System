@@ -6,6 +6,8 @@ use App\Models\Method\RoleMethod;
 use App\Models\Method\UserMethod;
 use App\Traits\CompanyUserTrait;
 use App\Traits\HasAddresses;
+use Laravel\Passport\HasApiTokens;
+use App\Traits\ApiTokens;
 use App\Traits\UUIDTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,10 +15,10 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 { 
-    use Notifiable;
+    use Notifiable, HasRoles,UserMethod;
     use UUIDTrait;
-    use HasRoles;
     use HasAddresses;
+    use HasApiTokens;
     use CompanyUserTrait;
     use UserMethod;
 

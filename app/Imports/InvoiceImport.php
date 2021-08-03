@@ -3,77 +3,87 @@
 namespace App\Imports;
 use App\Models\Customer;
 use App\Models\Invoice;
+use App\Models\InvoiceItem;
+use App\Imports\InvoiceImport;
 use Maatwebsite\Excel\Concerns\ToModel;
 // use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 use Carbon\Carbon;
+use Auth;
 
 class InvoiceImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    // dd($products);
+    protected $products;
+    
+    public function  __construct($products)
+    {
+        $this->products =$products;
+    }
+    
+    public function onRow(Row $row)
     {
         // dd($row);
+        $rowIndex = $row->getIndex();
+        $row = $row->toArray();
         $email =$row['email'];
         $customer = Customer::where('email',$email)->first();
+        
         // $customer->id;
 // dd($email);
         // if ($customer->fails()) {
         //     return redirect(''.auth()->user()->uid.'/export');
         // }
-        foreach($row as $product)
+        foreach($row as $rows)
         {
+            dd($rows);
             $invoice = Invoice::create([
                 'customer_id' => $customer->id,
-                'company_id'  => auth()->company()->id,
+                'company_id'  => Auth::user()->id,
                 'invoice_date' => Carbon::now()->format('Y-m-d'), 
                 'due_date'    => Carbon::now()->format('Y-m-d'),
-                'invoice_number'    => $product['invoice_number'], 
-                'reference_number' => $product['reference_number'], 
+                'invoice_number'    => $rows['invoice_number'], 
+                'reference_number' => $rows['reference_number'], 
                 // 'status'     => 'DRAFT',
                 // 'paid_status'    => 'UNPAID', 
-                'status'     => $product['status'],
-                'paid_status'    => $product['paid_status'], 
-                'tax_per_item' => $product['tax_per_item'], 
-                'discount_per_item'     => $product['discount_per_item'],
-                'notes'    => $product['notes'], 
-                'private_notes' => $product['private_notes'], 
-                'discount_type'     => $product['discount_type'],
-                'discount_val'    => $product['discount_val'], 
-                'sub_total' => $product['sub_total'], 
-                'total'    => $product['total'], 
-                'due_amount' => $product['due_amount'],
+                'status'     => $rows['status'],
+                'paid_status'    => $rows['paid_status'], 
+                'tax_per_item' => $rows['tax_per_item'], 
+                'discount_per_item'     => $rows['discount_per_item'],
+                'notes'    => $rows['notes'], 
+                'private_notes' => $rows['private_notes'], 
+                'discount_type'     => $rows['discount_type'],
+                'discount_val'    => $rows['discount_val'], 
+                'sub_total' => $rows['sub_total'], 
+                'total'    => $rows['total'], 
+                'due_amount' => $rows['due_amount'],
             ]);
-            Product::create([
+            InvoiceItem::create([
                 'invoice_id'=>$invoice->id,
-                'product_id '=>'2',
-                'company_id'=>auth()->company()->id,
-                'description'=> $product['product_description'],
-                'price'=> $product['product_price'],
-                'quantity'=> $product['product_quantity'],
-                'discount_type'=> $product['product_discount_type'],
-                'discount_val'=> $product['product_discount_val'],
-                'total'=> $product['product_total'],
+                'product_id '=>$this->products,
+                'company_id'=>Auth::user()->id, 
+                'description'=> $rows['product_description'],
+                'price'=> $rows['product_price'],
+                'quantity'=> $rows['product_quantity'],
+                'discount_type'=> $rows['product_discount_type'],
+                'discount_val'=> $rows['product_discount_val'],
+                'total'=> $rows['product_total'],
             ]);
         }
         // dd($row);
         // $invoice_date = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['invoice_date']))->format('j-f-Y');
         // $due_date = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['due_date']))->format('j-f-Y');
 
-        // return new Invoice([
+        // $invoice =  new Invoice([
         //     'customer_id'     => $customer->id,
-        //     'company_id'    => auth()->company()->id, 
+        //     'company_id'    => Auth::user()->id, 
         //     'invoice_date' => Carbon::now()->format('Y-m-d'), 
         //     'due_date'     => Carbon::now()->format('Y-m-d'),
         //     'invoice_number'    => $row['invoice_number'], 
         //     'reference_number' => $row['reference_number'], 
-        //     'status'     => 'DRAFT',
-        //     'paid_status'    => 'UNPAID', 
+        //     'status'     => $row['status'],
+        //     'paid_status'    => $row['paid_status'],
         //     'tax_per_item' => $row['tax_per_item'], 
         //     'discount_per_item'     => $row['discount_per_item'],
         //     'notes'    => $row['notes'], 
@@ -86,17 +96,19 @@ class InvoiceImport implements ToModel, WithHeadingRow
         //     // 'sent '     => $row['name'],
         //     // 'viewed '    => $row['email'],
         // ]);
+        // $invoice->return;
+        // dd($invoice->id);
 
-        // return new Product([
-        //     'invoice_id '     => auth()->company()->id,
-        //     'product_id '    => auth()->company()->id, 
-        //     'company_id ' => auth()->company()->id, 
-        //     'description'     => Carbon::now()->format('Y-m-d'),
-        //     'price'    => $row['invoice_number'], 
-        //     'quantity' => $row['reference_number'], 
-        //     'discount_type'     => 'DRAFT',
-        //     'discount_val'    => 'UNPAID', 
-        //     'discount_val' => $row['tax_per_item'], 
+        // return new InvoiceItem([
+        //     'invoice_id'=> $invoice->id,
+        //     'product_id'=>$this->products,
+        //     'company_id' => Auth::user()->id, 
+        //     'description'=> $row['product_description'],
+        //     'price'=> $row['product_price'],
+        //     'quantity'=> $row['product_quantity'],
+        //     'discount_type'=> $row['product_discount_type'],
+        //     'discount_val'=> $row['product_discount_val'],
+        //     'total'=> $row['product_total'],
         // ]);
     }
 }
