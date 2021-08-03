@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'eabd2947a32f727dd77bf45fc43bbc190b82c9ec',
+    'reference' => 'e317e4ca91f7e0226323a902ee36b91fcc179ba7',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -530,9 +530,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'eabd2947a32f727dd77bf45fc43bbc190b82c9ec',
-<<<<<<< HEAD
-=======
+      'reference' => 'e317e4ca91f7e0226323a902ee36b91fcc179ba7',
     ),
     'laravel/passport' => 
     array (
@@ -542,7 +540,6 @@
       array (
       ),
       'reference' => 'b4ccd2f0dcea5c1609dc16b7b6d5216c69394a53',
->>>>>>> b0825223e7098addb5330572fccc8a2dca9a8490
     ),
     'laravel/ui' => 
     array (
