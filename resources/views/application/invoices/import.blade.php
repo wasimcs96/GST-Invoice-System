@@ -39,17 +39,31 @@
                     @csrf
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <div class="custom-file">
                                     <input type="file" name="file" class="custom-file-input" id="customFile" required/>
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
-                                <div class="col-12 float-right mt-2">
-                                    <button type="submit" class="btn btn-primary save_form_button">Upload</button>
-                                </div>
                             </div>
                         </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="form-group required">
+                                {{-- <label>Product</label> --}}
+                                <select name="product_id" id="product_id" data-toggle="select"
+                                    class="form-control select2-hidden-accessible" data-select2-id="product_id"
+                                    required>
+                                    <option disabled selected>Select Product</option>
+                                    @foreach ($products as $option)
+                                        <option value="{{ $option['id'] }}">
+                                            {{ $option['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 float-right my-1">
+                        <button type="submit" class="btn btn-primary save_form_button">Upload</button>
                     </div>
                 </div>
                 </form>

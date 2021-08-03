@@ -4,30 +4,20 @@
             <div class="row mx-0 my-1">
                 <div class="col-md-3 col-12">
                     <div class="form-group">
-                        <label for="filter[display_name]">{{ __('messages.display_name') }}</label>
-                        <input name="filter[display_name]" type="text" class="form-control"
-                            value="{{ isset(Request::get("filter")['display_name']) ? Request::get("filter")['display_name'] : '' }}"
-                            placeholder="{{ __('messages.search') }}">
+                        <label for="filter[invoice_number]">{{ __('messages.invoice_number') }}</label>
+                        <input name="filter[invoice_number]" type="text" class="form-control" value="{{ isset(Request::get("filter")['invoice_number']) ? Request::get("filter")['invoice_number'] : '' }}" placeholder="{{ __('messages.search') }}">
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <div class="form-group">
-                        <label for="filter[contact_name]">{{ __('messages.contact_name') }}</label>
-                        <input name="filter[contact_name]" type="text" class="form-control"
-                            value="{{ isset(Request::get("filter")['contact_name']) ? Request::get("filter")['contact_name'] : '' }}"
-                            placeholder="{{ __('messages.search') }}">
+                        <label for="filter[from]">{{ __('messages.from') }}</label>
+                        <input name="filter[from]" type="text" class="form-control" data-toggle="flatpickr" data-flatpickr-default-date="{{ isset(Request::get("filter")['from']) ? Request::get("filter")['from'] : '' }}" readonly="readonly" placeholder="{{ __('messages.from') }}">
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <div class="form-group">
-                        <label for="filter[has_unpaid]">{{ __('messages.has_unpaid_invoice') }}</label>
-                        <div class="custom-control custom-checkbox mt-sm-2">
-                            <input id="filter[has_unpaid]" name="filter[has_unpaid]" type="checkbox"
-                                {{ isset(Request::get("filter")['has_unpaid']) ? 'checked=""' : '' }} value="true"
-                                class="custom-control-input">
-                            <label class="custom-control-label"
-                                for="filter[has_unpaid]">{{ __('messages.yes') }}</label>
-                        </div>
+                        <label for="filter[to]">{{ __('messages.to') }}</label>
+                        <input name="filter[to]" type="text" class="form-control" data-toggle="flatpickr" data-flatpickr-default-date="{{ isset(Request::get("filter")['to']) ? Request::get("filter")['to'] : '' }}" readonly="readonly" placeholder="{{ __('messages.to') }}">
                     </div>
                     
                 </div>
@@ -41,8 +31,7 @@
             </div>
             <div class="row mb-2">
                 <div class="col-12 mx-1">
-                    <a
-                        href="{{ route('customers', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.clear_filters') }}</a>
+                    <a href="{{ route('invoices', ['company_uid' => $currentCompany->uid]) }}">{{ __('messages.clear_filters') }}</a>
                 </div>
             </div>
         </div>
