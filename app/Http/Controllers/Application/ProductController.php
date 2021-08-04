@@ -85,6 +85,9 @@ class ProductController extends Controller
         // Create Product and Store in Database
         $product = Product::create([
             'name' => $request->name,
+            'sku' => $request->sku,
+            'hsn' => $request->hsn,
+            'category_id' =>$request->category_id,
             'company_id' => $currentCompany->id,
             'unit_id' => $request->unit_id,
             'price'  => $price,
@@ -94,6 +97,12 @@ class ProductController extends Controller
         // Add custom field values
         $product->addCustomFields($request->custom_fields);
 
+        if ($request->image) {
+            $request->validate(['image' => 'required|image|mimes:png,jpg|max:2048']);
+            $path = $request->image->storeAs('images', 'image-'. $product->id .'.'.$request->image->getClientOriginalExtension(), 'public_dir');
+            $product->image = '/uploads/'.$path;
+            $product->save();
+        }
         // Add Product Taxes
         if ($request->has('taxes')) {
             foreach ($request->taxes as $tax) {

@@ -26,6 +26,10 @@ class Product extends Model
         'company_id',
         'description',
         'hide',
+        'sku',
+        'hsn',
+        'image',
+        'category_id'
     ];
 
     /**

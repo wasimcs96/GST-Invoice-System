@@ -122,7 +122,7 @@
                                     <option disabled selected>{{ __('messages.select_product') }}</option>
                                 </select>
                                 <div class="d-none select-footer">
-                                    <a data-toggle="modal" data-target="#productModal"
+                                    <a data-toggle="modal" data-target="#myModal"
                                         class="font-weight-300">+
                                         {{ __('messages.add_new_product') }}</a>
                                 </div>

@@ -78,7 +78,6 @@ return array(
     'League\\Event\\' => array($vendorDir . '/league/event/src'),
     'League\\CommonMark\\' => array($vendorDir . '/league/commonmark/src'),
     'Lcobucci\\JWT\\' => array($vendorDir . '/lcobucci/jwt/src'),
-    'Lcobucci\\Clock\\' => array($vendorDir . '/lcobucci/clock/src'),
     'Laravel\\Ui\\' => array($vendorDir . '/laravel/ui/src'),
     'Laravel\\Passport\\' => array($vendorDir . '/laravel/passport/src'),
     'JmesPath\\' => array($vendorDir . '/mtdowling/jmespath.php/src'),
