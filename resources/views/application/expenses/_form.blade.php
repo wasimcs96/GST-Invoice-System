@@ -173,6 +173,7 @@
                                     {{ __('messages.add_new_expense_category') }}</a>
                                 </option>
                                 </select>
+                                
                             </div>
 
 

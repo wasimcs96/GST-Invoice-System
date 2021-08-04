@@ -317,10 +317,47 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 col-12">
+                                                <label>{{ __('messages.receipt') }}</label><br>
+                                                <input type="file" onchange="changePreview(this);" class="d-none"
+                                                    name="image" id="image">
+                                                <label for="image">
+                                                    <div class="media align-items-center">
+                                                        <div class="mr-3">
+                                                            <div class="avatar avatar-xl">
+                                                                <img id="file-prev" class="avatar-img rounded">
+                                                            </div>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <a
+                                                                class="btn btn-sm btn-primary choose-button">{{ __('messages.choose_file') }}</a>
+                                                        </div>
+                                                    </div>
+                                                </label><br>
+                                                {{-- @if ($product->image)
+                                                    <a href="{{ asset($product->image) }}" target="_blank"
+                                                        class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
+                                                    @endif --}}
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">SKU</label>
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="Enter a SKU" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="name">{{ __('messages.name') }}</label>
                                                     <input name="name" type="text" class="form-control"
                                                         placeholder="{{ __('messages.name') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">HSN Code</label>
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="Enter a valid HSN code" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">

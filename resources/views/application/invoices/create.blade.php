@@ -291,10 +291,30 @@
         </div>
     </div>
 
+    {{-- Product Category Modal --}}
+    {{-- <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="checkbox" id="test7" checked="checked" />
+                    <label for="test7">Custom Avalability</label>
+                    <br /><br />
+                    <input type="checkbox" id="test6" />
+                    <label for="test6">Manual</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
     <!--Product Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -314,12 +334,56 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 col-12">
+                                                <label>{{ __('messages.receipt') }}</label><br>
+                                                <input type="file" onchange="changePreview(this);" class="d-none"
+                                                    name="image" id="image">
+                                                <label for="image">
+                                                    <div class="media align-items-center">
+                                                        <div class="mr-3">
+                                                            <div class="avatar avatar-xl">
+                                                                <img id="file-prev" class="avatar-img rounded">
+                                                            </div>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <a
+                                                                class="btn btn-sm btn-primary choose-button">{{ __('messages.choose_file') }}</a>
+                                                        </div>
+                                                    </div>
+                                                </label><br>
+                                                {{-- @if ($product->image)
+                                                    <a href="{{ asset($product->image) }}" target="_blank"
+                                                        class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
+                                                    @endif --}}
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">SKU</label>
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="Enter a SKU" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="name">{{ __('messages.name') }}</label>
                                                     <input name="name" type="text" class="form-control"
                                                         placeholder="{{ __('messages.name') }}" required>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">HSN Code</label>
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="Enter a valid HSN code" required>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="col-md-6 col-12">
+                                                    <div class="form-group required">
+                                                        <label for="name">{{ __('messages.name') }}</label>
+                                                        <input name="name" type="text" class="form-control"
+                                                            placeholder="{{ __('messages.name') }}" required>
+                                                    </div>
+                                                </div> --}}
                                             <div class="col-md-6 col-12">
 
                                                 <div class="form-group">
@@ -330,7 +394,8 @@
                                                         <option disabled selected>{{ __('messages.select_unit') }}
                                                         </option>
                                                         @foreach (get_product_units_select2_array($currentCompany->id) as $option)
-                                                            <option value="{{ $option['id'] }}">{{ $option['text'] }}
+                                                            <option value="{{ $option['id'] }}">
+                                                                {{ $option['text'] }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -468,11 +533,13 @@
     <script src="{{ asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
     <script src="{{ asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
     <script src="{{ asset('theme/app-assets/js/scripts/pages/app-invoice.js') }}"></script>
+
     @include('application.invoices._js')
     <script>
         $(document).ready(function() {
             addProductRow();
         });
+
     </script>
 
     {{-- @include('application.estimates._js') --}}
@@ -503,6 +570,7 @@
         //     }
 
         //   });
+
     </script>
 
     <script>
@@ -521,6 +589,7 @@
 
             $('#datepicker1').datepicker('setDate', today);
         });
+
     </script>
 
     <script type="text/javascript">
@@ -566,6 +635,7 @@
                 }
             });
         });
+
     </script>
     <script>
         $(function() {
@@ -623,6 +693,15 @@
                 $dst5.val($src5.val());
             });
         });
+
+    </script>
+    <script>
+        $('input[type="checkbox"]').on('change', function(e) {
+            if (e.target.checked) {
+                $('#myModal').modal();
+            }
+        });
+
     </script>
 
 @endsection
