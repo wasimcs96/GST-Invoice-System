@@ -289,6 +289,16 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::post('/ledger-categories/{ledger_category}/edit', 'LedgerCategoryController@update')->name('settings.ledger_categories.update');
         Route::get('/ledger-categories/{ledger_category}/delete', 'LedgerCategoryController@delete')->name('settings.ledger_categories.delete');
 
+
+        // Settings>Product Categories
+        Route::get('/product-categories', 'ProductCategoryController@index')->name('settings.product_categories');
+        Route::get('/product-categories/create', 'ProductCategoryController@create')->name('settings.product_categories.create');
+        Route::post('/product-categories/create', 'ProductCategoryController@store')->name('settings.product_categories.store');
+        Route::get('/product-categories/{product_category}/edit', 'ProductCategoryController@edit')->name('settings.product_categories.edit');
+        Route::post('/product-categories/{product_category}/edit', 'ProductCategoryController@update')->name('settings.product_categories.update');
+        Route::get('/product-categories/{product_category}/delete', 'ProductCategoryController@delete')->name('settings.product_categories.delete');
+
+
         // Settings>Team
         Route::get('/team', 'TeamController@index')->name('settings.team');
         Route::get('/team/add-member', 'TeamController@createMember')->name('settings.team.createMember');

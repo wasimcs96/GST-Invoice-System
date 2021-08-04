@@ -95,6 +95,7 @@ class CustomerController extends Controller
             'website' => $request->website,
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
+            'gst_type' => $request->gst_type,
         ]);
         
 
@@ -184,6 +185,7 @@ class CustomerController extends Controller
             'website' => $request->website,
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
+            'gst_type' => $request->gst_type,
         ]);
 
         // Update Customer's billing and shipping addresses
@@ -288,6 +290,7 @@ class CustomerController extends Controller
             'website' => $request->website,
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
+            'gst_type' => $request->gst_type,
         ]);
         
 
@@ -327,6 +330,7 @@ class CustomerController extends Controller
             'website' => $request->website,
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
+            'gst_type' => $request->gst_type,
         ]);
         
 

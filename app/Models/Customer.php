@@ -27,6 +27,7 @@ class Customer extends Model
         'website',
         'currency_id',
         'vat_number',
+        'gst_type',
     ];
 
     /**

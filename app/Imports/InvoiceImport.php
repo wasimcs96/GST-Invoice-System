@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Imports;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Imports\InvoiceImport;
-use Maatwebsite\Excel\Concerns\ToModel;
+// use Maatwebsite\Excel\Concerns\ToModel;
 // use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 use Carbon\Carbon;
 use Auth;
 
-class InvoiceImport implements ToModel, WithHeadingRow
+class InvoiceImport implements WithHeadingRow, ToCollection
 {
     // dd($products);
     protected $products;
@@ -20,57 +22,63 @@ class InvoiceImport implements ToModel, WithHeadingRow
     public function  __construct($products)
     {
         $this->products =$products;
+        // dd($this->products);
     }
     
-    public function onRow(Row $row)
+    public function collection(Collection $row)
     {
-        // dd($row);
-        $rowIndex = $row->getIndex();
-        $row = $row->toArray();
-        $email =$row['email'];
-        $customer = Customer::where('email',$email)->first();
+        // $rowIndex = $row->getIndex();
+        // $row = $row->toArray();
+     
+
+        // $customer = Customer::where('email',$email)->first();
         
         // $customer->id;
 // dd($email);
         // if ($customer->fails()) {
         //     return redirect(''.auth()->user()->uid.'/export');
         // }
-        foreach($row as $rows)
+        // dd($row);
+        foreach($row as $ro)
         {
-            dd($rows);
-            $invoice = Invoice::create([
+            $email =$ro['email'];
+            $customer = Customer::where('email',$email)->first();
+            if (isset($customer)) {
+                $invoice = Invoice::create([
                 'customer_id' => $customer->id,
                 'company_id'  => Auth::user()->id,
-                'invoice_date' => Carbon::now()->format('Y-m-d'), 
+                'invoice_date' => Carbon::now()->format('Y-m-d'),
                 'due_date'    => Carbon::now()->format('Y-m-d'),
-                'invoice_number'    => $rows['invoice_number'], 
-                'reference_number' => $rows['reference_number'], 
+                'invoice_number'    => $ro['invoice_number'],
+                'reference_number' => $ro['reference_number'],
                 // 'status'     => 'DRAFT',
-                // 'paid_status'    => 'UNPAID', 
-                'status'     => $rows['status'],
-                'paid_status'    => $rows['paid_status'], 
-                'tax_per_item' => $rows['tax_per_item'], 
-                'discount_per_item'     => $rows['discount_per_item'],
-                'notes'    => $rows['notes'], 
-                'private_notes' => $rows['private_notes'], 
-                'discount_type'     => $rows['discount_type'],
-                'discount_val'    => $rows['discount_val'], 
-                'sub_total' => $rows['sub_total'], 
-                'total'    => $rows['total'], 
-                'due_amount' => $rows['due_amount'],
+                // 'paid_status'    => 'UNPAID',
+                'status'     => $ro['status'],
+                'paid_status' => $ro['paid_status'],
+                'tax_per_item' => $ro['tax_per_item'],
+                'discount_per_item'     => $ro['discount_per_item'],
+                'notes'    => $ro['notes'],
+                'private_notes' => $ro['private_notes'],
+                'discount_type'     => $ro['discount_type'],
+                'discount_val'    => $ro['discount_val'],
+                'sub_total' => $ro['sub_total'],
+                'total'    => $ro['total'],
+                'due_amount' => $ro['due_amount'],
             ]);
-            InvoiceItem::create([
+            // dd($this->products);
+                InvoiceItem::create([
                 'invoice_id'=>$invoice->id,
-                'product_id '=>$this->products,
-                'company_id'=>Auth::user()->id, 
-                'description'=> $rows['product_description'],
-                'price'=> $rows['product_price'],
-                'quantity'=> $rows['product_quantity'],
-                'discount_type'=> $rows['product_discount_type'],
-                'discount_val'=> $rows['product_discount_val'],
-                'total'=> $rows['product_total'],
+                'product_id'=>$this->products,
+                'company_id'=>Auth::user()->id,
+                'description'=> $ro['product_description'],
+                'price'=> $ro['product_price'],
+                'quantity'=> $ro['product_quantity'],
+                'discount_type'=> $ro['product_discount_type'],
+                'discount_val'=> $ro['product_discount_val'],
+                'total'=> $ro['product_total'],
             ]);
-        }
+            }
+            }
         // dd($row);
         // $invoice_date = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['invoice_date']))->format('j-f-Y');
         // $due_date = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['due_date']))->format('j-f-Y');

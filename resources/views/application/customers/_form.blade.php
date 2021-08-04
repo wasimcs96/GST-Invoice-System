@@ -276,6 +276,24 @@
                                     placeholder="{{ __('messages.website') }}" value="{{ $customer->website }}">
                             </div>
                         </div>
+
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="gst_type">GST registration type</label>
+                                <select name="gst_type" id="gst_type" data-toggle="select"
+                                    class="form-control select2-hidden-accessible" data-select2-id="gst_type"
+                                    required>
+                                        <option value="0" @if(isset($customer->gst_type) && $customer->gst_type==0)selected @endif>GST registered- Regular</option>
+                                        <option value="1" @if(isset($customer->gst_type) && $customer->gst_type==1)selected @endif>GST registered- Composition</option>
+                                        <option value="2" @if(isset($customer->gst_type) && $customer->gst_type==2)selected @endif>GST unregistered</option>
+                                        <option value="3" @if(isset($customer->gst_type) && $customer->gst_type==3)selected @endif selected>Consumer</option>
+                                        <option value="4" @if(isset($customer->gst_type) && $customer->gst_type==4)selected @endif>Overseas</option>
+                                        <option value="5" @if(isset($customer->gst_type) && $customer->gst_type==5)selected @endif>SEZ</option>
+                                        <option value="6" @if(isset($customer->gst_type) && $customer->gst_type==6)selected @endif>Deemed exports- EOU's, STP's EHTP's etc</option>
+
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="vat_number">GST Number</label>

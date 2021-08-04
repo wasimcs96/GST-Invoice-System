@@ -100,6 +100,23 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="gst_type">GST registration type</label>
+                                                    <select name="gst_type" id="gst_type" data-toggle="select"
+                                                        class="form-control select2 select2-hidden-accessible" data-select2-id="gst_type"
+                                                        required>
+                                                            <option value="0">GST registered- Regular</option>
+                                                            <option value="1">GST registered- Composition</option>
+                                                            <option value="2">GST unregistered</option>
+                                                            <option value="3" selected>Consumer</option>
+                                                            <option value="4">Overseas</option>
+                                                            <option value="5">SEZ</option>
+                                                            <option value="6">Deemed exports- EOU's, STP's EHTP's etc</option>
+                    
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="vat_number">GST Number</label>
                                                     <input name="vat_number" id="vat_number" type="text"
@@ -121,14 +138,6 @@
                                                     <input name="billing[name]" id="billing_name" type="text"
                                                         class="form-control"
                                                         placeholder="{{ __('messages.address_name') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="billing[phone]">{{ __('messages.phone') }}</label>
-                                                    <input name="billing[phone]" id="billing_phone" type="number"
-                                                        class="form-control"
-                                                        placeholder="{{ __('messages.phone') }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
@@ -209,14 +218,6 @@
                                             <label for="shipping[name]">{{ __('messages.name') }}</label>
                                             <input name="shipping[name]" id="shipping_name" type="text" class="form-control"
                                                 placeholder="{{ __('messages.address_name') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="shipping[phone]">{{ __('messages.phone') }}</label>
-                                            <input name="shipping[phone]" id="shipping_phone" type="number"
-                                                class="form-control" 
-                                                placeholder="{{ __('messages.phone') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
