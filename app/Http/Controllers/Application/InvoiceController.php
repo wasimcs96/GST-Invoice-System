@@ -488,6 +488,7 @@ class InvoiceController extends Controller
     {
         // dd($request->all());
         $products = $request->product_id;
+        // dd($products);
         Excel::import(new InvoiceImport($products),request()->file('file'));
         return back();
     }
