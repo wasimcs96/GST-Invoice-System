@@ -89,34 +89,12 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 col-12">
-                            <label>{{ __('messages.receipt') }}</label><br>
-                            <input type="file" onchange="changePreview(this);" class="d-none" name="image" id="image">
-                            <label for="image">
-                                <div class="media align-items-center">
-                                    <div class="mr-3">
-                                        <div class="avatar avatar-xl">
-                                            <img id="file-prev"
-                                                src="{{ $product->image ? asset($product->image) : asset('assets/images/account-add-photo.svg') }}"
-                                                class="avatar-img rounded">
-                                        </div>
-                                    </div>
-                                    <div class="media-body">
-                                        <a
-                                            class="btn btn-sm btn-primary choose-button">{{ __('messages.choose_file') }}</a>
-                                    </div>
-                                </div>
-                            </label><br>
-                            {{-- @if ($product->image)
-                        <a href="{{ asset($product->image) }}" target="_blank"
-                            class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
-                        @endif --}}
-                        </div>
+                        
 
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
-                                <label for="name">SKU</label>
-                                <input name="name" type="text" class="form-control" placeholder="Enter a SKU"
+                                <label for="sku">SKU</label>
+                                <input name="sku" type="text" class="form-control" placeholder="Enter a SKU"
                                     value="{{ $product->sku }}" required>
                             </div>
                         </div>
@@ -125,7 +103,7 @@
                             <div class="form-group required">
                                 <label for="name">{{ __('messages.name') }}</label>
                                 <input name="name" type="text" class="form-control"
-                                    placeholder="{{ __('messages.name') }}" value="{{ $product->hsn }}" required>
+                                    placeholder="{{ __('messages.name') }}" value="{{ $product->name }}" required>
                             </div>
                         </div>
                         
@@ -136,23 +114,21 @@
                                 <select id="category_id" class="select2 form-control" name="category_id"
                                     id="default-select-multi">
                                     <option disabled selected>Select Category</option>
-                                    @foreach (get_product_units_select2_array($currentCompany->id) as $option)
-                                        <option value="{{ $option['id'] }}"
-                                            {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>
-                                            {{ $option['text'] }}</option>
-                                    @endforeach
-                                    <option value="tyyy" style="color: blue;"> <a id="naya"
-                                            href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                                    <option value="cate" style="color: blue;"> <a id="cato"
+                                        href="{{ route('settings.product_categories', ['company_uid' => $currentCompany->uid]) }}""
                                             target="_blank" class="font-weight-300">+
-                                            {{ __('messages.add_new_product_unit') }}</a></option>
+                                           Add new Category</a></option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
-                                <label for="name">HSN Code</label>
-                                <input name="name" type="text" class="form-control" placeholder="Enter a valid HSN code"
-                                    value="{{ $product->name }}" required>
+                                <label for="hsn">HSN Code</label>
+                                <input name="hsn" type="text" class="form-control" placeholder="Enter a valid HSN code"
+                                    value="{{ $product->hsn }}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -163,11 +139,12 @@
                                 <select id="unit_id" class="select2 form-control" name="unit_id"
                                     id="default-select-multi">
                                     <option disabled selected>{{ __('messages.select_unit') }}</option>
+                                   
                                     @foreach (get_product_units_select2_array($currentCompany->id) as $option)
-                                        <option value="{{ $option['id'] }}"
-                                            {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>
-                                            {{ $option['text'] }}</option>
-                                    @endforeach
+                                    <option value="{{ $option['id'] }}"
+                                        {{ $product->unit_id == $option['id'] ? 'selected=""' : '' }}>
+                                        {{ $option['text'] }}</option>
+                                @endforeach
                                     <option value="tyyy" style="color: blue;"> <a id="naya"
                                             href="{{ route('settings.product.unit.create', ['company_uid' => $currentCompany->uid]) }}"
                                             target="_blank" class="font-weight-300">+
@@ -207,6 +184,13 @@
                                             {{ __('messages.add_new_tax') }}</a></option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="inputImage">Image</label>
+                                <input type="file" id="file"  onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
+                              </div>
+                              <img id="output" width="100" />	
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
@@ -254,7 +238,12 @@
 @section('page_body_scripts')
     <script src="{{ asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
     <script src="{{ asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
-
+    <script>
+        var loadFilef = function(event) {
+          var image = document.getElementById('output');
+          image.src = URL.createObjectURL(event.target.files[0]);
+        };
+        </script>
 
     <script>
         $('#unit_id').on('change', function() {
@@ -273,6 +262,22 @@
                 window.location =
                     '{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
                 $("#pro").trigger('click');
+            }
+
+        });
+        // $('#taxess').on('change', function() {
+        //     if (this.value == "hel") {
+        //         window.location =
+        //             '{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}';
+        //         $("#pro").trigger('click');
+        //     }
+
+        // });
+        $('#category_id').on('change', function() {
+            if (this.value == "cate") {
+                window.location =
+                    '{{ route('settings.product_categories', ['company_uid' => $currentCompany->uid]) }}';
+                $("#cato").trigger('click');
             }
 
         });

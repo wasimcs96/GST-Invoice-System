@@ -9,6 +9,7 @@ use App\Http\Requests\Application\Product\Store;
 use App\Http\Requests\Application\Product\Update;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -55,9 +56,10 @@ class ProductController extends Controller
         if (!empty($request->old())) {
             $product->fill($request->old());
         }
-
+           $categories = ProductCategory::all();
         return view('application.products.create', [
             'product' => $product,
+            'categories' =>  $categories
         ]); 
     }
 
@@ -80,8 +82,12 @@ class ProductController extends Controller
             return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
         }
         $price = preg_replace('~\D~', '', $request->price);
-        
-        // dd($price);
+
+        $limage = $request->image;
+            $limage_new_name = time().$limage->getClientOriginalName();
+           $st1= $limage->move('assets/images', $limage_new_name);
+
+        // dd($st1);
         // Create Product and Store in Database
         $product = Product::create([
             'name' => $request->name,
@@ -92,17 +98,12 @@ class ProductController extends Controller
             'unit_id' => $request->unit_id,
             'price'  => $price,
             'description' => $request->description,
+            'image' => $st1,
         ]);
 
         // Add custom field values
         $product->addCustomFields($request->custom_fields);
 
-        if ($request->image) {
-            $request->validate(['image' => 'required|image|mimes:png,jpg|max:2048']);
-            $path = $request->image->storeAs('images', 'image-'. $product->id .'.'.$request->image->getClientOriginalExtension(), 'public_dir');
-            $product->image = '/uploads/'.$path;
-            $product->save();
-        }
         // Add Product Taxes
         if ($request->has('taxes')) {
             foreach ($request->taxes as $tax) {
@@ -131,9 +132,10 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $product = Product::findOrFail($request->product);
-
+        $categories = ProductCategory::all();
         return view('application.products.edit', [
             'product' => $product,
+            'categories' =>$categories
         ]); 
     }
 
@@ -153,19 +155,31 @@ class ProductController extends Controller
         $product = Product::findOrFail($request->product);
         $price = preg_replace('~\D~', '', $request->price);
         
+        $limage = $request->image;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
+
         // dd($price);
         // Update the Expense
         $product->update([
-            'name' => $request->name,
+
+             'name' => $request->name,
+            'sku' => $request->sku,
+            'hsn' => $request->hsn,
+            'category_id' =>$request->category_id,
+            'company_id' => $currentCompany->id,
             'unit_id' => $request->unit_id,
-            'price'  => $price ,
+            'price'  => $price,
             'description' => $request->description,
+            'image' => $st1,
         ]);
         
 
         // Update custom field values
         
         $product->updateCustomFields($request->custom_fields);
+        
+
 
         // Remove old Product Taxes
         $product->taxes()->delete();
@@ -238,14 +252,21 @@ class ProductController extends Controller
             return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
         }
         $price = preg_replace('~\D~', '', $request->price);
+        $limage = $request->image;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         // dd($price);
         // Create Product and Store in Database
         $product = Product::create([
             'name' => $request->name,
+            'sku' => $request->sku,
+            'hsn' => $request->hsn,
+            'category_id' =>$request->category_id,
             'company_id' => $currentCompany->id,
             'unit_id' => $request->unit_id,
             'price'  => $price,
             'description' => $request->description,
+            'image' => $st1,
         ]);
 
         // Add custom field values
@@ -280,14 +301,21 @@ class ProductController extends Controller
             return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
         }
         $price = preg_replace('~\D~', '', $request->price);
+        $limage = $request->image;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         // dd($price);
         // Create Product and Store in Database
         $product = Product::create([
             'name' => $request->name,
+            'sku' => $request->sku,
+            'hsn' => $request->hsn,
+            'category_id' =>$request->category_id,
             'company_id' => $currentCompany->id,
             'unit_id' => $request->unit_id,
             'price'  => $price,
             'description' => $request->description,
+            'image' => $st1,
         ]);
 
         // Add custom field values

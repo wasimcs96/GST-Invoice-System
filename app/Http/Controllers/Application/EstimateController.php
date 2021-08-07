@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Carbon\Carbon;
+use App\Models\ProductCategory;
 
 class EstimateController extends Controller
 {
@@ -86,6 +87,7 @@ class EstimateController extends Controller
         $customers = $currentCompany->customers;
         $states = State::all();
         $citie = City::all();
+        $categories = ProductCategory::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -97,6 +99,7 @@ class EstimateController extends Controller
             'tax_per_item' => $tax_per_item,
             'discount_per_item' => $discount_per_item,
             'states' => $states,
+            'categories' => $categories,
             // 'cities' => $cities,
             'citie' => $citie,
         ]);

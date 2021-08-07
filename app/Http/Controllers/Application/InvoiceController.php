@@ -18,6 +18,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Exports\InvoiceExport;
 use App\Imports\InvoiceImport;  
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\ProductCategory;
 
 class InvoiceController extends Controller
 {
@@ -88,6 +89,7 @@ class InvoiceController extends Controller
         $customers = $currentCompany->customers;
         $states = State::all();
         $citie = City::all();
+        $categories = ProductCategory::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -101,6 +103,7 @@ class InvoiceController extends Controller
             'states' => $states,
             // 'cities' => $cities,
             'citie' => $citie,
+            'categories'=>$categories
         ]);
     }
 

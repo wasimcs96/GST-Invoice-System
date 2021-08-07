@@ -294,11 +294,22 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/product-categories', 'ProductCategoryController@index')->name('settings.product_categories');
         Route::get('/product-categories/create', 'ProductCategoryController@create')->name('settings.product_categories.create');
         Route::post('/product-categories/create', 'ProductCategoryController@store')->name('settings.product_categories.store');
+        Route::post('/invoice/product-categories/create', 'ProductCategoryController@invoicestore')->name('settings.invoice.product_categories.store');
         Route::get('/product-categories/{product_category}/edit', 'ProductCategoryController@edit')->name('settings.product_categories.edit');
         Route::post('/product-categories/{product_category}/edit', 'ProductCategoryController@update')->name('settings.product_categories.update');
         Route::get('/product-categories/{product_category}/delete', 'ProductCategoryController@delete')->name('settings.product_categories.delete');
-
-
+       
+        
+       
+        // Settings>Accounts
+        Route::get('/settings-account', 'AccountsController@index')->name('settings.accounts_setting');
+        Route::get('/settings-account/create', 'AccountsController@create')->name('settings.accounts.create');
+        Route::post('/settings-account/create', 'AccountsController@store')->name('settings.accounts.store');
+        Route::get('/settings-account/{accounts_setting}/edit', 'AccountsController@edit')->name('settings.accounts.edit');
+        Route::post('/settings-account/{accounts_setting}/edit', 'AccountsController@update')->name('settings.accounts.update');
+        Route::get('/settings-account/{accounts_setting}/delete', 'AccountsController@delete')->name('settings.accounts.delete');
+       
+       
         // Settings>Team
         Route::get('/team', 'TeamController@index')->name('settings.team');
         Route::get('/team/add-member', 'TeamController@createMember')->name('settings.team.createMember');

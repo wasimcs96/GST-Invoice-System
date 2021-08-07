@@ -18,7 +18,7 @@
 @endsection
  
 @section('content') 
-    <form action="{{ route('products.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
+    <form action="{{ route('products.store', ['company_uid' => $currentCompany->uid]) }}" method="POST" enctype="multipart/form-data">
         @include('layouts._form_errors')
         @csrf
         

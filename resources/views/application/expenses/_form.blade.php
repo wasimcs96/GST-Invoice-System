@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </label><br>
-                @if($expense->receipt)
+                @if ($expense->receipt)
                     <a href="{{ asset($expense->receipt) }}" target="_blank" class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
                 @endif
             </div>
@@ -31,7 +31,7 @@
                         <label for="expense_category_id">{{ __('messages.category') }}</label> 
                         <select id="expense_category_id" name="expense_category_id" data-toggle="select" class="form-control select2-hidden-accessible select-with-footer" data-select2-id="expense_category_id" data-minimum-results-for-search="-1" required>
                             <option disabled selected>{{ __('messages.select_category') }}</option>
-                            @foreach(get_expense_categories_select2_array($currentCompany->id) as $option)
+                            @foreach (get_expense_categories_select2_array($currentCompany->id) as $option)
                                 <option value="{{ $option['id'] }}" {{ $expense->expense_category_id == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                             @endforeach
                         </select>
@@ -45,7 +45,7 @@
                         <label for="vendor_id">{{ __('messages.vendor') }}</label> 
                         <select name="vendor_id" data-toggle="select" class="form-control select2-hidden-accessible select-with-footer" data-select2-id="vendor_id">
                             <option disabled selected>{{ __('messages.select_vendor') }}</option>
-                            @foreach($vendors as $vendor)
+                            @foreach ($vendors as $vendor)
                                 <option value="{{ $vendor->id }}" {{ $expense->vendor_id == $vendor->id ? 'selected=""' : '' }}>{{ $vendor->display_name }}</option>
                             @endforeach
                         </select>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="row">
-                @if($expense->getCustomFields()->count() > 0)
+                @if ($expense->getCustomFields()->count() > 0)
                     <div class="col-12">
                         @foreach ($expense->getCustomFields() as $custom_field)
                             @include('layouts._custom_field', ['model' => $expense, 'custom_field' => $custom_field])
@@ -118,7 +118,7 @@
                                         <div class="mr-3">
                                             <div class="avatar avatar-xl">
                                                 <img id="file-prev"
-                                                    src="{{ $expense->receipt ? asset($expense->receipt) : asset('assets/images/account-add-photo.svg') }}"
+                                                    
                                                     class="avatar-img rounded">
                                             </div>
                                         </div>
@@ -128,9 +128,9 @@
                                         </div>
                                     </div>
                                 </label><br>
-                                @if($expense->receipt)
-                                <a href="{{ asset($expense->receipt) }}" target="_blank"
-                                    class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
+                                @if ($expense->receipt)
+                                    <a href="{{ asset($expense->receipt) }}" target="_blank"
+                                        class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
                                 @endif
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                     class="form-control select2-hidden-accessible select-with-footer"
                                     data-select2-id="expense_category_id" data-minimum-results-for-search="-1" required>
                                     <option disabled selected>{{ __('messages.select_category') }}</option>
-                                    @foreach(get_expense_categories_select2_array($currentCompany->id) as $option)
+                                    @foreach (get_expense_categories_select2_array($currentCompany->id) as $option)
                                     <option value="{{ $option['id'] }}"
                                         {{ $expense->expense_category_id == $option['id'] ? 'selected=""' : '' }}>
                                         {{ $option['text'] }}</option>
@@ -159,21 +159,23 @@
                                 <label for="expense_category_id">{{ __('messages.category') }}</label>
                                 {{-- <option disabled selected>{{ __('messages.select_customer') }}</option> --}}
 
-                                <select id="expense_category_id" name="expense_category_id" class="select2 form-control" id="default-select-multi">
+                                <select id="expense_category_id" name="expense_category_id" class="select2 form-control"
+                                    id="default-select-multi">
                                     <option disabled selected>{{ __('messages.select_category') }}</option>
 
-                                    @foreach(get_expense_categories_select2_array($currentCompany->id) as $option)
-                                    <option value="{{ $option['id'] }}"
-                                        {{ $expense->expense_category_id == $option['id'] ? 'selected=""' : '' }}>
-                                        {{ $option['text'] }}</option>
+                                    @foreach (get_expense_categories_select2_array($currentCompany->id) as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            {{ $expense->expense_category_id == $option['id'] ? 'selected=""' : '' }}>
+                                            {{ $option['text'] }}</option>
                                     @endforeach
-                                    
-                                <option value="cate"  style="color: blue;"> <a id="category" href="{{ route('settings.expense_categories.create', ['company_uid' => $currentCompany->uid]) }}"
-                                    target="_blank" class="font-weight-300">+
-                                    {{ __('messages.add_new_expense_category') }}</a>
-                                </option>
+
+                                    <option value="cate" style="color: blue;"> <a id="category"
+                                            href="{{ route('settings.expense_categories.create', ['company_uid' => $currentCompany->uid]) }}"
+                                            target="_blank" class="font-weight-300">+
+                                            {{ __('messages.add_new_expense_category') }}</a>
+                                    </option>
                                 </select>
-                                
+
                             </div>
 
 
@@ -186,7 +188,7 @@
                                     class="form-control select2-hidden-accessible select-with-footer"
                                     data-select2-id="vendor_id">
                                     <option disabled selected>{{ __('messages.select_vendor') }}</option>
-                                    @foreach($vendors as $vendor)
+                                    @foreach ($vendors as $vendor)
                                     <option value="{{ $vendor->id }}"
                                         {{ $expense->vendor_id == $vendor->id ? 'selected=""' : '' }}>
                                         {{ $vendor->display_name }}</option>
@@ -203,18 +205,20 @@
                                 <label for="vendor_id">{{ __('messages.vendor') }}</label>
                                 {{-- <option disabled selected>{{ __('messages.select_customer') }}</option> --}}
 
-                                <select id="vendor_id" name="vendor_id" class="select2 form-control" id="default-select-multi">
+                                <select id="vendor_id" name="vendor_id" class="select2 form-control"
+                                    id="default-select-multi">
                                     <option disabled selected>{{ __('messages.select_vendor') }}</option>
 
-                                    @foreach($vendors as $vendor)
-                                    <option value="{{ $vendor->id }}"
-                                        {{ $expense->vendor_id == $vendor->id ? 'selected=""' : '' }}>
-                                        {{ $vendor->display_name }}</option>
+                                    @foreach ($vendors as $vendor)
+                                        <option value="{{ $vendor->id }}"
+                                            {{ $expense->vendor_id == $vendor->id ? 'selected=""' : '' }}>
+                                            {{ $vendor->display_name }}</option>
                                     @endforeach
-                                <option value="ven"  style="color: blue;"> <a id="vender" href="{{ route('vendors.create', ['company_uid' => $currentCompany->uid]) }}"
-                                    target="_blank" class="font-weight-300">+
-                                    {{ __('messages.add_new_vendor') }}</a>
-                                </option>
+                                    <option value="ven" style="color: blue;"> <a id="vender"
+                                            href="{{ route('vendors.create', ['company_uid' => $currentCompany->uid]) }}"
+                                            target="_blank" class="font-weight-300">+
+                                            {{ __('messages.add_new_vendor') }}</a>
+                                    </option>
                                 </select>
                             </div>
 
@@ -227,7 +231,7 @@
                                 <input name="expense_date" type="date" class="form-control input"
                                     data-toggle="flatpickr"
                                     data-flatpickr-default-date="{{ $expense->expense_date ?? now() }}"
-                                    placeholder="{{ __('messages.expense_date') }}"  required>
+                                    placeholder="{{ __('messages.expense_date') }}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -245,15 +249,15 @@
                                     placeholder="{{ __('messages.notes') }}">{{ $expense->notes }}</textarea>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-6 col-12">
-                            @if($expense->getCustomFields()->count() > 0)
-                            <div class="col-12">
-                                @foreach ($expense->getCustomFields() as $custom_field)
-                                @include('layouts._custom_field', ['model' => $expense, 'custom_field' =>
-                                $custom_field])
-                                @endforeach
-                            </div>
+                            @if ($expense->getCustomFields()->count() > 0)
+                                <div class="col-12">
+                                    @foreach ($expense->getCustomFields() as $custom_field)
+                                        @include('layouts._custom_field', ['model' => $expense, 'custom_field' =>
+                                        $custom_field])
+                                    @endforeach
+                                </div>
                             @endif
                         </div>
                         <div class="col-12">
@@ -268,8 +272,7 @@
 </section>
 
 
-{{-- 
-@section('page_head_scripts')
+{{-- @section('page_head_scripts')
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
 @endsection --}}
 
@@ -300,26 +303,28 @@ $('#unit_id').on('change', function() {
 
 @section('page_body_scripts')
 
-{{-- <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+    {{-- <script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
 <script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script> --}}
 
-<script>
-    $('#vendor_id').on('change', function() {
-        if (this.value == "ven") {
-            window.location='{{ route('vendors.create', ['company_uid' => $currentCompany->uid]) }}';
-            $("#vender").trigger('click');
-        }
-        
-      });
-      $('#expense_category_id').on('change', function() {
-    if (this.value == "cate") {
-        window.location='{{ route('settings.expense_categories.create', ['company_uid' => $currentCompany->uid]) }}';
-        $("#category").trigger('click');
-    }
-    
-  });
-</script>
+    <script>
+        $('#vendor_id').on('change', function() {
+            if (this.value == "ven") {
+                window.location = '{{ route('vendors.create', ['company_uid' => $currentCompany->uid]) }}';
+                $("#vender").trigger('click');
+            }
 
-    
+        });
+        $('#expense_category_id').on('change', function() {
+            if (this.value == "cate") {
+                window.location =
+                    '{{ route('settings.expense_categories.create', ['company_uid' => $currentCompany->uid]) }}';
+                $("#category").trigger('click');
+            }
+
+        });
+
+    </script>
+
+
 
 @endsection
