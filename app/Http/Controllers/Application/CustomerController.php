@@ -84,6 +84,9 @@ class CustomerController extends Controller
             session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
             return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
         }
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         
         // Create Customer and Store in Database
         $customer = Customer::create([
@@ -96,6 +99,9 @@ class CustomerController extends Controller
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
             'gst_type' => $request->gst_type,
+            'company' => $request->company,
+            'attachment'=> $st1,
+
         ]);
         
 
@@ -175,7 +181,9 @@ class CustomerController extends Controller
         $currentCompany = $user->currentCompany();
 
         $customer = Customer::findOrFail($request->customer);
-
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         // Update Customer in Database
         $customer->update([
             'display_name' => $request->display_name,
@@ -186,6 +194,8 @@ class CustomerController extends Controller
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
             'gst_type' => $request->gst_type,
+            'company' => $request->company,
+            'attachment'=>$st1,
         ]);
 
         // Update Customer's billing and shipping addresses
@@ -279,6 +289,9 @@ class CustomerController extends Controller
             session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
             return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
         }
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         
         // Create Customer and Store in Database
         $customer = Customer::create([
@@ -291,6 +304,8 @@ class CustomerController extends Controller
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
             'gst_type' => $request->gst_type,
+            'company' => $request->company,
+            'attachment'=>$st1,
         ]);
         
 
@@ -319,6 +334,9 @@ class CustomerController extends Controller
             session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
             return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
         }
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         
         // Create Customer and Store in Database
         $customer = Customer::create([
@@ -331,6 +349,8 @@ class CustomerController extends Controller
             'currency_id' => $request->currency_id,
             'vat_number' => $request->vat_number,
             'gst_type' => $request->gst_type,
+            'company' => $request->company,
+            'attachment'=>$st1,
         ]);
         
 

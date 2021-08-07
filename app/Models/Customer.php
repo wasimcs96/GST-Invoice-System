@@ -28,6 +28,8 @@ class Customer extends Model
         'currency_id',
         'vat_number',
         'gst_type',
+        'company',
+        'attachment',
     ];
 
     /**

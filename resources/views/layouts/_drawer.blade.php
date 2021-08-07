@@ -271,14 +271,17 @@
                     <a class="d-flex align-items-center" href="{{ route('invoices', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">{{ __('messages.invoices') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'estimates' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('estimates', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.estimates') }}</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('estimates', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.expenses') }}</span></a>
+                </li>
+                <li class=" nav-item {{ $page == 'suppliers' ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{ route('suppliers', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Supplier</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'payments' ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{ route('payments', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Calendar">Sales</span></a>
                 </li>
-                <li class=" nav-item {{ $page == 'expenses' ? 'active' : ''}}">
+                {{-- <li class=" nav-item {{ $page == 'expenses' ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{ route('expenses', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="layers"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.expenses') }}</span></a>
-                </li>
+                </li> --}}
                 <li class=" nav-item {{ $page == 'ledgers' ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{ route('ledgers', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="Calendar">Ledgers</span></a>
                 </li>

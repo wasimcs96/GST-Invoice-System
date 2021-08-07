@@ -130,6 +130,14 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::post('/products/{product}/edit', 'ProductController@update')->name('products.update');
     Route::get('/products/{product}/delete', 'ProductController@delete')->name('products.delete');
 
+     // Suppliers
+     Route::get('/suppliers', 'SupplierController@index')->name('suppliers');
+     Route::get('/suppliers/create', 'SupplierController@create')->name('suppliers.create');
+     Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store');
+     Route::get('/suppliers/{supplier}/edit', 'SupplierController@edit')->name('suppliers.edit');
+     Route::post('/suppliers/{supplier}/edit', 'SupplierController@update')->name('suppliers.update');
+     Route::get('/suppliers/{supplier}/delete', 'SupplierController@delete')->name('suppliers.delete');
+
     // Invoices
     Route::get('/importExportView','InvoiceController@importExportView')->name('csv.view');
     Route::get('/export','InvoiceController@export')->name('export');
@@ -146,16 +154,28 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/invoices/{tab?}', 'InvoiceController@index')->name('invoices');
 
     // Estimates
-    Route::get('/estimates/create', 'EstimateController@create')->name('estimates.create');
-    Route::post('/estimates/create', 'EstimateController@store')->name('estimates.store');
-    Route::get('/estimates/{estimate}/details', 'EstimateController@show')->name('estimates.details');
-    Route::get('/estimates/{estimate}/edit', 'EstimateController@edit')->name('estimates.edit');
-    Route::post('/estimates/{estimate}/edit', 'EstimateController@update')->name('estimates.update');
-    Route::get('/estimates/{estimate}/delete', 'EstimateController@delete')->name('estimates.delete');
-    Route::get('/estimates/{estimate}/send', 'EstimateController@send')->name('estimates.send');
-    Route::get('/estimates/{estimate}/convert', 'EstimateController@convert')->name('estimates.convert');
-    Route::get('/estimates/{estimate}/mark/{status?}', 'EstimateController@mark')->name('estimates.mark');
-    Route::get('/estimates/{tab?}', 'EstimateController@index')->name('estimates');
+    // Route::get('/estimates/create', 'EstimateController@create')->name('estimates.create');
+    // Route::post('/estimates/create', 'EstimateController@store')->name('estimates.store');
+    // Route::get('/estimates/{estimate}/details', 'EstimateController@show')->name('estimates.details');
+    // Route::get('/estimates/{estimate}/edit', 'EstimateController@edit')->name('estimates.edit');
+    // Route::post('/estimates/{estimate}/edit', 'EstimateController@update')->name('estimates.update');
+    // Route::get('/estimates/{estimate}/delete', 'EstimateController@delete')->name('estimates.delete');
+    // Route::get('/estimates/{estimate}/send', 'EstimateController@send')->name('estimates.send');
+    // Route::get('/estimates/{estimate}/convert', 'EstimateController@convert')->name('estimates.convert');
+    // Route::get('/estimates/{estimate}/mark/{status?}', 'EstimateController@mark')->name('estimates.mark');
+    // Route::get('/estimates/{tab?}', 'EstimateController@index')->name('estimates');
+    
+
+    Route::get('/expenses/create', 'EstimateController@create')->name('estimates.create');
+    Route::post('/expenses/create', 'EstimateController@store')->name('estimates.store');
+    Route::get('/expenses/{estimate}/details', 'EstimateController@show')->name('estimates.details');
+    Route::get('/expenses/{estimate}/edit', 'EstimateController@edit')->name('estimates.edit');
+    Route::post('/expenses/{estimate}/edit', 'EstimateController@update')->name('estimates.update');
+    Route::get('/expenses/{estimate}/delete', 'EstimateController@delete')->name('estimates.delete');
+    Route::get('/expenses/{estimate}/send', 'EstimateController@send')->name('estimates.send');
+    Route::get('/expenses/{estimate}/convert', 'EstimateController@convert')->name('estimates.convert');
+    Route::get('/expenses/{estimate}/mark/{status?}', 'EstimateController@mark')->name('estimates.mark');
+    Route::get('/expenses/{tab?}', 'EstimateController@index')->name('estimates');
 
     // Payments
     Route::get('/payments', 'PaymentController@index')->name('payments');
@@ -166,13 +186,13 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/payments/{payment}/delete', 'PaymentController@delete')->name('payments.delete');
 
     // Expenses
-    Route::get('/expenses', 'ExpenseController@index')->name('expenses');
-    Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
-    Route::post('/expenses/create', 'ExpenseController@store')->name('expenses.store');
-    Route::get('/expenses/{expense}/edit', 'ExpenseController@edit')->name('expenses.edit');
-    Route::post('/expenses/{expense}/edit', 'ExpenseController@update')->name('expenses.update');
-    Route::get('/expenses/{expense}/receipt', 'ExpenseController@download_receipt')->name('expenses.download_receipt');
-    Route::get('/expenses/{expense}/delete', 'ExpenseController@delete')->name('expenses.delete');
+    // Route::get('/expenses', 'ExpenseController@index')->name('expenses');
+    // Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
+    // Route::post('/expenses/create', 'ExpenseController@store')->name('expenses.store');
+    // Route::get('/expenses/{expense}/edit', 'ExpenseController@edit')->name('expenses.edit');
+    // Route::post('/expenses/{expense}/edit', 'ExpenseController@update')->name('expenses.update');
+    // Route::get('/expenses/{expense}/receipt', 'ExpenseController@download_receipt')->name('expenses.download_receipt');
+    // Route::get('/expenses/{expense}/delete', 'ExpenseController@delete')->name('expenses.delete');
 
     // ledgers 
     Route::get('/ledgers', 'LedgerController@index')->name('ledgers');
