@@ -355,6 +355,22 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="unit">Category</label>
+                    
+                                                    <select id="category_id" class="select2 form-control" name="category_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                             class="font-weight-300">+
+                                                               Add new Category</a></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="name">HSN Code</label>
                                                     <input name="name" type="text" class="form-control"

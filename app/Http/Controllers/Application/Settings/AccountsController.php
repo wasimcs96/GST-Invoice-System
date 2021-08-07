@@ -4,48 +4,34 @@ namespace App\Http\Controllers\Application\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
+use App\Models\Account;
 
-class ProductCategoryController extends Controller
+class AccountsController extends Controller
 {
-    /**
-     * Display Expense Category Settings Page
-     * 
-     * @param  \Illuminate\Http\Request $request
-     * 
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
 
         // Get Expense Categories by Company
-        $product_categories = ProductCategory::findByCompany($currentCompany->id)->paginate(15);
+        $accounts = Account::findByCompany($currentCompany->id)->paginate(15);
 
-        return view('application.settings.product_category.index', [
-            'product_categories' => $product_categories,
+        return view('application.settings.accounting.index', [
+            'accounts' => $accounts,
         ]);
-    }
- 
-    /**
-     * Display the Form for Creating New Expense Category
-     *
-     * @param  \Illuminate\Http\Request $request
-     * 
-     * @return \Illuminate\Http\Response
-     */
+    }  
+
     public function create(Request $request)
     {
-        $product_category = new ProductCategory();
+        $accounts = new Account();
 
         // Fill model with old input
-        if (!empty($request->old())) {
-            $expense_category->fill($request->old());
-        }
+        // if (!empty($request->old())) {
+        //     $expense_category->fill($request->old());
+        // }
 
-        return view('application.settings.product_category.create', [
-            'product_category' => $product_category,
+        return view('application.settings.accounting.create', [
+            'accounts' => $accounts,
         ]);
     }
  
@@ -62,13 +48,21 @@ class ProductCategoryController extends Controller
         $currentCompany = $user->currentCompany();
 
         // Create Expense Category and Store in Database
-        ProductCategory::create([
+        Account::create([
             'name' => $request->name,
             'company_id' => $currentCompany->id,
+            'detail_type'=> $request->detail_type,
+            'account_type'=> $request->account_type,
+            'description'=> $request->description,
+            'tax'=> $request->tax,
+            'balance'=> $request->balance,
+            'as_date'=> $request->as_date,
+
+
         ]);
  
-        session()->flash('alert-success', __('messages.expense_category_added'));
-        return redirect()->route('settings.product_categories', ['company_uid' => $currentCompany->uid]);
+        session()->flash('alert-success', __('messages.account added'));
+        return redirect()->route('settings.accounting', ['company_uid' => $currentCompany->uid]);
     }
 
     /**
@@ -80,10 +74,10 @@ class ProductCategoryController extends Controller
      */
     public function edit(Request $request)
     {
-        $product_category = ProductCategory::findOrFail($request->product_category);
+        $accounts = Account::findOrFail($request->product_category);
  
-        return view('application.settings.product_category.edit', [
-            'product_category' => $product_category,
+        return view('application.settings.accounting.edit', [
+            'accounts' => $accounts,
         ]);
     }
 
@@ -99,15 +93,22 @@ class ProductCategoryController extends Controller
         $user = $request->user();
         $currentCompany = $user->currentCompany();
 
-        $product_category = ProductCategory::findOrFail($request->product_category);
+        $accounts = Account::findOrFail($request->Account);
         
         // Update Expense Category in Database
-        $product_category->update([
-            'name' => $request->name
+        $accounts->update([
+            'name' => $request->name,
+            'company_id' => $currentCompany->id,
+            'detail_type'=> $request->detail_type,
+            'account_type'=> $request->account_type,
+            'description'=> $request->description,
+            'tax'=> $request->tax,
+            'balance'=> $request->balance,
+            'as_date'=> $request->as_date,
         ]);
  
-        session()->flash('alert-success', __('messages.expense_category_updated'));
-        return redirect()->route('settings.product_categories', ['company_uid' => $currentCompany->uid]);
+        session()->flash('alert-success', __('messages.account_updated'));
+        return redirect()->route('settings.accounting', ['company_uid' => $currentCompany->uid]);
     }
 
     /**
@@ -122,13 +123,13 @@ class ProductCategoryController extends Controller
         $user = $request->user();
         $currentCompany = $user->currentCompany();
         
-        $product_category = ProductCategory::findOrFail($request->product_category);
+        $accounts = Account::findOrFail($request->Account);
         
         // Delete Expense Category from Database
-        $product_category->delete();
+        $accounts->delete();
 
-        session()->flash('alert-success', __('messages.expense_category_deleted'));
-        return redirect()->route('settings.product_categories', ['company_uid' => $currentCompany->uid]);
+        session()->flash('alert-success', __('messages.account_deleted'));
+        return redirect()->route('settings.accounting', ['company_uid' => $currentCompany->uid]);
     }
 
     public function invoicestore(Request $request)
@@ -137,12 +138,19 @@ class ProductCategoryController extends Controller
         $currentCompany = $user->currentCompany();
 
         // Create Expense Category and Store in Database
-        ProductCategory::create([
+        Account::create([
             'name' => $request->name,
             'company_id' => $currentCompany->id,
+            'detail_type'=> $request->detail_type,
+            'account_type'=> $request->account_type,
+            'description'=> $request->description,
+            'tax'=> $request->tax,
+            'balance'=> $request->balance,
+            'as_date'=> $request->as_date,
+       
         ]);
  
-        session()->flash('alert-success', __('messages.expense_category_added'));
+        session()->flash('alert-success', __('messages.account_added'));
         return redirect()->route('invoices.create', ['company_uid' => $currentCompany->uid]);
     }
 }

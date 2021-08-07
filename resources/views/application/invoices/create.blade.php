@@ -27,7 +27,7 @@
         @include('application.invoices._form')
     </form>
 
-    <!-- Modal -->
+    <!--Customer Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -347,7 +347,7 @@
         </div>
     </div> --}}
 
-    <!--Product Modal -->
+    <!-- Inventory Product Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -356,7 +356,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
-                        method="POST">
+                        method="POST"  enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">
@@ -367,33 +367,11 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <label>{{ __('messages.receipt') }}</label><br>
-                                                <input type="file" onchange="changePreview(this);" class="d-none"
-                                                    name="image" id="image">
-                                                <label for="image">
-                                                    <div class="media align-items-center">
-                                                        <div class="mr-3">
-                                                            <div class="avatar avatar-xl">
-                                                                <img id="file-prev" class="avatar-img rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <a
-                                                                class="btn btn-sm btn-primary choose-button">{{ __('messages.choose_file') }}</a>
-                                                        </div>
-                                                    </div>
-                                                </label><br>
-                                                {{-- @if ($product->image)
-                                                    <a href="{{ asset($product->image) }}" target="_blank"
-                                                        class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
-                                                    @endif --}}
-                                            </div>
-
+                                           
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
-                                                    <label for="name">SKU</label>
-                                                    <input name="name" type="text" class="form-control"
+                                                    <label for="sku">SKU</label>
+                                                    <input name="sku" type="text" class="form-control"
                                                         placeholder="Enter a SKU" required>
                                                 </div>
                                             </div>
@@ -405,9 +383,25 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="unit">Category</label>
+                    
+                                                    <select id="category_id" class="select2 form-control" name="category_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                             class="font-weight-300">+
+                                                               Add new Category</a></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
                                                 <div class="form-group required">
-                                                    <label for="name">HSN Code</label>
-                                                    <input name="name" type="text" class="form-control"
+                                                    <label for="hsn">HSN Code</label>
+                                                    <input name="hsn" type="text" class="form-control"
                                                         placeholder="Enter a valid HSN code" required>
                                                 </div>
                                             </div>
@@ -459,6 +453,13 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
+                                                    <label for="inputImage">Image</label>
+                                                    <input type="file" id="file"  onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
+                                                  </div>
+                                                  <img id="output" width="100" />	
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
                                                     <label for="description">{{ __('messages.description') }}</label>
                                                     <textarea name="description" class="form-control" cols="30"
                                                         rows="3"></textarea>
@@ -479,6 +480,296 @@
             </div>
         </div>
     </div>
+
+    {{-- Product Noninventory Modal --}}
+    {{-- <div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
+                        method="POST"  enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                         
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="sku">SKU</label>
+                                                    <input name="sku" type="text" class="form-control"
+                                                        placeholder="Enter a SKU" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">{{ __('messages.name') }}</label>
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="{{ __('messages.name') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="unit">Category</label>
+                    
+                                                    <select id="category_id" class="select2 form-control" name="category_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                             class="font-weight-300">+
+                                                               Add new Category</a></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="hsn">HSN Code</label>
+                                                    <input name="hsn" type="text" class="form-control"
+                                                        placeholder="Enter a valid HSN code" required>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-6 col-12">
+
+                                                <div class="form-group">
+                                                    <label for="unit">{{ __('messages.unit') }}</label>
+
+                                                    <select id="unit_id" class="select2 form-control" name="unit_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>{{ __('messages.select_unit') }}
+                                                        </option>
+                                                        @foreach (get_product_units_select2_array($currentCompany->id) as $option)
+                                                            <option value="{{ $option['id'] }}">
+                                                                {{ $option['text'] }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="price">{{ __('messages.price') }}</label>
+                                                    <input name="price" type="text" class="form-control price_input"
+                                                        placeholder="{{ __('messages.price') }}" autocomplete="off"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="price">{{ __('Taxes') }}</label>
+
+                                                    <select id="taxess" class="select2 form-control" multiple="multiple"
+                                                        id="default-select-multi">
+                                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                                            <option value="{{ $option['id'] }}"
+                                                                data-percent="{{ $option['percent'] }}">
+                                                                {{ $option['text'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="inputImage">Image</label>
+                                                    <input type="file" id="file"  onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
+                                                  </div>
+                                                  <img id="output" width="100" />	
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="description">{{ __('messages.description') }}</label>
+                                                    <textarea name="description" class="form-control" cols="30"
+                                                        rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div> --}}
+
+   {{-- Product Service Modal --}}
+    {{-- <div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
+                        method="POST"  enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                          
+                                            <div class="col-md-6 col-12">                                               <div class="form-group required">
+                                                    <label for="sku">SKU</label>
+                                                    <input name="sku" type="text" class="form-control"
+                                                        placeholder="Enter a SKU" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">{{ __('messages.name') }}</label>
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="{{ __('messages.name') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="unit">Category</label>
+                    
+                                                    <select id="category_id" class="select2 form-control" name="category_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                             class="font-weight-300">+
+                                                               Add new Category</a></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="hsn">HSN Code</label>
+                                                    <input name="hsn" type="text" class="form-control"
+                                                        placeholder="Enter a valid HSN code" required>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-6 col-12">
+
+                                                <div class="form-group">
+                                                    <label for="unit">{{ __('messages.unit') }}</label>
+
+                                                    <select id="unit_id" class="select2 form-control" name="unit_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>{{ __('messages.select_unit') }}
+                                                        </option>
+                                                        @foreach (get_product_units_select2_array($currentCompany->id) as $option)
+                                                            <option value="{{ $option['id'] }}">
+                                                                {{ $option['text'] }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="price">{{ __('messages.price') }}</label>
+                                                    <input name="price" type="text" class="form-control price_input"
+                                                        placeholder="{{ __('messages.price') }}" autocomplete="off"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="price">{{ __('Taxes') }}</label>
+
+                                                    <select id="taxess" class="select2 form-control" multiple="multiple"
+                                                        id="default-select-multi">
+                                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                                            <option value="{{ $option['id'] }}"
+                                                                data-percent="{{ $option['percent'] }}">
+                                                                {{ $option['text'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="inputImage">Image</label>
+                                                    <input type="file" id="file"  onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
+                                                  </div>
+                                                  <img id="output" width="100" />	
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="description">{{ __('messages.description') }}</label>
+                                                    <textarea name="description" class="form-control" cols="30"
+                                                        rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div> --}}
+
+{{-- Category Modal --}}
+<div class="modal fade" id="categorymodal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('settings.invoice.product_categories.store', ['company_uid' => $currentCompany->uid]) }}"
+                    method="POST">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group required">
+                                <label for="name">{{ __('messages.name') }}</label>
+                                <input name="name" type="text" class="form-control" placeholder="{{ __('messages.name') }}"  required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
     <!--Tax Modal -->
     <div class="modal fade" id="taxModal" tabindex="-1" role="dialog" aria-labelledby="taxModalLabel" aria-hidden="true">
@@ -597,6 +888,15 @@
             }
 
         });
+        $('#category_id').on('change', function() {
+            if (this.value == "cate") {
+                window.location =
+                    '{{ route('settings.product_categories', ['company_uid' => $currentCompany->uid]) }}';
+                $("#cato").trigger('click');
+            }
+
+        });
+
         //   $('#customer').on('change', function() {
         //     if (this.value == "hii") {
         //         window.location='{{ route('customers.create', ['company_uid' => $currentCompany->uid]) }}';
@@ -740,5 +1040,11 @@
         });
 
     </script>
+    <script>
+        var loadFilef = function(event) {
+          var image = document.getElementById('output');
+          image.src = URL.createObjectURL(event.target.files[0]);
+        };
+        </script>
 
 @endsection
