@@ -241,6 +241,14 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group required">
+                                <label for="email">Company</label>
+                                <input name="company" id="company" type="text" class="form-control"
+                                    placeholder="Enter Company" value="{{ $customer->company }}"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
                                 <label for="email">{{ __('messages.email') }}</label>
                                 <input name="email" id="email" type="email" class="form-control"
                                     placeholder="{{ __('messages.email') }}" value="{{ $customer->email }}"
@@ -299,6 +307,12 @@
                                 <label for="vat_number">GST Number</label>
                                 <input name="vat_number" id="vat_number" type="text" class="form-control"
                                     placeholder="GST Number" value="{{ $customer->vat_number }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="vat_number">Attachment</label>
+                                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $customer->attachment }}">
                             </div>
                         </div>
                     </div>
@@ -414,9 +428,10 @@
             <h4 class="card-title">{{ __('messages.shipping_address') }}</h4>
             <p class="text-muted">{{ __('messages.customer_shipping_address') }}</p>
         </div>
-        {{-- <div class="form-check form-group">
-            <input class="btn" type="checkbox" value="Checkout" name="checkout" />
-        </div> --}}
+        <div class="form-check form-group">
+            <label>shipping Address Same As Billing Address</label>
+            <input class="btn" type="checkbox" value="Checkout" id="checkbox" name="checkout" />
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 col-12">

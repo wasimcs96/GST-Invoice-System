@@ -60,14 +60,22 @@
                                                     <label for="contact_name">{{ __('messages.contact_name') }}</label>
                                                     <input name="contact_name" id="contact_name" type="text"
                                                         class="form-control"
-                                                        placeholder="{{ __('messages.contact_name') }}" required>
+                                                        placeholder="{{ __('messages.contact_name') }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="email">Company</label>
+                                                    <input name="company" id="company" type="text" class="form-control"
+                                                        placeholder="Enter Company"
+                                                        >
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="email">{{ __('messages.email') }}</label>
                                                     <input name="email" id="email" type="email" class="form-control"
-                                                        placeholder="{{ __('messages.email') }}" required>
+                                                        placeholder="{{ __('messages.email') }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
@@ -82,7 +90,7 @@
                                                     <label for="currency_id">{{ __('messages.currency') }}</label>
                                                     <select name="currency_id" id="currency_id" data-toggle="select"
                                                         class="form-control select2 select2-hidden-accessible"
-                                                        data-select2-id="currency_id" required>
+                                                        data-select2-id="currency_id">
                                                         <option disabled selected>{{ __('messages.select_currency') }}
                                                         </option>
                                                         @foreach (get_currencies_select2_array() as $option)
@@ -103,8 +111,7 @@
                                                 <div class="form-group required">
                                                     <label for="gst_type">GST registration type</label>
                                                     <select name="gst_type" id="gst_type" data-toggle="select"
-                                                        class="form-control select2 select2-hidden-accessible" data-select2-id="gst_type"
-                                                        required>
+                                                        class="form-control select2 select2-hidden-accessible" data-select2-id="gst_type">
                                                             <option value="0">GST registered- Regular</option>
                                                             <option value="1">GST registered- Composition</option>
                                                             <option value="2">GST unregistered</option>
@@ -123,6 +130,12 @@
                                                         class="form-control" placeholder="GST Number">
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="vat_number">Attachment</label>
+                                                    <input name="attachment" id="attachment" type="file" class="form-control">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +150,7 @@
                                                     <label for="billing[name]">{{ __('messages.name') }}</label>
                                                     <input name="billing[name]" id="billing_name" type="text"
                                                         class="form-control"
-                                                        placeholder="{{ __('messages.address_name') }}" required>
+                                                        placeholder="{{ __('messages.address_name') }}">
                                                 </div>
                                             </div>
                                             {{-- <div class="col-md-6 col-12">
@@ -153,7 +166,7 @@
                                                     <select id="billing_country_id" name="billing[country_id]"
                                                         data-toggle="select"
                                                         class="form-control select2 select2-hidden-accessible"
-                                                        data-select2-id="billing[country_id]" required>
+                                                        data-select2-id="billing[country_id]">
                                                         <option disabled selected>{{ __('messages.select_country') }}
                                                         </option>
                                                         @foreach (get_countries_select2_array() as $option)
@@ -168,7 +181,7 @@
                                                     <label for="billing[state]">{{ __('messages.state') }}</label>
                                                     <select id="billing_state" name="billing[state]" data-toggle="select"
                                                         class="form-control select2 select2-hidden-accessible oi"
-                                                        data-select2-id="billing[state]" required>
+                                                        data-select2-id="billing[state]">
                                                         <option disabled selected>Select state</option>
                                                         @foreach ($states as $state)
                                                             <option value="{{ $state->id }}">{{ $state->name }}
@@ -184,7 +197,7 @@
                                                     <label for="billing[city]">{{ __('messages.city') }}</label>
                                                     <select name="billing[city]" id="billing_city" data-toggle="select"
                                                         class="form-control select2 select2-hidden-accessible"
-                                                        data-select2-id="billing[city]" required>
+                                                        data-select2-id="billing[city]">
                                                         <option disabled selected>Select city</option>
                                                         {{-- @foreach ($citie as $city)
                                                         <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -206,7 +219,7 @@
                                                     <label for="billing[address_1]">{{ __('messages.address') }}</label>
                                                     <textarea name="billing[address_1]" id="billing_address"
                                                         class="form-control" rows="2"
-                                                        placeholder="{{ __('messages.address') }}" required></textarea>
+                                                        placeholder="{{ __('messages.address') }}"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -217,6 +230,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">{{ __('messages.shipping_address') }}</h4>
+                            </div>
+                            <div class="form-check form-group">
+                                <label>shipping Address Same As Billing Address</label>
+                                <input class="btn" type="checkbox" value="Checkout" id="checkbox" name="checkout" />
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -257,7 +274,7 @@
                                                 required> --}}
                                             <select id="shipping_state" name="shipping[state]" data-toggle="select"
                                                 class="form-control select2 select2-hidden-accessible oi"
-                                                data-select2-id="billing[state]" required>
+                                                data-select2-id="billing[state]">
                                                 <option disabled selected>Select state</option>
                                                 @foreach ($states as $state)
                                                     <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -271,7 +288,7 @@
                                             <label for="billing[city]">{{ __('messages.city') }}</label>
                                             <select name="shipping[city]" id="shipping_city" data-toggle="select"
                                                 class="form-control select2 select2-hidden-accessible"
-                                                data-select2-id="billing[city]" required>
+                                                data-select2-id="billing[city]">
                                                 <option disabled selected>Select city</option>
                                                 {{-- @foreach ($citie as $city)
                                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -655,62 +672,65 @@
 
     </script>
     <script>
-        $(function() {
-            var $src = $('#billing_name'),
-                $dst = $('#shipping_name');
-            $src.on('input', function() {
-                $dst.val($src.val());
-            });
-        });
+        $('#checkbox').on('click', function() {
+            // assuming the textarea is inside <div class="controls /">
+            if ($(this).is(':checked')) {
+                $(function() {
+                    var $src = $('#billing_name'),
+                        $dst = $('#shipping_name');
+                    $src.on('input', function() {
+                        $dst.val($src.val());
+                    });
+                });
 
-        $(function() {
-            var $src1 = $('#billing_phone'),
-                $dst1 = $('#shipping_phone');
-            $src1.on('input', function() {
-                $dst1.val($src1.val());
-            });
-        });
+                $(function() {
+                    var $src1 = $('#billing_phone'),
+                        $dst1 = $('#shipping_phone');
+                    $src1.on('input', function() {
+                        $dst1.val($src1.val());
+                    });
+                });
 
-        $(function() {
-            var $src2 = $('#billing_country_id'),
-                $dst2 = $('#shipping_country_id');
-            $src2.on('input', function() {
-                $dst2.val($src2.val());
-            });
-        });
+                $(function() {
+                    var $src2 = $('#billing_country_id'),
+                        $dst2 = $('#shipping_country_id');
+                    $src2.on('input', function() {
+                        $dst2.val($src2.val());
+                    });
+                });
 
-        $(function() {
-            var $src3 = $('#billing_state'),
-                $dst3 = $('#shipping_state');
-            $src3.on('input', function() {
-                $dst3.val($src3.val());
-            });
-        });
+                $(function() {
+                    var $src3 = $('#billing_state'),
+                        $dst3 = $('#shipping_state');
+                    $src3.on('input', function() {
+                        $dst3.val($src3.val());
+                    });
+                });
 
-        $(function() {
-            var $src4 = $('#billing_city'),
-                $dst4 = $('#shipping_city');
-            $src4.on('input', function() {
-                $dst4.val($src4.val());
-            });
-        });
+                $(function() {
+                    var $src4 = $('#billing_city'),
+                        $dst4 = $('#shipping_city');
+                    $src4.on('input', function() {
+                        $dst4.val($src4.val());
+                    });
+                });
+                $(function() {
+                    var $src6 = $('#billing_zip'),
+                        $dst6 = $('#shipping_zip');
+                    $src6.on('input', function() {
+                        $dst6.val($src6.val());
+                    });
+                });
 
-        $(function() {
-            var $src6 = $('#billing_zip'),
-                $dst6 = $('#shipping_zip');
-            $src6.on('input', function() {
-                $dst6.val($src6.val());
-            });
+                $(function() {
+                    var $src5 = $('#billing_address'),
+                        $dst5 = $('#shipping_address');
+                    $src5.on('input', function() {
+                        $dst5.val($src5.val());
+                    });
+                });
+            }
         });
-
-        $(function() {
-            var $src5 = $('#billing_address'),
-                $dst5 = $('#shipping_address');
-            $src5.on('input', function() {
-                $dst5.val($src5.val());
-            });
-        });
-
     </script>
     <script>
         $('input[type="checkbox"]').on('change', function(e) {
