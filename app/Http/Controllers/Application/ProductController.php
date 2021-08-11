@@ -24,6 +24,7 @@ class ProductController extends Controller
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
+        $categories = ProductCategory::all();
  
         // Get Products by Company
         $products = QueryBuilder::for(Product::findByCompany($currentCompany->id))
@@ -37,7 +38,8 @@ class ProductController extends Controller
             ->appends(request()->query());
 
         return view('application.products.index', [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 
@@ -99,6 +101,13 @@ class ProductController extends Controller
             'price'  => $price,
             'description' => $request->description,
             'image' => $st1,
+            'initial_quantity' => $request->initial_quantity,
+            'as_date' => $request->as_date,
+            'inventory_assests_accounts_id' => $request->initial_quantity,
+            'income_account' => $request->income_account,
+            'sac' => $request->sac,
+            'abatement' => $request->abatement,
+            'service_type'=>$request->service_type,
         ]);
 
         // Add custom field values
@@ -172,6 +181,13 @@ class ProductController extends Controller
             'price'  => $price,
             'description' => $request->description,
             'image' => $st1,
+            'initial_quantity' => $request->initial_quantity,
+            'as_date' => $request->as_date,
+            'inventory_assests_accounts_id' => $request->initial_quantity,
+            'income_account' => $request->income_account,
+            'sac' => $request->sac,
+            'abatement' => $request->abatement,
+            'service_type'=>$request->service_type,
         ]);
         
 
@@ -267,6 +283,13 @@ class ProductController extends Controller
             'price'  => $price,
             'description' => $request->description,
             'image' => $st1,
+            'initial_quantity' => $request->initial_quantity,
+            'as_date' => $request->as_date,
+            'inventory_assests_accounts_id' => $request->initial_quantity,
+            'income_account' => $request->income_account,
+            'sac' => $request->sac,
+            'abatement' => $request->abatement,
+            'service_type'=>$request->service_type,
         ]);
 
         // Add custom field values
@@ -316,6 +339,13 @@ class ProductController extends Controller
             'price'  => $price,
             'description' => $request->description,
             'image' => $st1,
+            'initial_quantity' => $request->initial_quantity,
+            'as_date' => $request->as_date,
+            'inventory_assests_accounts_id' => $request->initial_quantity,
+            'income_account' => $request->income_account,
+            'sac' => $request->sac,
+            'abatement' => $request->abatement,
+            'service_type'=>$request->service_type,
         ]);
 
         // Add custom field values
