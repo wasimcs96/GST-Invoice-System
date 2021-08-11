@@ -319,9 +319,12 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::post('/product-categories/{product_category}/edit', 'ProductCategoryController@update')->name('settings.product_categories.update');
         Route::get('/product-categories/{product_category}/delete', 'ProductCategoryController@delete')->name('settings.product_categories.delete');
        
+         // Settings>Account Detail
+         Route::get('/account-details', 'AccountDetailController@index')->name('settings.account_details');
+         Route::get('/account-details/create', 'AccountDetailController@create')->name('settings.account_details.create');
+         Route::post('/account-details/create', 'AccountDetailController@store')->name('settings.account_details.store');
         
-       
-        // Settings>Accounts
+         // Settings>Accounts
         Route::get('/settings-account', 'AccountsController@index')->name('settings.accounts_setting');
         Route::get('/settings-account/create', 'AccountsController@create')->name('settings.accounts.create');
         Route::post('/settings-account/create', 'AccountsController@store')->name('settings.accounts.store');

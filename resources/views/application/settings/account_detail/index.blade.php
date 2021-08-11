@@ -1,6 +1,6 @@
 @extends('layouts.app', ['page' => 'settings'])
 
-@section('title', 'Account')
+@section('title', 'Account Detail')
     
 @section('content')
     <div class="page__heading">
@@ -8,11 +8,11 @@
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">business</i></a></li>
                 <li class="breadcrumb-item">{{ __('messages.settings') }}</li>
-                <li class="breadcrumb-item active" aria-current="page">Account</li>
+                <li class="breadcrumb-item active" aria-current="page">Account Detail</li>
             </ol>
         </nav>
         <a href="{{ URL(''.auth()->user()->uid.'/settings/index') }}" class="btn btn-info float-right">Back</a>
-        <h1 class="m-1">Account</h1>
+        <h1 class="m-1">Account Detail</h1>
     </div>
 
     <div class="row">
@@ -24,67 +24,42 @@
                         <div class="form-row align-items-center mb-4">
                             <div class="col">
                                 <p class="h4 mb-0">
-                                    <strong class="headings-color">Account</strong>
+                                    <strong class="headings-color">Account Detail</strong>
                                 </p>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('settings.accounts.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-primary text-white">
-                                    Add Account
+                                <a href="{{ route('settings.account_details.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-primary text-white">
+                                    Add Account Detail
                                 </a>
                             </div>
                         </div>
 
-                        @if($accounts->count() > 0)
+                        @if($account_details->count() > 0)
                             <div class="table-responsive" data-toggle="lists">
                                 <table class="table table-xl mb-0 thead-border-top-0 table-striped">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
                                             <th>{{ __('messages.name') }}</th> 
-                                            <th>Account Type</th>
-                                            <th>Detail type</th>
-                                            <th>{{ __('messages.actions') }}</th>
+                                            {{-- <th>{{ __('messages.actions') }}</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody class="list" id="expense_categories">
-                                        @foreach($accounts as $account)
+                                        @foreach($account_details as $account_detail)
                                             <tr>
                                                 <td class="h6">
-                                                    <strong class="h6">
-                                                        {{ $account->id }}
-                                                    </strong>                                      
-                                            </td>
-                                                <td class="h6">
+                                                    
                                                         <strong class="h6">
-                                                            {{ $account->name }}
-                                                        </strong>                                      
+                                                            {{ $account_detail->id }}
+                                                        </strong>
+                                                    
                                                 </td>
                                                 <td class="h6">
-                                                    <strong class="h6">
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 0) Account receivable (Debtors)  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 1) Current assets @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 2) Bank  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 3) Non-current assets @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 4)Accounts payable (Creditors) @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 5) Credit Card  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 6) Current liabilities  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 7) Non-current liabilities @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 8) Equity  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 9) Income @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 10) Other Income  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 11) Cost of Goods sold  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 12) Expense  @endif
-                                                        @if(isset($account['account_type'])&& $account['account_type'] == 13) Other expense @endif
-                                                       
-                                                             
-                                                    </strong>                                      
-                                            </td>
-                                            <td class="h6">
-                                                <strong class="h6">
-                                                    {{-- {{dd($account->accountDetail)}} --}}
-                                                    {{$account->accountDetail->name ?? ''}}
                                                     
-                                                </strong>                                      
+                                                    <strong class="h6">
+                                                        {{ $account_detail->name }}
+                                                    </strong>
+                                                
                                             </td>
                                                 {{-- <td class="h6">
                                                     <a href="{{ route('settings.expense_categories.edit', ['expense_category' => $expense_category->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
@@ -96,39 +71,39 @@
                                                         {{ __('messages.delete') }}
                                                     </a>
                                                 </td> --}}
-                                                <td>
+                                                {{-- <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu"> 
                                                         <a class="dropdown-item"
-                                                        href="{{ route('settings.accounts.edit', ['accounts_setting' => $account->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                        href="{{ route('settings.product_categories.edit', ['product_category' => $product_category->id, 'company_uid' => $currentCompany->uid]) }}">
                                                         <i data-feather="edit-2"></i>
                                                         {{ __('messages.edit') }}
                                                             </a>
                                                             <a class="dropdown-item"
-                                                            href="{{ route('settings.accounts.delete', ['accounts_setting' => $account->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                            href="{{ route('settings.product_categories.delete', ['product_category' => $product_category->id, 'company_uid' => $currentCompany->uid]) }}">
                                                             <i data-feather="trash"></i>
                                                             {{ __('messages.delete') }}
                                                             </a>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row card-body pagination-light justify-content-center text-center">
-                                {{ $accounts->links() }}
-                            </div>
+                            {{-- <div class="row card-body pagination-light justify-content-center text-center">
+                                {{ $product_categories->links() }}
+                            </div> --}}
                         @else
                             <div class="row justify-content-center card-body pb-0 pt-5">
                                 <i class="material-icons fs-64px"></i>
                             </div>
                             <div class="row justify-content-center card-body pb-5">
-                                <p class="h4">No Account</p>
+                                <p class="h4">No Account Details</p>
                             </div>
                         @endif
 

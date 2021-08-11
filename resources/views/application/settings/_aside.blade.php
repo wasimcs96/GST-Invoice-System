@@ -386,7 +386,22 @@
                 </div>
                 <a href="{{ route('settings.accounts_setting', ['company_uid' => $currentCompany->uid]) }}" class="card-text" aria-expanded="false">
                     {{-- <span class="card-text">{{ __('messages.expense_categories') }}</span> --}}
-                    <p class="card-text">Account Settings</p>
+                    <p class="card-text">Add Account</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="avatar bg-light-danger p-50 mb-1">
+                    <div class="avatar-content">
+                        <i data-feather="save" class="font-medium-5"></i>
+                    </div>
+                </div>
+                <a href="{{ route('settings.account_details', ['company_uid' => $currentCompany->uid]) }}" class="card-text" aria-expanded="false">
+                    {{-- <span class="card-text">{{ __('messages.expense_categories') }}</span> --}}
+                    <p class="card-text">Account Details</p>
                 </a>
             </div>
         </div>

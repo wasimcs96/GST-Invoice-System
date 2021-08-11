@@ -48,7 +48,12 @@
 {{-- <script src="{{asset('theme/app-assets/js/scripts/pages/app-invoice.js') }}"></script> --}}
 
     @include('application.invoices._js')
-   
+   <script>
+   $('input[type="checkbox"]').on('change', function(e){
+    if(e.target.checked){
+      $('#myModal').modal();
+    }
+ });</script>
 @endsection
 
 {{-- @section('page_body_scripts')
@@ -66,3 +71,6 @@
 });
 </script>
 @endsection --}}
+ {{-- Product Service Modal --}}
+  
+

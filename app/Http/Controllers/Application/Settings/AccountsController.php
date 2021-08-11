@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Application\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Account;
+use App\Models\AccountDetail;
 
 class AccountsController extends Controller
 {
@@ -24,7 +25,7 @@ class AccountsController extends Controller
     public function create(Request $request)
     {
         $accounts = new Account();
-
+        $details = AccountDetail::all();
         // Fill model with old input
         // if (!empty($request->old())) {
         //     $expense_category->fill($request->old());
@@ -32,6 +33,7 @@ class AccountsController extends Controller
 
         return view('application.settings.accounting.create', [
             'accounts' => $accounts,
+            'details' => $details,
         ]);
     }
  
@@ -51,7 +53,7 @@ class AccountsController extends Controller
         Account::create([
             'name' => $request->name,
             'company_id' => $currentCompany->id,
-            'detail_type'=> $request->detail_type,
+            'detail_id'=> $request->detail_id,
             'account_type'=> $request->account_type,
             'description'=> $request->description,
             'tax'=> $request->tax,
@@ -62,7 +64,7 @@ class AccountsController extends Controller
         ]);
  
         session()->flash('alert-success', __('messages.account added'));
-        return redirect()->route('settings.accounting', ['company_uid' => $currentCompany->uid]);
+        return redirect()->route('settings.accounts_setting', ['company_uid' => $currentCompany->uid]);
     }
 
     /**
@@ -99,7 +101,7 @@ class AccountsController extends Controller
         $accounts->update([
             'name' => $request->name,
             'company_id' => $currentCompany->id,
-            'detail_type'=> $request->detail_type,
+            'detail_id'=> $request->detail_id,
             'account_type'=> $request->account_type,
             'description'=> $request->description,
             'tax'=> $request->tax,

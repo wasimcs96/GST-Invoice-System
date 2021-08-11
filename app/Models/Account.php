@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AccountDetail;
 
 class Account extends Model
 {
@@ -10,7 +11,7 @@ class Account extends Model
 
     protected $fillable = [
         'name',
-        'detail_type',
+        'detail_id',
         'account_type',
         'company_id',
         'description',
@@ -24,5 +25,11 @@ class Account extends Model
     {
         $query->where('company_id', $company_id);
     }
+
+    public function accountDetail()
+    {
+        return $this->belongsTo(AccountDetail::class,'detail_id');
+    }
+
     
 }

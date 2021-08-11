@@ -63,7 +63,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">{{ __('messages.products') }}</h4>
-                <a href="{{ route('products.create', ['company_uid' => $currentCompany->uid]) }}"
+                <a  data-toggle="modal" data-target="#addProduct" 
                     class="btn btn-primary  ml-3 float-right"><i class="material-icons"></i>
                     {{ __('messages.create_product') }}</a>
             </div>
