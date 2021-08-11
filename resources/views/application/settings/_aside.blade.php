@@ -193,7 +193,7 @@
 </div> --}}
 @extends('layouts.app', ['page' => 'settings'])
 
-@section('title', __('messages.Settings'))
+@section('title', __('messages.settings'))
     
 @section('content')
 <div class="row">

@@ -127,7 +127,10 @@ class EstimateController extends Controller
         // Get company based settings
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
-
+        
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         // Save Estimate to Database
         $estimate = Estimate::create([
             'estimate_date' => $request->estimate_date,
@@ -145,6 +148,8 @@ class EstimateController extends Controller
             'private_notes' => $request->private_notes,
             'tax_per_item' => $tax_per_item,
             'discount_per_item' => $discount_per_item,
+            'attachment' => $st1,
+
         ]);
 
         // Arrays of data for storing Estimate Items
@@ -332,7 +337,9 @@ class EstimateController extends Controller
 
         // Find Estimate or Fail (404 Http Error)
         $estimate = Estimate::findOrFail($request->estimate);
-
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+        $st1= $limage->move('assets/images', $limage_new_name);
         // Update Estimate
         $estimate->update([
             'estimate_date' => $request->estimate_date,
@@ -346,6 +353,7 @@ class EstimateController extends Controller
             'total' => $request->grand_total,
             'notes' => $request->notes,
             'private_notes' => $request->private_notes,
+            'attachment' => $st1,
         ]);
 
         // Posted Values

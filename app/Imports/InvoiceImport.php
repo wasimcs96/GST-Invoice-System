@@ -54,6 +54,7 @@ class InvoiceImport implements WithHeadingRow, ToCollection
                 // 'status'     => 'DRAFT',
                 // 'paid_status'    => 'UNPAID',
                 'status'     => $ro['status'],
+                'attachment'     => $ro['attachment'],
                 'paid_status' => $ro['paid_status'],
                 'tax_per_item' => $ro['tax_per_item'],
                 'discount_per_item'     => $ro['discount_per_item'],

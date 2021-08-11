@@ -130,7 +130,9 @@ class InvoiceController extends Controller
         // Get company based settings
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
- 
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         // Save Invoice to Database
         $invoice = Invoice::create([
             'invoice_date' => $request->invoice_date,
@@ -147,6 +149,7 @@ class InvoiceController extends Controller
             'total' => $request->grand_total,
             'due_amount' => $request->grand_total,
             'notes' => $request->notes,
+            'attachment' => $st1,
             'private_notes' => $request->private_notes,
             'tax_per_item' => $tax_per_item,
             'discount_per_item' => $discount_per_item,
@@ -365,6 +368,9 @@ class InvoiceController extends Controller
             $invoice->status = $invoice->getPreviousStatus();
             $invoice->paid_status = Invoice::STATUS_PARTIALLY_PAID;
         }
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
 
         // Update Invoice
         $invoice->update([
@@ -379,6 +385,8 @@ class InvoiceController extends Controller
             'total' => $request->grand_total,
             'notes' => $request->notes,
             'private_notes' => $request->private_notes,
+            'attachment' => $st1,
+
         ]);
 
         // Posted Values
