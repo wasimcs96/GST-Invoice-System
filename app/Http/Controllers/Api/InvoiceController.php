@@ -111,6 +111,7 @@ class InvoiceController extends Controller
             'due_date' => $request->due_date,
             'invoice_number' => $request->invoice_number,
             'reference_number' => $request->reference_number,
+            'attachment' => $request->attachment,
             'customer_id' => $customer->id,
             'company_id' => $customer->company_id,
             'status' => $request->status,

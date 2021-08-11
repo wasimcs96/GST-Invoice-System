@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/plugins/forms/pickers/form-flat-pickr.css') }}">
-    <link rel="stylesheet" type="text/css" href={{asset('theme/app-assets/css/pages/app-invoice.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/pages/app-invoice.css') }}">
 <style>
     .select2-selection__arrow {
         display: none;
@@ -30,7 +30,7 @@
 
 @endsection
 @section('content') 
-    <form action="{{ route('estimates.update', ['estimate' => $estimate->id, 'company_uid' => $currentCompany->uid]) }}" method="POST">
+    <form action="{{ route('estimates.update', ['estimate' => $estimate->id, 'company_uid' => $currentCompany->uid]) }}" method="POST" enctype="multipart/form-data">
         @include('layouts._form_errors')
         @csrf
         

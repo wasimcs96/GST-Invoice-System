@@ -252,6 +252,10 @@
                 <label for="private_notes">{{ __('messages.private_notes') }}</label>
                 <textarea name="private_notes" class="form-control" rows="4">{{ $estimate->private_notes }}</textarea>
             </div>
+            <div class="form-group">
+                <label for="vat_number">Attachment</label>
+                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $estimate->attachment }}">
+            </div>
         </div>
 
         <div class="col-md-4 offset-md-3 mt-5 pl-4">

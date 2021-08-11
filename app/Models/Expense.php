@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Traits\HasTax;
 use App\Traits\HasCustomFields;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
@@ -9,6 +9,7 @@ use Carbon\Carbon;
 class Expense extends Model
 {
     use HasCustomFields;
+    use HasTax;
     
     /** 
      * The attributes that are mass assignable.
@@ -20,9 +21,15 @@ class Expense extends Model
         'amount',
         'company_id',
         'vendor_id',
-        'expense_date',
-        'notes',
-        'attachment_receipt'
+        'payment_date',
+        'supplier_id',
+        'payment_account_id',
+        'payment_type_id',
+        'reference_number',
+        'tax_id',
+        'sub_total',
+        'total',
+        'attachment'
     ];
 
     /**
@@ -46,16 +53,16 @@ class Expense extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
+    // public function category()
+    // {
+    //     return $this->belongsTo(ExpenseCategory::class, 'expense_category_id');
+    // }
+
+    public function items()
     {
-        return $this->belongsTo(ExpenseCategory::class, 'expense_category_id');
+        return $this->hasMany(ExpenseItem::class);
     }
 
-    /**
-     * Define Relation with Company Model
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function company()
     {
         return $this->belongsTo(Company::class);
@@ -134,5 +141,15 @@ class Expense extends Model
     public function scopeTo($query, $to)
     {
         $query->where('expense_date', '<=', $to);
+    }
+
+    public function supplier()
+    {
+        return $this->hasMany(Supplier::class);
+    }
+
+    public function paymentmethod()
+    {
+        return $this->hasMany(PaymentMethod::class);
     }
 }
