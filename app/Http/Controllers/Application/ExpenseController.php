@@ -5,6 +5,13 @@ namespace App\Http\Controllers\Application;
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\Vendor;
+use App\Models\Estimate;
+use App\Models\State;
+use App\Models\City;
+use App\Models\Supplier;
+use App\Models\ProductCategory;
+
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use App\Http\Requests\Application\Expense\Store;
 use App\Http\Requests\Application\Expense\Update;
@@ -48,13 +55,65 @@ class ExpenseController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
+
+      public function newCreate(Request $request){
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Get next Estimate number if the auto generation option is enabled
+        $estimate_prefix = $currentCompany->getSetting('estimate_prefix');
+        $next_estimate_number = Estimate::getNextestimateNumber($currentCompany->id, $estimate_prefix);
+
+        // Create new Estimate model and set estimate_number and company_id
+        // so that we can use them in the form
+        $estimate = new Estimate();
+        $estimate->estimate_number = $next_estimate_number ?? 0;
+        $estimate->company_id = $currentCompany->id;
+        $expense = new Expense();
+
+        // Also for filling form data and the ui
+        $customers = $currentCompany->customers;
+        $states = State::all();
+        $citie = City::all();
+        $categories = ProductCategory::all();
+         // $suppliers = Supplier::findByCompany($currentCompany->id);
+         $suppliers = Supplier::all();
+         // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
+         $paymethod = PaymentMethod::all();
+ 
+        $products = $currentCompany->products;
+        $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
+        $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
+
+        return view('application.expenses.create', [
+            'estimate' => $estimate,
+            'expense' => $expense,
+            'customers' => $customers,
+            'products' => $products,
+            'tax_per_item' => $tax_per_item,
+            'discount_per_item' => $discount_per_item,
+            'states' => $states,
+            'categories' => $categories,
+            'suppliers'=> $suppliers,
+            'paymethod'=> $paymethod,
+            'citie' => $citie,
+        ]);
+      }
+     
+
     public function create(Request $request)
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
 
         $expense = new Expense();
+        // $suppliers = Supplier::findByCompany($currentCompany->id);
+        $suppliers = Supplier::all();
+        // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
+        $paymethod = PaymentMethod::all();
 
+
+        $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         // Fill model with old input
         if (!empty($request->old())) {
             $expense->fill($request->old());
@@ -65,7 +124,10 @@ class ExpenseController extends Controller
 
         return view('application.expenses.create', [
             'expense' => $expense,
-            'vendors' => $vendors
+            'vendors' => $vendors,
+            'tax_per_item'=> $tax_per_item,
+            'suppliers'=> $suppliers,
+            'paymethod'=> $paymethod
         ]); 
     }
 
@@ -80,16 +142,61 @@ class ExpenseController extends Controller
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
-
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
         // Create Expense and Store in Database
         $expense = Expense::create([
-            'expense_category_id' => $request->expense_category_id,
-            'amount' => $request->amount,
+            'supplier_id'=>$request->supplier_id,
             'company_id' => $currentCompany->id,
-            'vendor_id' => $request->vendor_id,
-            'expense_date' => $request->expense_date,
-            'notes' => $request->notes,
+            // 'vendor_id' => $request->vendor_id,
+            'payment_date' => $request->payment_date,
+            'payment_type_id' => $request->payment_method,
+            'payment_account_id' => $request->payment_account_id,
+            'reference_number' => $request->reference_number,
+            'sub_total'=>$request->sub_total,
+            'grand_total' => $request->total,
+            'attachment' => $st1
         ]);
+
+        $category = $request->category;
+        $prices = $request->price;
+        $totals = $request->total;
+
+        // Add products (estimate items)
+        for ($i=0; $i < count($category); $i++) {
+            $category = ExpenseCategory::firstOrCreate(
+                ['id' => $category[$i], 'company_id' => $currentCompany->id],
+                ['name' => $category[$i], 'price' => $prices[$i], 'description' => $desc[$i], 'hide' => 1]
+            );
+
+            $item = $estimate->items()->create([
+                'expense_category_id' => $category->id,
+                'company_id' => $currentCompany->id,
+                'price' => $prices[$i],
+                'total' => $totals[$i],
+                'description' => $desc[$i],
+
+            ]);
+
+            // // Add taxes for Estimate Item if it is given
+            // if ($taxes && array_key_exists($i, $taxes)) {
+            //     foreach ($taxes[$i] as $tax) {
+            //         $item->taxes()->create([
+            //             'tax_type_id' => $tax
+            //         ]);
+            //     }
+            // }
+        }
+
+        // If Estimate based taxes are given
+        if ($request->has('total_taxes')) {
+            foreach ($request->total_taxes as $tax) {
+                $expense->taxes()->create([
+                    'tax_type_id' => $tax
+                ]);
+            }
+        }
 
         // Add custom field values
         $expense->addCustomFields($request->custom_fields);

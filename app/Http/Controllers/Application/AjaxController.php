@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\Product;
+use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -82,6 +83,19 @@ class AjaxController extends Controller
             ->select('id', 'name AS text', 'price')
             ->where('hide', false)
             ->with('taxes')
+            ->get();
+ 
+        return response()->json($products);
+    }
+
+    public function category(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        $products = ExpenseCategory::findByCompany($currentCompany->id)
+            ->select('id', 'name AS text')
+         
             ->get();
  
         return response()->json($products);

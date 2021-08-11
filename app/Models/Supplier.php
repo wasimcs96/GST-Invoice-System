@@ -15,4 +15,9 @@ class Supplier extends Model
     {
         $query->where('company_id', $company_id);
     }
+
+    public function expense()
+    {
+        return $this->belongsTo(Expense::class);
+    }
 }

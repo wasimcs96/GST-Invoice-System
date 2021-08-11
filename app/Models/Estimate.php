@@ -42,6 +42,7 @@ class Estimate extends Model
         'private_notes',
         'tax_per_item',
         'discount_per_item',
+        'attachment',
     ];
 
     /**
