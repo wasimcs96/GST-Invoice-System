@@ -79,7 +79,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Product/Service information</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
@@ -90,7 +90,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                                        <h4 class="card-title"><i data-feather="shopping-bag"></i>Inventory</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -119,9 +119,39 @@
                                                         @foreach ($categories as $category)
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                                     @endforeach
-                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                        {{-- <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
                                                              class="font-weight-300">+
-                                                               Add new Category</a></option>
+                                                               Add new Category</a></option> --}}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="initial_quantity">Initial quantity on hand</label>
+                                                    <input name="initial_quantity" type="number" class="form-control"
+                                                        placeholder="Enter" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="as_date">As of Date</label>
+                                                    <input name="as_date" type="date" class="form-control"
+                                                         required>
+                                                </div>
+                                            </div>
+                                            <div class="col col-12">
+                                                <div class="form-group">
+                                                    <label for="inventory_account1">Inventory assest account</label>
+                    
+                                                    <select id="inventory_account1" class="select2 form-control" name="category_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Account</option>
+                                                        @foreach ($inventory_accounts as $inventory_account)
+                                                        <option value="{{$inventory_account->id}}">{{$inventory_account->name}}</option>
+                                                    @endforeach
+                                                        {{-- <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                             class="font-weight-300">+
+                                                               Add new Category</a></option> --}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -156,6 +186,21 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col col-12">
+
+                                                <div class="form-group">
+                                                    <label for="income_account1">Income Account</label>
+
+                                                    <select  id="income_account1" class="select2 form-control" name="income_account"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Income Account
+                                                        </option>
+                                                        @foreach ($inventory_accounts as $inventory_account)
+                                                        <option value="{{$inventory_account->id}}">{{$inventory_account->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="price">{{ __('messages.price') }}</label>
@@ -178,14 +223,14 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col col-12">
                                                 <div class="form-group">
                                                     <label for="inputImage">Image</label>
                                                     <input type="file" onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
                                                   </div>
                                                   <img id="output" width="100" />	
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col col-12">
                                                 <div class="form-group">
                                                     <label for="description">{{ __('messages.description') }}</label>
                                                     <textarea name="description" class="form-control" cols="30"
@@ -213,7 +258,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Product/Service information</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
@@ -224,7 +269,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                                        <h4 class="card-title"><i data-feather="box"></i>Non-inventory</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -254,9 +299,9 @@
                                                         @foreach ($categories as $category)
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                                     @endforeach
-                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                        {{-- <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
                                                              class="font-weight-300">+
-                                                               Add new Category</a></option>
+                                                               Add new Category</a></option> --}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -285,6 +330,21 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col col-12">
+
+                                                <div class="form-group">
+                                                    <label for="income_account1">Income Account</label>
+
+                                                    <select  id="income_account" class="select2 form-control" name="income_account"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Income Account
+                                                        </option>
+                                                        @foreach ($inventory_accounts as $inventory_account)
+                                                        <option value="{{$inventory_account->id}}">{{$inventory_account->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="price">{{ __('messages.price') }}</label>
@@ -307,14 +367,14 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col col-12">
                                                 <div class="form-group">
                                                     <label for="inputImage">Image</label>
                                                     <input type="file"  onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
                                                   </div>
                                                   <img id="output" width="100" />	
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col col-12">
                                                 <div class="form-group">
                                                     <label for="description">{{ __('messages.description') }}</label>
                                                     <textarea name="description" class="form-control" cols="30"
@@ -341,7 +401,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Product/Service information</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('products.customer.store', ['company_uid' => $currentCompany->uid]) }}"
@@ -352,17 +412,10 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                                        <h4 class="card-title">Service<i data-feather="aperture"></i></h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                          
-                                            <div class="col-md-6 col-12">                                               <div class="form-group required">
-                                                    <label for="sku">SKU</label>
-                                                    <input name="sku" type="text" class="form-control"
-                                                        placeholder="Enter a SKU" required>
-                                                </div>
-                                            </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="name">{{ __('messages.name') }}</label>
@@ -370,6 +423,31 @@
                                                         placeholder="{{ __('messages.name') }}" required>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 col-12">                                               <div class="form-group required">
+                                                    <label for="sku">SKU</label>
+                                                    <input name="sku" type="text" class="form-control"
+                                                        placeholder="Enter a SKU" required>
+                                                </div>
+                                            </div>
+                                            <div class="col col-12">
+                                                <div class="form-group">
+                                                    <label for="inventory_account2">SAC Code</label>
+                    
+                                                    <select id="inventory_account2" class="select2 form-control" name="category_id"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select SAC Code</option>
+                                                        @foreach ($product_sac as $product_sa)
+                                                        <option value="{{ $product_sa->id }}">
+                                                            {{ $product_sa->name}}
+                                                        </option>
+                                                    @endforeach
+                                                        {{-- <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
+                                                             class="font-weight-300">+
+                                                               Add new Category</a></option> --}}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                           
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="category">Category</label>
@@ -386,14 +464,14 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            {{-- <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="hsn">HSN Code</label>
                                                     <input name="hsn" type="text" class="form-control"
                                                         placeholder="Enter a valid HSN code" required>
                                                 </div>
                                             </div>
-                                           
+                                            --}}
                                             <div class="col-md-6 col-12">
 
                                                 <div class="form-group">
@@ -433,14 +511,49 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col col-12">
+
+                                                <div class="form-group">
+                                                    <label for="income_account3">Income Account</label>
+
+                                                    <select  id="income_account3" class="select2 form-control" name="income_account"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Income Account
+                                                        </option>
+                                                        @foreach (get_product_units_select2_array($currentCompany->id) as $option)
+                                                            <option value="{{ $option['id'] }}">
+                                                                {{ $option['text'] }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col col-12">
+
+                                                <div class="form-group">
+                                                    <label for="income_account2">Service Type</label>
+
+                                                    <select  id="income_account2" class="select2 form-control" name="income_account"
+                                                        id="default-select-multi">
+                                                        <option disabled selected>Select Service Type
+                                                        </option>
+                                                        @foreach ( $product_servicess as  $product_services)
+                                                            <option value="{{ $product_services->id }}">
+                                                                {{ $product_services->name}}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col col-12">
                                                 <div class="form-group">
                                                     <label for="inputImage">Image</label>
                                                     <input type="file" onchange="loadFilef(event)" name="image" id="inputImage" class="form-control" required>
                                                   </div>
                                                   <img id="output" width="100" />	
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col col-12">
                                                 <div class="form-group">
                                                     <label for="description">{{ __('messages.description') }}</label>
                                                     <textarea name="description" class="form-control" cols="30"

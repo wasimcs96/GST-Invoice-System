@@ -20,6 +20,8 @@ use App\Imports\InvoiceImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\ProductCategory;
 use App\Models\Account;
+use App\Models\Sac;
+use App\Models\ProductService;
 
 class InvoiceController extends Controller
 {
@@ -92,6 +94,8 @@ class InvoiceController extends Controller
         $citie = City::all();
         $categories = ProductCategory::all();
         $inventory_accounts = Account::all();
+        $product_sac = Sac::all();
+        $product_servicess = ProductService::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -107,6 +111,8 @@ class InvoiceController extends Controller
             'citie' => $citie,
             'categories'=>$categories,
             'inventory_accounts'=>$inventory_accounts,
+            'product_sac' => $product_sac,
+            'product_servicess' => $product_servicess,
         ]);
     }
 
