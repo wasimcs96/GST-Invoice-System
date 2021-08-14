@@ -10,13 +10,16 @@ use App\Models\State;
 use App\Models\City;
 use App\Models\Supplier;
 use App\Models\ProductCategory;
-
+use App\Models\ExpenseCategory;
+use App\Models\Account;
+use App\Models\AccountDetail;
 use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use App\Http\Requests\Application\Expense\Store;
 use App\Http\Requests\Application\Expense\Update;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Auth;
 
 class ExpenseController extends Controller
 {
@@ -75,11 +78,13 @@ class ExpenseController extends Controller
         $customers = $currentCompany->customers;
         $states = State::all();
         $citie = City::all();
+        $details = AccountDetail::all();
         $categories = ProductCategory::all();
          // $suppliers = Supplier::findByCompany($currentCompany->id);
          $suppliers = Supplier::all();
          // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
          $paymethod = PaymentMethod::all();
+         $account = Account::all();
  
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
@@ -97,6 +102,8 @@ class ExpenseController extends Controller
             'suppliers'=> $suppliers,
             'paymethod'=> $paymethod,
             'citie' => $citie,
+            'account' => $account,
+            'details' => $details,
         ]);
       }
      
@@ -111,6 +118,8 @@ class ExpenseController extends Controller
         $suppliers = Supplier::all();
         // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
         $paymethod = PaymentMethod::all();
+        $accounts = Account::all();
+
 
 
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
@@ -127,7 +136,8 @@ class ExpenseController extends Controller
             'vendors' => $vendors,
             'tax_per_item'=> $tax_per_item,
             'suppliers'=> $suppliers,
-            'paymethod'=> $paymethod
+            'paymethod'=> $paymethod,
+            'accounts' => $accounts,
         ]); 
     }
 
@@ -138,8 +148,9 @@ class ExpenseController extends Controller
      * 
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function store(Store $request)
+    public function store(Request $request)
     {
+        // dd($request->all());
         $user = $request->user();
         $currentCompany = $user->currentCompany();
         $limage = $request->attachment;
@@ -155,22 +166,43 @@ class ExpenseController extends Controller
             'payment_account_id' => $request->payment_account_id,
             'reference_number' => $request->reference_number,
             'sub_total'=>$request->sub_total,
-            'grand_total' => $request->total,
+            'total' => $request->grand_total,
+            'amount' =>  $request->grand_total,
             'attachment' => $st1
         ]);
 
-        $category = $request->category;
+        $categorys = $request->expense_category_id;
         $prices = $request->price;
         $totals = $request->total;
+        $desc = $request->description;
 
+        // dd($categorys);
         // Add products (estimate items)
-        for ($i=0; $i < count($category); $i++) {
+
+        // for ($i=0; $i < count(array($category)); $i++) {   
+
+        //     $item = $expense->items()->create([
+        //         'expense_category_id' => $category[$i],
+        //         'company_id' => $currentCompany->id,
+        //         'price' => $prices[$i],
+        //         'total' => $totals[$i],
+        //         'description' => $desc[$i],
+
+        //     ]);
+
+          
+        // }
+            // dd($categorys);
+        for ($i=0; $i < count($categorys); $i++) {    
+            
             $category = ExpenseCategory::firstOrCreate(
-                ['id' => $category[$i], 'company_id' => $currentCompany->id],
-                ['name' => $category[$i], 'price' => $prices[$i], 'description' => $desc[$i], 'hide' => 1]
+                ['id' => $categorys[$i], 'company_id' => $currentCompany->id],
+                ['name' => $categorys[$i], 'price' => $prices[$i], 'hide' => 1]
             );
 
-            $item = $estimate->items()->create([
+            // dd($category,$categorys[$i],$i,$categorys,count($categorys));
+
+            $item = $expense->items()->create([
                 'expense_category_id' => $category->id,
                 'company_id' => $currentCompany->id,
                 'price' => $prices[$i],
@@ -178,15 +210,9 @@ class ExpenseController extends Controller
                 'description' => $desc[$i],
 
             ]);
+            // dd($item);
 
-            // // Add taxes for Estimate Item if it is given
-            // if ($taxes && array_key_exists($i, $taxes)) {
-            //     foreach ($taxes[$i] as $tax) {
-            //         $item->taxes()->create([
-            //             'tax_type_id' => $tax
-            //         ]);
-            //     }
-            // }
+          
         }
 
         // If Estimate based taxes are given
@@ -224,6 +250,18 @@ class ExpenseController extends Controller
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
+        // $customers = $currentCompany->customers;
+        $states = State::all();
+        $citie = City::all();
+        $details = AccountDetail::all();
+        $categories = ExpenseCategory::all();
+         // $suppliers = Supplier::findByCompany($currentCompany->id);
+         $suppliers = Supplier::all();
+         // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
+         $paymethod = PaymentMethod::all();
+         $account = Account::all();
+        $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
+        $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
 
         $expense = Expense::findOrFail($request->expense);
 
@@ -233,6 +271,49 @@ class ExpenseController extends Controller
         return view('application.expenses.edit', [
             'expense' => $expense,
             'vendors' => $vendors,
+            'tax_per_item' => $tax_per_item,
+            'discount_per_item' => $discount_per_item,
+            'states' => $states,
+            'categories' => $categories,
+            'suppliers'=> $suppliers,
+            'paymethod'=> $paymethod,
+            'citie' => $citie,
+            'account' => $account,
+            'details' => $details,
+        ]);
+    }
+
+    public function newedit($expense,$id)
+    {
+        $user = Auth::user()->id;
+        
+        $currentCompany = Auth::user()->currentCompany();
+        // dd($id);
+        $expense = Expense::findOrFail($id);
+
+        // dd($expense);
+        $details = AccountDetail::all();
+        // $categories = ExpenseCategory::all();
+        $suppliers = Supplier::all();
+         // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
+         $paymethod = PaymentMethod::all();
+         $account = Account::all();
+
+        // Filling form data and the ui
+        $customers = $currentCompany->customers;
+        $categories = $currentCompany->categories;
+
+        return view('application.expenses.edit', [
+            'expense' => $expense,
+            'customers' => $customers,
+            'categories' => $categories,
+            'tax_per_item' => $expense->tax_per_item,
+            'discount_per_item' => $expense->discount_per_item,
+            'details' => $details,
+            'categories' => $categories,
+            'suppliers' => $suppliers,
+            'paymethod' => $paymethod,
+            'account' => $account
         ]);
     }
 
@@ -243,22 +324,71 @@ class ExpenseController extends Controller
      * 
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function update(Update $request)
+    public function update(Request $request)
     {
         $user = $request->user();
         $currentCompany = $user->currentCompany();
-
+        
         $expense = Expense::findOrFail($request->expense);
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
+
         
         // Update the Expense
         $expense->update([
-            'expense_category_id' => $request->expense_category_id,
-            'amount' => $request->amount,
-            'vendor_id' => $request->vendor_id,
-            'expense_date' => $request->expense_date,
-            'notes' => $request->notes,
+            'supplier_id'=>$request->supplier_id,
+            'company_id' => $currentCompany->id,
+            // 'vendor_id' => $request->vendor_id,
+            'payment_date' => $request->payment_date,
+            'payment_type_id' => $request->payment_method,
+            'payment_account_id' => $request->payment_account_id,
+            'reference_number' => $request->reference_number,
+            'sub_total'=>$request->sub_total,
+            'total' => $request->grand_total,
+            'amount' =>  $request->grand_total,
+            'attachment' => $st1
         ]);
 
+        $categorys = $request->expense_category_id;
+        $prices = $request->price;
+        $totals = $request->total;
+        $desc = $request->description;
+
+        $expense->items()->delete();
+        // dd($category);
+        // Add products (estimate items)
+        for ($i=0; $i < count($categorys); $i++) {    
+            
+            $category = ExpenseCategory::firstOrCreate(
+                ['id' => $categorys[$i], 'company_id' => $currentCompany->id],
+                ['name' => $categorys[$i], 'price' => $prices[$i], 'hide' => 1]
+            );
+
+            // dd($category,$categorys[$i],$i,$categorys,count($categorys));
+
+            $item = $expense->items()->create([
+                'expense_category_id' => $category->id,
+                'company_id' => $currentCompany->id,
+                'price' => $prices[$i],
+                'total' => $totals[$i],
+                'description' => $desc[$i],
+
+            ]);
+            // dd($item);
+
+          
+        }
+        
+        $expense->taxes()->delete();
+        // If Estimate based taxes are given
+        if ($request->has('total_taxes')) {
+            foreach ($request->total_taxes as $tax) {
+                $expense->taxes()->create([
+                    'tax_type_id' => $tax
+                ]);
+            }
+        }
         // Update custom field values
         $expense->updateCustomFields($request->custom_fields);
 

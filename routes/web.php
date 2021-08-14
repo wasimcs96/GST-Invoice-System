@@ -134,6 +134,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
      Route::get('/suppliers', 'SupplierController@index')->name('suppliers');
      Route::get('/suppliers/create', 'SupplierController@create')->name('suppliers.create');
      Route::post('/suppliers/create', 'SupplierController@store')->name('suppliers.store');
+     Route::post('/suppliers/create/expense', 'SupplierController@expensestore')->name('suppliers.expense.store');
      Route::get('/suppliers/{supplier}/edit', 'SupplierController@edit')->name('suppliers.edit');
      Route::post('/suppliers/{supplier}/edit', 'SupplierController@update')->name('suppliers.update');
      Route::get('/suppliers/{supplier}/delete', 'SupplierController@delete')->name('suppliers.delete');
@@ -177,7 +178,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
     Route::get('/expenses', 'ExpenseController@index')->name('expenses');
     Route::get('/expenses/create', 'ExpenseController@newCreate')->name('expenses.create');
     Route::post('/expenses/create', 'ExpenseController@store')->name('expenses.store');
-    Route::get('/expenses/{expense}/edit', 'ExpenseController@edit')->name('expenses.edit');
+    Route::get('/expenses/{expense}/edit', 'ExpenseController@newedit')->name('expenses.edit');
     Route::post('/expenses/{expense}/edit', 'ExpenseController@update')->name('expenses.update');
     Route::get('/expenses/{expense}/receipt', 'ExpenseController@download_receipt')->name('expenses.download_receipt');
     Route::get('/expenses/{expense}/delete', 'ExpenseController@delete')->name('expenses.delete');
@@ -247,6 +248,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::post('/payment', 'PaymentController@update')->name('settings.payment.update');
         Route::get('/payment/type/create', 'PaymentTypeController@create')->name('settings.payment.type.create');
         Route::post('/payment/type/create', 'PaymentTypeController@store')->name('settings.payment.type.store');
+        Route::post('/payment/type/create/expense', 'PaymentTypeController@expensestore')->name('settings.payment.expense.type.store');
         Route::get('/payment/type/{type}/edit', 'PaymentTypeController@edit')->name('settings.payment.type.edit');
         Route::post('/payment/type/{type}/edit', 'PaymentTypeController@update')->name('settings.payment.type.update');
         Route::get('/payment/type/{type}/delete', 'PaymentTypeController@delete')->name('settings.payment.type.delete');
@@ -266,7 +268,8 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/tax-types', 'TaxTypeController@index')->name('settings.tax_types');
         Route::get('/tax-types/create', 'TaxTypeController@create')->name('settings.tax_types.create');
         Route::post('/tax-types/create', 'TaxTypeController@store')->name('settings.tax_types.store');
-        Route::post('/tax/create', 'TaxTypeController@taxstore')->name('settings.tax.store');
+        Route::post('/tax/inv/create', 'TaxTypeController@taxstore')->name('settings.tax.store');
+        Route::post('/tax/create', 'TaxTypeController@taxexpensestore')->name('settings.tax.expense.store');
         Route::post('/tax/est/create', 'TaxTypeController@taxeststore')->name('settings.tax.est.store');
         Route::get('/tax-types/{tax_type}/edit', 'TaxTypeController@edit')->name('settings.tax_types.edit');
         Route::post('/tax-types/{tax_type}/edit', 'TaxTypeController@update')->name('settings.tax_types.update');
@@ -284,6 +287,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/expense-categories', 'ExpenseCategoryController@index')->name('settings.expense_categories');
         Route::get('/expense-categories/create', 'ExpenseCategoryController@create')->name('settings.expense_categories.create');
         Route::post('/expense-categories/create', 'ExpenseCategoryController@store')->name('settings.expense_categories.store');
+        Route::post('/expense-categories/create/expense', 'ExpenseCategoryController@categorystore')->name('settings.expense_categories.expense.store');
         Route::get('/expense-categories/{expense_category}/edit', 'ExpenseCategoryController@edit')->name('settings.expense_categories.edit');
         Route::post('/expense-categories/{expense_category}/edit', 'ExpenseCategoryController@update')->name('settings.expense_categories.update');
         Route::get('/expense-categories/{expense_category}/delete', 'ExpenseCategoryController@delete')->name('settings.expense_categories.delete');
@@ -316,6 +320,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::get('/settings-account', 'AccountsController@index')->name('settings.accounts_setting');
         Route::get('/settings-account/create', 'AccountsController@create')->name('settings.accounts.create');
         Route::post('/settings-account/create', 'AccountsController@store')->name('settings.accounts.store');
+        Route::post('/settings-account/create/expense', 'AccountsController@accountstore')->name('settings.accounts.expense.store');
         Route::get('/settings-account/{accounts_setting}/edit', 'AccountsController@edit')->name('settings.accounts.edit');
         Route::post('/settings-account/{accounts_setting}/edit', 'AccountsController@update')->name('settings.accounts.update');
         Route::get('/settings-account/{accounts_setting}/delete', 'AccountsController@delete')->name('settings.accounts.delete');

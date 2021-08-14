@@ -90,4 +90,9 @@ class ExpenseCategory extends Model
     {
         $query->where('company_id', $company_id);
     }
+
+    public function item()
+    {
+        return $this->hasMany(ExpenseItem::class,'expense_category_id');
+    }
 }

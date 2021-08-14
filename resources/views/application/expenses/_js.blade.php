@@ -33,7 +33,7 @@
         setupCustomer();            
     });
 
-    $("#add_product_row2").click(function() {
+    $("#add_product_row").click(function() {
         console.log('hiiiii');
         addProductRow();
     });
@@ -106,6 +106,7 @@
             },
             tags: true,
             templateSelection: function (data, container) {
+                
                 $(data.element).attr('data-taxes', JSON.stringify(data.taxes));
                 $(data.element).attr('data-price', data.price);
                 return data.text;
@@ -263,7 +264,8 @@
                 .removeClass('d-none');
         productItems.append(template);
 
-        var product_select = template.find('[name="category[]"]');
+        var product_select = template.find('[name="product[]"]');
+        console.log(product_select);
         initializeProductSelect2(product_select);
 
         var tax_select = template.find('[name="taxes[]"]');

@@ -112,4 +112,19 @@ class PaymentTypeController extends Controller
         session()->flash('alert-success', __('messages.payment_type_category_deleted'));
         return redirect()->route('settings.payment', ['company_uid' => $currentCompany->uid]);
     }
+
+    public function expensestore(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Create Payment Method and Store in Database
+        PaymentMethod::create([
+            'name' => $request->name,
+            'company_id' => $currentCompany->id,
+        ]);
+ 
+        session()->flash('alert-success', __('messages.payment_type_category_added'));
+        return redirect()->route('expenses.create', ['company_uid' => $currentCompany->uid]);
+    }
 }

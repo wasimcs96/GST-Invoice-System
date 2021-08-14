@@ -67,6 +67,29 @@ class AccountsController extends Controller
         return redirect()->route('settings.accounts_setting', ['company_uid' => $currentCompany->uid]);
     }
 
+    public function accountstore(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Create Expense Category and Store in Database
+        Account::create([
+            'name' => $request->name,
+            'company_id' => $currentCompany->id,
+            'detail_id'=> $request->detail_id,
+            'account_type'=> $request->account_type,
+            'description'=> $request->description,
+            'tax'=> $request->tax,
+            'balance'=> $request->balance,
+            'as_date'=> $request->as_date,
+
+
+        ]);
+ 
+        session()->flash('alert-success', __('messages.account added'));
+        return redirect()->route('expenses.create', ['company_uid' => $currentCompany->uid]);
+    }
+
     /**
      * Display the Form for Editing Expense Category
      *

@@ -74,6 +74,22 @@ class ExpenseCategoryController extends Controller
         return redirect()->route('settings.expense_categories', ['company_uid' => $currentCompany->uid]);
     }
 
+    public function categorystore(Store $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Create Expense Category and Store in Database
+        ExpenseCategory::create([
+            'name' => $request->name,
+            'company_id' => $currentCompany->id,
+            'description' => $request->description,
+        ]);
+ 
+        session()->flash('alert-success', __('messages.expense_category_added'));
+        return redirect()->route('expenses.create', ['company_uid' => $currentCompany->uid]);
+    }
+
     /**
      * Display the Form for Editing Expense Category
      *

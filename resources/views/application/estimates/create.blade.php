@@ -446,7 +446,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Add Tax</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('settings.tax.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
+                    <form action="{{ route('settings.tax.est.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
                         @csrf
 
                         <div class="row">

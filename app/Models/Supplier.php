@@ -18,6 +18,6 @@ class Supplier extends Model
 
     public function expense()
     {
-        return $this->belongsTo(Expense::class);
+        return $this->hasMany(Expense::class);
     }
 }
