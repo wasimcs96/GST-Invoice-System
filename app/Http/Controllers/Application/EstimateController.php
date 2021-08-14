@@ -18,6 +18,10 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Carbon\Carbon;
 use App\Models\ProductCategory;
+use App\Models\Account;
+use App\Models\Sac;
+use App\Models\ProductService;
+
 
 class EstimateController extends Controller
 {
@@ -88,6 +92,9 @@ class EstimateController extends Controller
         $states = State::all();
         $citie = City::all();
         $categories = ProductCategory::all();
+        $inventory_accounts = Account::all();
+        $product_sac = Sac::all();
+        $product_servicess = ProductService::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -102,6 +109,9 @@ class EstimateController extends Controller
             'categories' => $categories,
             // 'cities' => $cities,
             'citie' => $citie,
+            'inventory_accounts' => $inventory_accounts,
+            'product_sac'  => $product_sac,
+            'product_servicess' => $product_servicess,
         ]);
     }
 

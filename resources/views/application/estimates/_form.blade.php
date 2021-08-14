@@ -132,7 +132,7 @@
                                     <option disabled selected>{{ __('messages.select_product') }}</option>
                                 </select>
                                 <div class="d-none select-footer">
-                                    <a data-toggle="modal" data-target="#productModal" class="font-weight-300">+ {{ __('messages.add_new_product') }}</a>
+                                    <a data-toggle="modal" data-target="#addProduct" class="font-weight-300">+ {{ __('messages.add_new_product') }}</a>
                                 </div>
                             </td>
                             @if($tax_per_item)

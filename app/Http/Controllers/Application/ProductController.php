@@ -10,6 +10,9 @@ use App\Http\Requests\Application\Product\Update;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\ProductCategory;
+use App\Models\Account;
+use App\Models\Sac;
+use App\Models\ProductService;
 
 class ProductController extends Controller
 {
@@ -25,7 +28,9 @@ class ProductController extends Controller
         $user = $request->user();
         $currentCompany = $user->currentCompany();
         $categories = ProductCategory::all();
- 
+        $inventory_accounts = Account::all();
+        $product_sac = Sac::all();
+        $product_servicess = ProductService::all();
         // Get Products by Company
         $products = QueryBuilder::for(Product::findByCompany($currentCompany->id))
             ->where('hide', false)
@@ -39,7 +44,10 @@ class ProductController extends Controller
 
         return view('application.products.index', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
+            'inventory_accounts' => $inventory_accounts,
+            'product_sac'   => $product_sac,
+            'product_servicess' => $product_servicess,
         ]);
     }
 
@@ -58,10 +66,14 @@ class ProductController extends Controller
         if (!empty($request->old())) {
             $product->fill($request->old());
         }
+        $product_sac = Sac::all();
            $categories = ProductCategory::all();
+           $product_servicess = ProductService::all();
         return view('application.products.create', [
             'product' => $product,
-            'categories' =>  $categories
+            'categories' =>  $categories,
+            'product_sac' => $product_sac,
+            'product_servicess' => $product_servicess,
         ]); 
     }
 
@@ -105,9 +117,9 @@ class ProductController extends Controller
             'as_date' => $request->as_date,
             'inventory_assests_accounts_id' => $request->initial_quantity,
             'income_account' => $request->income_account,
-            'sac' => $request->sac,
+            'sac_id' => $request->sac_id,
             'abatement' => $request->abatement,
-            'service_type'=>$request->service_type,
+            'service_id'=>$request->service_id,
         ]);
 
         // Add custom field values
@@ -142,9 +154,15 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($request->product);
         $categories = ProductCategory::all();
+        $product_sac = Sac::all();
+        $product_servicess = ProductService::all();
+        $inventory_accounts = Account::all();
         return view('application.products.edit', [
             'product' => $product,
-            'categories' =>$categories
+            'categories' =>$categories,
+            'product_sac' => $product_sac,
+            'inventory_accounts' => $inventory_accounts,
+            'product_servicess' => $product_servicess,
         ]); 
     }
 
@@ -185,9 +203,9 @@ class ProductController extends Controller
             'as_date' => $request->as_date,
             'inventory_assests_accounts_id' => $request->initial_quantity,
             'income_account' => $request->income_account,
-            'sac' => $request->sac,
+            'sac_id' => $request->sac_id,
             'abatement' => $request->abatement,
-            'service_type'=>$request->service_type,
+            'service_id'=>$request->service_id,
         ]);
         
 
@@ -287,9 +305,9 @@ class ProductController extends Controller
             'as_date' => $request->as_date,
             'inventory_assests_accounts_id' => $request->initial_quantity,
             'income_account' => $request->income_account,
-            'sac' => $request->sac,
+            'sac_id' => $request->sac_id,
             'abatement' => $request->abatement,
-            'service_type'=>$request->service_type,
+            'service_id'=>$request->service_id,
         ]);
 
         // Add custom field values
@@ -343,9 +361,9 @@ class ProductController extends Controller
             'as_date' => $request->as_date,
             'inventory_assests_accounts_id' => $request->initial_quantity,
             'income_account' => $request->income_account,
-            'sac' => $request->sac,
+            'sac_id' => $request->sac_id,
             'abatement' => $request->abatement,
-            'service_type'=>$request->service_type,
+            'service_id'=>$request->service_id,
         ]);
 
         // Add custom field values

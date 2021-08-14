@@ -312,6 +312,18 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
          Route::get('/account-details/create', 'AccountDetailController@create')->name('settings.account_details.create');
          Route::post('/account-details/create', 'AccountDetailController@store')->name('settings.account_details.store');
         
+
+         // Settings>Product_Sac
+         Route::get('/product-sac', 'ProductSacController@index')->name('settings.product_sac');
+         Route::get('/product-sac/create', 'ProductSacController@create')->name('settings.product_sac.create');
+         Route::post('/product-sac/create', 'ProductSacController@store')->name('settings.product_sac.store');
+     
+          // Settings>Product_Service
+          Route::get('/product-service', 'ProductServicesController@index')->name('settings.product_service');
+          Route::get('/product-service/create', 'ProductServicesController@create')->name('settings.product_service.create');
+          Route::post('/product-service/create', 'ProductServicesController@store')->name('settings.product_service.store');
+      
+
          // Settings>Accounts
         Route::get('/settings-account', 'AccountsController@index')->name('settings.accounts_setting');
         Route::get('/settings-account/create', 'AccountsController@create')->name('settings.accounts.create');
