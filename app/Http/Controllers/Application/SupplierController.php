@@ -228,4 +228,62 @@ class SupplierController extends Controller
         session()->flash('alert-success', __('messages.product_deleted'));
         return redirect()->route('suppliers', ['company_uid' => $currentCompany->uid]);
     }
+
+    public function expensestore(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Redirect back
+        // $canAdd = $currentCompany->subscription('main')->canUseFeature('products');
+        // if (!$canAdd) {
+        //     session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
+        //     return redirect()->route('products', ['company_uid' => $currentCompany->uid]);
+        // }
+        // $price = preg_replace('~\D~', '', $request->price);
+        
+        // dd($price);
+        // Create Product and Store in Database
+
+        $limage = $request->attachment;
+        $limage_new_name = time().$limage->getClientOriginalName();
+       $st1= $limage->move('assets/images', $limage_new_name);
+
+        $supplier = Supplier::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'company' => $request->company,
+            'phone' =>$request->phone,
+            'company_id' => $currentCompany->id,
+            'display_name' => $request->display_name,
+            'website'  => $request->website,
+            'address' => $request->address,
+            'state' => $request->state,
+            'city' => $request->city,
+            'country' => $request->country,
+            'pin_code' =>$request->pin_code,
+            'billing_rate' => $request->billing_rate,
+            'pan_number' => $request->pan_number,
+            'attachment'  => $st1,
+            'tds_entity' => $request->tds_entity,
+            'tds_section' => $request->tds_section,
+            'notes' => $request->notes,
+            'balance' => $request->balance,
+            'balance_date' => $request->balance_date,
+            'account_number' =>$request->account_number,
+            'gst_type' => $request->gst_type,
+            'gstin' => $request->gstin,
+            'tax_reg_number'  => $request->tax_reg_number,
+            'effective_date' => $request->effective_date,
+        ]);
+        
+        
+
+        // Record product 
+        $currentCompany->subscription('main')->recordFeatureUsage('products');
+
+        session()->flash('alert-success', __('messages.product_added'));
+        return redirect()->route('expenses.create', ['company_uid' => $currentCompany->uid]);
+        
+    }
 }

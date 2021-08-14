@@ -8,7 +8,7 @@
                     class="form-control select2 select2-hidden-accessible select-with-footer" data-select2-id="">
                     <option disabled selected>Select Supplier</option>
                     @foreach($suppliers as $supplier)
-                    <option value="{{ $supplier->id }}" >
+                    <option value="{{ $supplier->id }}">
                         {{ $supplier->display_name }}
                     </option>
                     @endforeach
@@ -16,7 +16,7 @@
                 </select>
                 <div class="d-none select-footer">
                     <a class="font-weight-300" data-toggle="modal" data-target="#exampleModal">+
-                        {{ __('messages.add_new_customer') }}</a>
+                        Add Supplier</a>
                 </div>
                 
             </div>  
@@ -25,7 +25,7 @@
         <div class="col-md-4 pr-4 pl-4">
             <div class="form-group required">
                 <label for="payment_date">Payment Date</label>
-                <input name="payment_date" type="date" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $expense->payment_date ?? now() }}"  required>
+                <input name="payment_date" type="date" class="form-control input" data-toggle="flatpickr" data-flatpickr-default-date="{{ $expense->payment_date ?? now() }}" value="{{ $expense->payment_date}}" required>
             </div>
             <div class="form-group required select-container">
                 <label for="customer">Payment Method</label>
@@ -34,13 +34,13 @@
                  >
                     <option disabled selected>Select Payment Method</option>
                     @foreach($paymethod as $value)
-                        <option value="{{ $value->id }}" >
+                        <option value="{{ $value->id }}">
                             {{ $value->name }}
                         </option>
                     @endforeach
                 </select> 
                 <div class="d-none select-footer">
-                    <a data-toggle="modal" data-target="#exampleModals" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                    <a data-toggle="modal" data-target="#typeModal" class="font-weight-300">+ Add Payment Method</a>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="form-group">
                 <label for="reference_number">{{ __('messages.reference_number') }}</label>
                 <div class="input-group input-group-merge">
-                    <input name="reference_number" type="text" maxlength="6" class="form-control form-control-prepended" value="{{ $estimate->reference_number }}" autocomplete="off">
+                    <input name="reference_number" type="text" maxlength="6" class="form-control form-control-prepended" value="{{ $expense->reference_number }}" autocomplete="off">
                     {{-- <div class="input-group-prepend"> --}}
                         <div class="input-group-text">
                             #
@@ -57,20 +57,21 @@
                     {{-- </div> --}}
                 </div>
             </div>
+            {{-- {{ dd($account) }} --}}
+
             <div class="form-group required select-container">
                 <label for="customer">Payment Account</label>
-                <select id="customer" name="payment_account_id" data-toggle="select" class="form-control select2 select2-hidden-accessible select-with-footer"
-                 {{-- data-select2-id="customer" --}}
+                <select id="payment_account_id" name="payment_account_id" data-toggle="select" class="form-control select2 select2-hidden-accessible select-with-footer"
                  >
-                    <option disabled selected>Select Payment Account</option>
-                    @foreach($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}" >
-                            {{ $supplier->display_name }}
-                        </option>
-                    @endforeach
+                 <option disabled selected>Select Payment Account</option>
+                 @foreach($account as $value)
+                     <option value="{{ $value->id }}">
+                         {{ $value->name }}
+                     </option>
+                 @endforeach
                 </select>  
                 <div class="d-none select-footer">
-                    <a data-toggle="modal" data-target="#exampleModal" class="font-weight-300">+ {{ __('messages.add_new_customer') }}</a>
+                    <a data-toggle="modal" data-target="#accountModal" class="font-weight-300">+ Add Payment Account</a>
                 </div>   
             </div>
         </div>
@@ -101,7 +102,8 @@
                                     <option disabled selected>Select Category</option>
                                 </select>
                                 <div class="d-none select-footer">
-                                    <a href="{{ route('settings.expense_categories.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_expense_category') }}</a>
+                                    {{-- <a href="{{ route('settings.expense_categories.create', ['company_uid' => $currentCompany->uid]) }}" target="_blank" class="font-weight-300">+ {{ __('messages.add_new_expense_category') }}</a> --}}
+                                    <a data-toggle="modal" data-target="#categoryModal" class="font-weight-300">+ Add Category</a>
                                 </div>
                             </td>
                             <td>
@@ -114,6 +116,8 @@
                             <td class="text-right">
                                 <p class="mb-1">
                                     <input type="text" name="total[]" class="price_input price-text amount_price" value="0" readonly>
+                                    {{-- <input type="text" name="total[]" class="price_input price-text amount_price" value="{{ $item->total }}" readonly> --}}
+
                                 </p>
                                 <div class="tax_list"></div>
                             </td>
@@ -123,6 +127,39 @@
                                 </a>
                             </td>
                         </tr>
+
+                        @if($expense->items->count() > 0)
+                            @foreach($expense->items as $item)
+                                <tr>
+                                    <td class="select-container">
+                                        <select name="expense_category_id[]" class="form-control priceListener select-with-footer" required>
+                                            <option value="{{ $item->expense_category_id }}" {{ $item->category->name ? 'selected=""' : '' }}>{{ $item->category->name }}</option>
+                                        </select>
+                                        <div class="d-none select-footer">
+                                            <a data-toggle="modal" data-target="#categoryModal" class="font-weight-300">+ Add Category</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input hidden name="quantity[]" type="number" class="form-control priceListener" value="{{ $item->quantity }}" required>
+                                        <input name="description[]" type="text" class="form-control priceListener" value="{{ $item->description }}" required>
+                                    </td>
+                                    <td>
+                                        <input name="price[]" type="text" class="form-control price_input priceListener" autocomplete="off" value="{{ $item->price }}" required>
+                                    </td>
+                                    <td class="text-right">
+                                        <p class="mb-1">
+                                            <input type="text" name="total[]" class="price_input price-text amount_price" value="{{ $item->total }}" readonly>
+                                        </p>
+                                        <div class="tax_list"></div>
+                                    </td>
+                                    <td>
+                                        <a onclick="removeRow(this)">
+                                            <i data-feather="x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                         
                     </tbody>
                 </table>
@@ -137,7 +174,7 @@
         <div class="col-md-5 mt-5 pr-4">
             <div class="form-group">
                 <label for="vat_number">Attachment</label>
-                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $estimate->attachment }}">
+                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $expense->attachment }}">
             </div>
         </div>
 
@@ -149,7 +186,7 @@
                         <strong class="text-muted">{{ __('messages.sub_total') }}</strong>
                     </div>
                     <div class="ml-auto h6 mb-0">
-                        <input id="sub_total" name="sub_total" type="text" class="price_input price-text w-100 fs-inherit" value="{{ $estimate->sub_total ?? 0 }}" readonly>
+                        <input id="sub_total" name="sub_total" type="text" class="price_input price-text w-100 fs-inherit" value="{{ $expense->sub_total ?? 0 }}" readonly>
                     </div>
                 </div>
 
@@ -162,7 +199,7 @@
                             <div class="form-group select-container">
                                 <select id="total_taxes" name="total_taxes[]" data-toggle="select" multiple class="form-control priceListener select-with-footer select2" data-select2-id="total_taxes">
                                     @foreach(get_tax_types_select2_array($currentCompany->id) as $option)
-                                        <option value="{{ $option['id'] }}" data-percent="{{ $option['percent'] }}" {{ $estimate->hasTax($option['id']) ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
+                                        <option value="{{ $option['id'] }}" data-percent="{{ $option['percent'] }}" {{ $expense->hasTax($option['id']) ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
                                     @endforeach
                                 </select> 
                                 <div class="d-none select-footer">
@@ -182,7 +219,7 @@
                         <strong class="text-muted">{{ __('messages.total') }}</strong>
                     </div>
                     <div class="ml-auto h5 mb-0">
-                        <input id="grand_total" name="grand_total" type="text" class="price_input price-text w-100 fs-inherit" value="{{ $estimate->total ?? 0 }}" readonly>
+                        <input id="grand_total" name="grand_total" type="text" class="price_input price-text w-100 fs-inherit" value="{{ $expense->total ?? 0 }}" readonly>
                     </div>
                 </div>
             </div>

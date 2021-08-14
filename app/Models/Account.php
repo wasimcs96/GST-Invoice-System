@@ -31,5 +31,10 @@ class Account extends Model
         return $this->belongsTo(AccountDetail::class,'detail_id');
     }
 
+    public function expenseAccount()
+    {
+        return $this->hasMany(Account::class,'payment_account_id');
+    }
+
     
 }

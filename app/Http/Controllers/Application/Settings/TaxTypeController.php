@@ -75,6 +75,23 @@ class TaxTypeController extends Controller
         return redirect()->route('settings.tax_types', ['company_uid' => $currentCompany->uid]);
     }
 
+    public function taxexpensestore(Store $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+
+        // Create Tax Type and Store in Database
+        TaxType::create([
+            'name' => $request->name,
+            'company_id' => $currentCompany->id,
+            'percent' => $request->percent,
+            'description' => $request->description,
+        ]);
+ 
+        session()->flash('alert-success', __('messages.tax_type_added'));
+        return redirect()->route('expenses.create', ['company_uid' => $currentCompany->uid]);
+    }
+
     /**
      * Display the Form for Editing Tax Type
      *

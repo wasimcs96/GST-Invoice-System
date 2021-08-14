@@ -114,4 +114,9 @@ class EstimateItem extends Model
     {
         $query->where('company_id', $company_id);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(ExpenseCategory::class,'expense_category_id');
+    }
 }

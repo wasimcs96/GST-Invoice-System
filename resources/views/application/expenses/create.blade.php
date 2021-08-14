@@ -31,175 +31,212 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Supplier</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('customers.estimate.store', ['company_uid' => $currentCompany->uid]) }}"
+                    <form action="{{ route('suppliers.expense.store', ['company_uid' => $currentCompany->uid]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">{{ __('messages.customer_information') }}</h4>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Supplier</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="display_name">Name</label>
+                                            <input name="name" id="name" type="text" class="form-control"
+                                                placeholder="Enter Name" required>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="email">{{ __('messages.email') }}</label>
+                                            <input name="email" id="email" type="email" class="form-control"
+                                                placeholder="{{ __('messages.email') }}"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="email">Company</label>
+                                            <input name="company" id="company" type="text" class="form-control"
+                                                placeholder="Enter Company"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="phone">{{ __('messages.phone') }}</label>
+                                            <input name="phone" id="phone" type="number" class="form-control"
+                                                placeholder="{{ __('messages.phone') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="display_name">{{ __('messages.display_name') }}</label>
+                                            <input name="display_name" id="display_name" type="text" class="form-control"
+                                                placeholder="{{ __('messages.display_name') }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="display_name">Website</label>
+                                            <input name="website" id="website" type="url" class="form-control"
+                                                placeholder="Enter Website" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="display_name">Billing rate (/hr)</label>
+                                            <input name="billing_rate" id="billing_rate" type="text" class="form-control"
+                                                placeholder="Enter Billing rate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="website">PAN No.</label>
+                                            <input name="pan_number" id="pan_number" type="text" class="form-control"
+                                                placeholder="Pan Number">
+                                        </div>
+                                    </div>
+            
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label for="gst_type">GST registration type</label>
+                                            <select name="gst_type" id="gst_type" data-toggle="select"
+                                                class="form-control select2 select2-hidden-accessible" data-select2-id="gst_type"
+                                                required>
+                                                    <option value="0">GST registered- Regular</option>
+                                                    <option value="1">GST registered- Composition</option>
+                                                    <option value="2">GST unregistered</option>
+                                                    <option value="3">Overseas</option>
+                                                    <option value="4">SEZ</option>
+            
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">GSTIN</label>
+                                            <input name="gstin" id="gstin" type="text" class="form-control"
+                                                placeholder="GST Number">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label>Apply TDS for this supplier</label>
+                                        <input class="btn checkbox" type="checkbox" value="Checkout" id="checkbox" name="checkout" />
+                                    </div>
+                                    <div class="shownDiv col-12" style="display:none;">
                                         <div class="row">
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
-                                                    <label for="display_name">{{ __('messages.display_name') }}</label>
-                                                    <input name="display_name" id="display_name" type="text"
-                                                        class="form-control"
-                                                        placeholder="{{ __('messages.display_name') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="contact_name">{{ __('messages.contact_name') }}</label>
-                                                    <input name="contact_name" id="contact_name" type="text"
-                                                        class="form-control"
-                                                        placeholder="{{ __('messages.contact_name') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="email">{{ __('messages.email') }}</label>
-                                                    <input name="email" id="email" type="email" class="form-control"
-                                                        placeholder="{{ __('messages.email') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="phone">{{ __('messages.phone') }}</label>
-                                                    <input name="phone" id="phone" type="number" class="form-control"
-                                                        placeholder="{{ __('messages.phone') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="currency_id">{{ __('messages.currency') }}</label>
-                                                    <select name="currency_id" id="currency_id" data-toggle="select"
-                                                        class="form-control select2 select2-hidden-accessible"
-                                                        data-select2-id="currency_id" required>
-                                                        <option disabled selected>{{ __('messages.select_currency') }}
-                                                        </option>
-                                                        @foreach (get_currencies_select2_array() as $option)
-                                                            <option value="{{ $option['id'] }}">
-                                                                {{ $option['text'] }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="website">{{ __('messages.website') }}</label>
-                                                    <input name="website" id="website" type="url" class="form-control"
-                                                        placeholder="{{ __('messages.website') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="gst_type">GST registration type</label>
-                                                    <select name="gst_type" id="gst_type" data-toggle="select"
-                                                        class="form-control select2 select2-hidden-accessible" data-select2-id="gst_type"
+                                                    <label for="gst_type">Entity</label>
+                                                    <select name="tds_entity" id="tds_entity" data-toggle="select"
+                                                        class="form-control select2 select2-hidden-accessible" data-select2-id="tds_entity"
                                                         required>
-                                                            <option value="0">GST registered- Regular</option>
-                                                            <option value="1">GST registered- Composition</option>
-                                                            <option value="2">GST unregistered</option>
-                                                            <option value="3" selected>Consumer</option>
-                                                            <option value="4">Overseas</option>
-                                                            <option value="5">SEZ</option>
-                                                            <option value="6">Deemed exports- EOU's, STP's EHTP's etc</option>
+                                                            <option value="0">Resident Individual/HUF</option>
+                                                            <option value="1">Resident Other</option>
+                                                            <option value="2">NRI Individual/HUF</option>
+                                                            <option value="3">NRI Other</option>
                     
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="vat_number">GST Number</label>
-                                                    <input name="vat_number" id="vat_number" type="text"
-                                                        class="form-control" placeholder="GST Number">
+                                                <div class="form-group required">
+                                                    <label for="gst_type">Section</label>
+                                                    <select name="tds_section" id="tds_section" data-toggle="select"
+                                                        class="form-control select2 select2-hidden-accessible" data-select2-id="tds_section"
+                                                        required>
+                                                            <option value="0">Not Applicable</option>
+                                                            <option value="1">192-Salaries</option>
+                                                            <option value="2">193-Interest on debentures</option>
+                                                            <option value="3">194-Deemed Dividend</option>
+                                                            <option value="4">194-Dividend</option>
+                                                            <option value="5">194A-Interest by Bank</option>
+                                                            <option value="6">194A-Interest by Others</option>
+                                                            <option value="7">194B-Lottery / Crossword puzzle</option>
+                                                            <option value="8">194BB-Winnings from Horse Race</option>
+                                                            <option value="9">194C(1)-Contracts</option>
+                                                            <option value="10">194C(2)-Sub-Contracts / Advertisements</option>
+                                                            <option value="11">194D-Insurance Commission to a resident</option>
+                                                            <option value="12">194E-Payment to Non-resident sports association</option>
+                                                            <option value="13">194EE-Payments out of deposits under NSS</option>
+                                                            <option value="14">194F-Repurchase of Units by MF / UTI</option>
+                                                            <option value="15">194G-Commission on sale of Lottery Tickets</option>
+                                                            <option value="16">194H-Commission on Brokerage</option>
+                                                            <option value="17">194I-(1)-Rent-Land and building</option>
+                                                            <option value="18">194I-(2)-Rent-Plant and Machinery</option>
+                                                            <option value="19">194IA-Transfer of immovable property</option>
+                                                            <option value="20">194J-(1)-Fees for Professional and Technical Services</option>
+                                                            <option value="21">194J-(2)-Remuneration to Director</option>
+                                                            <option value="22">194LA-Compensation on immovable property</option>
+                                                            <option value="23">194LB-Interest on Infrastructure debt fund</option>
+                                                            <option value="24">194LC-Interest from Indian Company</option>
+                                                            <option value="25">194LD-Interest on certain bonds and Govt. Securities</option>
+                                                            <option value="26">195-Payment to Non-resident: -a. Income of Foreign Exchange assets</option>
+                                                            <option value="27">195-Payment to Non-resident: -b. LTCG u/s 115E or 112(1)(c)(iii)</option>
+                                                            <option value="28">195-Payment to Non-resident: -c. Income by way of STCG 111A</option>
+                                                            <option value="29">195-Payment to Non-resident: -d. Any Other LTCG</option>
+                                                            <option value="30">195-Payment to Non-resident: -e.Payment to Interest</option>
+                                                            <option value="31">195-Payment to Non-resident: -f. Royalty</option>
+                                                            <option value="32">195-Payment to Non-resident: -g. Other Royalty, agreement before April 1976</option>
+                                                            <option value="33">195-Payment to Non-resident: -g. Other Royalty, agreement after April 1976</option>
+                                                            <option value="34">195-Payment to Non-resident: -h. Technical fees, agreement before April 1976</option>
+                                                            <option value="35">195-Payment to Non-resident: -h. Technical fees, agreement after April 1976</option>
+                                                            <option value="36">195-Payment to Non-resident: -i. Any other income</option>
+                                                            <option value="37">196-Payment to government / Reserve bank / Other Corporations</option>
+                                                            <option value="38">196B-Income from Units</option>
+                                                            <option value="39">196C-Income from foreign currency bonds or shares of Indian Company</option>
+                                                            <option value="40">196D-Income of Foreign Institutional Investors from Securities</option>
+                                                            <option value="41">196A-Income for units of Non Residents</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Billing Address</h4>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">Notes</label>
+                                            <input name="notes" id="notes" type="text" class="form-control">
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="billing[name]">{{ __('messages.name') }}</label>
-                                                    <input name="billing[name]" id="billing_name" type="text"
-                                                        class="form-control"
-                                                        placeholder="{{ __('messages.address_name') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="billing[country_id]">{{ __('messages.country') }}</label>
-                                                    <select id="billing_country_id" name="billing[country_id]"
-                                                        data-toggle="select" class="form-control select2 select2-hidden-accessible"
-                                                        data-select2-id="billing[country_id]" required>
-                                                        <option disabled selected>{{ __('messages.select_country') }}
-                                                        </option>
-                                                        @foreach (get_countries_select2_array() as $option)
-                                                            <option value="{{ $option['id'] }}">
-                                                                {{ $option['text'] }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="billing[state]">{{ __('messages.state') }}</label>
-                                                    <select id="billing_state" name="billing[state]" data-toggle="select"
-                                                        class="form-control select2 select2-hidden-accessible oi"
-                                                        data-select2-id="billing[state]" required>
-                                                        <option disabled selected>Select state</option>
-                                                        @foreach ($states as $state)
-                                                            <option value="{{ $state->id }}">{{ $state->name }}
-                                                            </option>
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="billing[city]">{{ __('messages.city') }}</label>
-                                                    <select name="billing[city]" id="billing_city" data-toggle="select"
-                                                        class="form-control select2 select2-hidden-accessible"
-                                                        data-select2-id="billing[city]" required>
-                                                        <option disabled selected>Select city</option>
-                                                        {{-- @foreach ($citie as $city)
-                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                                    @endforeach --}}
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
-                                                    <input name="billing[zip]" id="billing_zip" type="text"
-                                                        class="form-control"
-                                                        placeholder="{{ __('messages.postal_code') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="billing[address_1]">{{ __('messages.address') }}</label>
-                                                    <textarea name="billing[address_1]" id="billing_address"
-                                                        class="form-control" rows="2"
-                                                        placeholder="{{ __('messages.address') }}"
-                                                        required></textarea>
-                                                </div>
-                                            </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">Opening balance</label>
+                                            <input name="balance" id="balance" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">as of</label>
+                                            <input name="balance_date" id="balance_date" type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">Account no.</label>
+                                            <input name="account_number" id="account_number" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">Tax Registration Number</label>
+                                            <input name="tax_reg_number" id="tax_reg_number" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">Effective Date</label>
+                                            <input name="effective_date" id="effective_date" type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="vat_number">Attachment</label>
+                                            <input name="attachment" id="attachment" type="file" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -207,78 +244,45 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">{{ __('messages.shipping_address') }}</h4>
+                                <h4 class="card-title">Address</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="shipping[name]">{{ __('messages.name') }}</label>
-                                            <input name="shipping[name]" id="shipping_name" type="text" class="form-control"
-                                                placeholder="{{ __('messages.address_name') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="shipping[country_id]">{{ __('messages.country') }}</label>
-                                            <select id="shipping_country_id" name="shipping[country_id]"
-                                                data-toggle="select" class="form-control select2 select2-hidden-accessible"
-                                                data-select2-id="shipping[country_id]">
-                                                <option disabled selected>{{ __('messages.select_country') }}</option>
-                                                @foreach (get_countries_select2_array() as $option)
-                                                    <option value="{{ $option['id'] }}">
-                                                        {{ $option['text'] }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-
                                         <div class="form-group required">
-                                            <label for="billing[state]">{{ __('messages.state') }}</label>
-                                            {{-- <select id="billing[state]" name="billing[state]" data-toggle="select"
-                                                class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
-                                                required> --}}
-                                            <select id="shipping_state" name="shipping[state]" data-toggle="select"
-                                                class="form-control select2 select2-hidden-accessible oi"
-                                                data-select2-id="billing[state]" required>
-                                                <option disabled selected>Select state</option>
-                                                @foreach ($states as $state)
-                                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
-                                                @endforeach
-
-                                            </select>
+                                            <label>Address</label>
+                                            <input name="address" id="address" type="text" class="form-control"
+                                                placeholder="{{ __('messages.address_name') }}" required>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group required">
-                                            <label for="billing[city]">{{ __('messages.city') }}</label>
-                                            <select name="shipping[city]" id="shipping_city" data-toggle="select"
-                                                class="form-control select2 select2-hidden-accessible"
-                                                data-select2-id="billing[city]" required>
-                                                <option disabled selected>Select city</option>
-                                                {{-- @foreach ($citie as $city)
-                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                                @endforeach --}}
-
-                                            </select>
+                                            <label>State</label>
+                                            <input name="state" id="state" type="text" class="form-control"
+                                                placeholder="state" required>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
-                                            <input name="shipping[zip]" id="shipping_zip" type="text" class="form-control"
-                                                placeholder="{{ __('messages.postal_code') }}">
+                                        <div class="form-group required">
+                                            <label>City</label>
+                                            <input name="city" id="city" type="text" class="form-control"
+                                                placeholder="city" required>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="shipping[address_1]">{{ __('messages.address') }}</label>
-                                            <textarea name="shipping[address_1]" id="shipping_address" class="form-control"
-                                                rows="2"
-                                                placeholder="{{ __('messages.address') }}"></textarea>
+                                        <div class="form-group required">
+                                            <label>Country</label>
+                                            <input name="country" id="country" type="text" class="form-control"
+                                                placeholder="country" required>
                                         </div>
-                                    </div>
+                                    </div> 
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group required">
+                                            <label>Pin Code</label>
+                                            <input name="pin_code" id="pin_code" type="text" class="form-control"
+                                                placeholder="pin code" required>
+                                        </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -294,130 +298,218 @@
     </div>
 
 
-    <!--Product Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+    <!--Method Modal -->
+    <div class="modal fade" id="typeModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Payment Method</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('products.estimate.store', ['company_uid' => $currentCompany->uid]) }}"
-                        method="POST">
+                    <form action="{{ route('settings.payment.expense.type.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
                         @csrf
 
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{ __('messages.product_information') }}</h4>
+                                        <h4 class="card-title">Payment Method</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group required">
+                                                    <label for="name">{{ __('messages.name') }}</label>
+                                                    <input name="name" type="text" class="form-control" placeholder="{{ __('messages.name') }}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Account Modal -->
+    <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Payment Account</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('settings.accounts.expense.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Payment Account</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 col-12">
-                                                <label>{{ __('messages.receipt') }}</label><br>
-                                                <input type="file" onchange="changePreview(this);" class="d-none"
-                                                    name="image" id="image">
-                                                <label for="image">
-                                                    <div class="media align-items-center">
-                                                        <div class="mr-3">
-                                                            <div class="avatar avatar-xl">
-                                                                <img id="file-prev" class="avatar-img rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <a
-                                                                class="btn btn-sm btn-primary choose-button">{{ __('messages.choose_file') }}</a>
-                                                        </div>
-                                                    </div>
-                                                </label><br>
-                                                {{-- @if ($product->image)
-                                                    <a href="{{ asset($product->image) }}" target="_blank"
-                                                        class="btn btn-sm btn-info text-white choose-button">{{ __('messages.download_receipt') }}</a>
-                                                    @endif --}}
-                                            </div>
-
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="name">SKU</label>
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Enter a SKU" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="name">{{ __('messages.name') }}</label>
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="{{ __('messages.name') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="unit">Category</label>
-                    
-                                                    <select id="category_id" class="select2 form-control" name="category_id"
-                                                        id="default-select-multi">
-                                                        <option disabled selected>Select Category</option>
-                                                        @foreach ($categories as $category)
-                                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                                    @endforeach
-                                                        <option value="cate" id="dd" style="color: blue;"> <a  data-toggle="modal" data-target="#categorymodal" id="cato"
-                                                             class="font-weight-300">+
-                                                               Add new Category</a></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="name">HSN Code</label>
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Enter a valid HSN code" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-
-                                                <div class="form-group">
-                                                    <label for="unit">{{ __('messages.unit') }}</label>
-
-                                                    <select id="unit_id" class="select2 form-control" name="unit_id"
-                                                        id="default-select-multi">
-                                                        <option disabled selected>{{ __('messages.select_unit') }}
-                                                        </option>
-                                                        @foreach (get_product_units_select2_array($currentCompany->id) as $option)
-                                                            <option value="{{ $option['id'] }}">{{ $option['text'] }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group required">
-                                                    <label for="price">{{ __('messages.price') }}</label>
-                                                    <input name="price" type="text" class="form-control price_input"
-                                                        placeholder="{{ __('messages.price') }}" autocomplete="off"
+                                                    <input name="name" type="text" class="form-control" placeholder="{{ __('messages.name') }}"
                                                         required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="price">{{ __('Taxes') }}</label>
-
-                                                    <select id="taxess" class="select2 form-control" multiple="multiple"
-                                                        id="default-select-multi">
-                                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
-                                                            <option value="{{ $option['id'] }}"
-                                                                data-percent="{{ $option['percent'] }}">
-                                                                {{ $option['text'] }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="form-group required">
+                                                    <label for="name">As of Date</label>
+                                                    <input name="as_date" type="date" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
+                                                    <label for="account_type">Account Type</label>
+                                        
+                                                    <select id="account_type" class="select2 form-control" name="account_type" id="default-select-multi">
+                                                        <option disabled selected>Select Account Type</option>
+                                                        <option value="0">Account receivable (Debtors)</option>
+                                                        <option value="1">Current assets</option>
+                                                        <option value="2">Bank</option>
+                                                        <option value="3">Fixed assets</option>
+                                                        <option value="4">Non-current assets </option>
+                                                        <option value="5">Accounts payable (Creditors)</option>
+                                                        <option value="6">Credit Card</option>
+                                                        <option value="7">Current liabilities</option>
+                                                        <option value="8">Non-current liabilities</option>
+                                                        <option value="9">Equity</option>
+                                                        <option value="10">Income</option>
+                                                        <option value="11">Other Income</option>
+                                                        <option value="12">Cost of Goods sold</option>
+                                                        <option value="13">Expense</option>
+                                                        <option value="14">Other expense</option>
+                                         
+                                                      
+                                                    </select>
+                                                </div>
+                                            </div>
+                                         
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="detail_type">Detail Type</label>
+                                        
+                                                    <select id="detail_id" class="select2 form-control" name="detail_id" id="default-select-multi">
+                                                        <option disabled selected>Select Detail</option>
+                                                        @foreach ($details as $detail)
+                                                        <option value="{{ $detail->id }}">{{ $detail->name}}</option>
+                                                    @endforeach
+                                                    {{-- <option value="acc" style="color: blue;"> <a id="det"
+                                                            href="{{ route('settings.account_details.create', ['company_uid' => $currentCompany->uid]) }}"
+                                                            target="_blank" class="font-weight-300">+
+                                                            Add new Details</a></option> --}}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">Balance</label>
+                                                    <input name="balance" type="number" class="form-control" required>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="price">Default Tax</label>
+                                        
+                                                    <select id="tax" class="select2 form-control" id="default-select-multi" >
+                                                        <option disabled selected>Select Tax</option>
+                                                        <option value="0">18.0% IGST</option>
+                                                        <option value="1">14.0% ST</option>
+                                                        <option value="2">0% IGST</option>
+                                                        <option value="3">Out of Scope</option>
+                                                        <option value="4">0% GST</option>
+                                                        <option value="5">14.5% ST</option>
+                                                        <option value="6">14.0% VAT</option>
+                                                        <option value="7">6.0% IGST</option>
+                                                        <option value="8">28.0% IGST</option>
+                                                        <option value="9">15.0% ST</option>
+                                                        <option value="10">28.0% GST</option>
+                                                        <option value="11">12.0% GST</option>
+                                                        <option value="12">18.0% GST</option>
+                                                        <option value="13">3.0% GST</option>
+                                                        <option value="14">0.25% IGST</option>
+                                                        <option value="15">Exempt IGST</option>
+                                                        <option value="16">4.0% VAT</option>
+                                                        <option value="17">5.0% GST</option>
+                                                        <option value="18">12.36% ST</option>
+                                                        <option value="19">5.0% GST</option>
+                                                        <option value="20">Exempt GST</option>
+                                                        <option value="21">12.0% IGST</option>
+                                                        <option value="22">12.0% IGST</option>
+                                                        <option value="23">2.0% GST</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
                                                     <label for="description">{{ __('messages.description') }}</label>
-                                                    <textarea name="description" class="form-control" cols="30"
-                                                        rows="3"></textarea>
+                                                    <textarea name="description" class="form-control" cols="30" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Category Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('settings.expense_categories.expense.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Category</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group required">
+                                                    <label for="name">{{ __('messages.name') }}</label>
+                                                    <input name="name" type="text" class="form-control" placeholder="{{ __('messages.name') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="description">{{ __('messages.description') }}</label>
+                                                    <textarea name="description" class="form-control" rows="4" placeholder="{{ __('messages.description') }}"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -444,7 +536,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Add Tax</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('settings.tax.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
+                    <form action="{{ route('settings.tax.expense.store', ['company_uid' => $currentCompany->uid]) }}" method="POST">
                         @csrf
 
                         <div class="row">
@@ -637,6 +729,14 @@
                 $dst6.val($src6.val());
             });
         });    
+</script>
+<script>
+    $(document).ready(function() {
+    $('.checkbox').on('change', function() {
+        console.log('changed');
+        $('.shownDiv').toggle();
+    });
+});
 </script>
 
 <script>

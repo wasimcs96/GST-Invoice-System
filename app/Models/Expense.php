@@ -60,7 +60,7 @@ class Expense extends Model
 
     public function items()
     {
-        return $this->hasMany(ExpenseItem::class);
+        return $this->hasMany(ExpenseItem::class,'expense_id');
     }
 
     public function company()
@@ -145,11 +145,16 @@ class Expense extends Model
 
     public function supplier()
     {
-        return $this->hasMany(Supplier::class);
+        return $this->belongsTo(Supplier::class);
     }
 
     public function paymentmethod()
     {
-        return $this->hasMany(PaymentMethod::class);
+        return $this->belongsTo(PaymentMethod::class,'payment_type_id');
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class,'payment_account_id');
     }
 }
