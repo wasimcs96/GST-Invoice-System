@@ -2,13 +2,13 @@
     <div class="card card-form d-flex flex-column flex-sm-row">
         <div class="card-form__body card-body-form-group flex">
             <div class="row my-1 mx-0">
-                <div class="col-md-4 col-12">
+                <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[name]">{{ __('messages.name') }}</label>
                         <input name="filter[name]" type="text" class="form-control" value="{{ isset(Request::get("filter")['name']) ? Request::get("filter")['name'] : '' }}" placeholder="{{ __('messages.name') }}">
                     </div>
                 </div>
-                <div class="col-md-4 col-12">
+                <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[unit_id]">{{ __('messages.product_unit') }}</label>
                         <select id="filter[unit_id]" name="filter[unit_id]" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="filter[unit_id]">

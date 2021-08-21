@@ -203,8 +203,12 @@
         $('#sub_total').val(subtotal.toFixed(2));
 
         // total taxes
-        var total_taxes = $('#total_taxes').find(':selected');
+        var total_taxes = $('.total_taxes').find(':selected');
+        // console.log('hii');
+        // console.log(total_taxes);
         total_taxes.each(function (index, tax) {
+            // console.log($(tax).text());
+            // console.log('hiaha')
             var taxName = $(tax).text();
             var percent = $(tax).data('percent');
             var taxAmount = calculatePercent(percent, subTotal);
@@ -230,7 +234,7 @@
             '</div>';
 
             $('.total_tax_list').append(template);
-
+            // console.log('i am in the loop')
             total = Number(total) + Number(amount);
         }
  
@@ -283,4 +287,5 @@
         });
     }
     
+
 </script>

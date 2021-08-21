@@ -56,7 +56,7 @@
                                             </td>
                                                 <td class="h6">
                                                         <strong class="h6">
-                                                            {{ $account->name }}
+                                                        {{ $account->name }}
                                                         </strong>                                      
                                                 </td>
                                                 <td class="h6">
@@ -102,13 +102,13 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu"> 
-                                                        <a class="dropdown-item"
+                                                        {{-- <a class="dropdown-item"
                                                         href="{{ route('settings.accounts.edit', ['accounts_setting' => $account->id, 'company_uid' => $currentCompany->uid]) }}">
                                                         <i data-feather="edit-2"></i>
                                                         {{ __('messages.edit') }}
-                                                            </a>
+                                                            </a> --}}
                                                             <a class="dropdown-item"
-                                                            href="{{ route('settings.accounts.delete', ['accounts_setting' => $account->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                            href="{{ route('settings.accounts.delete', ['account' => $account->id, 'company_uid' => $currentCompany->uid]) }}">
                                                             <i data-feather="trash"></i>
                                                             {{ __('messages.delete') }}
                                                             </a>
@@ -117,6 +117,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

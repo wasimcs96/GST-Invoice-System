@@ -572,7 +572,7 @@
                                                 <div class="form-group">
                                                     <label for="inventory_account1">Inventory assest account</label>
                     
-                                                    <select id="inventory_account1" class="select2 form-control" name="category_id"
+                                                    <select id="inventory_account1" class="select2 form-control"  name="inventory_assests_accounts_id"
                                                         id="default-select-multi">
                                                         <option disabled selected>Select Account</option>
                                                         @foreach ($inventory_accounts as $inventory_account)
@@ -710,9 +710,9 @@
                                             </div>
                                             <div class="col col-12">
                                                 <div class="form-group">
-                                                    <label for="inventory_account2">SAC Code</label>
+                                                    <label for="sac_id">SAC Code</label>
                     
-                                                    <select id="inventory_account2" class="select2 form-control" name="category_id"
+                                                    <select id="sac_id" class="select2 form-control" name="sac_id"
                                                         id="default-select-multi">
                                                         <option disabled selected>Select SAC Code</option>
                                                         @foreach ($product_sac as $product_sa)
@@ -780,9 +780,9 @@
                                             <div class="col col-12">
 
                                                 <div class="form-group">
-                                                    <label for="income_account2">Service Type</label>
+                                                    <label for="service_id">Service Type</label>
 
-                                                    <select  id="income_account2" class="select2 form-control" name="income_account"
+                                                    <select  id="service_id" class="select2 form-control" name="service_id"
                                                         id="default-select-multi">
                                                         <option disabled selected>Select Service Type
                                                         </option>

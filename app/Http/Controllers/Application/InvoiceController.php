@@ -107,7 +107,6 @@ class InvoiceController extends Controller
             'tax_per_item' => $tax_per_item,
             'discount_per_item' => $discount_per_item,
             'states' => $states,
-            // 'cities' => $cities,
             'citie' => $citie,
             'categories'=>$categories,
             'inventory_accounts'=>$inventory_accounts,
@@ -150,6 +149,7 @@ class InvoiceController extends Controller
             'reference_number' => $request->reference_number,
             'customer_id' => $request->customer_id,
             'company_id' => $currentCompany->id,
+            'state_id' => $request->state_id,
             'status' => Invoice::STATUS_DRAFT,
             'paid_status' => Invoice::STATUS_UNPAID,
             'sub_total' => $request->sub_total,
@@ -267,6 +267,7 @@ class InvoiceController extends Controller
         activity()->on($invoice->customer)->by($invoice)
             ->log('Invoice :causer.invoice_number emailed to Customer by system.');
 
+            
         // Change the status of the Invoice
         if ($invoice->status == Invoice::STATUS_DRAFT) {
             $invoice->status = Invoice::STATUS_SENT;
@@ -388,6 +389,7 @@ class InvoiceController extends Controller
             'invoice_number' => $request->invoice_number,
             'reference_number' => $request->reference_number,
             'customer_id' => $request->customer_id,
+            'state_id' => $request->state_id,
             'discount_type' => 'percent',
             'discount_val' => $request->total_discount ?? 0,
             'sub_total' => $request->sub_total,

@@ -67,5 +67,18 @@ class AccountDetailController extends Controller
         session()->flash('alert-success', __('messages.account_details added'));
         return redirect()->route('settings.account_details', ['company_uid' => $currentCompany->uid]);
     }
+    public function delete(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+        
+        $accounts = AccountDetail::findOrFail($request->account_detail);
+        
+        // Delete Expense Category from Database
+        $accounts->delete();
+
+        session()->flash('alert-success', __('messages.account_deleted'));
+        return redirect()->route('settings.account_details', ['company_uid' => $currentCompany->uid]);
+    }
 
 }

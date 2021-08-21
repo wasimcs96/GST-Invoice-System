@@ -62,4 +62,5 @@ class AccountController extends Controller
         session()->flash('alert-success', __('messages.account_updated'));
         return redirect()->route('settings.account', ['company_uid' => $currentCompany->uid]);
     }
+    
 }

@@ -148,13 +148,13 @@ class AccountsController extends Controller
         $user = $request->user();
         $currentCompany = $user->currentCompany();
         
-        $accounts = Account::findOrFail($request->Account);
+        $accounts = Account::findOrFail($request->account);
         
         // Delete Expense Category from Database
         $accounts->delete();
 
         session()->flash('alert-success', __('messages.account_deleted'));
-        return redirect()->route('settings.accounting', ['company_uid' => $currentCompany->uid]);
+        return redirect()->route('settings.accounts_setting', ['company_uid' => $currentCompany->uid]);
     }
 
     public function invoicestore(Request $request)
@@ -178,4 +178,6 @@ class AccountsController extends Controller
         session()->flash('alert-success', __('messages.account_added'));
         return redirect()->route('invoices.create', ['company_uid' => $currentCompany->uid]);
     }
+    
+   
 }

@@ -29,7 +29,15 @@ class Product extends Model
         'sku',
         'hsn',
         'image',
-        'category_id'
+        'category_id',
+        'initial_quantity',
+        'as_date',
+        'inventory_assests_accounts_id',
+        'income_account',
+        'sac_id',
+        'abatement',
+        'service_id',
+        'currency_id'
     ];
 
     /**

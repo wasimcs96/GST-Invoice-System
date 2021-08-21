@@ -7,9 +7,9 @@
           
             <div class="form-group required select-container">
                 <label for="customer">{{ __('messages.customer') }}</label>
-                <select id="customer" name="customer_id" data-toggle="select"
+                <select id="customer" name="customer_id" data-toggle="select"  onchange="DisableMenu()"
                     class="form-control select2-hidden-accessible select-with-footer" data-select2-id="customer">
-                    <option disabled selected>{{ __('messages.select_customer') }}</option>
+                    <option value='1' selected >Select Customer</option>
                     @if ($invoice->customer_id)
                         <option value="{{ $invoice->customer_id }}" selected=""
                             data-currency="{{ $invoice->customer->currency }}"
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-
+       
         <div class="col-md-4 pl-4">
             <div class="form-group required">
                 <label for="due_date">{{ __('messages.due_date') }}</label>
@@ -76,8 +76,23 @@
                     {{-- </div> --}}
                 </div>
             </div>
+            
         </div>
+        <div class="col-md-4 col-12">
 
+            <div class="form-group">
+                <label for="income_account1">Place of Supply</label>
+
+                <select  id="supply" name="supply" class="select2 form-control" name="income_account">
+                    <option value="1" selected>Select State
+                    </option>
+                    @foreach ($states as $state)
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                     @endforeach
+                              
+                </select>
+            </div>
+        </div>
         <div class="col-12 mt-5">
             <div class="table-responsive" data-toggle="lists">
                 <table class="table table-xl mb-0 thead-border-top-0 table-striped">
@@ -91,12 +106,16 @@
                                 <th class="w-15">{{ __('messages.discount') }}</th>
                                 <th class="text-right w-10" style="padding-right: 142px;">{{ __('messages.amount') }}
                                 </th>
+                                <th class="text-right w-10" style="padding-right: 142px;">Tax
+                                </th>
                             @elseif($tax_per_item and !$discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
                                 <th class="w-25">{{ __('messages.taxes') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-15">{{ __('messages.price') }}</th>
                                 <th class="text-right w-10" style="padding-right: 142px;">{{ __('messages.amount') }}
+                                </th>
+                                <th class="text-right w-10" style="padding-right: 142px;">Tax
                                 </th>
                             @elseif(!$tax_per_item and $discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
@@ -105,12 +124,17 @@
                                 <th class="w-20">{{ __('messages.discount') }}</th>
                                 <th class="text-right w-10" style="padding-right: 142px;">{{ __('messages.amount') }}
                                 </th>
+                                <th class="text-right w-10" style="padding-right: 142px;">Tax
+                                </th>
                             @elseif(!$tax_per_item and !$discount_per_item)
-                                <th class="w-60">{{ __('messages.product') }}</th>
+                                <th class="w-40">{{ __('messages.product') }}</th>
+                                <th class="w-20">{{ __('messages.tax') }}</th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-20">{{ __('messages.price') }}</th>
                                 <th class="text-right w-10" style="padding-right: 142px;">{{ __('messages.amount') }}
                                 </th>
+                                {{-- <th class="text-right w-10" style="padding-right: 142px;">Tax
+                                </th> --}}
                             @endif
                             <th></th>
                         </tr>
@@ -127,31 +151,21 @@
                                         {{ __('messages.add_new_product') }}</a>
                                 </div>
                             </td>
-                            @if ($tax_per_item)
-                                <td class="select-container">
-                                    <select name="taxes[]" multiple
-                                        class="form-control priceListener select-with-footer">
-                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
-                                            <option value="{{ $option['id'] }}"
-                                                data-percent="{{ $option['percent'] }}">{{ $option['text'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <div class="d-none select-footer">
-                                        <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
-                                            target="_blank" class="font-weight-300">+
-                                            {{ __('messages.add_new_tax') }}</a>
-                                    </div>
-                                </td>
-                            @endif
-                            <td>
-                                <input name="quantity[]" type="number" class="form-control priceListener" value="1"
+                            {{-- @if ($tax_per_item) --}}
+                               
+                            {{-- @endif --}}
+                            <td class="mb-2" style="padding: initial; padding-left: 24px;">
+                                <input name="quantity[]" type="number" class="form-control priceListener my-2" value="1"
                                     required>
                             </td>
-                            <td>
-                                <input name="price[]" type="text" class="form-control price_input priceListener"
+                            
+                            <td style="
+                            padding: initial; ">
+                                <input name="price[]" type="text" class="form-control price_input priceListener my-2"
                                     autocomplete="off" value="0" required>
-                            </td>
+                            </td>  
+                           
+                               
                             @if ($discount_per_item)
                                 <td>
                                     <div class="input-group input-group-merge">
@@ -172,6 +186,46 @@
                                 </p>
                                 <div class="tax_list"></div>
                             </td>
+                            @if ($tax_per_item == false)
+                            {{-- <td>
+                            <div class="form-group select-container">
+                                <select id="total_taxes" name="total_taxes[]" 
+                                data-toggle="select" multiple
+                                    class="form-control priceListener select-with-footer select2"
+                                    data-select2-id="total_taxes"  >
+                                <option  data-percent="0">Select Tax</option>
+                                    @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            data-percent="{{ $option['percent'] }}"
+                                            {{ $invoice->hasTax($option['id']) ? 'selected=""' : '' }}>
+                                            {{ $option['text'] }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="d-none select-footer">
+                                    <a data-toggle="modal" data-target="#taxModal" class="font-weight-300">+
+                                        {{ __('messages.add_new_tax') }}</a>
+                                </div>
+                            </div>
+                            </td>  --}}
+                @endif
+                <td class="select-container total_taxes" style="width: 470px;" >
+                    <select name="taxes[]" id="progress" multiple 
+                        class="form-control priceListener select-with-footer total_taxes" >
+                        <option value="0"
+                                data-percent="0">Select Tax
+                            </option>
+                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                            <option value="{{ $option['id'] }}"
+                                data-percent="{{ $option['percent'] }}">{{ $option['text'] }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <div class="d-none select-footer">
+                        <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
+                            target="_blank" class="font-weight-300">+
+                            {{ __('messages.add_new_tax') }}</a>
+                    </div>
+                </td>
                             <td>
                                 <a onclick="removeRow(this)">
                                     <i data-feather="x"></i>
@@ -193,6 +247,7 @@
                                                 {{ __('messages.add_new_product') }}</a>
                                         </div>
                                     </td>
+                                    
                                     @if ($tax_per_item)
                                         <td class="select-container">
                                             <select name="taxes[]" multiple
@@ -219,6 +274,7 @@
                                         <input name="price[]" type="text" class="form-control price_input priceListener"
                                             autocomplete="off" value="{{ $item->price }}" required>
                                     </td>
+                                    
                                     @if ($discount_per_item)
                                         <td>
                                             <div class="input-group input-group-merge">
@@ -233,6 +289,7 @@
                                             </div>
                                         </td>
                                     @endif
+                                  
                                     <td class="text-right">
                                         <p class="mb-1">
                                             <input type="text" name="total[]"
@@ -272,7 +329,7 @@
 
                 <div class="form-group">
                     <label for="vat_number">Attachment</label>
-                    <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $invoice->attachment }}">
+                    <input name="attachment" id="" type="file" class="form-control" value="{{ $invoice->attachment }}">
                 </div>
         </div>
 
@@ -290,7 +347,7 @@
                     </div>
                 </div>
 
-                @if ($tax_per_item == false)
+               {{-- @if ($tax_per_item == false)
                     <div class="row mb-1">
                         <div class="col-12 h6 mb-1">
                             <strong class="text-muted">{{ __('messages.taxes') }}</strong>
@@ -314,7 +371,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="total_tax_list"></div>
 

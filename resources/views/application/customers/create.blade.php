@@ -29,9 +29,30 @@
     </form>
 @endsection
 
+@section('page_head_scripts')
+
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('theme/app-assets/css/plugins/forms/pickers/form-flat-pickr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/app-invoice.css') }}">
+    <style>
+        .select2-selection__arrow {
+            display: none;
+        }
+
+    </style>
+
+@endsection
 
 @section('page_body_scripts')
-
+<script src="{{ asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{ asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+<script src="{{ asset('theme/app-assets/js/scripts/pages/app-invoice.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.oi').on('change', function() {
