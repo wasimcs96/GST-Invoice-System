@@ -70,7 +70,8 @@
 {{-- <script src="{{asset('theme/app-assets/js/scripts/pages/app-invoice.js') }}"></script> --}}
 
     {{-- @include('application.invoices._js') --}}
-   <script>  $('#detail_type').on('change', function() {
+   <script>  
+   $('#detail_id').on('change', function() {
     if (this.value == "acc") {
         window.location = '{{ route('settings.account_details.create', ['company_uid' => $currentCompany->uid]) }}';
         $("#det").trigger('click');

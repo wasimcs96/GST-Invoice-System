@@ -315,7 +315,8 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
          Route::get('/account-details', 'AccountDetailController@index')->name('settings.account_details');
          Route::get('/account-details/create', 'AccountDetailController@create')->name('settings.account_details.create');
          Route::post('/account-details/create', 'AccountDetailController@store')->name('settings.account_details.store');
-        
+         Route::get('/account-details/{account_detail}/delete', 'AccountDetailController@delete')->name('settings.account_details.delete');
+
 
          // Settings>Product_Sac
          Route::get('/product-sac', 'ProductSacController@index')->name('settings.product_sac');
@@ -323,9 +324,9 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
          Route::post('/product-sac/create', 'ProductSacController@store')->name('settings.product_sac.store');
      
           // Settings>Product_Service
-          Route::get('/product-service', 'ProductServicesController@index')->name('settings.product_service');
-          Route::get('/product-service/create', 'ProductServicesController@create')->name('settings.product_service.create');
-          Route::post('/product-service/create', 'ProductServicesController@store')->name('settings.product_service.store');
+         Route::get('/product-service', 'ProductServicesController@index')->name('settings.product_service');
+         Route::get('/product-service/create', 'ProductServicesController@create')->name('settings.product_service.create');
+         Route::post('/product-service/create', 'ProductServicesController@store')->name('settings.product_service.store');
       
 
          // Settings>Accounts
@@ -335,7 +336,7 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
         Route::post('/settings-account/create/expense', 'AccountsController@accountstore')->name('settings.accounts.expense.store');
         Route::get('/settings-account/{accounts_setting}/edit', 'AccountsController@edit')->name('settings.accounts.edit');
         Route::post('/settings-account/{accounts_setting}/edit', 'AccountsController@update')->name('settings.accounts.update');
-        Route::get('/settings-account/{accounts_setting}/delete', 'AccountsController@delete')->name('settings.accounts.delete');
+        Route::get('/settings-account/{account}/delete', 'AccountsController@delete')->name('settings.accounts.delete');
        
        
         // Settings>Team

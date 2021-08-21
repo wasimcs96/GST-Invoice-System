@@ -622,7 +622,7 @@
                                                 <div class="form-group">
                                                     <label for="inventory_account1">Inventory assest account</label>
                     
-                                                    <select id="inventory_account1" class="select2 form-control" name="category_id"
+                                                    <select id="inventory_account1" class="select2 form-control" name="inventory_assests_accounts_id"
                                                         id="default-select-multi">
                                                         <option disabled selected>Select Account</option>
                                                         @foreach ($inventory_accounts as $inventory_account)
@@ -760,9 +760,9 @@
                                             </div>
                                             <div class="col col-12">
                                                 <div class="form-group">
-                                                    <label for="inventory_account2">SAC Code</label>
+                                                    <label for="sac_id">SAC Code</label>
                     
-                                                    <select id="inventory_account2" class="select2 form-control" name="category_id"
+                                                    <select id="sac_id" class="select2 form-control" name="sac_id"
                                                         id="default-select-multi">
                                                         <option disabled selected>Select SAC Code</option>
                                                         @foreach ($product_sac as $product_sa)
@@ -830,9 +830,9 @@
                                             <div class="col col-12">
 
                                                 <div class="form-group">
-                                                    <label for="income_account2">Service Type</label>
+                                                    <label for="service_id2">Service Type</label>
 
-                                                    <select  id="income_account2" class="select2 form-control" name="income_account"
+                                                    <select  id="service_id2" class="select2 form-control"  name="service_id"
                                                         id="default-select-multi">
                                                         <option disabled selected>Select Service Type
                                                         </option>
@@ -1020,6 +1020,7 @@
     <script src="{{ asset('theme/app-assets/js/scripts/pages/app-invoice.js') }}"></script>
 
     @include('application.invoices._js')
+
     <script>
         $(document).ready(function() {
             addProductRow();
@@ -1085,7 +1086,36 @@
         });
 
     </script>
-
+<script>
+    
+//   $(function () {
+//         $("#supply").change(function () {
+//             console.log($('#selecttax').prop('disabled', false));
+//             if ($(this).val() >0) {
+//                 $("#selecttax").off();
+//             $('#selecttax').prop('disabled', false);
+             
+//             } else {
+//                 $('#selecttax').prop('disabled', true);
+//             }
+//         });
+//     });
+// document.getElementById('customer').onchange = function () {
+    
+//     document.getElementById("select02").disabled ;
+//     // = this.value == '';
+// }
+function DisableMenu(){
+   
+   if(document.getElementById("customer").value=="1"){
+       console.log('eeee');
+       document.getElementById("progress").disabled = true;
+   } else {
+     document.getElementById("progress").disabled = false;
+   } 
+                   
+ } 
+</script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.oi').on('change', function() {

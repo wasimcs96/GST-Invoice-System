@@ -1,7 +1,7 @@
 @extends('layouts.app', ['page' => 'settings'])
 
 @section('title', 'Account Detail')
-    
+
 @section('content')
     <div class="page__heading">
         <nav aria-label="breadcrumb">
@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Account Detail</li>
             </ol>
         </nav>
-        <a href="{{ URL(''.auth()->user()->uid.'/settings/index') }}" class="btn btn-info float-right">Back</a>
+        <a href="{{ URL('' . auth()->user()->uid . '/settings/index') }}" class="btn btn-info float-right">Back</a>
         <h1 class="m-1">Account Detail</h1>
     </div>
 
@@ -28,68 +28,97 @@
                                 </p>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('settings.account_details.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-primary text-white">
+                                <a href="{{ route('settings.account_details.create', ['company_uid' => $currentCompany->uid]) }}"
+                                    class="btn btn-primary text-white">
                                     Add Account Detail
                                 </a>
                             </div>
                         </div>
 
-                        @if($account_details->count() > 0)
+                        @if ($account_details->count() > 0)
                             <div class="table-responsive" data-toggle="lists">
                                 <table class="table table-xl mb-0 thead-border-top-0 table-striped">
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>{{ __('messages.name') }}</th> 
-                                            {{-- <th>{{ __('messages.actions') }}</th> --}}
+                                            <th>{{ __('messages.name') }}</th>
+                                            <th>{{ __('messages.actions') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody class="list" id="expense_categories">
-                                        @foreach($account_details as $account_detail)
+                                        @foreach ($account_details as $account_detail)
                                             <tr>
                                                 <td class="h6">
-                                                    
-                                                        <strong class="h6">
-                                                            {{ $account_detail->id }}
-                                                        </strong>
-                                                    
+
+                                                    <strong class="h6">
+                                                        {{ $account_detail->id }}
+                                                    </strong>
+
                                                 </td>
                                                 <td class="h6">
-                                                    
+
                                                     <strong class="h6">
                                                         {{ $account_detail->name }}
                                                     </strong>
-                                                
-                                            </td>
+
+                                                </td>
                                                 {{-- <td class="h6">
                                                     <a href="{{ route('settings.expense_categories.edit', ['expense_category' => $expense_category->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
                                                         <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.edit') }}
                                                     </a>
-                                                    <a href="{{ route('settings.expense_categories.delete', ['expense_category' => $expense_category->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-danger delete-confirm">
+                                                    <a href="{{ route('settings.account_details.delete', ['account_detail' => $account_detail->id, 'company_uid' => $currentCompany->uid]) }}"
+                                                        class="btn text-danger delete-confirm">
+                                                        <i class="material-icons icon-16pt"></i>
+                                                        {{ __('messages.delete') }}
+                                                    </a>
+                                                    <a href="{{ route('settings.account_details.delete', $account_detail->id) }}" class="btn text-danger delete-confirm">
                                                         <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.delete') }}
                                                     </a>
                                                 </td> --}}
-                                                {{-- <td>
+
+                                                <td>
                                                     <div class="dropdown">
-                                                        <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
+                                                        <button type="button"
+                                                            class="btn btn-sm text-black dropdown-toggle hide-arrow"
+                                                            data-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
-                                                        <div class="dropdown-menu"> 
-                                                        <a class="dropdown-item"
-                                                        href="{{ route('settings.product_categories.edit', ['product_category' => $product_category->id, 'company_uid' => $currentCompany->uid]) }}">
-                                                        <i data-feather="edit-2"></i>
-                                                        {{ __('messages.edit') }}
-                                                            </a>
+                                                        <div class="dropdown-menu">
+                                                            {{-- <a class="dropdown-item"
+                                                            href="{{ route('settings.accounts.edit', ['accounts_setting' => $account->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                            <i data-feather="edit-2"></i>
+                                                            {{ __('messages.edit') }}
+                                                                </a> --}}
                                                             <a class="dropdown-item"
-                                                            href="{{ route('settings.product_categories.delete', ['product_category' => $product_category->id, 'company_uid' => $currentCompany->uid]) }}">
-                                                            <i data-feather="trash"></i>
-                                                            {{ __('messages.delete') }}
+                                                                href="{{ route('settings.account_details.delete', ['account_detail' => $account_detail->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                                <i data-feather="trash"></i>
+                                                                {{ __('messages.delete') }}
                                                             </a>
                                                         </div>
                                                     </div>
-                                                </td> --}}
+                                                </td>
+                                                {{-- <div class="dropdown">
+                                                        <button type="button"
+                                                            class="btn btn-sm text-black dropdown-toggle hide-arrow"
+                                                            data-toggle="dropdown">
+                                                            <i data-feather="more-vertical"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('settings.product_categories.edit', ['product_category' => $product_category->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                                <i data-feather="edit-2"></i>
+                                                                {{ __('messages.edit') }}
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('settings.account_details.delete', ['account_detail' => $account_detail->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                                <i data-feather="trash"></i>
+                                                                {{ __('messages.delete') }}
+                                                            </a>
+                                                        </div>
+                                                    </div> --}}
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -113,4 +142,3 @@
         </div>
     </div>
 @endsection
-
