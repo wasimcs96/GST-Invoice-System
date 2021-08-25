@@ -157,7 +157,8 @@
 
             // amount
             var amount = (quantity * price);
-
+            console.log(amount)
+            console.log('amount')
             // Calculate taxes
             var totalTaxAmount = Number(0);
             var selected_taxes = row.find('[name="taxes[]"]').find(':selected');
@@ -168,6 +169,8 @@
                 totalTaxAmount += Number(taxAmount);
             });
 
+             // Add Item Total to Sub Total
+             subTotal += Number(amount);
             // Add tax amount to Item Total
             amount = Number(amount) + Number(totalTaxAmount);
 
@@ -180,11 +183,10 @@
                 amount = Number(amount) - Number(discountAmount);
             }
 
-            // Add Item Total to Sub Total
-            subTotal += Number(amount);
+           
 
             var amountPrice = Number(amount);
-
+            console.log(amountPrice)
             // Set price input value
             row.find('.amount_price').val(amountPrice.toFixed(2));
             row.find('.amount_price').focusout();
@@ -206,10 +208,12 @@
         var total_taxes = $('.total_taxes').find(':selected');
         // console.log('hii');
         // console.log(total_taxes);
+        console.log(total_taxes)
         total_taxes.each(function (index, tax) {
             // console.log($(tax).text());
-            // console.log('hiaha')
+            
             var taxName = $(tax).text();
+            // console.log(taxName)
             var percent = $(tax).data('percent');
             var taxAmount = calculatePercent(percent, subTotal);
 
@@ -219,19 +223,65 @@
             } else {
                 taxes[taxName] = Number(taxAmount);
             }
+            
+          
+          
         });
  
+
         // Display total tax list
         $('.total_tax_list').empty();
+        // console.log(taxes);
         for (var [name, amount] of Object.entries(taxes)) {
-            var template = '<div class="d-flex align-items-center mb-3">' +
+            var value = []
+            // console.log(name)
+            // console.log(amount)
+        
+                console.log(name)
+                var tax = name.match(/\d+/g);
+            // console.log(tax[0])
+            if(tax)
+            {
+                var place_of_supply = $('#supply').val()
+                   // console.log(place_of_supply);
+                   var home_state = {{ auth()->user()->state_id}};
+
+                   // console.log(home_state);
+                   if(place_of_supply == home_state){
+                       
+                    var template = '<div class="d-flex align-items-center mb-3">' +
                 '<div class="h6 mb-0 w-50">' +
-                '    <strong class="text-muted">' + name + '</strong>' +
+                '    <strong class="text-muted">CGST @' + tax[0]/2 + '%</strong>' +
+                '</div>' +
+                '<div class="ml-auto h6 mb-0">' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2)/2 +'" disabled>' +
+                '</div>' +
+            '</div><div class="d-flex align-items-center mb-3">' +
+                '<div class="h6 mb-0 w-50">' +
+                '    <strong class="text-muted">SGST @' + tax[0]/2 + '%</strong>' +
+                '</div>' +
+                '<div class="ml-auto h6 mb-0">' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2)/2 +'" disabled>' +
+                '</div>' +
+            '</div>';
+                   }
+                   else{
+                    var template = '<div class="d-flex align-items-center mb-3">' +
+                '<div class="h6 mb-0 w-50">' +
+                '    <strong class="text-muted">IGST @' + tax[0] + '%</strong>' +
                 '</div>' +
                 '<div class="ml-auto h6 mb-0">' +
                 '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2) +'" disabled>' +
                 '</div>' +
             '</div>';
+                   }
+                // console.log(tax[0])
+               
+            }
+            
+            
+            // console.log(name);
+          
 
             $('.total_tax_list').append(template);
             // console.log('i am in the loop')

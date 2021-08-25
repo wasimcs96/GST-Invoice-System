@@ -24,7 +24,7 @@
                             {{ $invoice->formatted_invoice_date }}
                         </td>
                         <td class="h6">
-                            {{ $invoice->customer->display_name }}
+                            {{ $invoice->customer->display_name ?? ''}}
                         </td>
                         <td class="h6">
                             @if($invoice->status == 'DRAFT')

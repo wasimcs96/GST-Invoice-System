@@ -24,6 +24,8 @@ class HomeController extends Controller
 
             $currentCompany = $user->currentCompany();
             return redirect()->route('dashboard', ['company_uid' => $currentCompany->uid]);
+            // return redirect()->route('order.checkout');
+
         }
 
         $theme = SystemSetting::getSetting('theme');

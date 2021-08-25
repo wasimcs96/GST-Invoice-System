@@ -274,7 +274,7 @@
                     <a class="d-flex align-items-center" href="{{ route('estimates', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ __('messages.estimates') }}</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'suppliers' ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{ route('suppliers', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Supplier</span></a>
+                    <a class="d-flex align-items-center" href="{{ route('suppliers', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="truck"></i><span class="menu-title text-truncate" data-i18n="Calendar">Supplier</span></a>
                 </li>
                 <li class=" nav-item {{ $page == 'payments' ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{ route('payments', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Calendar">Sales</span></a>
@@ -290,26 +290,7 @@
                 </li>
 
                 @if($currentCompany->subscription('main')->getFeatureValue('view_reports') === '1')
-                {{-- <li class=" nav-item {{ str_contains($page, 'reports.') ? 'active open' : ''}}">
-                    <a class="d-flex align-items-center {{ str_contains($page, 'reports.') ? '' : 'collapsed'}}" href="#"><i data-feather="user">pie_chart_outlined</i><span class="menu-title text-truncate" data-i18n="User">{{ __('messages.reports') }}</span></a>
-                    <ul class="menu-content {{ str_contains($page, 'reports.') ? 'collapse show' : 'collapse'}}" id="reports_menu" style="">
-                        <li class="{{ $page == 'reports.customer_sales' ? 'active' : ''}}">
-                            <a class="d-flex align-items-center" href="{{ route('reports.customer_sales', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">{{ __('messages.customer_sales') }}</span></a>
-                        </li>
-                        <li class="{{ $page == 'reports.product_sales' ? 'active' : ''}}">
-                            <a class="d-flex align-items-center"href="{{ route('reports.product_sales', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="View">{{ __('messages.product_sales') }}</span></a>
-                        </li>
-                        <li class="{{ $page == 'reports.profit_loss' ? 'active' : ''}}">
-                            <a class="d-flex align-items-center" href="{{ route('reports.profit_loss', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">{{ __('messages.profit_loss') }}</span></a>
-                        </li>
-                        <li class="{{ $page == 'reports.expenses' ? 'active' : ''}}">
-                            <a class="d-flex align-items-center" href="{{ route('reports.expenses', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">{{ __('messages.expenses') }}</span></a>
-                        </li>
-                        <li class="{{ $page == 'reports.vendors' ? 'active' : ''}}">
-                            <a class="d-flex align-items-center" href="{{ route('reports.vendors', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">{{ __('messages.vendors') }}</span></a>
-                        </li>
-                    </ul>
-                </li> --}}
+               
                 <li class="{{ Request::segment(2) == 'reports' ? ' nav-item active' :  'nav-item' }}"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Menu Levels">{{ __('messages.reports') }}</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::segment(3) == 'customer-sales' ? 'active' : null }}"><a class="d-flex align-items-center" href="{{ route('reports.customer_sales', ['company_uid' => $currentCompany->uid]) }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Payment">{{ __('messages.customer_sales') }}</span></a>

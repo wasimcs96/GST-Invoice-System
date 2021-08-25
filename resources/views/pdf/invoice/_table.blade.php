@@ -8,9 +8,9 @@
         @endif
         <th class="pr-20 text-right item-table-heading">{{ __('messages.quantity') }}</th>
         <th class="pr-20 text-right item-table-heading">{{ __('messages.price') }}</th>
-        @if($invoice->tax_per_item)
+        {{-- @if($invoice->tax_per_item) --}}
             <th width="20%" class="pl-10 text-right item-table-heading">{{ __('messages.tax') }}</th>
-        @endif
+        {{-- @endif --}}
         @if($invoice->discount_per_item)
             <th class="pl-10 text-right item-table-heading">{{ __('messages.discount') }}</th>
         @endif
@@ -19,7 +19,9 @@
     @php
         $index = 1
     @endphp
+    {{-- {{ dd($invoice->state_id) }} --}}
     @foreach ($invoice->items as $item)
+    
         <tr class="item-row">
             <td class="pr-20 text-right item-cell"style="vertical-align: top;">
                 {{ $index }}
@@ -32,16 +34,19 @@
                 {{ $item->quantity }}
             </td>
             <td class="pr-20 text-right item-cell" style="vertical-align: top;">
-                {!! money($item->price, $invoice->currency_code)->format() !!}
+                {!! money(($item->price)*100, $invoice->currency_code)->format() !!}
             </td>
 
-            @if($invoice->tax_per_item)
+            {{-- @if($invoice->tax_per_item) --}}
                 <td class="pl-10 text-right item-cell" style="vertical-align: top;">
                     @foreach ($item->getTotalPercentageOfTaxesWithNames() as $key => $value)
-                        {{$key . ' ('. $value. '%' .')'}} <br>
+                    {{(money((($invoice->sub_total)* ($value/100))*100, $invoice->currency_code)->format())}}
+                        
                     @endforeach
+                   
+                    
                 </td>
-            @endif
+            {{-- @endif --}}
 
             @if($invoice->discount_per_item)
                 <td class="pl-10 text-right item-cell" style="vertical-align: top;">
@@ -50,7 +55,7 @@
             @endif
 
             <td class="text-right item-cell" style="vertical-align: top;">
-                {!! money($item->total, $invoice->currency_code)->format() !!}
+                {!! money(($item->total)*100, $invoice->currency_code)->format() !!}
             </td>
         </tr>
         @php
@@ -67,10 +72,12 @@
             <td class="border-0 total-table-attribute-label"><h4>{{ __('messages.sub_total') }}</h4></td>
             <td class="py-2 border-0 item-cell total-table-attribute-value">
                 @if($invoice->tax_per_item  == false)
-                    {!! money($invoice->sub_total, $invoice->currency_code)->format() !!}
+                    {!! money(($invoice->sub_total)*100, $invoice->currency_code)->format() !!}
                 @else
-                    {!! money($invoice->getItemsSubTotalByBasePrice(), $invoice->currency_code)->format() !!}
+                    {!! money(($invoice->getItemsSubTotalByBasePrice())*100, $invoice->currency_code)->format() !!}
+                    
                 @endif
+           
             </td>
         </tr>
 
@@ -81,7 +88,8 @@
                         <h4>{{$key . ' ('. $value. '%' .')'}}</h4>
                     </td>
                     <td class="border-0 item-cell total-table-attribute-value">
-                        {!! money(($value / 100) * $invoice->sub_total, $invoice->currency_code)->format() !!}
+                        {!! money((($value / 100) * $invoice->sub_total)*100, $invoice->currency_code)->format() !!}
+                        
                     </td>
                 </tr>
             @endforeach
@@ -105,7 +113,7 @@
                         <h4>{{ __('messages.discount') . ' (' . $invoice->discount_val . '%)' }}</h4>
                     </td>
                     <td class="py-2 border-0 item-cell total-table-attribute-value">
-                        - {!! money(($invoice->discount_val / 100) * $invoice->sub_total, $invoice->currency_code)->format() !!}
+                        - {!! money((($invoice->discount_val / 100) * $invoice->sub_total)*100, $invoice->currency_code)->format() !!}
                     </td>
                 </tr>
             @endif
@@ -122,7 +130,48 @@
                 </tr>
             @endif
         @endif
+        @foreach ($item->getTotalPercentageOfTaxesWithNames() as $key => $value)
+        
+        @if( $invoice->state_id == auth()->user()->state_id )
+        <tr>
+            <td class="border-0 total-table-attribute-label">
+                <h4>SGST @ {{ ($value/2)}}%</h4>
+            </td>
+            <td class="py-2 border-0 item-cell total-table-attribute-value">
 
+               
+
+                {{(money((($invoice->sub_total)* ($value/200))*100, $invoice->currency_code)->format())}}
+                     
+            </td>
+        </tr>
+        <tr>
+            <td class="border-0 total-table-attribute-label">
+                <h4>CGST @ {{ ($value/2)}}%</h4>
+            </td>
+            <td class="py-2 border-0 item-cell total-table-attribute-value">
+                {{(money((($invoice->sub_total)* ($value/200))*100, $invoice->currency_code)->format())}}
+
+            
+                     
+            </td>
+        </tr>
+        @else
+        <tr>
+            <td class="border-0 total-table-attribute-label">
+                <h4>IGST @ {{ ($value)}}%</h4>
+            </td>
+            <td class="py-2 border-0 item-cell total-table-attribute-value">
+                {{(money((($invoice->sub_total)* ($value/100))*100, $invoice->currency_code)->format())}}
+
+            
+                     
+            </td>
+        </tr>
+        @endif
+
+
+        @endforeach
         <tr>
             <td class="py-3"></td>
         </tr>
@@ -131,7 +180,7 @@
                 <h3>{{ __('messages.total') }}</h3>
             </td>
             <td class="py-8 border-0 total-border-right item-cell total-table-attribute-value">
-                <h3>{!! money($invoice->total, $invoice->currency_code)->format() !!}</h3>
+                <h3>{!! money(($invoice->total)*100, $invoice->currency_code)->format() !!}</h3>
             </td>
         </tr>
     </table>

@@ -388,6 +388,7 @@ class InvoiceController extends Controller
             'due_date' => $request->due_date,
             'invoice_number' => $request->invoice_number,
             'reference_number' => $request->reference_number,
+            'state_id' => $request->state_id,
             'customer_id' => $request->customer_id,
             'state_id' => $request->state_id,
             'discount_type' => 'percent',

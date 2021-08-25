@@ -8,10 +8,21 @@
                         <input name="filter[name]" type="text" class="form-control" value="{{ isset(Request::get("filter")['name']) ? Request::get("filter")['name'] : '' }}" placeholder="{{ __('messages.name') }}">
                     </div>
                 </div>
-                <div class="col-md-auto">
+                {{-- <div class="col-md-auto">
                     <div class="form-group">
                         <label for="filter[unit_id]">{{ __('messages.product_unit') }}</label>
                         <select id="filter[unit_id]" name="filter[unit_id]" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="filter[unit_id]">
+                            <option selected value="">{{ __('messages.select_unit') }}</option>
+                            @foreach(get_product_units_select2_array($currentCompany->id) as $option)
+                                <option value="{{ $option['id'] }}" {{ isset(Request::get("filter")['unit_id']) && Request::get("filter")['unit_id'] == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div> --}}
+                <div class="col-md-auto">
+                    <div class="form-group">
+                        <label for="filter[unit_id]">{{ __('messages.product_unit') }}</label>
+                        <select id="filter[unit_id]" name="filter[unit_id]" data-toggle="select" class="form-control select2 accessible" data-select2-id="filter[unit_id]">
                             <option selected value="">{{ __('messages.select_unit') }}</option>
                             @foreach(get_product_units_select2_array($currentCompany->id) as $option)
                                 <option value="{{ $option['id'] }}" {{ isset(Request::get("filter")['unit_id']) && Request::get("filter")['unit_id'] == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
