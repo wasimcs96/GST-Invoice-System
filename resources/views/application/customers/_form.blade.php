@@ -243,8 +243,7 @@
                             <div class="form-group required">
                                 <label for="email">Company</label>
                                 <input name="company" id="company" type="text" class="form-control"
-                                    placeholder="Enter Company" value="{{ $customer->company }}"
-                                    required>
+                                    placeholder="Enter Company" value="{{ $customer->company }}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -289,15 +288,15 @@
                             <div class="form-group required">
                                 <label for="gst_type">GST registration type</label>
                                 <select name="gst_type" id="gst_type" data-toggle="select"
-                                    class="form-control select2-hidden-accessible" data-select2-id="gst_type"
-                                    required>
-                                        <option value="0" @if(isset($customer->gst_type) && $customer->gst_type==0)selected @endif>GST registered- Regular</option>
-                                        <option value="1" @if(isset($customer->gst_type) && $customer->gst_type==1)selected @endif>GST registered- Composition</option>
-                                        <option value="2" @if(isset($customer->gst_type) && $customer->gst_type==2)selected @endif>GST unregistered</option>
-                                        <option value="3" @if(isset($customer->gst_type) && $customer->gst_type==3)selected @endif selected>Consumer</option>
-                                        <option value="4" @if(isset($customer->gst_type) && $customer->gst_type==4)selected @endif>Overseas</option>
-                                        <option value="5" @if(isset($customer->gst_type) && $customer->gst_type==5)selected @endif>SEZ</option>
-                                        <option value="6" @if(isset($customer->gst_type) && $customer->gst_type==6)selected @endif>Deemed exports- EOU's, STP's EHTP's etc</option>
+                                    class="form-control select2-hidden-accessible" data-select2-id="gst_type" required>
+                                    <option value="0" @if (isset($customer->gst_type) && $customer->gst_type == 0) selected @endif>GST registered- Regular</option>
+                                    <option value="1" @if (isset($customer->gst_type) && $customer->gst_type == 1) selected @endif>GST registered- Composition</option>
+                                    <option value="2" @if (isset($customer->gst_type) && $customer->gst_type == 2) selected @endif>GST unregistered</option>
+                                    <option value="3" @if (isset($customer->gst_type) && $customer->gst_type == 3) selected @endif selected>Consumer</option>
+                                    <option value="4" @if (isset($customer->gst_type) && $customer->gst_type == 4) selected @endif>Overseas</option>
+                                    <option value="5" @if (isset($customer->gst_type) && $customer->gst_type == 5) selected @endif>SEZ</option>
+                                    <option value="6" @if (isset($customer->gst_type) && $customer->gst_type == 6) selected @endif>Deemed exports- EOU's, STP's EHTP's etc
+                                    </option>
 
                                 </select>
                             </div>
@@ -312,7 +311,8 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="vat_number">Attachment</label>
-                                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $customer->attachment }}">
+                                <input name="attachment" id="attachment" type="file" class="form-control"
+                                    value="{{ $customer->attachment }}">
                             </div>
                         </div>
                     </div>
@@ -365,34 +365,34 @@
                             </div>
                         </div> --}}
                         <div class="col-md-6 col-12">
-                        <div class="form-group required">
-                            <label for="billing[state]">{{ __('messages.state') }}</label>
-                            <select id="billing_state" name="billing[state]" data-toggle="select"
-                                class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
-                                required>
-                                <option disabled selected>Select state</option>
-                                @foreach ($states as $state)
-                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
-                                @endforeach
-                              
-                            </select>
-                        </div>
-                    </div>
+                            <div class="form-group required">
+                                <label for="billing[state]">{{ __('messages.state') }}</label>
+                                <select id="billing_state" name="billing[state]" data-toggle="select"
+                                    class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
+                                    required>
+                                    <option disabled selected>Select state</option>
+                                    @foreach ($states as $state)
+                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                    @endforeach
 
-                    <div class="col-md-6 col-12">
-                        <div class="form-group required">
-                            <label for="billing[city]">{{ __('messages.city') }}</label>
-                            <select name="billing[city]" id="billing_city" data-toggle="select"
-                                class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
-                                required>
-                                <option disabled selected>Select city</option>
-                                {{-- @foreach ($citie as $city)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <div class="form-group required">
+                                <label for="billing[city]">{{ __('messages.city') }}</label>
+                                <select name="billing[city]" id="billing_city" data-toggle="select"
+                                    class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
+                                    required>
+                                    <option disabled selected>Select city</option>
+                                    {{-- @foreach ($citie as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach --}}
-                              
-                            </select>
+
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
                         {{-- <div class="col-md-6 col-12">
                             <div class="form-group">
@@ -403,7 +403,7 @@
                             </div>
                         </div> --}}
                         <div class="col-md-6 col-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
                                 <input name="billing[zip]" id="billing_zip" type="text" class="form-control"
                                     value="{{ $customer->billing->zip }}"
@@ -417,7 +417,7 @@
                                     placeholder="{{ __('messages.address') }}"
                                     required>{{ $customer->billing->address_1 }}</textarea>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -435,7 +435,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="shipping[name]">{{ __('messages.name') }}</label>
                         <input name="shipping[name]" id="shipping_name" type="text" class="form-control"
                             value="{{ $customer->shipping->name }}"
@@ -450,7 +450,7 @@
                     </div>
                 </div> --}}
                 <div class="col-md-6 col-12">
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="shipping[country_id]">{{ __('messages.country') }}</label>
                         <select id="shipping_country_id" name="shipping[country_id]" data-toggle="select"
                             class="form-control select2-hidden-accessible" data-select2-id="shipping[country_id]">
@@ -465,32 +465,16 @@
                 </div>
                 <div class="col-md-6 col-12">
 
-                    {{-- <div class="form-group">
-                        <label for="shipping[state]">{{ __('messages.state') }}</label>
-                        <select id="shipping[state]" name="shipping[state]" data-toggle="select"
-                            class="form-control select2-hidden-accessible" data-select2-id="shipping[state]">
-                            <option disabled selected>{{ __('messages.select_sta te') }}</option>
-                            @foreach(get_countries_select2_array() as $option)
-                            <option value="{{ $option['id'] }}"
-                                {{ $customer->shipping->country_id == $option['id'] ? 'selected=""' : '' }}>
-                                {{ $option['text'] }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
-
                     <div class="form-group required">
                         <label for="billing[state]">{{ __('messages.state') }}</label>
-                        {{-- <select id="billing[state]" name="billing[state]" data-toggle="select"
-                            class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
-                            required> --}}
-                            <select id="shipping_state" name="shipping[state]" data-toggle="select"
-                                class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
-                                required>
+                        
+                        <select id="shipping_state" name="shipping[state]" data-toggle="select"
+                            class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]" required>
                             <option disabled selected>Select state</option>
                             @foreach ($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
                             @endforeach
-                          
+
                         </select>
                     </div>
                 </div>
@@ -498,18 +482,14 @@
                     <div class="form-group required">
                         <label for="billing[city]">{{ __('messages.city') }}</label>
                         <select name="shipping[city]" id="shipping_city" data-toggle="select"
-                            class="form-control select2-hidden-accessible" data-select2-id="billing[city]"
-                            required>
+                            class="form-control select2-hidden-accessible" data-select2-id="billing[city]" required>
                             <option disabled selected>Select city</option>
-                            {{-- @foreach ($citie as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach --}}
                           
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="billing[zip]">{{ __('messages.postal_code') }}</label>
                         <input name="shipping[zip]" id="shipping_zip" type="text" class="form-control"
                             value="{{ $customer->shipping->zip }}"

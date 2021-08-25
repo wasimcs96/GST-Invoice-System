@@ -51,7 +51,8 @@ class Invoice extends Model
         'private_notes',
         'sent',
         'viewed',
-        'attachment'
+        'attachment',
+        'state_id'
     ];
 
     /**

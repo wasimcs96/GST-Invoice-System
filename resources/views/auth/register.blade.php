@@ -124,9 +124,15 @@
 
 @extends('layouts.auth')
 
-@section('title', __('messages.login'))
+@section('title', 'Sign up')
 
 @section('content')
+
+<?php 
+$states = DB::table('states')->get();
+
+?>
+{{-- {{ dd($states) }}   --}}
 
 <!-- begin:: Page -->
 
@@ -163,7 +169,7 @@
                     </a>
 
                     <h4 class="card-title mb-1" style="text-align: center;">Welcome to Calcigo! 👋</h4>
-                    <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+                    <p class="card-text mb-2">Please sign-up to your account and start the adventure</p>
 
                    
 <form id="auth-form" action="{{ route('register') }}" method="POST" novalidate>
@@ -227,7 +233,42 @@
             @enderror
         </div>
     </div>
+    <div class="form-group">
+        <label class="text-label" for="state">{{ __('messages.state') }}:</label>
+        <div class="input-group">
+            <select id="state_id" name="state_id"  class="form-control form-control-prepended @error('state_id') is-invalid @enderror"
+            required>
+            <option disabled selected>Select state</option>
+            @foreach ($states as $state)
+                <option value="{{ $state->id }}">{{ $state->name }}</option>
+            @endforeach
 
+        </select>
+            {{-- <input id="email" name="email" type="email"
+                class="form-control form-control-prepended @error('email') is-invalid @enderror"
+                placeholder="user@example.com" 
+                > --}}
+            @error('state_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+    {{-- <div class="col-md-6 col-12"> --}}
+        {{-- <div class="form-group">
+            <label for="billing[state]">{{ __('messages.state') }}</label>
+            <select id="state_id" name="state_id" data-toggle="select"
+                class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
+                required>
+                <option disabled selected>Select state</option>
+                @foreach ($states as $state)
+                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                @endforeach
+
+            </select>
+        </div> --}}
+    {{-- </div> --}}
     <div class="form-group">
         <label class="text-label" for="password">{{ __('messages.password') }}:</label>
         <div class="input-group">

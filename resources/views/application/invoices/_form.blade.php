@@ -1,16 +1,17 @@
 
 <div class="card card-form">
-    
     <div class="row no-gutters card-form__body card-body bg-white">
         
         <div class="col-md-4 pr-2">
           
             <div class="form-group required select-container">
                 <label for="customer">{{ __('messages.customer') }}</label>
-                <select id="customer" name="customer_id" data-toggle="select"  onchange="DisableMenu()"
+                <select id="customer" name="customer_id" data-toggle="select"
                     class="form-control select2-hidden-accessible select-with-footer" data-select2-id="customer">
                     <option value='1' selected >Select Customer</option>
+                   
                     @if ($invoice->customer_id)
+
                         <option value="{{ $invoice->customer_id }}" selected=""
                             data-currency="{{ $invoice->customer->currency }}"
                             data-billing_address="{{ $invoice->customer->displayLongAddress('billing') }}"
@@ -78,17 +79,17 @@
             </div>
             
         </div>
+        {{-- {{ dd(auth()->user()) }} --}}
         <div class="col-md-4 col-12">
 
             <div class="form-group">
                 <label for="income_account1">Place of Supply</label>
 
-                <select  id="supply" name="supply" class="select2 form-control" name="income_account">
-                    <option value="1" selected>Select State
-                    </option>
+                <select id="supply" class="select2 form-control" name="state_id">
+                    <option value="" > Select State </option>
                     @foreach ($states as $state)
-                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
-                     @endforeach
+                        <option value="{{ $state->id }}" @if( auth()->user()->state_id == $state->id ) selected @endif>{{ $state->name }}</option>
+                    @endforeach
                               
                 </select>
             </div>
@@ -152,7 +153,24 @@
                                 </div>
                             </td>
                             {{-- @if ($tax_per_item) --}}
-                               
+                            <td class="select-container total_taxes" style="width: 470px;" >
+                                <select name="taxes[]"  
+                                    class="form-control priceListener select-with-footer total_taxes" >
+                                    <option value="0"
+                                            data-percent="0" >Select Tax
+                                        </option>
+                                    @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            data-percent="{{ $option['percent'] }}">{{ $option['text'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="d-none select-footer">
+                                    <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
+                                        target="_blank" class="font-weight-300">+
+                                        {{ __('messages.add_new_tax') }}</a>
+                                </div>
+                            </td>
                             {{-- @endif --}}
                             <td class="mb-2" style="padding: initial; padding-left: 24px;">
                                 <input name="quantity[]" type="number" class="form-control priceListener my-2" value="1"
@@ -208,24 +226,7 @@
                             </div>
                             </td>  --}}
                 @endif
-                <td class="select-container total_taxes" style="width: 470px;" >
-                    <select name="taxes[]" id="progress" multiple 
-                        class="form-control priceListener select-with-footer total_taxes" >
-                        <option value="0"
-                                data-percent="0">Select Tax
-                            </option>
-                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
-                            <option value="{{ $option['id'] }}"
-                                data-percent="{{ $option['percent'] }}">{{ $option['text'] }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div class="d-none select-footer">
-                        <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
-                            target="_blank" class="font-weight-300">+
-                            {{ __('messages.add_new_tax') }}</a>
-                    </div>
-                </td>
+               
                             <td>
                                 <a onclick="removeRow(this)">
                                     <i data-feather="x"></i>
@@ -390,14 +391,13 @@
                                         <div class="input-group-text">
                                             %
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endif
 
-                <hr>
                 <div class="d-flex align-items-center mb-3">
                     <div class="h5 mb-0">
                         <strong class="text-muted">{{ __('messages.total') }}</strong>
@@ -408,7 +408,9 @@
                             readonly>
                     </div>
                 </div>
+               
             </div>
+           
         </div>
 
         @if ($invoice->getCustomFields()->count() > 0)

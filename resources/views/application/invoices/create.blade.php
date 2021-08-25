@@ -512,7 +512,7 @@
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
 
-                                                    <select id="taxess" class="select2 form-control" multiple="multiple"
+                                                    <select id="taxess" class="select2 form-control" 
                                                         id="default-select-multi">
                                                         @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                             <option value="{{ $option['id'] }}"
@@ -686,7 +686,7 @@
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
 
-                                                    <select id="tax1" class="select2 form-control" multiple="multiple"
+                                                    <select id="tax1" class="select2 form-control"
                                                         id="default-select-multi">
                                                         @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                             <option value="{{ $option['id'] }}"
@@ -857,7 +857,7 @@
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
 
-                                                    <select id="tax2" class="select2 form-control" multiple="multiple"
+                                                    <select id="tax2" class="select2 form-control"
                                                         id="default-select-multi">
                                                         @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                             <option value="{{ $option['id'] }}"
@@ -1105,16 +1105,19 @@
 //     document.getElementById("select02").disabled ;
 //     // = this.value == '';
 // }
-function DisableMenu(){
-   
-   if(document.getElementById("customer").value=="1"){
-       console.log('eeee');
-       document.getElementById("progress").disabled = true;
-   } else {
-     document.getElementById("progress").disabled = false;
-   } 
-                   
- } 
+$(document).ready(function() {
+ 
+ $('#supply').change(function() {
+     console.log('hii');
+  if( $(this).val() == 1) {
+      
+           $('#progress').prop( "disabled", false );
+} else {       
+  $('#progress').prop( "disabled", true );
+}
+});
+
+});
 </script>
     <script type="text/javascript">
         $(document).ready(function() {
