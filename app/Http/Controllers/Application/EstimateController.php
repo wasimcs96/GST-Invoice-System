@@ -347,9 +347,12 @@ class EstimateController extends Controller
 
         // Find Estimate or Fail (404 Http Error)
         $estimate = Estimate::findOrFail($request->estimate);
-        $limage = $request->attachment;
-        $limage_new_name = time().$limage->getClientOriginalName();
-        $st1= $limage->move('assets/images', $limage_new_name);
+        $st1 ='';
+        if ($request->hasFile('attachment')) {
+            $limage = $request->attachment;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         // Update Estimate
         $estimate->update([
             'estimate_date' => $request->estimate_date,

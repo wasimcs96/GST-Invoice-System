@@ -378,10 +378,12 @@ class InvoiceController extends Controller
             $invoice->status = $invoice->getPreviousStatus();
             $invoice->paid_status = Invoice::STATUS_PARTIALLY_PAID;
         }
-        $limage = $request->attachment;
-        $limage_new_name = time().$limage->getClientOriginalName();
-       $st1= $limage->move('assets/images', $limage_new_name);
-
+        $st1 ='';
+        if ($request->hasFile('attachment')) {
+            $limage = $request->attachment;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         // Update Invoice
         $invoice->update([
             'invoice_date' => $request->invoice_date,

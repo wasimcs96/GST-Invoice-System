@@ -330,10 +330,12 @@ class ExpenseController extends Controller
         $currentCompany = $user->currentCompany();
         
         $expense = Expense::findOrFail($request->expense);
-        $limage = $request->attachment;
-        $limage_new_name = time().$limage->getClientOriginalName();
-       $st1= $limage->move('assets/images', $limage_new_name);
-
+        $st1 ='';
+        if ($request->hasFile('attachment')) {
+            $limage = $request->attachment;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         
         // Update the Expense
         $expense->update([

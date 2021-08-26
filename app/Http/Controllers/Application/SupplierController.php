@@ -147,11 +147,12 @@ class SupplierController extends Controller
         $currentCompany = $user->currentCompany();
 
         $supplier = Supplier::findOrFail($request->supplier);
-
-        $limage = $request->attachment;
-        $limage_new_name = time().$limage->getClientOriginalName();
-       $st1= $limage->move('assets/images', $limage_new_name);
-        
+        $st1 ='';
+        if ($request->hasFile('attachment')) {
+            $limage = $request->attachment;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         // dd($price);
         // Update the Expense
         $supplier->update([

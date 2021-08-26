@@ -181,11 +181,12 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($request->product);
         $price = preg_replace('~\D~', '', $request->price);
-        
-        $limage = $request->image;
-        $limage_new_name = time().$limage->getClientOriginalName();
-       $st1= $limage->move('assets/images', $limage_new_name);
-
+        $st1 ='';
+        if ($request->hasFile('image')) {
+            $limage = $request->image;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         // dd($price);
         // Update the Expense
         $product->update([

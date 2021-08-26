@@ -163,7 +163,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="billing[country_id]">{{ __('messages.country') }}</label>
-                                                    <select id="billing_country_id" name="billing[country_id]"
+                                                    <select id="billing_count" name="billing[country_id]"
                                                         data-toggle="select"
                                                         class="form-control select2 select2-hidden-accessible"
                                                         data-select2-id="billing[country_id]">
@@ -179,7 +179,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="billing[state]">{{ __('messages.state') }}</label>
-                                                    <select id="billing_state" name="billing[state]" data-toggle="select"
+                                                    <select id="billing_s" name="billing[state]" data-toggle="select"
                                                         class="form-control select2 select2-hidden-accessible oi"
                                                         data-select2-id="billing[state]">
                                                         <option disabled selected>Select state</option>
@@ -217,7 +217,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group required">
                                                     <label for="billing[address_1]">{{ __('messages.address') }}</label>
-                                                    <textarea name="billing[address_1]" id="billing_address"
+                                                    <textarea name="billing[address_1]" id="billing_add"
                                                         class="form-control" rows="2"
                                                         placeholder="{{ __('messages.address') }}"></textarea>
                                                 </div>
@@ -254,7 +254,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping[country_id]">{{ __('messages.country') }}</label>
-                                            <select id="shipping_country_id" name="shipping[country_id]"
+                                            <select id="shipping_count" name="shipping[country_id]"
                                                 data-toggle="select" class="form-control select2 select2-hidden-accessible"
                                                 data-select2-id="shipping[country_id]">
                                                 <option disabled selected>{{ __('messages.select_country') }}</option>
@@ -272,7 +272,7 @@
                                             {{-- <select id="billing[state]" name="billing[state]" data-toggle="select"
                                                 class="form-control select2-hidden-accessible oi" data-select2-id="billing[state]"
                                                 required> --}}
-                                            <select id="shipping_state" name="shipping[state]" data-toggle="select"
+                                            <select id="shipping_s" name="shipping[state]" data-toggle="select"
                                                 class="form-control select2 select2-hidden-accessible oi"
                                                 data-select2-id="billing[state]">
                                                 <option disabled selected>Select state</option>
@@ -307,7 +307,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping[address_1]">{{ __('messages.address') }}</label>
-                                            <textarea name="shipping[address_1]" id="shipping_address" class="form-control"
+                                            <textarea name="shipping[address_1]" id="shipping_add" class="form-control"
                                                 rows="2" placeholder="{{ __('messages.address') }}"></textarea>
                                         </div>
                                     </div>
@@ -1185,16 +1185,16 @@ $(document).ready(function() {
                 });
 
                 $(function() {
-                    var $src2 = $('#billing_country_id'),
-                        $dst2 = $('#shipping_country_id');
+                    var $src2 = $('#billing_count'),
+                        $dst2 = $('#shipping_count');
                     $src2.on('input', function() {
                         $dst2.val($src2.val());
                     });
                 });
 
                 $(function() {
-                    var $src3 = $('#billing_state'),
-                        $dst3 = $('#shipping_state');
+                    var $src3 = $('#billing_s'),
+                        $dst3 = $('#shipping_s');
                     $src3.on('input', function() {
                         $dst3.val($src3.val());
                     });
@@ -1216,8 +1216,8 @@ $(document).ready(function() {
                 });
 
                 $(function() {
-                    var $src5 = $('#billing_address'),
-                        $dst5 = $('#shipping_address');
+                    var $src5 = $('#billing_add'),
+                        $dst5 = $('#shipping_add');
                     $src5.on('input', function() {
                         $dst5.val($src5.val());
                     });
