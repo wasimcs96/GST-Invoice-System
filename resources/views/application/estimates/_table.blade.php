@@ -167,9 +167,9 @@
         {{ $estimates->links() }}
     </div>
     @else
-    <div class="row justify-content-center card-body pb-0 pt-5">
+    {{-- <div class="row justify-content-center card-body pb-0 pt-5">
         <i class="material-icons fs-64px">Description</i>
-    </div>
+    </div> --}}
     <div class="row justify-content-center card-body pb-5">
         <p class="h4">{{ __('messages.no_estimates_yet') }}</p>
     </div>

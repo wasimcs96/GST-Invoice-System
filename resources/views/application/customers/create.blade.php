@@ -68,7 +68,11 @@
                             $('select[name="billing[city]"]').empty();
                             $.each(data, function(key, value) {
                                 // console.log(value.name);
+
                                 $('select[name="billing[city]"]').append(
+
+
+                                    
                                     '<option value="' + value.id + '">' + value
                                     .name + '</option>');
                             });

@@ -65,4 +65,17 @@ class ProductSacController extends Controller
         session()->flash('alert-success', __('messages.product_sac added'));
         return redirect()->route('settings.product_sac', ['company_uid' => $currentCompany->uid]);
     }
+    public function delete(Request $request)
+    {
+        $user = $request->user();
+        $currentCompany = $user->currentCompany();
+        
+        $product_sac_codes = Sac::findOrFail($request->product_sac_code);
+        
+        // Delete Expense Category from Database
+        $product_sac_codes->delete();
+
+        session()->flash('alert-success', __('messages.product_Sac_deleted'));
+        return redirect()->route('settings.product_sac', ['company_uid' => $currentCompany->uid]);
+    }
 }

@@ -23,10 +23,10 @@ class ExpenseCategory extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    // public function expenses()
-    // {
-    //     return $this->hasMany(Expense::class);
-    // }
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 
     public function expenseitem()
     {

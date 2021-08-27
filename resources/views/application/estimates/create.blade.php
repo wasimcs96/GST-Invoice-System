@@ -462,7 +462,7 @@
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
 
-                                                    <select id="taxess" class="select2 form-control" multiple="multiple"
+                                                    <select id="taxess" class="select2 form-control" 
                                                         id="default-select-multi">
                                                         @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                             <option value="{{ $option['id'] }}"
@@ -636,7 +636,7 @@
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
 
-                                                    <select id="tax1" class="select2 form-control" multiple="multiple"
+                                                    <select id="tax1" class="select2 form-control"
                                                         id="default-select-multi">
                                                         @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                             <option value="{{ $option['id'] }}"
@@ -807,7 +807,7 @@
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
 
-                                                    <select id="tax2" class="select2 form-control" multiple="multiple"
+                                                    <select id="tax2" class="select2 form-control" 
                                                         id="default-select-multi">
                                                         @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                             <option value="{{ $option['id'] }}"

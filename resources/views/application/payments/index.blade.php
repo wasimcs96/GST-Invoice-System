@@ -1,6 +1,6 @@
 @extends('layouts.app', ['page' => 'payments'])
 
-@section('title', __('messages.payments'))
+@section('title', 'Sales')
     
 @section('page_header')
     <div class="page__heading d-flex align-items-center">

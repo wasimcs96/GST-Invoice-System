@@ -115,11 +115,16 @@
                                         <i data-feather="more-vertical"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item"
+                                        {{-- <a class="dropdown-item"
                                             href="{{ route('products.edit', ['product' => $product->id, 'company_uid' => $currentCompany->uid]) }}">
                                             <i data-feather="edit-2"></i>
                                             <span>Edit</span>
-                                        </a>
+                                        </a> --}}
+                                        <a class="dropdown-item"
+                                        href="{{ route('products.delete', ['product' => $product->id, 'company_uid' => $currentCompany->uid]) }}">
+                                        <i data-feather="edit-2"></i>
+                                        <span>Delete</span>
+                                    </a>
                                     </div>
                                 </div>
                             </td>
