@@ -135,6 +135,8 @@ class ExpenseCategoryController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * 
+     * 
+     * 
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function delete(Request $request)

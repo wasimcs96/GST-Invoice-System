@@ -19,6 +19,7 @@
     @php
         $index = 1
     @endphp
+    {{-- {{dd($invoice)}} --}}
     {{-- {{ dd($invoice->state_id) }} --}}
     @foreach ($invoice->items as $item)
     
@@ -117,7 +118,7 @@
                     </td>
                 </tr>
             @endif
-        @else
+        @else 
             @php $discount_val = $invoice->getItemsTotalDiscount() @endphp
             @if($discount_val > 0)
                 <tr>
@@ -127,6 +128,7 @@
                     <td class="py-2 border-0 item-cell total-table-attribute-value">
                         - {!! money($discount_val, $invoice->currency_code)->format() !!}
                     </td>
+                    
                 </tr>
             @endif
         @endif
@@ -162,7 +164,7 @@
                 <h4>IGST @ {{ ($value)}}%</h4>
             </td>
             <td class="py-2 border-0 item-cell total-table-attribute-value">
-                {{(money((($invoice->sub_total)* ($value/100))*100, $invoice->currency_code)->format())}}
+                {{(money((($invoice->sub_total)*100)* ($value/100))*100, $invoice->currency_code)->format())}}
 
             
                      
@@ -181,6 +183,7 @@
             </td>
             <td class="py-8 border-0 total-border-right item-cell total-table-attribute-value">
                 <h3>{!! money(($invoice->total)*100, $invoice->currency_code)->format() !!}</h3>
+                {{dd($invoice->total)}}
             </td>
         </tr>
     </table>

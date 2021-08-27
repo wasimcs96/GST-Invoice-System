@@ -178,11 +178,11 @@
                                 <i data-feather="more-vertical"></i>
                             </button>
                             <div class="dropdown-menu"> 
-                            {{-- <a class="dropdown-item"
+                            <a class="dropdown-item"
                             href="{{ route('invoices.details', ['invoice' => $invoice->id, 'company_uid' => $currentCompany->uid]) }}">
                             <i data-feather="eye"></i>
                                     <span>Detail</span>
-                                </a> --}}
+                                </a>
                                 <a class="dropdown-item"
                                 href="{{ route('pdf.invoice', ['invoice' => $invoice->uid, 'download' => true]) }}">
                             <i data-feather="arrow-down"></i>
@@ -200,9 +200,9 @@
     {{ $invoices->links() }}
     </div>
     @else
-    <div class="row justify-content-center card-body pb-0 pt-5">
+    {{-- <div class="row justify-content-center card-body pb-0 pt-5">
         <i class="material-icons fs-64px">Description</i>
-    </div>
+    </div> --}}
     <div class="row justify-content-center card-body pb-5">
         <p class="h4">{{ __('messages.no_invoices_yet') }}</p>
     </div>

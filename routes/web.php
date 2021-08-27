@@ -322,7 +322,8 @@ Route::group(['namespace' => 'Application', 'prefix' => '/{company_uid}', 'middl
          Route::get('/product-sac', 'ProductSacController@index')->name('settings.product_sac');
          Route::get('/product-sac/create', 'ProductSacController@create')->name('settings.product_sac.create');
          Route::post('/product-sac/create', 'ProductSacController@store')->name('settings.product_sac.store');
-     
+         Route::get('/product-sac/{product_sac_code}/delete', 'ProductSacController@delete')->name('settings.product_sac.delete');
+
           // Settings>Product_Service
          Route::get('/product-service', 'ProductServicesController@index')->name('settings.product_service');
          Route::get('/product-service/create', 'ProductServicesController@create')->name('settings.product_service.create');

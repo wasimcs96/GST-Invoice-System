@@ -41,6 +41,7 @@
                                         <tr>
                                             <th>S.No</th>
                                             <th>{{ __('messages.name') }}</th> 
+                                            <th>Action</th>
                                             {{-- <th>{{ __('messages.actions') }}</th> --}}
                                         </tr>
                                     </thead>
@@ -59,16 +60,13 @@
                                                     </strong>
                                                 
                                             </td>
-                                                {{-- <td class="h6">
-                                                    <a href="{{ route('settings.expense_categories.edit', ['expense_category' => $expense_category->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-primary">
-                                                        <i class="material-icons icon-16pt"></i>
-                                                        {{ __('messages.edit') }}
-                                                    </a>
-                                                    <a href="{{ route('settings.expense_categories.delete', ['expense_category' => $expense_category->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-danger delete-confirm">
+                                                <td class="h6">
+                                                   
+                                                    <a href="{{ route('settings.product_sac.delete', ['product_sac_code' => $product_sac_code->id, 'company_uid' => $currentCompany->uid]) }}" class="btn text-danger delete-confirm">
                                                         <i class="material-icons icon-16pt"></i>
                                                         {{ __('messages.delete') }}
                                                     </a>
-                                                </td> --}}
+                                                </td>
                                                 {{-- <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">

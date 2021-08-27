@@ -248,22 +248,22 @@ class ProductController extends Controller
 
         // If the product already in use in Invoice Items
         // then return back and flash an alert message
-        if ($product->invoice_items()->exists() && $product->invoice_items()->count() > 0) {
-            session()->flash('alert-success', __('messages.product_cant_deleted_invoice'));
-            return redirect()->route('products.edit', ['product' => $request->product, 'company_uid' => $currentCompany->uid]);
-        }
+        // if ($product->invoice_items()->exists() && $product->invoice_items()->count() > 0) {
+        //     session()->flash('alert-success', __('messages.product_cant_deleted_invoice'));
+        //     return redirect()->route('products.edit', ['product' => $request->product, 'company_uid' => $currentCompany->uid]);
+        // }
 
-        // If the product already in use in Estimate Items
-        // then return back and flash an alert message
-        if ($product->estimate_items()->exists() && $product->estimate_items()->count() > 0) {
-            session()->flash('alert-success', __('messages.product_cant_deleted_estimate'));
-            return redirect()->route('products.edit', ['product' => $request->product, 'company_uid' => $currentCompany->uid]);
-        }
+        // // If the product already in use in Estimate Items
+        // // then return back and flash an alert message
+        // if ($product->estimate_items()->exists() && $product->estimate_items()->count() > 0) {
+        //     session()->flash('alert-success', __('messages.product_cant_deleted_estimate'));
+        //     return redirect()->route('products.edit', ['product' => $request->product, 'company_uid' => $currentCompany->uid]);
+        // }
 
-        // Delete Product Taxes from Database
-        if ($product->taxes()->exists() && $product->taxes()->count() > 0) {
-            $product->taxes()->delete();
-        }
+        // // Delete Product Taxes from Database
+        // if ($product->taxes()->exists() && $product->taxes()->count() > 0) {
+        //     $product->taxes()->delete();
+        // }
 
         // Delete Product from Database
         $product->delete();
@@ -387,4 +387,17 @@ class ProductController extends Controller
         return redirect()->route('estimates.create', ['company_uid' => $currentCompany->uid]);
         
     }
+    // public function delete(Request $request)
+    // {
+    //     $user = $request->user();
+    //     $currentCompany = $user->currentCompany();
+        
+    //     $accounts = AccountDetail::findOrFail($request->account_detail);
+        
+    //     // Delete Expense Category from Database
+    //     $accounts->delete();
+
+    //     session()->flash('alert-success', __('messages.account_deleted'));
+    //     return redirect()->route('settings.account_details', ['company_uid' => $currentCompany->uid]);
+    // }
 }
