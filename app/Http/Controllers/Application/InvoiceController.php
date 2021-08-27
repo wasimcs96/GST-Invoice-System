@@ -138,9 +138,12 @@ class InvoiceController extends Controller
         // Get company based settings
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
-        $limage = $request->attachment;
-        $limage_new_name = time().$limage->getClientOriginalName();
-       $st1= $limage->move('assets/images', $limage_new_name);
+        $st1 = '';
+        if ($request->hasFile('attachment')) {
+            $limage = $request->attachment;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         // Save Invoice to Database
         $invoice = Invoice::create([
             'invoice_date' => $request->invoice_date,

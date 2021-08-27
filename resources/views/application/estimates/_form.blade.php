@@ -254,7 +254,7 @@
             </div>
             <div class="form-group">
                 <label for="vat_number">Attachment</label>
-                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $estimate->attachment }}">
+                <input name="attachment" id="attachment" type="file" class="form-control" value="{{ $estimate->attachment ?? '' }}">
             </div>
         </div>
 

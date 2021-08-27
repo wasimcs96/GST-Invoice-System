@@ -84,10 +84,12 @@ class CustomerController extends Controller
             session()->flash('alert-danger', __('messages.you_have_reached_the_limit'));
             return redirect()->route('customers', ['company_uid' => $currentCompany->uid]);
         }
-        $limage = $request->attachment;
-        $limage_new_name = time().$limage->getClientOriginalName();
-       $st1= $limage->move('assets/images', $limage_new_name);
-        
+        $st1 = '';
+        if ($request->hasFile('attachment')) {
+            $limage = $request->attachment;
+            $limage_new_name = time().$limage->getClientOriginalName();
+            $st1= $limage->move('assets/images', $limage_new_name);
+        }
         // Create Customer and Store in Database
         $customer = Customer::create([
             'company_id' => $currentCompany->id,
