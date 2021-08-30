@@ -32,6 +32,7 @@ class Estimate extends Model
         'estimate_number',
         'customer_id',
         'company_id',
+        'state_id',
         'reference_number',
         'discount_type',
         'discount_val',

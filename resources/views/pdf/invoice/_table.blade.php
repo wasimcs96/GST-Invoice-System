@@ -81,7 +81,30 @@
            
             </td>
         </tr>
-
+        @if ($invoice->discount_per_item == false)
+        @if($invoice->discount_val > 0)
+            <tr>
+                <td class="border-0 total-table-attribute-label">
+                    <h4>{{ __('messages.discount') . ' (' . $invoice->discount_val . '%)' }}</h4>
+                </td>
+                <td class="py-2 border-0 item-cell total-table-attribute-value">
+                    - {!! money((($invoice->discount_val / 100) * $invoice->sub_total)*100, $invoice->currency_code)->format() !!}
+                </td>
+            </tr>
+        @endif
+    @else 
+        @php $discount_val = $invoice->getItemsTotalDiscount() @endphp
+        @if($discount_val > 0)
+            <tr>
+                <td class="border-0 total-table-attribute-label">
+                    <h4>{{ __('messages.discount') }}</h4>
+                </td>
+                <td class="py-2 border-0 item-cell total-table-attribute-value">
+                    - {!! money($discount_val, $invoice->currency_code)->format() !!}
+                </td>
+                
+            </tr>
+        @endif
         @if($invoice->tax_per_item  == false)
             @foreach ($invoice->getTotalPercentageOfTaxesWithNames() as $key => $value)
                 <tr>
@@ -107,30 +130,7 @@
             @endforeach
         @endif
 
-        @if ($invoice->discount_per_item == false)
-            @if($invoice->discount_val > 0)
-                <tr>
-                    <td class="border-0 total-table-attribute-label">
-                        <h4>{{ __('messages.discount') . ' (' . $invoice->discount_val . '%)' }}</h4>
-                    </td>
-                    <td class="py-2 border-0 item-cell total-table-attribute-value">
-                        - {!! money((($invoice->discount_val / 100) * $invoice->sub_total)*100, $invoice->currency_code)->format() !!}
-                    </td>
-                </tr>
-            @endif
-        @else 
-            @php $discount_val = $invoice->getItemsTotalDiscount() @endphp
-            @if($discount_val > 0)
-                <tr>
-                    <td class="border-0 total-table-attribute-label">
-                        <h4>{{ __('messages.discount') }}</h4>
-                    </td>
-                    <td class="py-2 border-0 item-cell total-table-attribute-value">
-                        - {!! money($discount_val, $invoice->currency_code)->format() !!}
-                    </td>
-                    
-                </tr>
-            @endif
+       
         @endif
         @foreach ($item->getTotalPercentageOfTaxesWithNames() as $key => $value)
         
@@ -164,9 +164,9 @@
                 <h4>IGST @ {{ ($value)}}%</h4>
             </td>
             <td class="py-2 border-0 item-cell total-table-attribute-value">
-                {{(money((($invoice->sub_total)*100)* ($value/100))*100, $invoice->currency_code)->format())}}
+                {{-- {{(money(((($invoice->sub_total)*100)* ($value/100))*100, $invoice->currency_code)->format())}} --}}
 
-            
+                {{(money((($invoice->sub_total)* ($value/100))*100, $invoice->currency_code)->format())}}
                      
             </td>
         </tr>
@@ -181,9 +181,10 @@
             <td class="border-0 total-border-left total-table-attribute-label">
                 <h3>{{ __('messages.total') }}</h3>
             </td>
-            <td class="py-8 border-0 total-border-right item-cell total-table-attribute-value">
+            <td class="py-8 border-0 to
+            tal-border-right item-cell total-table-attribute-value">
                 <h3>{!! money(($invoice->total)*100, $invoice->currency_code)->format() !!}</h3>
-                {{dd($invoice->total)}}
+                {{-- {{dd($invoice->total)}} --}}
             </td>
         </tr>
     </table>
