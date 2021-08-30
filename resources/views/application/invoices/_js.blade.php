@@ -180,7 +180,8 @@
             // calculate discount
             if(!isNaN(discount) && discount != undefined && discount != 0) {
                 var discountAmount = calculatePercent(discount, amount);
-                amount = Number(amount) - Number(discountAmount);
+                
+                amount = Number(subtotal) - Number(discountAmount);
             }
 
            
@@ -231,13 +232,10 @@
 
         // Display total tax list
         $('.total_tax_list').empty();
-        // console.log(taxes);
+       
         for (var [name, amount] of Object.entries(taxes)) {
             var value = []
-            // console.log(name)
-            // console.log(amount)
-        
-                console.log(name)
+           
                 var tax = name.match(/\d+/g);
             // console.log(tax[0])
             if(tax)
@@ -247,7 +245,7 @@
                    var home_state = {{ auth()->user()->state_id}};
 
                    // console.log(home_state);
-                   if(place_of_supply == home_state){
+              if(place_of_supply == home_state){
                        
                     var template = '<div class="d-flex align-items-center mb-3">' +
                 '<div class="h6 mb-0 w-50">' +
@@ -261,7 +259,7 @@
                 '    <strong class="text-muted">SGST @' + tax[0]/2 + '%</strong>' +
                 '</div>' +
                 '<div class="ml-auto h6 mb-0">' +
-                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2)/2 +'" disabled>' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+  Number(amount).toFixed(2)/2 +'" disabled>' +
                 '</div>' +
             '</div>';
                    }
@@ -271,7 +269,7 @@
                 '    <strong class="text-muted">IGST @' + tax[0] + '%</strong>' +
                 '</div>' +
                 '<div class="ml-auto h6 mb-0">' +
-                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2) +'" disabled>' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+  Number(amount).toFixed(2) +'" disabled>' +
                 '</div>' +
             '</div>';
                    }
@@ -279,22 +277,22 @@
                
             }
             
-            
-            // console.log(name);
-          
+          // total discount
+            var total_discount = $('#total_discount').val();
+        if(total_discount != undefined && total_discount != 0) {
+            total_discount = parseFloat(total_discount);
+            var discountAmount = calculatePercent(total_discount, subTotal)
+            total = Number(subTotal) - Number(discountAmount);
+        }
 
             $('.total_tax_list').append(template);
             // console.log('i am in the loop')
             total = Number(total) + Number(amount);
+            // console.log(total)
         }
  
         // total discount
-        var total_discount = $('#total_discount').val();
-        if(total_discount != undefined && total_discount != 0) {
-            total_discount = parseFloat(total_discount);
-            var discountAmount = calculatePercent(total_discount, subTotal)
-            total = Number(total) - Number(discountAmount)
-        }
+        
 
         $('#grand_total').val(Number(total).toFixed(2));
         setupPriceInput(window.sharedData.company_currency);

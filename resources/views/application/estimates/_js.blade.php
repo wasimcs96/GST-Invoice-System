@@ -222,15 +222,44 @@
         // Display total tax list
         $('.total_tax_list').empty();
         for (var [name, amount] of Object.entries(taxes)) {
-            var template = '<div class="d-flex align-items-center mb-3">' +
+            if(tax)
+            {
+                var place_supply = $('#place_supply').val()
+                   // console.log(place_of_supply);
+                   var home_of_state = {{ auth()->user()->state_id}};
+
+                   // console.log(home_state);
+              if(place_supply == home_of_state){
+                       
+                    var template = '<div class="d-flex align-items-center mb-3">' +
                 '<div class="h6 mb-0 w-50">' +
-                '    <strong class="text-muted">' + name + '</strong>' +
+                '    <strong class="text-muted">CGST @' + tax[0]/2 + '%</strong>' +
                 '</div>' +
                 '<div class="ml-auto h6 mb-0">' +
-                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2) +'" disabled>' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+ Number(amount).toFixed(2)/2 +'" disabled>' +
+                '</div>' +
+            '</div><div class="d-flex align-items-center mb-3">' +
+                '<div class="h6 mb-0 w-50">' +
+                '    <strong class="text-muted">SGST @' + tax[0]/2 + '%</strong>' +
+                '</div>' +
+                '<div class="ml-auto h6 mb-0">' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+  Number(amount).toFixed(2)/2 +'" disabled>' +
                 '</div>' +
             '</div>';
-
+                   }
+                   else{
+                    var template = '<div class="d-flex align-items-center mb-3">' +
+                '<div class="h6 mb-0 w-50">' +
+                '    <strong class="text-muted">IGST @' + tax[0] + '%</strong>' +
+                '</div>' +
+                '<div class="ml-auto h6 mb-0">' +
+                '    <input type="text" class="price_input price-text w-100 fs-inherit" value="'+  Number(amount).toFixed(2) +'" disabled>' +
+                '</div>' +
+            '</div>';
+                   }
+                // console.log(tax[0])
+               
+            }
             $('.total_tax_list').append(template);
 
             total = Number(total) + Number(amount);
