@@ -297,6 +297,55 @@
         </div>
     </div>
 
+    <!--Tax Modal -->
+    <div class="modal fade" id="taxesModal" tabindex="-1" role="dialog" aria-labelledby="taxModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Tax</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('settings.tax.store', ['company_uid' => $currentCompany->uid]) }}"
+                        method="POST">
+                        @csrf
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group required">
+                                    <label for="name">{{ __('messages.name') }}</label>
+                                    <input name="name" type="text" class="form-control"
+                                        placeholder="{{ __('messages.name') }}" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group required">
+                                    <label for="percent">{{ __('messages.percent') }}</label>
+                                    <input name="percent" type="number" class="form-control"
+                                        placeholder="{{ __('messages.percent') }}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="description">{{ __('messages.description') }}</label>
+                                    <textarea name="description" class="form-control"
+                                        placeholder="{{ __('messages.description') }}" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!--Method Modal -->
     <div class="modal fade" id="typeModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
@@ -577,15 +626,8 @@
 
 @section('page_head_scripts')
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('theme/app-assets/css/plugins/forms/pickers/form-flat-pickr.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme/app-assets/css/pages/app-invoice.css') }}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
     <style>
         .select2-selection__arrow {
             display: none;
@@ -596,9 +638,8 @@
 @endsection
 
 @section('page_body_scripts')
-    <script src="{{ asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script src="{{ asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
-    <script src="{{ asset('theme/app-assets/js/scripts/pages/app-invoice.js') }}"></script>
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
     @include('application.estimates._js')
     <script>
         $(document).ready(function() {

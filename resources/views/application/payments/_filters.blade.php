@@ -11,11 +11,11 @@
                 <div class="col-md-2 col-12">
                     <div class="form-group">
                         <label for="filter[payment_method_id]">{{ __('messages.payment_method') }}</label>
-                        <select id="filter[payment_method_id]" name="filter[payment_method_id]" data-toggle="select" class="form-control select2-hidden-accessible" data-select2-id="filter[payment_method_id]">
+                        <select id="filter[payment_method_id]"name="filter[payment_method_id]" data-toggle="select" class="form-control select2"  data-select2-id="filter[payment_method_id]">
                             <option selected value="">{{ __('messages.payment_type') }}</option>
                             @foreach(get_payment_methods_select2_array($currentCompany->id) as $option)
-                                <option value="{{ $option['id'] }}" {{ isset(Request::get("filter")['payment_method_id']) && Request::get("filter")['payment_method_id'] == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
-                            @endforeach
+                            <option value="{{ $option['id'] }}" {{ isset(Request::get("filter")['payment_method_id']) && Request::get("filter")['payment_method_id'] == $option['id'] ? 'selected=""' : '' }}>{{ $option['text'] }}</option>
+                        @endforeach
                         </select>
                     </div>
                 </div>
@@ -33,9 +33,8 @@
                 </div>
                 <div class="col-md-2 col-12">
                   
-                    <button type="submit" class="btn btn-primary " style="margin: -9px;
-                    margin-bottom: -70px;
-                ">
+                    <button type="submit" class="btn btn-primary " style="margin: -12px;
+                    margin-bottom: -71px;">
             
                         Refresh / {{ __('messages.filter') }}
                     </button>
@@ -53,3 +52,20 @@
         </button> --}}
     </div>
 </form>
+@section('page_body_scripts')
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
+@endsection
+
+@section('page_head_scripts')
+
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+    <style>
+        .select2-selection__arrow {
+            display: none;
+        }
+
+    </style>
+
+@endsection

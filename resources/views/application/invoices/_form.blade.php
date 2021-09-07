@@ -1,15 +1,14 @@
-
 <div class="card card-form">
     <div class="row no-gutters card-form__body card-body bg-white">
-        
+
         <div class="col-md-4 pr-2">
-          
+
             <div class="form-group required select-container">
                 <label for="customer">{{ __('messages.customer') }}</label>
                 <select id="customer" name="customer_id" data-toggle="select"
                     class="form-control select2-hidden-accessible select-with-footer" data-select2-id="customer">
-                    <option value='1' selected >Select Customer</option>
-                   
+                    <option value='1' selected>Select Customer</option>
+
                     @if ($invoice->customer_id)
 
                         <option value="{{ $invoice->customer_id }}" selected=""
@@ -58,7 +57,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="col-md-4 pl-4">
             <div class="form-group required">
                 <label for="due_date">{{ __('messages.due_date') }}</label>
@@ -77,7 +76,7 @@
                     {{-- </div> --}}
                 </div>
             </div>
-            
+
         </div>
         {{-- {{ dd(auth()->user()) }} --}}
         <div class="col-md-4 col-12">
@@ -86,11 +85,11 @@
                 <label for="income_account1">Place of Supply</label>
 
                 <select id="supply" class="select2 form-control" name="state_id">
-                    <option value="" > Select State </option>
+                    <option value=""> Select State </option>
                     @foreach ($states as $state)
-                        <option value="{{ $state->id }}" @if( auth()->user()->state_id == $state->id ) selected @endif>{{ $state->name }}</option>
+                        <option value="{{ $state->id }}" @if (auth()->user()->state_id == $state->id) selected @endif>{{ $state->name }}</option>
                     @endforeach
-                              
+
                 </select>
             </div>
         </div>
@@ -147,27 +146,30 @@
                                     <option disabled selected>{{ __('messages.select_product') }}</option>
                                 </select>
                                 <div class="d-none select-footer">
-                                    <a data-toggle="modal" data-target="#addProduct"
-                                        class="font-weight-300">+
+                                    <a data-toggle="modal" data-target="#addProduct" class="font-weight-300">+
                                         {{ __('messages.add_new_product') }}</a>
                                 </div>
                             </td>
                             {{-- @if ($tax_per_item) --}}
-                            <td class="select-container total_taxes" style="width: 470px;" >
-                                <select name="taxes[]"  
-                                    class="form-control priceListener select-with-footer total_taxes" >
-                                    <option value="0"
-                                            data-percent="0" >Select Tax
-                                        </option>
-                                    @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                            <td class="select-container total_taxes" style="width: 470px;">
+                                <select name="taxes[]"
+                                    class="form-control priceListener select-with-footer total_taxes">
+                                    <option value="0" data-percent="0">Select Tax
+                                    </option>
+                                    {{-- @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                         <option value="{{ $option['id'] }}"
                                             data-percent="{{ $option['percent'] }}">{{ $option['text'] }}
                                         </option>
+                                    @endforeach --}}
+                                    @foreach ($all_taxes as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            data-percent="{{ $option['percent'] }}">{{ $option['name'] }}
+                                        </option>
                                     @endforeach
+
                                 </select>
                                 <div class="d-none select-footer">
-                                    <a href="{{ route('settings.tax_types.create', ['company_uid' => $currentCompany->uid]) }}"
-                                        target="_blank" class="font-weight-300">+
+                                    <a data-toggle="modal" data-target="#taxModal">+
                                         {{ __('messages.add_new_tax') }}</a>
                                 </div>
                             </td>
@@ -176,22 +178,22 @@
                                 <input name="quantity[]" type="number" class="form-control priceListener my-2" value="1"
                                     required>
                             </td>
-                            
+
                             <td style="
                             padding: initial; ">
                                 <input name="price[]" type="text" class="form-control price_input priceListener my-2"
                                     autocomplete="off" value="0" required>
-                            </td>  
-                           
-                               
+                            </td>
+
+
                             @if ($discount_per_item)
                                 <td>
                                     <div class="input-group input-group-merge">
                                         <input name="discount[]" type="number"
                                             class="form-control form-control-prepended priceListener" value="0">
                                         {{-- <div class="input-group-prepend"> --}}
-                                            <div class="input-group-text">
-                                                %
+                                        <div class="input-group-text">
+                                            %
                                             {{-- </div> --}}
                                         </div>
                                     </div>
@@ -205,7 +207,7 @@
                                 <div class="tax_list"></div>
                             </td>
                             @if ($tax_per_item == false)
-                            {{-- <td>
+                                {{-- <td>
                             <div class="form-group select-container">
                                 <select id="total_taxes" name="total_taxes[]" 
                                 data-toggle="select" multiple
@@ -224,9 +226,9 @@
                                         {{ __('messages.add_new_tax') }}</a>
                                 </div>
                             </div>
-                            </td>  --}}
-                @endif
-               
+                            </td> --}}
+                            @endif
+
                             <td>
                                 <a onclick="removeRow(this)">
                                     <i data-feather="x"></i>
@@ -248,11 +250,12 @@
                                                 {{ __('messages.add_new_product') }}</a>
                                         </div>
                                     </td>
-                                    
+
                                     @if ($tax_per_item)
                                         <td class="select-container">
                                             <select name="taxes[]" multiple
                                                 class="form-control priceListener select-with-footer">
+
                                                 @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
                                                     <option value="{{ $option['id'] }}"
                                                         data-percent="{{ $option['percent'] }}"
@@ -275,7 +278,7 @@
                                         <input name="price[]" type="text" class="form-control price_input priceListener"
                                             autocomplete="off" value="{{ $item->price }}" required>
                                     </td>
-                                    
+
                                     @if ($discount_per_item)
                                         <td>
                                             <div class="input-group input-group-merge">
@@ -290,7 +293,7 @@
                                             </div>
                                         </td>
                                     @endif
-                                  
+
                                     <td class="text-right">
                                         <p class="mb-1">
                                             <input type="text" name="total[]"
@@ -319,19 +322,19 @@
 
         <div class="col-md-5 mt-5 pr-4">
             <div class="form-group">
-                <label for="notes">{{ __('messages.notes') }}</label>
+                <label for="notes">Message on invoice</label>
                 <textarea name="notes" class="form-control" rows="4">{{ $invoice->notes }}</textarea>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="private_notes">{{ __('messages.private_notes') }}</label>
                 <textarea name="private_notes" class="form-control" rows="4">{{ $invoice->private_notes }}</textarea>
-            </div>
+            </div> --}}
 
-                <div class="form-group">
-                    <label for="vat_number">Attachment</label>
-                    <input name="attachment" id="" type="file" class="form-control" value="{{ $invoice->attachment }}">
-                </div>
+            <div class="form-group">
+                <label for="vat_number">Attachment</label>
+                <input name="attachment" id="" type="file" class="form-control" value="{{ $invoice->attachment }}">
+            </div>
         </div>
 
         <div class="col-md-4 offset-md-3 mt-5 pl-4">
@@ -348,7 +351,7 @@
                     </div>
                 </div>
 
-               {{-- @if ($tax_per_item == false)
+                {{-- @if ($tax_per_item == false)
                     <div class="row mb-1">
                         <div class="col-12 h6 mb-1">
                             <strong class="text-muted">{{ __('messages.taxes') }}</strong>
@@ -388,9 +391,9 @@
                                         class="form-control form-control-prepended priceListener"
                                         value="{{ $invoice->discount_val ?? 0 }}">
                                     {{-- <div class="input-group-prepend"> --}}
-                                        <div class="input-group-text">
-                                            %
-                                        </div>
+                                    <div class="input-group-text">
+                                        %
+                                    </div>
                                     {{-- </div> --}}
                                 </div>
                             </div>
@@ -408,9 +411,9 @@
                             readonly>
                     </div>
                 </div>
-               
+
             </div>
-           
+
         </div>
 
         @if ($invoice->getCustomFields()->count() > 0)
@@ -420,11 +423,11 @@
                 @endforeach
             </div>
         @endif
-        
+
 
         <div class="col-12 text-center float-right mt-3">
-            <button type="button" class="btn btn-primary save_form_button">{{ __('messages.save_invoice') }}</button>
+            <button type="button"
+                class="btn btn-primary save_form_button">{{ __('messages.save_invoice') }}</button>
         </div>
     </div>
 </div>
-

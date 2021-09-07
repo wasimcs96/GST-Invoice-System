@@ -93,14 +93,14 @@
                     {{-- </div> --}}
 
                 </div>
-            </div>
+            </div>      
         </div>
         <div class="col-md-4 col-12">
 
             <div class="form-group">
-                <label for="place_supply">Place of Supply</label>
+                <label for="place_of_supply">Place of Supply</label>
 
-                <select id="place_supply" class="select2 form-control" name="state_id">
+                <select id="place_of_supply" class="select2 form-control" name="state_id">
                     <option value=""> Select State </option>
                     @foreach ($states as $state)
                         <option value="{{ $state->id }}" @if (auth()->user()->state_id == $state->id) selected @endif>{{ $state->name }}</option>
