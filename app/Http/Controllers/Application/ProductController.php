@@ -13,6 +13,7 @@ use App\Models\ProductCategory;
 use App\Models\Account;
 use App\Models\Sac;
 use App\Models\ProductService;
+use App\Models\TaxType;
 
 class ProductController extends Controller
 {
@@ -30,6 +31,7 @@ class ProductController extends Controller
         $categories = ProductCategory::all();
         $inventory_accounts = Account::all();
         $product_sac = Sac::all();
+        $all_taxes =TaxType::all();
         $product_servicess = ProductService::all();
         // Get Products by Company
         $products = QueryBuilder::for(Product::findByCompany($currentCompany->id))
@@ -48,6 +50,7 @@ class ProductController extends Controller
             'inventory_accounts' => $inventory_accounts,
             'product_sac'   => $product_sac,
             'product_servicess' => $product_servicess,
+            'all_taxes'  =>  $all_taxes,
         ]);
     }
 
@@ -69,6 +72,7 @@ class ProductController extends Controller
         $product_sac = Sac::all();
            $categories = ProductCategory::all();
            $product_servicess = ProductService::all();
+
         return view('application.products.create', [
             'product' => $product,
             'categories' =>  $categories,
@@ -157,12 +161,15 @@ class ProductController extends Controller
         $product_sac = Sac::all();
         $product_servicess = ProductService::all();
         $inventory_accounts = Account::all();
+        $all_taxes =TaxType::all();
+
         return view('application.products.edit', [
             'product' => $product,
             'categories' =>$categories,
             'product_sac' => $product_sac,
             'inventory_accounts' => $inventory_accounts,
             'product_servicess' => $product_servicess,
+            'all_taxes'  =>    $all_taxes,
         ]); 
     }
 

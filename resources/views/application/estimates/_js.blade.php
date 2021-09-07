@@ -196,7 +196,7 @@
     }
 
     function calculateTotalPrice(subTotal, taxes) {
-        // Total value
+        // Total values
         total = 0;
         total += subTotal;
 
@@ -224,8 +224,7 @@
         for (var [name, amount] of Object.entries(taxes)) {
             if(tax)
             {
-                var place_supply = $('#place_supply').val()
-                   // console.log(place_of_supply);
+                var place_supply = $('#place_of_supply').val()
                    var home_of_state = {{ auth()->user()->state_id}};
 
                    // console.log(home_state);

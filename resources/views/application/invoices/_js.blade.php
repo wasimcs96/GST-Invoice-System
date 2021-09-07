@@ -207,8 +207,7 @@
 
         // total taxes
         var total_taxes = $('.total_taxes').find(':selected');
-        // console.log('hii');
-        // console.log(total_taxes);
+      
         console.log(total_taxes)
         total_taxes.each(function (index, tax) {
             // console.log($(tax).text());

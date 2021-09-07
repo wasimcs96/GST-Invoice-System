@@ -64,7 +64,8 @@
             <div class="modal-body"><a data-toggle="modal" href="#myModal">
 
                     <label for="myModal">
-                        <h5 class="modal-title" id="exampleModalLabel"><i data-feather="shopping-bag"></i>Inventory</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><i data-feather="shopping-bag"></i>Inventory
+                        </h5>
                         Products you buy and/or sell and that you track quantiti
                     </label></a>
                 <br /><br />
@@ -240,10 +241,11 @@
                                                         id="default-select-multi">
                                                         <option value="0" data-percent="0">Select Tax
                                                         </option>
-                                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                                        @foreach ($all_taxes as $option)
                                                             <option value="{{ $option['id'] }}"
                                                                 data-percent="{{ $option['percent'] }}">
-                                                                {{ $option['text'] }}</option>
+                                                                {{ $option['name'] }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -389,13 +391,13 @@
 
                                                     <select id="tax1" class="select2 form-control"
                                                         id="default-select-multi">
-                                                        <option value="0"
-                                                        data-percent="0" >Select Tax
-                                                    </option>
-                                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                                        <option value="0" data-percent="0">Select Tax
+                                                        </option>
+                                                        @foreach ($all_taxes as $option)
                                                             <option value="{{ $option['id'] }}"
                                                                 data-percent="{{ $option['percent'] }}">
-                                                                {{ $option['text'] }}</option>
+                                                                {{ $option['name'] }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -544,10 +546,11 @@
 
                                                         <option value="0" data-percent="0">Select Tax
                                                         </option>
-                                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                                        @foreach ($all_taxes as $option)
                                                             <option value="{{ $option['id'] }}"
                                                                 data-percent="{{ $option['percent'] }}">
-                                                                {{ $option['text'] }}</option>
+                                                                {{ $option['name'] }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -561,10 +564,9 @@
                                                         name="income_account" id="default-select-multi">
                                                         <option disabled selected>Select Income Account
                                                         </option>
-                                                        @foreach (get_product_units_select2_array($currentCompany->id) as $option)
-                                                            <option value="{{ $option['id'] }}">
-                                                                {{ $option['text'] }}
-                                                            </option>
+                                                        @foreach ($inventory_accounts as $inventory_account)
+                                                            <option value="{{ $inventory_account->id }}">
+                                                                {{ $inventory_account->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

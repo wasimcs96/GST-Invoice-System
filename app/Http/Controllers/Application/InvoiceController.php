@@ -22,6 +22,7 @@ use App\Models\ProductCategory;
 use App\Models\Account;
 use App\Models\Sac;
 use App\Models\ProductService;
+use App\Models\TaxType;
 
 class InvoiceController extends Controller
 {
@@ -96,6 +97,7 @@ class InvoiceController extends Controller
         $inventory_accounts = Account::all();
         $product_sac = Sac::all();
         $product_servicess = ProductService::all();
+        $all_taxes =TaxType::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -112,6 +114,7 @@ class InvoiceController extends Controller
             'inventory_accounts'=>$inventory_accounts,
             'product_sac' => $product_sac,
             'product_servicess' => $product_servicess,
+            'all_taxes' => $all_taxes,
         ]);
     }
 

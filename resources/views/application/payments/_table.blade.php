@@ -1,4 +1,4 @@
-<!-- @if($payments->count() > 0)
+<!-- @if ($payments->count() > 0)
     <div class="table-responsive">
         <table class="table mb-0 thead-border-top-0 table-striped">
             <thead>
@@ -27,10 +27,10 @@
                             {{ $payment->customer->display_name }}
                         </td>
                         <td>
-                            {{ $payment->payment_method->name ?? "-"}}
+                            {{ $payment->payment_method->name ?? '-' }}
                         </td>
                         <td>
-                            {{ $payment->invoice->invoice_number ?? "-" }}
+                            {{ $payment->invoice->invoice_number ?? '-' }}
                         </td>
                         <td>
                             {!! money($payment->amount, $payment->currency_code) !!}
@@ -49,9 +49,7 @@
         {{ $payments->links() }}
     </div>
 @else
-    <div class="row justify-content-center card-body pb-0 pt-5">
-        <i class="material-icons fs-64px">payment</i>
-    </div>
+   
     <div class="row justify-content-center card-body pb-5">
         <p class="h4">{{ __('messages.no_payments_yet') }}</p>
     </div>
@@ -62,7 +60,9 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Sales</h4>
-                <a href="{{ route('payments.create', ['company_uid' => $currentCompany->uid]) }}" class="btn btn-primary  ml-3 float-right"><i class="material-icons"></i> {{ __('messages.create_payment') }}</a>
+                <a href="{{ route('payments.create', ['company_uid' => $currentCompany->uid]) }}"
+                    class="btn btn-primary  ml-3 float-right"><i class="material-icons"></i>
+                    {{ __('messages.create_payment') }}</a>
 
             </div>
             @if ($payments->count() > 0)
@@ -70,68 +70,71 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th>{{ __('messages.payment_#') }}</th>
-                            <th>{{ __('messages.date') }}</th>
-                            <th>{{ __('messages.customer') }}</th>
-                            <th>{{ __('messages.payment_type') }}</th>
-                            <th>{{ __('messages.invoice') }}</th>
-                            <th>{{ __('messages.amount') }}</th>
-                            <!-- <th class="w-50px">{{ __('messages.view') }}</th> -->
-                            <th>Actions</th>
+                                <th>{{ __('messages.payment_#') }}</th>
+                                <th>{{ __('messages.date') }}</th>
+                                <th>{{ __('messages.customer') }}</th>
+                                <th>{{ __('messages.payment_type') }}</th>
+                                <th>{{ __('messages.invoice') }}</th>
+                                <th>{{ __('messages.amount') }}</th>
+                                <!-- <th class="w-50px">{{ __('messages.view') }}</th> -->
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($payments as $payment)
-                            <tr>
-                        <td>
-                            <a href="{{ route('payments.edit', ['payment' => $payment->id, 'company_uid' => $currentCompany->uid]) }}">
-                                {{ $payment->payment_number }}
-                            </a>
-                        </td>
-                        <td>
-                            {{ $payment->formatted_payment_date }}
-                        </td>
-                        <td>
-                            {{ $payment->customer->display_name }}
-                        </td>
-                        <td>
-                            {{ $payment->payment_method->name ?? "-"}}
-                        </td>
-                        <td>
-                            {{ $payment->invoice->invoice_number ?? "-" }}
-                        </td>
-                        <td>
-                            {!! money($payment->amount, $payment->currency_code) !!}
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-sm text-black dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                    <i data-feather="more-vertical"></i>
-                                </button>
-                                <div class="dropdown-menu"> 
-                                <a class="dropdown-item"
-                                href="{{ route('payments.edit', ['payment' => $payment->id, 'company_uid' => $currentCompany->uid]) }}">
-                                <i data-feather="edit-2"></i>
-                                        <span>Edit</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                                @endforeach
+                                <tr>
+                                    <td>
+                                        <a
+                                            href="{{ route('payments.edit', ['payment' => $payment->id, 'company_uid' => $currentCompany->uid]) }}">
+                                            {{ $payment->payment_number }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ $payment->formatted_payment_date }}
+                                    </td>
+                                    <td>
+                                        {{ $payment->customer->display_name }}
+                                    </td>
+                                    <td>
+                                        {{ $payment->payment_method->name ?? '-' }}
+                                    </td>
+                                    <td>
+                                        {{ $payment->invoice->invoice_number ?? '-' }}
+                                    </td>
+                                    <td>
+                                        {!! money($payment->amount, $payment->currency_code) !!}
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button"
+                                                class="btn btn-sm text-black dropdown-toggle hide-arrow"
+                                                data-toggle="dropdown">
+                                                <i data-feather="more-vertical"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('payments.edit', ['payment' => $payment->id, 'company_uid' => $currentCompany->uid]) }}">
+                                                    <i data-feather="edit-2"></i>
+                                                    <span>Edit</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="row card-body pagination-light justify-content-center text-center">
-        {{ $payments->links() }}
-    </div>
+                    {{ $payments->links() }}
+                </div>
             @else
-            <div class="row justify-content-center card-body pb-0 pt-5">
-        <i class="material-icons fs-64px">payment</i>
-    </div>
-    <div class="row justify-content-center card-body pb-5">
-        <p class="h4">{{ __('messages.no_payments_yet') }}</p>
-    </div>
+                {{-- <div class="row justify-content-center card-body pb-0 pt-5">
+                    <i class="material-icons fs-64px">payment</i>
+                </div> --}}
+                <div class="row justify-content-center card-body pb-5">
+                    <p class="h4">{{ __('messages.no_payments_yet') }}</p>
+                </div>
             @endif
         </div>
     </div>
