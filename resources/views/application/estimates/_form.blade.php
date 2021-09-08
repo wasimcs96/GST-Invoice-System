@@ -137,7 +137,7 @@
                                 <th class="w-15">{{ __('messages.price') }}</th>
                                 <th class="text-right w-10" style="padding-right: 143px;">{{ __('messages.amount') }}
                                 </th>
-                                <th class="text-right w-10" style="padding-right: 142px;">Tax
+                                <th class="text-right w-10" style="padding-right:  203px;">Tax
                                 </th>
                             @elseif(!$tax_per_item and $discount_per_item)
                                 <th class="w-40">{{ __('messages.product') }}</th>
@@ -148,11 +148,11 @@
                                 <th class="w-20">{{ __('messages.discount') }}</th>
                                 <th class="text-right w-10" style="padding-right: 143px;">{{ __('messages.amount') }}
                                 </th>
-                                <th class="text-right w-10" style="padding-right: 142px;">Tax
+                                <th class="text-right w-10" style="padding-right:  203px;">Tax
                                 </th>
                             @elseif(!$tax_per_item and !$discount_per_item)
                                 <th class="w-60">{{ __('messages.product') }}</th>
-                                <th class="text-right w-10" style="padding-right: 142px;">Tax
+                                <th class="text-right w-10" style="padding-right:  203px;">Tax
                                 </th>
                                 <th class="w-10">{{ __('messages.quantity') }}</th>
                                 <th class="w-20">{{ __('messages.price') }}</th>
@@ -182,9 +182,9 @@
                                     <option value="0"
                                             data-percent="0" >Select Tax
                                         </option>
-                                    @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
+                                        @foreach ($all_taxes as $option)
                                         <option value="{{ $option['id'] }}"
-                                            data-percent="{{ $option['percent'] }}">{{ $option['text'] }}
+                                            data-percent="{{ $option['percent'] }}">{{ $option['name'] }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -200,7 +200,7 @@
                             </td>
                             <td>
                                 <input name="price[]" type="text" class="form-control price_input priceListener"
-                                    autocomplete="off" value="0" required>
+                                    autocomplete="off" value="0" style="width: 79px;" required>
                             </td>
                             @if ($discount_per_item)
                                 <td>
@@ -267,7 +267,7 @@
                                     </td>
                                     <td>
                                         <input name="price[]" type="text" class="form-control price_input priceListener"
-                                            autocomplete="off" value="{{ $item->price }}" required>
+                                            autocomplete="off" value="{{ $item->price }}" style="width: 86px;" required>
                                     </td>
                                     @if ($discount_per_item)
                                         <td>
@@ -311,12 +311,13 @@
 
         <div class="col-md-5 mt-5 pr-4">
             <div class="form-group">
-                <label for="notes">{{ __('messages.notes') }}</label>
+                <label for="notes">Message displayed on estimate</label>
                 <textarea name="notes" class="form-control" rows="4">{{ $estimate->notes }}</textarea>
             </div>
 
             <div class="form-group">
-                <label for="private_notes">{{ __('messages.private_notes') }}</label>
+                <label for="private_notes">Message displayed on customer statement
+                </label>
                 <textarea name="private_notes" class="form-control"
                     rows="4">{{ $estimate->private_notes }}</textarea>
             </div>

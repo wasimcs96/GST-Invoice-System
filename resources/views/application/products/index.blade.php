@@ -236,7 +236,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
-
+                                                   
                                                     <select id="tax" class="select2 form-control"
                                                         id="default-select-multi">
                                                         <option value="0" data-percent="0">Select Tax
@@ -388,7 +388,7 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="price">{{ __('Taxes') }}</label>
-
+                                                
                                                     <select id="tax1" class="select2 form-control"
                                                         id="default-select-multi">
                                                         <option value="0" data-percent="0">Select Tax

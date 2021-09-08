@@ -21,6 +21,8 @@ use App\Models\ProductCategory;
 use App\Models\Account;
 use App\Models\Sac;
 use App\Models\ProductService;
+use App\Models\TaxType;
+
 
 
 class EstimateController extends Controller
@@ -96,6 +98,8 @@ class EstimateController extends Controller
         $product_sac = Sac::all();
         $product_servicess = ProductService::all();
         $products = $currentCompany->products;
+        $all_taxes =TaxType::all();
+
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
 
@@ -112,6 +116,7 @@ class EstimateController extends Controller
             'inventory_accounts' => $inventory_accounts,
             'product_sac'  => $product_sac,
             'product_servicess' => $product_servicess,
+            'all_taxes'  =>   $all_taxes,
         ]);
     }
 
