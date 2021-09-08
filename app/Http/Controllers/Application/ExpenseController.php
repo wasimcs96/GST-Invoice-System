@@ -20,6 +20,8 @@ use App\Http\Requests\Application\Expense\Update;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Auth;
+use App\Models\TaxType;
+
 
 class ExpenseController extends Controller
 {
@@ -85,7 +87,7 @@ class ExpenseController extends Controller
          // $paymethod = PaymentMethod::findByCompany($currentCompany->company_id);
          $paymethod = PaymentMethod::all();
          $account = Account::all();
- 
+         $all_taxes =TaxType::all();
         $products = $currentCompany->products;
         $tax_per_item = (boolean) $currentCompany->getSetting('tax_per_item');
         $discount_per_item = (boolean) $currentCompany->getSetting('discount_per_item');
@@ -104,6 +106,7 @@ class ExpenseController extends Controller
             'citie' => $citie,
             'account' => $account,
             'details' => $details,
+            'all_taxes' => $all_taxes,
         ]);
       }
      

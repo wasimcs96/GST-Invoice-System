@@ -182,7 +182,7 @@
                             <td style="
                             padding: initial; ">
                                 <input name="price[]" type="text" class="form-control price_input priceListener my-2"
-                                    autocomplete="off" value="0" required>
+                                    autocomplete="off" value="0"  style="width: 79px; margin-left: 33px;" required>
                             </td>
 
 

@@ -474,9 +474,11 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="price">{{ __('Taxes') }}</label>
-
+                                                      
                                                         <select id="taxess" class="select2 form-control"
                                                             id="default-select-multi">
+                                                            <option value="0" data-percent="0">Select Tax
+                                                            </option>
                                                             @foreach ($all_taxes as $option)
                                                             <option value="{{ $option['id'] }}"
                                                                 data-percent="{{ $option['percent'] }}">{{ $option['name'] }}
@@ -653,9 +655,11 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="price">{{ __('Taxes') }}</label>
-
+                                                       
                                                         <select id="tax1" class="select2 form-control"
                                                             id="default-select-multi">
+                                                            <option value="0" data-percent="0">Select Tax
+                                                            </option>
                                                             @foreach ($all_taxes as $option)
                                                             <option value="{{ $option['id'] }}"
                                                                 data-percent="{{ $option['percent'] }}">{{ $option['name'] }}
@@ -828,9 +832,11 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="price">{{ __('Taxes') }}</label>
-
+                                                      
                                                         <select id="tax2" class="select2 form-control"
                                                             id="default-select-multi">
+                                                            <option value="0" data-percent="0">Select Tax
+                                                            </option>
                                                             @foreach ($all_taxes as $option)
                                                                 <option value="{{ $option['id'] }}"
                                                                     data-percent="{{ $option['percent'] }}">

@@ -96,7 +96,7 @@
                         <tr id="product_row_template" class="d-none">
 
                             <td class="select-container" style="padding-right: 103px;">
-                             
+
                                 <select name="expense_category_id[]"
                                     class="form-control priceListener select-with-footer" style="padding-right: 103px;"
                                     required>
@@ -109,22 +109,22 @@
                                 </div>
                             </td>
                             {{-- @if ($tax_per_item) --}}
-                            <td class="select-container">
-                                
-                                    <select name="taxes[]" 
-                                        class="form-control priceListener select-with-footer">
-                                        @foreach (get_tax_types_select2_array($currentCompany->id) as $option)
-                                            <option value="{{ $option['id'] }}"
-                                                data-percent="{{ $option['percent'] }}"
-                                                {{ $expense->hasTax($option['id']) ? 'selected=""' : '' }}>
-                                                {{ $option['text'] }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="d-none select-footer">
-                                        <a data-toggle="modal" data-target="#taxesModal">+
-                                            {{ __('messages.add_new_tax') }}</a>
-                                    </div>
-                                
+                            <td class="select-container" style="width: 225px;">
+
+                                <select name="taxes[]" class="form-control priceListener select-with-footer">
+                                    <option value="0" data-percent="0">Select Tax
+                                    </option>
+                                    @foreach ($all_taxes as $option)
+                                        <option value="{{ $option['id'] }}"
+                                            data-percent="{{ $option['percent'] }}">{{ $option['name'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="d-none select-footer">
+                                    <a data-toggle="modal" data-target="#taxesModal">+
+                                        {{ __('messages.add_new_tax') }}</a>
+                                </div>
+
                             </td>
                             {{-- @endif --}}
                             <td>
@@ -134,7 +134,7 @@
                             </td>
                             <td>
                                 <input name="price[]" type="text" class="form-control price_input priceListener"
-                                    autocomplete="off" value="0" required>
+                                    autocomplete="off" value="0" style="width: 80px;" required>
                             </td>
                             <td class="text-right">
                                 <p class="mb-1">
