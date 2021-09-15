@@ -66,7 +66,7 @@
         <div class="form-group">
             <label for="price">Default Tax</label>
 
-            <select id="tax" class="select2 form-control" id="default-select-multi" >
+            <select id="tax" name="tax" class="select2 form-control" id="default-select-multi" >
                 <option disabled selected>Select Tax</option>
                 <option value="0">18.0% IGST</option>
                 <option value="1">14.0% ST</option>

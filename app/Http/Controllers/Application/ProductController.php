@@ -212,7 +212,6 @@ class ProductController extends Controller
             'inventory_assests_accounts_id' => $request->initial_quantity,
             'income_account' => $request->income_account,
             'sac_id' => $request->sac_id,
-            'abatement' => $request->abatement,
             'service_id'=>$request->service_id,
         ]);
         

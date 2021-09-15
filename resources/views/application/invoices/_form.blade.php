@@ -86,6 +86,7 @@
 
                 <select id="supply" class="select2 form-control" name="state_id">
                     <option value=""> Select State </option>
+                
                     @foreach ($states as $state)
                         <option value="{{ $state->id }}" @if (auth()->user()->state_id == $state->id) selected @endif>{{ $state->name }}</option>
                     @endforeach

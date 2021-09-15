@@ -418,6 +418,10 @@ class InvoiceController extends Controller
         $discounts = $request->discount;
 
         // Remove old invoice items
+
+
+
+        
         $invoice->items()->delete();
 
         // Add products (invoice items)
@@ -438,8 +442,9 @@ class InvoiceController extends Controller
             ]);
 
             // Add taxes for Invoice Item if it is given
-            if ($taxes && array_key_exists($i, $taxes)) {
-                foreach ($taxes[$i] as $tax) {
+             
+
+            
                     $item->taxes()->create([
                         'tax_type_id' => $tax
                     ]);
@@ -506,7 +511,9 @@ class InvoiceController extends Controller
 
     */
 
-    public function export(Request $request) 
+    public function export(
+        
+         $request) 
     {
         return Excel::download(new InvoiceExport, $request->file);
     }

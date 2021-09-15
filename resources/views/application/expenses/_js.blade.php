@@ -233,8 +233,11 @@
             '</div>';
 
             $('.total_tax_list').append(template);
+            // console.log('i am in the loop')
 
             total = Number(total) + Number(amount);
+            // console.log('i am in the')
+
         }
 
         // total discount

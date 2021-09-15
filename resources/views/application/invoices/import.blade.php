@@ -51,7 +51,7 @@
                             <div class="form-group required">
                                 {{-- <label>Product</label> --}}
                                 <select name="product_id" id="product_id" data-toggle="select"
-                                    class="form-control select2-hidden-accessible" data-select2-id="product_id"
+                                    class="form-control select2 accessible" data-select2-id="product_id"
                                     required>
                                     <option disabled selected>Select Product</option>
                                     @foreach ($products as $option)
@@ -76,8 +76,18 @@
 
 @section('page_head_scripts')
 <link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/vendors/css/forms/select/select2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{asset('theme/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+<style>
+    .select2-selection__arrow {
+        display: none;
+    }
+
+</style>
 @endsection
 
 @section('page_body_scripts')
 <script src="{{asset('theme/app-assets/js/scripts/forms/form-tooltip-valid.js')}}"></script>
+<script src="{{asset('theme/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{asset('theme/app-assets/js/scripts/forms/form-select2.js') }}"></script>
 @endsection

@@ -84,17 +84,19 @@
                         @foreach ($products as $product)
                         <tr>
                             <td>
-                                <a class="mb-0"
+                                {{ $product->id }}
+                                {{-- <a class="mb-0"
                                     href="{{ route('products.edit', ['product' => $product->id, 'company_uid' => $currentCompany->uid]) }}">
                                     {{ $product->id }}
-                                </a>
+                                </a> --}}
                             </td>
 
                             <td>
-                                <a class="h6 mb-0"
+                                {{ $product->name }}
+                                {{-- <a class="h6 mb-0"
                                     href="{{ route('products.edit', ['product' => $product->id, 'company_uid' => $currentCompany->uid]) }}">
                                     <strong>{{ $product->name }}</strong>
-                                </a>
+                                </a> --}}
                             </td>
                             <td>
 

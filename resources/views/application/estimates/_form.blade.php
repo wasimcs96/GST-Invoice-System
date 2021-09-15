@@ -109,7 +109,7 @@
                 </select>
             </div>
         </div>
-
+{{-- {{dd(auth()->user()->state_id)}} --}}
         <div class="col-12 mt-5">
             <div class="table-responsive" data-toggle="lists">
                 <table class="table table-xl mb-0 thead-border-top-0 table-striped">
