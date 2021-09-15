@@ -35,7 +35,6 @@ class Product extends Model
         'inventory_assests_accounts_id',
         'income_account',
         'sac_id',
-        'abatement',
         'service_id',
         'currency_id'
     ];

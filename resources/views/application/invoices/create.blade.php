@@ -1086,19 +1086,19 @@
             //     document.getElementById("select02").disabled ;
             //     // = this.value == '';
             // }
-            $(document).ready(function() {
+            // $(document).ready(function() {
 
-                $('#supply').change(function() {
-                    console.log('hii');
-                    if ($(this).val() == 1) {
+            //     $('#supply').change(function() {
+            //         console.log('hii');
+            //         if ($(this).val() == 1) {
 
-                        $('#progress').prop("disabled", false);
-                    } else {
-                        $('#progress').prop("disabled", true);
-                    }
-                });
+            //             $('#progress').prop("disabled", false);
+            //         } else {
+            //             $('#progress').prop("disabled", true);
+            //         }
+            //     });
 
-            });
+            // });
         </script>
         <script type="text/javascript">
             $(document).ready(function() {

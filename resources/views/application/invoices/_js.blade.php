@@ -240,10 +240,10 @@
             if(tax)
             {
                 var place_of_supply = $('#supply').val()
-                   // console.log(place_of_supply);
+                //    console.log(place_of_supply);
                    var home_state = {{ auth()->user()->state_id}};
 
-                   // console.log(home_state);
+                //    console.log(home_state);
               if(place_of_supply == home_state){
                        
                     var template = '<div class="d-flex align-items-center mb-3">' +

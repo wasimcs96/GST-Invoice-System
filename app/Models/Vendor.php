@@ -18,6 +18,8 @@ class Vendor extends Model
      */
     protected $fillable = [
         'company_id',
+        'state_id',
+        'city_id',
         'display_name',
         'contact_name',
         'email',

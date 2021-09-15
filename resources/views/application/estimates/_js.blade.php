@@ -225,7 +225,9 @@
             if(tax)
             {
                 var place_supply = $('#place_of_supply').val()
+                // console.log(place_supply);
                    var home_of_state = {{ auth()->user()->state_id}};
+                //    console.log(home_of_state);
 
                    // console.log(home_state);
               if(place_supply == home_of_state){

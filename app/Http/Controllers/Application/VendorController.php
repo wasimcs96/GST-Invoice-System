@@ -9,6 +9,10 @@ use App\Http\Requests\Application\Vendor\Store;
 use App\Http\Requests\Application\Vendor\Update;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\State;
+use App\Models\City;
+
+
 
 class VendorController extends Controller
 {
@@ -49,7 +53,8 @@ class VendorController extends Controller
     public function create(Request $request)
     {
         $vendor = new Vendor();
-
+        $states = State::all();
+        $citie = City::all();
         // Fill model with old input
         if (!empty($request->old())) {
             $vendor->fill($request->old());
@@ -57,6 +62,8 @@ class VendorController extends Controller
 
         return view('application.vendors.create', [
             'vendor' => $vendor,
+            'states'  => $states,
+            'citie'  => $citie,
         ]);
     }
 
@@ -75,6 +82,8 @@ class VendorController extends Controller
         // Create Vendor and Store in Database
         $vendor = Vendor::create([
             'company_id' => $currentCompany->id,
+            'state_id'  => $request->state_id,
+            'city_id'  => $request->city_id,
             'display_name' => $request->display_name,
             'contact_name' => $request->contact_name,
             'email' => $request->email,
@@ -146,6 +155,8 @@ class VendorController extends Controller
         $vendor->update([
             'display_name' => $request->display_name,
             'contact_name' => $request->contact_name,
+            'state_id'  => $request->state_id,
+            'city_id'  => $request->city_id,
             'email' => $request->email,
             'phone' => $request->phone,
             'website' => $request->website,
